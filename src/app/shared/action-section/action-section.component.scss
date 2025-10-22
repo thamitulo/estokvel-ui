@@ -1,0 +1,87 @@
+.action-section-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: -3.5rem;
+  margin-bottom: 3rem;
+  z-index: 0; // ensures it scrolls under toolbar
+}
+
+.action-section {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 85%;
+  max-width: 900px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  .action-btn {
+    height: 50px;
+    border-radius: 0.75rem;
+    min-width: 180px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+
+    &.purple {
+      background-color: #702878;
+      color: #fff;
+
+      &:hover {
+        background-color: #5a2060;
+      }
+    }
+
+    &.pink {
+      background-color: #bd3293;
+      color: #fff;
+
+      &:hover {
+        background-color: #a0277d;
+      }
+    }
+
+    &.blue {
+      background-color: #65c6e0;
+      color: #fff;
+
+      &:hover {
+        background-color: #4db2cd;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .action-section {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
+
+    .action-btn {
+      width: 100%;
+    }
+  }
+}

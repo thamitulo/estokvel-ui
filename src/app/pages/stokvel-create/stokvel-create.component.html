@@ -1,0 +1,154 @@
+<div class="create-stokvel-container">
+  <h2>Create Stokvel</h2>
+
+  <!-- Success / Error Messages -->
+  <div *ngIf="stokvelForm.valid && stokvelForm.touched && formSubmitted" class="success-msg">
+    Stokvel successfully created!
+  </div>
+
+  <form [formGroup]="stokvelForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Stokvel Description</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Stokvel Name</mat-label>
+          <input matInput formControlName="name" required />
+          <mat-error *ngIf="stokvelForm.get('name')?.hasError('required')">
+            Stokvel name is required
+          </mat-error>
+          <mat-error *ngIf="stokvelForm.get('name')?.hasError('minlength')">
+            Minimum 3 characters
+          </mat-error>
+          <mat-error *ngIf="stokvelForm.get('name')?.hasError('maxlength')">
+            Maximum 50 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" required />
+          <mat-error *ngIf="stokvelForm.get('description')?.hasError('required')">
+            Description is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Pre-existing</mat-label>
+          <mat-select formControlName="preExisting" required>
+            <mat-option *ngFor="let option of preExistingOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="stokvelForm.get('preExisting')?.hasError('required')">
+            Please specify if stokvel is pre-existing
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="startDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker [startAt]="minDate"></mat-datepicker>
+          <mat-error *ngIf="stokvelForm.get('startDate')?.hasError('required')">
+            Start date is required
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Stokvel Contributions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Stokvel Type</mat-label>
+          <mat-select formControlName="stokvelType" (selectionChange)="onStokvelTypeChange()" required>
+            <mat-option *ngFor="let type of stokvelTypes" [value]="type">{{type}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="stokvelForm.get('stokvelType')?.hasError('required')">
+            Please select stokvel type
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="isSavings" appearance="fill">
+          <mat-label>Savings Period</mat-label>
+          <mat-select formControlName="savingsTerms" required>
+            <mat-option *ngFor="let term of savingsTerms" [value]="term">{{term}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Contribution Amount</mat-label>
+          <input matInput type="number" formControlName="contributionAmount" required />
+          <mat-error *ngIf="stokvelForm.get('contributionAmount')?.hasError('required')">
+            Contribution amount is required
+          </mat-error>
+          <mat-error *ngIf="stokvelForm.get('contributionAmount')?.hasError('min')">
+            Minimum R100
+          </mat-error>
+          <mat-error *ngIf="stokvelForm.get('contributionAmount')?.hasError('max')">
+            Maximum R5000
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Privacy Option</mat-label>
+          <mat-select formControlName="privacyOption" required>
+            <mat-option *ngFor="let option of privacyOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="stokvelForm.get('privacyOption')?.hasError('required')">
+            Please select privacy option
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Admin Banking Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Bank Name</mat-label>
+          <mat-select formControlName="bankName" required>
+            <mat-option *ngFor="let bank of banks" [value]="bank">{{bank}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Account Holder Name</mat-label>
+          <input matInput formControlName="accHolderName" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Account Number</mat-label>
+          <input matInput formControlName="accountNumber" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Account Type</mat-label>
+          <mat-select formControlName="accountType" required>
+            <mat-option value="current/cheque">Current/Cheque</mat-option>
+            <mat-option value="savings">Savings</mat-option>
+            <mat-option value="transmission">Transmission</mat-option>
+            <mat-option value="bond/mortgage">Bond/Mortgage</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Preferred Debit Day</mat-label>
+          <mat-select formControlName="debitDay" required>
+            <mat-option *ngFor="let day of preferredDebitDays" [value]="day">{{day}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="debitAuthorization">
+          Authorize debit (Once off R43 initiation fee)
+        </mat-checkbox>
+      </mat-card-content>
+    </mat-card>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="stokvelForm.invalid">Save</button>
+  </form>
+</div>

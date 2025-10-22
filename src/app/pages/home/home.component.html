@@ -1,0 +1,151 @@
+<div class="hero-container">
+  <div
+    class="hero-image"
+    *ngFor="let img of images; let i = index"
+    [@fade]
+    [class.active]="i === currentIndex"
+    [style.background-image]="'url(' + img + ')'"
+  ></div>
+
+  <div class="hero-content">
+    <h1>Save together. Grow together.</h1>
+    <p>
+      Reach your financial goals with a trusted community.
+    </p>
+  </div>
+</div>
+<app-action-section></app-action-section>
+
+<!-- Page-wide gradient section -->
+<div class="wide-gradient-section">
+  <div class="content-wrapper">
+    <h2>Save together. Grow together.</h2>
+    <p>Reach your financial goals with a trusted community.</p>
+    <button mat-raised-button color="primary">Learn More</button>
+  </div>
+</div>
+
+<!-- Main Home Page Content -->
+<div class="home-page">
+  <!-- Top Cards -->
+  <div class="top-cards">
+    <mat-card class="blue-card">
+      <mat-card-content>
+        <mat-icon>groups</mat-icon>
+        <h3>My Stokvels</h3>
+        <div class="card-actions">
+          <button mat-stroked-button color="accent">Manage</button>
+          <button mat-stroked-button color="primary">Create</button>
+          <button mat-stroked-button>View Requests</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="date-card">
+      <mat-card-content>
+        <h2>{{ today | date: 'MMMM' }}</h2>
+        <h1>{{ today | date: 'd' }}</h1>
+        <p>{{ today | date: 'EEEE, h:mm a' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Information Section -->
+  <section class="info-section">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Got a couple of friends together?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          That final, always-reluctant friend has given your idea of a savings scheme a thumbs up.
+          <br />Now all that's left is to set the wheels in motion.
+        </p>
+        <button mat-raised-button color="accent" (click)="createStokvel()">Create a stokvel</button>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- Info Boxes -->
+  <div class="info-boxes">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>How does it work?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li>Create account and confirm via email link.</li>
+          <li>Provide personal and banking details.</li>
+          <li>Create or join stokvels.</li>
+          <li>Invite members and manage contributions online.</li>
+        </ul>
+        <a mat-button href="/assets/docs/e-Stokvel-How-it-works.pdf" target="_blank">Download PDF Guide</a>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>What does it cost?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li>Transparent cost structure</li>
+          <li>Once-off initiation fee</li>
+          <li>No monthly fees</li>
+          <li>Minimal per-transaction costs</li>
+        </ul>
+        <a mat-button href="/assets/docs/pricing-guide.pdf" target="_blank">Download Pricing Guide</a>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="highlight-card">
+      <mat-card-header>
+        <mat-card-title>What are the benefits?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li>Safe and cashless</li>
+          <li>Reliable — direct to your bank</li>
+          <li>On-time payments</li>
+          <li>Trust ratings for members</li>
+          <li>No physical meetings</li>
+        </ul>
+        <button mat-flat-button color="primary" (click)="createStokvel()">Create a stokvel</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Stokvels Table -->
+  <mat-card class="stokvel-table">
+    <mat-card-header>
+      <mat-card-title>Your Stokvels</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="stokvels" class="mat-elevation-z1">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let s">{{ s.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>Type</th>
+          <td mat-cell *matCellDef="let s">{{ s.stokvelType.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef>Start Date</th>
+          <td mat-cell *matCellDef="let s">{{ s.startDate | date: 'yyyy-MM-dd' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Contribution</th>
+          <td mat-cell *matCellDef="let s">R {{ s.contributionAmount }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['name','type','startDate','amount']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['name','type','startDate','amount'];"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+</div>

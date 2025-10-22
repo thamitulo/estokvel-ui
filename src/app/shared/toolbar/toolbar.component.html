@@ -1,0 +1,75 @@
+<mat-toolbar color="primary" class="toolbar">
+  <div class="toolbar-left">
+    <button mat-icon-button class="mobile-menu-button" (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img src="assets/logo.png" alt="Estokvel" class="logo" />
+    <span class="app-title">eStokvel</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <div class="desktop-menu">
+    <button mat-button *ngFor="let item of menuItems" (click)="navigate(item.route)">
+      {{ item.label }}
+    </button>
+
+<!-- My Profile dropdown when logged in -->
+<ng-container *ngIf="auth.user$ | async as user">
+  <button
+    mat-button
+    [matMenuTriggerFor]="profileMenu"
+    class="profile-button"
+  >
+    My Profile
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #profileMenu="matMenu" class="custom-profile-menu">
+    <div class="profile-header">
+      <mat-icon>account_circle</mat-icon>
+      <div class="profile-info">
+        <span class="greeting">Hi,</span>
+        <span class="name">{{ user.name || user.nickname || 'there' }}</span>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Account Settings</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>history</mat-icon>
+      <span>Transaction History</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications</mat-icon>
+      <span>Notifications</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>help_outline</mat-icon>
+      <span>Support</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item (click)="logout()" class="logout-item">
+      <mat-icon color="warn">logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</ng-container>
+
+  </div>
+
+  <!-- Auth0 Login/Logout 
+  <ng-container *ngIf="auth.isAuthenticated$ | async; else loginTemplate">
+    <button mat-raised-button class="auth-button" (click)="logout()">Logout</button>
+  </ng-container> -->
+
+  <ng-template #loginTemplate>
+    <button mat-stroked-button class="auth-button" (click)="login()">Login</button>
+  </ng-template>
+</mat-toolbar>

@@ -1,0 +1,22 @@
+.stokvel-card {
+    padding: 16px;
+  }
+  
+  .form-grid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .form-column {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  

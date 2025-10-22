@@ -1,0 +1,169 @@
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  background-color: #c2185b;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .logo {
+      height: 48px;
+    }
+
+    .app-title {
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+  }
+
+  .desktop-menu {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+
+    .profile-button {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+  }
+
+  .auth-button {
+    margin-left: 1rem;
+    background-color: #ad1457;
+    color: #fff;
+
+    &:hover {
+      background-color: #880e4f;
+    }
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu-button {
+      display: none;
+    }
+    .desktop-menu {
+      display: flex;
+    }
+  }
+}
+
+/* === Profile Button === */
+.profile-button {
+  font-weight: 600;
+  color: white;
+  text-transform: none;
+  mat-icon {
+    margin-left: 4px;
+  }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* === Profile Menu Styling === */
+::ng-deep .mat-mdc-menu-panel.custom-profile-menu {
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+  min-width: 240px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25) !important;
+  background-color: #fff !important;
+  padding: 0 !important;
+
+  .mat-mdc-menu-content {
+    padding: 0 !important;
+  }
+
+  .profile-header {
+    background: linear-gradient(135deg, #c2185b, #ad1457);
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    mat-icon {
+      font-size: 36px;
+      width: 36px;
+      height: 36px;
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+
+      .greeting {
+        font-size: 0.8rem;
+        opacity: 0.85;
+      }
+
+      .name {
+        font-weight: 600;
+        font-size: 1rem;
+        word-break: break-word;
+      }
+    }
+  }
+
+  button.mat-mdc-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    color: #333;
+
+    mat-icon {
+      color: #c2185b;
+    }
+
+    &:hover {
+      background-color: rgba(194, 24, 91, 0.08);
+    }
+  }
+
+  .logout-item {
+    color: #b71c1c !important;
+
+    mat-icon {
+      color: #b71c1c !important;
+    }
+
+    &:hover {
+      background-color: rgba(183, 28, 28, 0.08);
+    }
+  }
+
+  mat-divider {
+    margin: 0;
+  }
+}
+
+/* Preserve your greeting style if still used elsewhere */
+::ng-deep .profile-menu .profile-greeting {
+  font-weight: 500;
+  padding: 0.75rem 1rem 0.5rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+}
