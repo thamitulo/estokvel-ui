@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FaqComponent } from './shared/faq/faq.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,9 +18,10 @@ const routes: Routes = [
         .then(m => m.CreateStokvelComponent)
   },
 
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' },
 
-  // Add other routes here...
+  
+  { path: 'faq', component: FaqComponent },
 ];
 
 @NgModule({

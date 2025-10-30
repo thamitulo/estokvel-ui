@@ -1,0 +1,100 @@
+.faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    font-family: 'Roboto', sans-serif;
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #c2185b, #702878);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  
+    .faq-search {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+  
+      @media (min-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  
+    .faq-card {
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(20px);
+  
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      }
+  
+      &.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+  
+      mat-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        background: linear-gradient(to right, #f06292, #ba68c8);
+        color: #fff;
+  
+        mat-card-title {
+          font-weight: 600;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+  
+        .toggle-icon {
+          transition: transform 0.4s ease;
+          &.open {
+            transform: rotate(180deg);
+          }
+        }
+      }
+  
+      mat-card-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease, padding 0.3s ease;
+        background: #f9f9f9;
+  
+        &.open {
+          max-height: 600px;
+          padding: 1rem 1.5rem;
+        }
+  
+        p {
+          margin: 0;
+          color: #444;
+          line-height: 1.7;
+        }
+      }
+  
+      &:nth-child(even) mat-card-header {
+        background: linear-gradient(to right, #ba68c8, #f06292);
+      }
+    }
+  }
+  

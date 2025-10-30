@@ -10,9 +10,10 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { FooterComponent } from './shared/footer/footer.component';
+import { FaqComponent } from './shared/faq/faq.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, FooterComponent],
+  declarations: [AppComponent, ToolbarComponent, FooterComponent, FaqComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

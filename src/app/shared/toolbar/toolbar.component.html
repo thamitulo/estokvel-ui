@@ -10,7 +10,7 @@
   <span class="spacer"></span>
 
   <div class="desktop-menu">
-    <button mat-button *ngFor="let item of menuItems" (click)="navigate(item.route)">
+    <button mat-button *ngFor="let item of visibleMenuItems" (click)="navigate(item.route)">
       {{ item.label }}
     </button>
 

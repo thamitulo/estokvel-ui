@@ -42,4 +42,8 @@ export class ToolbarComponent implements OnInit {
   logout() {
     this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
   }
+
+  get visibleMenuItems() {
+    return this.menuItems.filter(item => item.label !== 'My Stokvels' || this.auth.user$);
+  }
 }

@@ -1,30 +1,29 @@
 .app-footer {
     width: 100%;
-    background-color: #c2185b; /* same as toolbar */
+    background-color: #ffffff;
     color: white;
     padding: 16px 32px;
     position: relative; /* stick footer to bottom */
     bottom: 0;
-  
+
     .footer-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-  
+
       .footer-left {
         font-size: 0.9rem;
       }
-  
+
       .footer-right button {
         color: white;
         font-weight: 600;
         margin-left: 12px;
-  
+
         &:hover {
           background-color: rgba(255, 255, 255, 0.1);
         }
       }
     }
   }
-  
