@@ -1,154 +1,321 @@
-<div class="hero-container">
-  <div
-    class="hero-image"
-    *ngFor="let img of images; let i = index"
-    [@fade]
-    [class.active]="i === currentIndex"
-    [style.background-image]="'url(' + img + ')'"
-  ></div>
-
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-background"></div>
   <div class="hero-content">
-    <h1>Save together. Grow together.</h1>
-    <p>
-      Reach your financial goals with a trusted community.
-    </p>
+    <h1 class="hero-title">Save together. Grow together.</h1>
+    <br />
+    <p class="hero-subtitle">Reach your financial goals with a trusted community.</p>
+    <br />
+  </div>
+</section>
+
+<!-- Action Buttons Section -->
+<div class="action-section-wrapper">
+  <div class="action-section mat-elevation-z8">
+    <div class="action-buttons">
+      <button mat-raised-button class="action-btn primary">Open a Free Account</button>
+      <button mat-raised-button class="action-btn accent">Create a Stokvel</button>
+      <button mat-raised-button class="action-btn secondary">Join a Stokvel</button>
+    </div>
   </div>
 </div>
-<app-action-section></app-action-section>
 
-<!-- Page-wide gradient section -->
-<div class="wide-gradient-section">
-  <div class="content-wrapper">
-    <h2>Save together. Grow together.</h2>
-    <p>Reach your financial goals with a trusted community.</p>
-    <button mat-raised-button color="primary" routerLink="/faq">Learn More</button>
+<!-- Features Section -->
+<section class="features-section">
+  <div class="section-title">
+    <h2>Why Choose eStokvel?</h2>
+    <p>Modern, secure, and transparent community savings platform</p>
   </div>
-</div>
-
-<!-- Main Home Page Content -->
-<div class="home-page">
-  <!-- Top Cards -->
-  <div class="top-cards">
-    <mat-card class="blue-card">
+  <div class="features-grid">
+    <mat-card class="feature-card mat-elevation-z4">
+      <div class="feature-image-container">
+        <div class="feature-image security-image"></div>
+        <mat-icon class="feature-icon">security</mat-icon>
+      </div>
       <mat-card-content>
-        <mat-icon>groups</mat-icon>
-        <h3>My Stokvels</h3>
-        <div class="card-actions">
-          <button mat-stroked-button color="accent">Manage</button>
-          <button mat-stroked-button color="primary">Create</button>
-          <button mat-stroked-button>View Requests</button>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="date-card">
-      <mat-card-content>
-        <h2>{{ today | date: 'MMMM' }}</h2>
-        <h1>{{ today | date: 'd' }}</h1>
-        <p>{{ today | date: 'EEEE, h:mm a' }}</p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <!-- Information Section -->
-  <section class="info-section">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Got a couple of friends together?</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          That final, always-reluctant friend has given your idea of a savings scheme a thumbs up.
-          <br />Now all that's left is to set the wheels in motion.
-        </p>
-        <button mat-raised-button color="accent" (click)="createStokvel()">Create a stokvel</button>
-      </mat-card-content>
-    </mat-card>
-  </section>
-
-  <!-- Info Boxes -->
-  <div class="info-boxes">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>How does it work?</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <ul>
-          <li>Create account and confirm via email link.</li>
-          <li>Provide personal and banking details.</li>
-          <li>Create or join stokvels.</li>
-          <li>Invite members and manage contributions online.</li>
+        <h3>Safe & Secure</h3>
+        <p>Bank-level security with encrypted transactions. No cash handling risks or safekeeping worries.</p>
+        <ul class="feature-benefits">
+          <li>Encrypted digital payments</li>
+          <li>Secure fund storage</li>
+          <li>Audit trail for all activities</li>
         </ul>
-        <a mat-button href="/assets/docs/e-Stokvel-How-it-works.pdf" target="_blank">Download PDF Guide</a>
       </mat-card-content>
     </mat-card>
-
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>What does it cost?</mat-card-title>
-      </mat-card-header>
+    <mat-card class="feature-card mat-elevation-z4">
+      <div class="feature-image-container">
+        <div class="feature-image transparency-image"></div>
+        <mat-icon class="feature-icon">visibility</mat-icon>
+      </div>
       <mat-card-content>
-        <ul>
-          <li>Transparent cost structure</li>
-          <li>Once-off initiation fee</li>
-          <li>No monthly fees</li>
-          <li>Minimal per-transaction costs</li>
+        <h3>Complete Transparency</h3>
+        <p>Real-time tracking of contributions and payouts. Know exactly where every cent goes.</p>
+        <ul class="feature-benefits">
+          <li>Live contribution tracking</li>
+          <li>Transparent payout cycles</li>
+          <li>Member activity monitoring</li>
         </ul>
-        <a mat-button href="/assets/docs/pricing-guide.pdf" target="_blank">Download Pricing Guide</a>
       </mat-card-content>
     </mat-card>
-
-    <mat-card class="highlight-card">
-      <mat-card-header>
-        <mat-card-title>What are the benefits?</mat-card-title>
-      </mat-card-header>
+    <mat-card class="feature-card mat-elevation-z4">
+      <div class="feature-image-container">
+        <div class="feature-image convenience-image"></div>
+        <mat-icon class="feature-icon">schedule</mat-icon>
+      </div>
       <mat-card-content>
-        <ul>
-          <li>Safe and cashless</li>
-          <li>Reliable — direct to your bank</li>
-          <li>On-time payments</li>
-          <li>Trust ratings for members</li>
-          <li>No physical meetings</li>
+        <h3>Convenient & Flexible</h3>
+        <p>Manage your stokvel anytime, anywhere. No physical meetings or complicated paperwork.</p>
+        <ul class="feature-benefits">
+          <li>24/7 access from any device</li>
+          <li>Automated payment reminders</li>
+          <li>Digital constitution management</li>
         </ul>
-        <button mat-flat-button color="primary" (click)="createStokvel()">Create a stokvel</button>
       </mat-card-content>
     </mat-card>
   </div>
+</section>
 
-  <!-- Stokvels Table -->
-  <mat-card class="stokvel-table">
-    <mat-card-header>
-      <mat-card-title>Your Stokvels</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <table mat-table [dataSource]="stokvels" class="mat-elevation-z1">
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let s">{{ s.name }}</td>
-        </ng-container>
+<!-- How It Works Section -->
+<section class="how-it-works-section">
+  <div class="section-title">
+    <h2>How eStokvel Works</h2>
+    <p>Simple steps to start your digital stokvel journey</p>
+  </div>
 
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef>Type</th>
-          <td mat-cell *matCellDef="let s">{{ s.stokvelType.name }}</td>
-        </ng-container>
+  <div class="steps-container">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <div class="step-image step-1-image"></div>
+      <h3>Create Account</h3>
+      <p>Sign up with your email, activate your account, and set up secure login details.</p>
+    </div>
 
-        <ng-container matColumnDef="startDate">
-          <th mat-header-cell *matHeaderCellDef>Start Date</th>
-          <td mat-cell *matCellDef="let s">{{ s.startDate | date: 'yyyy-MM-dd' }}</td>
-        </ng-container>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <div class="step-image step-2-image"></div>
+      <h3>Join or Create</h3>
+      <p>Choose to join existing public stokvels or create your own private group.</p>
+    </div>
 
-        <ng-container matColumnDef="amount">
-          <th mat-header-cell *matHeaderCellDef>Contribution</th>
-          <td mat-cell *matCellDef="let s">R {{ s.contributionAmount }}</td>
-        </ng-container>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <div class="step-image step-4-image"></div>
+      <h3>Start Saving</h3>
+      <p>Define contribution amounts, payout cycles, Make regular contributions through secure digital channels.</p>
+    </div>
 
-        <tr mat-header-row *matHeaderRowDef="['name','type','startDate','amount']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['name','type','startDate','amount'];"></tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <div class="step-image step-5-image"></div>
+      <h3>Receive Payouts</h3>
+      <p>Get your lump sum payout according to your stokvel's rotation schedule.</p>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- Stokvel Types Section -->
+<section class="stokvel-types-section">
+  <div class="section-title">
+    <h2>Choose Your Stokvel Type</h2>
+    <p>Various savings models to suit your financial goals</p>
+  </div>
 
+  <div class="types-grid">
+    <mat-card class="type-card mat-elevation-z2">
+      <div class="type-image contribution-image"></div>
+      <mat-card-content>
+        <mat-icon class="type-icon">rotate_right</mat-icon>
+        <h3>Contribution Stokvel</h3>
+        <p>Traditional rotational savings where members receive lump sums on a scheduled basis.</p>
+      </mat-card-content>
+    </mat-card>
 
+    <mat-card class="type-card mat-elevation-z2">
+      <div class="type-image investment-image"></div>
+      <mat-card-content>
+        <mat-icon class="type-icon">trending_up</mat-icon>
+        <h3>Investment Group</h3>
+        <p>Pool funds for investments and share returns. Perfect for long-term wealth building.</p>
+      </mat-card-content>
+    </mat-card>
 
+    <mat-card class="type-card mat-elevation-z2">
+      <div class="type-image property-image"></div>
+      <mat-card-content>
+        <mat-icon class="type-icon">home</mat-icon>
+        <h3>Property Stokvel</h3>
+        <p>Collectively invest in real estate properties for rental income or capital appreciation.</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="type-card mat-elevation-z2">
+      <div class="type-image livestock-image"></div>
+      <mat-card-content>
+        <mat-icon class="type-icon">pets</mat-icon>
+        <h3>Livestock Stokvel</h3>
+        <p>Invest in livestock farming for breeding, milk production, or meat sales.</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="type-card mat-elevation-z2">
+      <div class="type-image family-image"></div>
+      <mat-card-content>
+        <mat-icon class="type-icon">family_restroom</mat-icon>
+        <h3>Family Stokvel</h3>
+        <p>Family-oriented savings for major purchases, education, or property investments.</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="type-card mat-elevation-z2">
+      <div class="type-image party-image"></div>
+      <mat-card-content>
+        <mat-icon class="type-icon">celebration</mat-icon>
+        <h3>Party Stokvel</h3>
+        <p>Organize events and share profits. Perfect for community events and social gatherings.</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<!-- Success Stories Section -->
+<section class="success-stories-section">
+  <div class="success-stories-container">
+    <div class="success-stories-row">
+      <div class="how-it-works-col">
+        <mat-card class="how-it-works-card mat-elevation-z4">
+          <div class="stokvel-explanation-image"></div>
+          <mat-card-content>
+            <h1 class="how-it-works-title">What is a Stokvel?</h1>
+            <div class="tagline">
+              <div class="tagline-word tagline-word--simple">Community.</div>
+              <div class="tagline-word tagline-word--transparent">Savings.</div>
+              <div class="tagline-word tagline-word--impactful">Growth.</div>
+            </div>
+            <div class="stokvel-explanation">
+              <p>A stokvel is a savings or investment society where members regularly contribute agreed amounts and receive lump sum payouts.</p>
+              <p>With eStokvel, choose between private (invite-only) or public (anyone can join) stokvels. Minimum of 3 members required to start.</p>
+            </div>
+            <div class="key-benefits">
+              <h4>Key Benefits:</h4>
+              <ul>
+                <li>💰 Secure digital payments</li>
+                <li>👥 Trusted community members</li>
+                <li>📱 No physical meetings required</li>
+                <li>⚡ Real-time contribution tracking</li>
+                <li>📊 Transparent financial management</li>
+              </ul>
+            </div>
+            <div class="fundraising-process__button-container">
+              <button mat-raised-button color="primary" class="how-it-works-button">LEARN MORE</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="success-stories-col">
+        <mat-card class="success-stories-card mat-elevation-z4">
+          <mat-card-content>
+            <div class="card-title-public-pages-container">
+              <h3 class="card-title-public-pages-text">Trending Stokvels</h3>
+              <div class="fuelled-by-giving-text">empowered by community contributions</div>
+            </div>
+            <div>
+              <div class="campaign-result-card">
+                <mat-card class="campaign-card mat-elevation-z2" (click)="openCampaign(1)">
+                  <div class="card-row">
+                    <div class="campaign-img-container">
+                      <div class="campaign-img education-img"></div>
+                    </div>
+                    <div class="campaign-content">
+                      <div class="campaign-header">
+                        <div class="campaign-title">Family Education Fund</div>
+                      </div>
+                      <div class="campaign-description">
+                        12 family members contributed R1,200 monthly for 2 years, funding university education for 3 students...
+                      </div>
+                      <div class="campaign-progress">
+                        <mat-progress-bar mode="determinate" value="100" color="primary"></mat-progress-bar>
+                        <div class="progress-info">
+                          <div class="perc-text">R28,800 COLLECTED<span class="perc-total"> Goal: R28,800</span></div>
+                          <div class="last-contribution">
+                            <p class="last-txt"> Last contribution</p>
+                            <p class="ago-txt">2 months ago</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="campaign-result-card">
+                <mat-card class="campaign-card mat-elevation-z2" (click)="openCampaign(2)">
+                  <div class="card-row">
+                    <div class="campaign-img-container">
+                      <div class="campaign-img investment-img"></div>
+                    </div>
+                    <div class="campaign-content">
+                      <div class="campaign-header">
+                        <div class="campaign-title">Community Investment Club</div>
+                      </div>
+                      <div class="campaign-description">
+                        8 members contributed R2,500 monthly in stocks, achieving 35% returns in 18 months...
+                      </div>
+                      <div class="campaign-progress">
+                        <mat-progress-bar mode="determinate" value="135" color="primary"></mat-progress-bar>
+                        <div class="progress-info">
+                          <div class="perc-text">35% RETURNS<span class="perc-total"> R&nbsp;84,000</span></div>
+                          <div class="last-contribution">
+                            <p class="last-txt"> Last contribution</p>
+                            <p class="ago-txt">1 month ago</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="campaign-result-card">
+                <mat-card class="campaign-card mat-elevation-z2" (click)="openCampaign(3)">
+                  <div class="card-row">
+                    <div class="campaign-img-container">
+                      <div class="campaign-img property-img"></div>
+                    </div>
+                    <div class="campaign-content">
+                      <div class="campaign-header">
+                        <div class="campaign-title">Property Investment Group</div>
+                      </div>
+                      <div class="campaign-description">
+                        10 members contributed towards 2 rental properties, generating passive income of R25,000 monthly...
+                      </div>
+                      <div class="campaign-progress">
+                        <mat-progress-bar mode="determinate" value="150" color="primary"></mat-progress-bar>
+                        <div class="progress-info">
+                          <div class="perc-text">50% ROI<span class="perc-total"> R&nbsp;2.1M Value</span></div>
+                          <div class="last-contribution">
+                            <p class="last-txt"> Last contribution</p>
+                            <p class="ago-txt">3 weeks ago</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="cta-background"></div>
+  <div class="cta-content">
+    <h2 class="cta-title">Ready to Start Your Savings Journey?</h2>
+    <p class="cta-subtitle">Join thousands of South Africans building wealth together through eStokvel</p>
+    <button mat-raised-button color="primary" class="btn-hero">Get Started Today</button>
+  </div>
+</section>

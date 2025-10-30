@@ -1,14 +1,68 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
+// Angular Material theming
+@use '@angular/material' as mat;
+
+// Include the common styles for Angular Material
+@include mat.core();
+
+// Define your palettes
+$my-primary: mat.define-palette(mat.$pink-palette, 600);
+$my-accent: mat.define-palette(mat.$purple-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$orange-palette);
+
+// Create the theme object
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// Include theme styles for core and each component used in your app
+@include mat.all-component-themes($my-theme);
+
+// Optional: Include theme styles for your custom components
+// @include mat.all-component-colors($my-theme);
+// @include mat.all-component-typographies($my-theme);
+
+.action-btn {
+  height: 50px;
+  border-radius: 8px;
+  min-width: 180px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+
+  &.primary {
+    background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
+
+    &:hover {
+      background: linear-gradient(135deg, #a0144c 0%, #d81b60 100%);
+      transform: translateY(-2px);
+    }
   }
 
-  body {
-    font-family: "Open Sans", Arial, sans-serif;
+  &.accent {
+    background: linear-gradient(135deg, #ff4081 0%, #f50057 100%);
+
+    &:hover {
+      background: linear-gradient(135deg, #e73370 0%, #d5004f 100%);
+      transform: translateY(-2px);
+    }
   }
 
-  .main-content {
-    min-height: 100vh;
+  &.secondary {
+    background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
+
+    &:hover {
+      background: linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%);
+      transform: translateY(-2px);
+    }
   }
+}

@@ -1,29 +1,124 @@
-.app-footer {
-    width: 100%;
-    background-color: #ffffff;
-    color: white;
-    padding: 16px 32px;
-    position: relative; /* stick footer to bottom */
-    bottom: 0;
+/* Footer */
+footer {
+  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  color: white;
+  padding: 60px 20px 20px;
+}
 
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
 
-      .footer-left {
-        font-size: 0.9rem;
-      }
+.footer-column h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
 
-      .footer-right button {
-        color: white;
-        font-weight: 600;
-        margin-left: 12px;
+.footer-column h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #ff9800;
+}
 
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.1);
-        }
-      }
-    }
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: white;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-links a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.social-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .nav-menu {
+    display: none;
   }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+
+  .success-stories-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-hero {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .card-row {
+    flex-direction: column;
+  }
+
+  .campaign-img-container {
+    align-self: center;
+  }
+}

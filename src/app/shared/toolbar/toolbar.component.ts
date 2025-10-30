@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 
@@ -10,11 +10,13 @@ import { AuthService } from '@auth0/auth0-angular';
 export class ToolbarComponent implements OnInit {
   sidenavOpened = false;
   userProfile: any;
+  isScrolled = false;
 
   menuItems = [
-    { label: 'Home', route: '/home' },
-    { label: 'My Stokvels', route: '/stokvels' },
+    { label: 'Start', route: '/start' },
+    { label: 'Pricing', route: '/pricing' },
     { label: 'About', route: '/about' },
+    { label: 'Blog', route: '/blog' },
     { label: 'Contact', route: '/contact' }
   ];
 
@@ -24,7 +26,24 @@ export class ToolbarComponent implements OnInit {
     this.auth.user$.subscribe(user => {
       this.userProfile = user;
     });
+
+
+    // Debug: Check if auth service is working
+    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+      console.log('Is Authenticated:', isAuthenticated);
+    });
+
+    this.auth.error$.subscribe(error => {
+      console.error('Auth Error:', error);
+    });
   }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
+    this.isScrolled = scrollPosition > 100;
+  }
+
 
   toggleSidenav() {
     this.sidenavOpened = !this.sidenavOpened;
@@ -36,7 +55,17 @@ export class ToolbarComponent implements OnInit {
   }
 
   login() {
-    this.auth.loginWithRedirect();
+    console.log('Login button clicked'); // Debug log
+    this.auth.loginWithRedirect({
+      appState: { target: this.router.url }
+    }).subscribe({
+      next: (result) => {
+        console.log('Login redirect initiated', result);
+      },
+      error: (error) => {
+        console.error('Login error:', error);
+      }
+    });
   }
 
   logout() {

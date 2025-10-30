@@ -6,6 +6,8 @@ import { ActionSectionComponent } from "src/app/shared/action-section/action-sec
 import { Observable, map } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { trigger, transition, style, animate } from '@angular/animations';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-home',
@@ -59,7 +61,9 @@ export class HomeComponent implements OnInit {
   userName$: Observable<string | null> = new Observable();
   searchValue = '';
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService,
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     // Extract name or fallback to email
@@ -74,5 +78,23 @@ export class HomeComponent implements OnInit {
 
   createStokvel() {
     console.log('Navigate to create stokvel');
+  }
+
+  startStokvel() {
+    console.log('Navigate to start stokvel');
+  }
+
+  joinStokvel() {
+    console.log('Navigate to create stokvel');
+  }
+
+  learnMore() {
+    console.log('Learn more');
+  }
+
+  openCampaign(campaignId: number) {
+    this.snackBar.open(`Opening campaign ${campaignId} details...`, 'Close', {
+      duration: 3000
+    });
   }
 }
