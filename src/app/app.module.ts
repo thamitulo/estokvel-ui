@@ -11,6 +11,7 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { FooterComponent } from './shared/footer/footer.component';
 import { FaqComponent } from './shared/faq/faq.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({ declarations: [AppComponent, ToolbarComponent, FooterComponent, FaqComponent],
     bootstrap: [AppComponent], imports: [BrowserModule,
@@ -24,7 +25,8 @@ import { FaqComponent } from './shared/faq/faq.component';
             },
         } as unknown as AuthConfig),
         MaterialModule,
-        BrowserAnimationsModule], providers: [
+        BrowserAnimationsModule,
+        StoreModule.forRoot({}, {})], providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
         provideHttpClient(withInterceptorsFromDi())
     ] })
