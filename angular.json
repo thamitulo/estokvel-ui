@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "estokvel-ui:build:production"
+              "buildTarget": "estokvel-ui:build:production"
             },
             "development": {
-              "browserTarget": "estokvel-ui:build:development"
+              "buildTarget": "estokvel-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "estokvel-ui:build"
+            "buildTarget": "estokvel-ui:build"
           }
         },
         "test": {
