@@ -9,9 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { StokvelService, Stokvel } from '../../services/stokvel.service';
+import { StokvelService } from '../../services/stokvel.service';
 import { BanksService } from 'src/app/services/banks.service';
 import { MatCard, MatCardModule } from '@angular/material/card';
+import {Stokvel} from "../../models/stokvel";
 
 @Component({
   selector: 'app-create-stokvel',
@@ -105,6 +106,6 @@ export class CreateStokvelComponent implements OnInit {
             },
             error: err => console.error('Error creating stokvel', err)
           });
-      
+
   }
 }

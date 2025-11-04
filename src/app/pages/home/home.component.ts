@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { ActionSectionComponent } from "src/app/shared/action-section/action-section.component";
-import { Observable, map } from 'rxjs';
+import {Observable, map, last} from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { trigger, transition, style, animate } from '@angular/animations';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-home',
@@ -31,6 +32,23 @@ export class HomeComponent implements OnInit {
   today = new Date();
   currentIndex = 0;
 
+
+  pageSize = 3;
+  currentPage = 0;
+  pagedStokvels: any[] = [];
+
+
+  updatePagedData() {
+    const start = this.currentPage * this.pageSize;
+    this.pagedStokvels = this.stokvels.slice(start, start + this.pageSize);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePagedData();
+  }
+
   images = [
     'assets/hero/hero1.png',
     'assets/hero/hero2.png',
@@ -45,6 +63,7 @@ export class HomeComponent implements OnInit {
       startDate: [2025, 1, 15],
       active: true,
       contributionAmount: 500,
+      targetAmount: 350000,
       adminUser: 'john'
     },
     {
@@ -53,10 +72,51 @@ export class HomeComponent implements OnInit {
       stokvelType: { name: 'Grocery' },
       startDate: [2025, 3, 10],
       active: false,
+      contributionAmount: 12500,
+      targetAmount: 25000,
+      adminUser: 'mary'
+    },
+    {
+      name: 'My Property Stokvel',
+      description: 'For buing properties together',
+      stokvelType: { name: 'Property' },
+      startDate: [2025, 3, 10],
+      active: false,
+      contributionAmount: 40000,
+      targetAmount: 120000,
+      adminUser: 'mary'
+    },
+    {
+      name: 'My Party Stokvel',
+      description: 'For throwing parties',
+      stokvelType: { name: 'Property' },
+      startDate: [2025, 3, 10],
+      active: false,
       contributionAmount: 300,
+      targetAmount: 500,
+      adminUser: 'mary'
+    },
+    {
+      name: 'Funeral Cover',
+      description: 'Helping hand during bereavement',
+      stokvelType: { name: 'Funeral' },
+      startDate: [2025, 3, 10],
+      active: false,
+      contributionAmount: 150,
+      targetAmount: 500,
       adminUser: 'mary'
     }
   ];
+
+  typeImgClassMap: any = {
+    'Savings': 'education-img',
+    'Grocery': 'investment-img',
+    'Property': 'property-img'
+  };
+
+  getImageClass(type: string): string {
+    return this.typeImgClassMap[type] || 'default-img';
+  }
 
   userName$: Observable<string | null> = new Observable();
   searchValue = '';
@@ -66,7 +126,7 @@ export class HomeComponent implements OnInit {
               private snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    // Extract name or fallback to email
+    this.updatePagedData();
     this.userName$ = this.auth.user$.pipe(
       map(user => user?.name || user?.email || null)
     );
@@ -84,7 +144,7 @@ export class HomeComponent implements OnInit {
     console.log('Navigate to start stokvel');
   }
 
-  joinStokvel() {
+  joinStokvel(stokvel: any) {
     console.log('Navigate to create stokvel');
   }
 
@@ -92,9 +152,36 @@ export class HomeComponent implements OnInit {
     console.log('Learn more');
   }
 
-  openCampaign(campaignId: number) {
+  openCampaign(campaignId: any) {
     this.snackBar.open(`Opening campaign ${campaignId} details...`, 'Close', {
       duration: 3000
     });
+  }
+
+  protected readonly last = last;
+
+  getCollectedAmount(stokvel: any): number {
+    return stokvel.contributionAmount;
+  }
+
+  getProgress(stokvel: any): number {
+    const collected = this.getCollectedAmount(stokvel);
+    return Math.min((collected / stokvel.targetAmount) * 100);
+  }
+
+  getRemainingAmount(stokvel: any): number {
+    const remaining = stokvel.targetAmount - this.getCollectedAmount(stokvel);
+    return remaining > 0 ? remaining : 0;
+  }
+
+  getProgressColor(stokvel: any): string {
+    const progress = this.getProgress(stokvel);
+    if (progress >= 100) return 'warn';
+    if (progress >= 50) return 'accent';
+    return 'primary';
+  }
+
+  hasReachedGoal(stokvel: any): boolean {
+    return this.getProgress(stokvel) >= 100;
   }
 }

@@ -1,0 +1,31 @@
+<div class="campaign-progress">
+  <mat-progress-bar
+    mode="determinate"
+    [value]="getProgress(stokvel)"
+    color="primary">
+  </mat-progress-bar>
+
+  <div class="progress-info">
+    <div class="perc-text">
+      Contributed: R{{ getCollectedAmount(stokvel) | number }}
+      <span class="perc-total">
+        Goal: R{{ stokvel.targetAmount | number }}
+      </span>
+    </div>
+    <div class="last-contribution">
+      <p class="last-txt">Progress</p>
+      <p class="ago-txt">{{ getProgress(stokvel) | number:'1.0-0' }}%</p>
+    </div>
+  </div>
+
+
+  <div class="join-btn-container">
+    <button mat-raised-button
+            color="primary"
+            class="join-btn"
+            (click)="joinStokvel(stokvel); $event.stopPropagation();">
+      Request to Join
+    </button>
+  </div>
+
+</div>

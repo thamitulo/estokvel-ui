@@ -11,6 +11,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   exports: [
@@ -25,7 +26,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatMenuModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule {}

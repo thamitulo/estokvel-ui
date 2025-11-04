@@ -1,0 +1,42 @@
+.stokvel-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.stokvel-card {
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+.stokvel-card:hover {
+  transform: translateY(-4px);
+}
+
+.progress-section {
+  margin-top: 10px;
+}
+
+.progress-label {
+  font-size: 13px;
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background: #4caf50;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.search-container {
+  margin-bottom: 16px;
+}
+
+mat-paginator .mat-paginator-page-size {
+  display: none !important;
+}

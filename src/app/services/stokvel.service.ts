@@ -1,30 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Stokvel {
-  name: string;
-  description: string;
-  preExisting: string;
-  startDate: string;
-  stokvelType: string;
-  savingsTerms?: string;
-  contributionAmount: number;
-  privacyOption: string;
-  accounts: {
-    bankName: string;
-    accHolderName: string;
-    accountNumber: string;
-    accountType: string;
-    debitDay: number;
-    debitAuthorization: boolean;
-  };
-}
+import {Stokvel} from "../models/stokvel";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StokvelService {
+
+  private baseUrl = '/api/stokvels';
 
   constructor(private http: HttpClient) { }
 
@@ -38,5 +22,13 @@ export class StokvelService {
 
   createStokvel(data: any): Observable<any> {
     return this.http.post<any>('/stokvel/create', data);
+  }
+
+  getStokvels(): Observable<Stokvel[]> {
+    return this.http.get<Stokvel[]>(this.baseUrl);
+  }
+
+  joinStokvel(stokvelId: number, payload: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/${stokvelId}/join`, payload);
   }
 }

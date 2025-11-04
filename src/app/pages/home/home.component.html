@@ -3,9 +3,9 @@
   <div class="hero-background"></div>
   <div class="hero-content">
     <h1 class="hero-title">Save together. Grow together.</h1>
-    <br />
+    <br/>
     <p class="hero-subtitle">Reach your financial goals with a trusted community.</p>
-    <br />
+    <br/>
   </div>
 </section>
 
@@ -99,14 +99,14 @@
 
     <div class="step-card">
       <div class="step-number">3</div>
-      <div class="step-image step-4-image"></div>
+      <div class="step-image step-3-image"></div>
       <h3>Start Saving</h3>
       <p>Define contribution amounts, payout cycles, Make regular contributions through secure digital channels.</p>
     </div>
 
     <div class="step-card">
       <div class="step-number">4</div>
-      <div class="step-image step-5-image"></div>
+      <div class="step-image step-4-image"></div>
       <h3>Receive Payouts</h3>
       <p>Get your lump sum payout according to your stokvel's rotation schedule.</p>
     </div>
@@ -192,8 +192,10 @@
               <div class="tagline-word tagline-word--impactful">Growth.</div>
             </div>
             <div class="stokvel-explanation">
-              <p>A stokvel is a savings or investment society where members regularly contribute agreed amounts and receive lump sum payouts.</p>
-              <p>With eStokvel, choose between private (invite-only) or public (anyone can join) stokvels. Minimum of 3 members required to start.</p>
+              <p>A stokvel is a savings or investment society where members regularly contribute agreed amounts and
+                receive lump sum payouts.</p>
+              <p>With eStokvel, choose between private (invite-only) or public (anyone can join) stokvels. Minimum of 3
+                members required to start.</p>
             </div>
             <div class="key-benefits">
               <h4>Key Benefits:</h4>
@@ -216,97 +218,84 @@
           <mat-card-content>
             <div class="card-title-public-pages-container">
               <h3 class="card-title-public-pages-text">Trending Stokvels</h3>
-              <div class="fuelled-by-giving-text">empowered by community contributions</div>
+              <div class="fuelled-by-giving-text">
+                empowered by community contributions
+              </div>
             </div>
+
             <div>
-              <div class="campaign-result-card">
-                <mat-card class="campaign-card mat-elevation-z2" (click)="openCampaign(1)">
+              <div class="campaign-result-card"
+                   *ngFor="let stokvel of pagedStokvels; let last = last">
+                <mat-card class="campaign-card mat-elevation-z2"
+                          (click)="openCampaign(stokvel)">
                   <div class="card-row">
                     <div class="campaign-img-container">
-                      <div class="campaign-img education-img"></div>
+                      <div class="campaign-img"
+                           [ngClass]="getImageClass(stokvel.stokvelType.name)">
+                      </div>
                     </div>
+
                     <div class="campaign-content">
                       <div class="campaign-header">
-                        <div class="campaign-title">Family Education Fund</div>
+                        <div class="campaign-title">{{ stokvel.name }}</div>
                       </div>
+
                       <div class="campaign-description">
-                        12 family members contributed R1,200 monthly for 2 years, funding university education for 3 students...
+                        {{ stokvel.description }}
                       </div>
+
                       <div class="campaign-progress">
-                        <mat-progress-bar mode="determinate" value="100" color="primary"></mat-progress-bar>
+                        <mat-progress-bar
+                          mode="determinate"
+                          [value]="getProgress(stokvel)"
+                          color="primary">
+                        </mat-progress-bar>
+
                         <div class="progress-info">
-                          <div class="perc-text">R28,800 COLLECTED<span class="perc-total"> Goal: R28,800</span></div>
+                          <div class="perc-text">
+                            Contributed: R{{ getCollectedAmount(stokvel) | number }}
+                            <span class="perc-total">
+        Goal: R{{ stokvel.targetAmount | number }}
+      </span>
+                          </div>
                           <div class="last-contribution">
-                            <p class="last-txt"> Last contribution</p>
-                            <p class="ago-txt">2 months ago</p>
+                            <p class="last-txt">Progress</p>
+                            <p class="ago-txt">{{ getProgress(stokvel) | number:'1.0-0' }}%</p>
                           </div>
                         </div>
+
+
+                      <div class="join-btn-container">
+                        <button mat-raised-button
+                                color="primary"
+                                class="join-btn"
+                                (click)="joinStokvel(stokvel); $event.stopPropagation();">
+                          Request to Join
+                        </button>
                       </div>
+
                     </div>
+
                   </div>
-                </mat-card>
               </div>
-              <mat-divider></mat-divider>
-              <div class="campaign-result-card">
-                <mat-card class="campaign-card mat-elevation-z2" (click)="openCampaign(2)">
-                  <div class="card-row">
-                    <div class="campaign-img-container">
-                      <div class="campaign-img investment-img"></div>
-                    </div>
-                    <div class="campaign-content">
-                      <div class="campaign-header">
-                        <div class="campaign-title">Community Investment Club</div>
-                      </div>
-                      <div class="campaign-description">
-                        8 members contributed R2,500 monthly in stocks, achieving 35% returns in 18 months...
-                      </div>
-                      <div class="campaign-progress">
-                        <mat-progress-bar mode="determinate" value="135" color="primary"></mat-progress-bar>
-                        <div class="progress-info">
-                          <div class="perc-text">35% RETURNS<span class="perc-total"> R&nbsp;84,000</span></div>
-                          <div class="last-contribution">
-                            <p class="last-txt"> Last contribution</p>
-                            <p class="ago-txt">1 month ago</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </mat-card>
-              </div>
-              <mat-divider></mat-divider>
-              <div class="campaign-result-card">
-                <mat-card class="campaign-card mat-elevation-z2" (click)="openCampaign(3)">
-                  <div class="card-row">
-                    <div class="campaign-img-container">
-                      <div class="campaign-img property-img"></div>
-                    </div>
-                    <div class="campaign-content">
-                      <div class="campaign-header">
-                        <div class="campaign-title">Property Investment Group</div>
-                      </div>
-                      <div class="campaign-description">
-                        10 members contributed towards 2 rental properties, generating passive income of R25,000 monthly...
-                      </div>
-                      <div class="campaign-progress">
-                        <mat-progress-bar mode="determinate" value="150" color="primary"></mat-progress-bar>
-                        <div class="progress-info">
-                          <div class="perc-text">50% ROI<span class="perc-total"> R&nbsp;2.1M Value</span></div>
-                          <div class="last-contribution">
-                            <p class="last-txt"> Last contribution</p>
-                            <p class="ago-txt">3 weeks ago</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </mat-card>
-              </div>
-            </div>
-          </mat-card-content>
         </mat-card>
+
+        <mat-divider *ngIf="!last"></mat-divider>
       </div>
+
+      <mat-paginator
+        [length]="stokvels.length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[3]"
+        (page)="onPageChange($event)">
+      </mat-paginator>
+
     </div>
+    </mat-card-content>
+    </mat-card>
+  </div>
+
+  </div>
   </div>
 </section>
 

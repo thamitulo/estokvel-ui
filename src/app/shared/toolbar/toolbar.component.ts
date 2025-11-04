@@ -13,8 +13,9 @@ export class ToolbarComponent implements OnInit {
   isScrolled = false;
 
   menuItems = [
-    { label: 'Start', route: '/start' },
+    { label: 'Profile', route: '/profile' },
     { label: 'Pricing', route: '/pricing' },
+    { label: 'Refer & Earn', route: '/pricing' },
     { label: 'About', route: '/about' },
     { label: 'Blog', route: '/blog' },
     { label: 'Contact', route: '/contact' }

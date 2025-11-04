@@ -1,0 +1,473 @@
+<!-- dashboard.component.html -->
+<section class="dashboard-container">
+  <!-- Glassmorphism Header -->
+  <div class="dashboard-header">
+    <div class="dashboard-hero">
+      <div class="hero-background">
+        <div class="floating-shapes">
+          <div class="shape shape-1"></div>
+          <div class="shape shape-2"></div>
+          <div class="shape shape-3"></div>
+          <div class="shape shape-4"></div>
+        </div>
+      </div>
+
+      <div class="dashboard-hero-content">
+        <div class="hero-text">
+          <div class="welcome-badge">
+            <span>🎉 Welcome back!</span>
+          </div>
+          <h1 class="dashboard-title">Hello, {{userName}}!</h1>
+          <p class="dashboard-subtitle">Your stokvel portfolio is growing beautifully</p>
+        </div>
+        <div class="portfolio-summary">
+          <div class="portfolio-value-card">
+            <div class="value-content">
+              <span class="value-label">Total Portfolio Value</span>
+              <h2 class="value-amount">R{{ totalPortfolioValue | number }}</h2>
+              <div class="value-change positive">
+                <div class="change-indicator">
+                  <mat-icon>trending_up</mat-icon>
+                  <span>+R{{ portfolioChange | number }} ({{portfolioChangePercent}}%) today</span>
+                </div>
+              </div>
+            </div>
+            <div class="value-sparkline">
+              <div class="sparkline-chart">
+                <svg viewBox="0 0 100 40" class="chart-line">
+                  <path d="M0,35 L20,25 L40,15 L60,20 L80,10 L100,5"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enhanced Stats Cards -->
+      <div class="dashboard-stats">
+        <div class="stat-card performance-card">
+          <div class="card-glow"></div>
+          <div class="stat-header">
+            <div class="stat-icon">
+              <div class="icon-wrapper">
+                <mat-icon>rocket_launch</mat-icon>
+              </div>
+            </div>
+            <div class="stat-trend positive">
+              <mat-icon>arrow_upward</mat-icon>
+              <span>12.5%</span>
+            </div>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">{{ userStokvelsCount }}</h3>
+            <p class="stat-label">Active Stokvels</p>
+            <div class="stat-comparison">+2 from last month</div>
+          </div>
+          <div class="stat-decoration">
+            <div class="decoration-dots"></div>
+          </div>
+        </div>
+
+        <div class="stat-card contributions-card">
+          <div class="card-glow"></div>
+          <div class="stat-header">
+            <div class="stat-icon">
+              <div class="icon-wrapper">
+                <mat-icon>savings</mat-icon>
+              </div>
+            </div>
+            <div class="stat-trend positive">
+              <mat-icon>arrow_upward</mat-icon>
+              <span>8.3%</span>
+            </div>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">R{{ totalContributions | number }}</h3>
+            <p class="stat-label">Total Contributions</p>
+            <div class="stat-comparison">R{{ monthlyChange | number }} this month</div>
+          </div>
+          <div class="stat-decoration">
+            <div class="decoration-wave"></div>
+          </div>
+        </div>
+
+        <div class="stat-card payout-card">
+          <div class="card-glow"></div>
+          <div class="stat-header">
+            <div class="stat-icon">
+              <div class="icon-wrapper">
+                <mat-icon>celebration</mat-icon>
+              </div>
+            </div>
+            <div class="stat-indicator upcoming">
+              <mat-icon>schedule</mat-icon>
+              <span>{{daysUntilPayout}} days</span>
+            </div>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">R{{ nextPayout | number }}</h3>
+            <p class="stat-label">Next Payout</p>
+            <div class="stat-comparison">Get ready to celebrate! 🎊</div>
+          </div>
+          <div class="stat-decoration">
+            <div class="decoration-confetti"></div>
+          </div>
+        </div>
+
+        <div class="stat-card growth-card">
+          <div class="card-glow"></div>
+          <div class="stat-header">
+            <div class="stat-icon">
+              <div class="icon-wrapper">
+                <mat-icon>show_chart</mat-icon>
+              </div>
+            </div>
+            <div class="stat-trend positive">
+              <mat-icon>arrow_upward</mat-icon>
+              <span>15.2%</span>
+            </div>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">R{{ totalSavings | number }}</h3>
+            <p class="stat-label">Total Growth</p>
+            <div class="stat-comparison">All time performance</div>
+          </div>
+          <div class="stat-decoration">
+            <div class="decoration-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Distribution -->
+  <section class="portfolio-distribution-section">
+    <div class="section-header">
+      <div class="section-title">
+        <h2>Portfolio Distribution</h2>
+        <p>How your stokvel investments are allocated</p>
+      </div>
+      <div class="section-actions">
+        <button mat-raised-button class="view-all-btn gradient-btn">
+          <span>Detailed Analysis</span>
+          <mat-icon>insights</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="distribution-grid">
+      <mat-card class="distribution-chart-card glass-card">
+        <div class="card-pattern"></div>
+        <mat-card-content>
+          <div class="chart-container">
+            <div class="pie-chart-visual">
+              <div class="chart-wrapper">
+                <div class="pie-chart">
+                  <div class="chart-segment" *ngFor="let segment of portfolioDistribution"
+                       [style.background]="segment.color"
+                       [style.transform]="'rotate(' + segment.rotation + 'deg)'"
+                       [style.opacity]="segment.opacity">
+                  </div>
+                </div>
+                <div class="chart-center">
+                  <div class="center-content">
+                    <span class="chart-total">Total Value</span>
+                    <span class="chart-amount">R{{ totalPortfolioValue | number }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-legends">
+                <div class="legend-item" *ngFor="let item of portfolioDistribution">
+                  <div class="legend-marker">
+                    <div class="legend-color" [style.background]="item.color"></div>
+                  </div>
+                  <div class="legend-info">
+                    <span class="legend-label">{{item.name}}</span>
+                    <span class="legend-percentage">{{item.percentage}}%</span>
+                  </div>
+                  <span class="legend-amount">R{{ getPortfolioAmount(item.percentage) | number }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="performance-highlights-card glass-card">
+        <div class="card-pattern"></div>
+        <mat-card-content>
+          <h3 class="highlights-title">Performance Highlights</h3>
+          <div class="highlights-list">
+            <div class="highlight-item positive">
+              <div class="highlight-icon">
+                <mat-icon>trending_up</mat-icon>
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-title">Best Performer</span>
+                <span class="highlight-value">Mabogo Dinku Stokvel</span>
+                <span class="highlight-change">+18.3% returns</span>
+              </div>
+            </div>
+
+            <div class="highlight-item positive">
+              <div class="highlight-icon">
+                <mat-icon>group_add</mat-icon>
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-title">Growing Fast</span>
+                <span class="highlight-value">Investment Club</span>
+                <span class="highlight-change">+5 new members</span>
+              </div>
+            </div>
+
+            <div class="highlight-item upcoming">
+              <div class="highlight-icon">
+                <mat-icon>celebration</mat-icon>
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-title">Next Payout</span>
+                <span class="highlight-value">Family Fund</span>
+                <span class="highlight-change">In 7 days</span>
+              </div>
+            </div>
+
+            <div class="highlight-item milestone">
+              <div class="highlight-icon">
+                <mat-icon>military_tech</mat-icon>
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-title">Milestone</span>
+                <span class="highlight-value">R125k Total</span>
+                <span class="highlight-change">Portfolio value</span>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="quick-actions-section">
+    <div class="section-header">
+      <div class="section-title">
+        <h2>Quick Actions</h2>
+        <p>Manage your stokvels with ease</p>
+      </div>
+    </div>
+
+    <div class="quick-actions-grid">
+      <button class="action-card primary-action" (click)="createNewStokvel()">
+        <div class="action-icon">
+          <div class="icon-background"></div>
+          <mat-icon>add_circle</mat-icon>
+        </div>
+        <div class="action-content">
+          <h3>Create Stokvel</h3>
+          <p>Start a new savings group</p>
+        </div>
+        <div class="action-arrow">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+      </button>
+
+      <button class="action-card accent-action" (click)="joinStokvel()">
+        <div class="action-icon">
+          <div class="icon-background"></div>
+          <mat-icon>group_add</mat-icon>
+        </div>
+        <div class="action-content">
+          <h3>Join Stokvel</h3>
+          <p>Become a member</p>
+        </div>
+        <div class="action-arrow">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+      </button>
+
+      <button class="action-card secondary-action" (click)="makeContribution()">
+        <div class="action-icon">
+          <div class="icon-background"></div>
+          <mat-icon>payments</mat-icon>
+        </div>
+        <div class="action-content">
+          <h3>Contribute</h3>
+          <p>Make a payment</p>
+        </div>
+        <div class="action-arrow">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+      </button>
+
+      <button class="action-card success-action" (click)="viewReports()">
+        <div class="action-icon">
+          <div class="icon-background"></div>
+          <mat-icon>analytics</mat-icon>
+        </div>
+        <div class="action-content">
+          <h3>Analytics</h3>
+          <p>View reports</p>
+        </div>
+        <div class="action-arrow">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <!-- My Stokvels Section -->
+  <section class="my-stokvels-section">
+    <div class="section-header">
+      <div class="section-title">
+        <h2>My Stokvels</h2>
+        <p>Manage and track your stokvel memberships</p>
+      </div>
+      <div class="section-actions">
+        <button mat-button class="view-all-btn" (click)="viewAllStokvels()">
+          View All
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="stokvels-grid" *ngIf="userStokvels.length > 0; else noStokvels">
+      <mat-card class="stokvel-card glass-card" *ngFor="let stokvel of userStokvels">
+        <div class="card-pattern"></div>
+        <div class="stokvel-header">
+          <div class="stokvel-image-container">
+            <div class="stokvel-image" [ngClass]="getStokvelImageClass(stokvel.type)">
+              <div class="image-overlay"></div>
+            </div>
+            <div class="stokvel-status" [ngClass]="stokvel.status">
+              {{ stokvel.status }}
+            </div>
+          </div>
+          <div class="stokvel-info">
+            <h3 class="stokvel-name">{{ stokvel.name }}</h3>
+            <p class="stokvel-type">{{ stokvel.type }}</p>
+            <div class="stokvel-members">
+              <mat-icon>people</mat-icon>
+              <span>{{ stokvel.memberCount }} members</span>
+            </div>
+          </div>
+        </div>
+
+        <mat-card-content>
+          <div class="stokvel-progress">
+            <div class="progress-header">
+              <span class="progress-label">Contribution Progress</span>
+              <span class="progress-percentage">{{ getStokvelProgress(stokvel) }}%</span>
+            </div>
+            <mat-progress-bar
+              mode="determinate"
+              [value]="getStokvelProgress(stokvel)"
+              color="primary">
+            </mat-progress-bar>
+            <div class="progress-details">
+              <span>R{{ stokvel.collectedAmount | number }} collected</span>
+              <span>R{{ stokvel.targetAmount | number }} target</span>
+            </div>
+          </div>
+
+          <div class="stokvel-details">
+            <div class="detail-item">
+              <mat-icon>calendar_today</mat-icon>
+              <span>Next payout: {{ stokvel.nextPayoutDate | date:'mediumDate' }}</span>
+            </div>
+            <div class="detail-item">
+              <mat-icon>payments</mat-icon>
+              <span>Monthly: R{{ stokvel.monthlyContribution | number }}</span>
+            </div>
+            <div class="detail-item" *ngIf="stokvel.myNextPayout">
+              <mat-icon>schedule</mat-icon>
+              <span>My payout: {{ stokvel.myNextPayout | date:'mediumDate' }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="viewStokvelDetails(stokvel)">
+            <mat-icon>visibility</mat-icon>
+            View Details
+          </button>
+          <button mat-button color="accent" (click)="makeStokvelContribution(stokvel)">
+            <mat-icon>payment</mat-icon>
+            Contribute
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <ng-template #noStokvels>
+      <div class="no-stokvels-container glass-card">
+        <div class="no-stokvels-content">
+          <div class="no-stokvels-icon">
+            <mat-icon>savings</mat-icon>
+          </div>
+          <h3>You're not part of any stokvels yet</h3>
+          <p>Join an existing stokvel or create your own to start your savings journey</p>
+          <div class="no-stokvels-actions">
+            <button mat-raised-button color="primary" (click)="joinStokvel()">
+              Join a Stokvel
+            </button>
+            <button mat-raised-button color="accent" (click)="createNewStokvel()">
+              Create a Stokvel
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </section>
+
+  <!-- Recent Activity Section -->
+  <section class="recent-activity-section">
+    <div class="section-header">
+      <div class="section-title">
+        <h2>Recent Activity</h2>
+        <p>Your latest stokvel transactions and updates</p>
+      </div>
+      <div class="section-actions">
+        <button mat-button class="view-all-btn" (click)="viewAllActivity()">
+          View All
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <mat-card class="activity-card glass-card">
+      <div class="card-pattern"></div>
+      <mat-card-content>
+        <div class="activity-list">
+          <div class="activity-item" *ngFor="let activity of recentActivities">
+            <div class="activity-icon" [ngClass]="activity.type">
+              <mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
+            </div>
+            <div class="activity-details">
+              <div class="activity-description">
+                {{ activity.description }}
+              </div>
+              <div class="activity-meta">
+                <span class="activity-stokvel">{{ activity.stokvelName }}</span>
+                <span class="activity-date">{{ activity.date | date:'medium' }}</span>
+              </div>
+            </div>
+            <div class="activity-amount" *ngIf="activity.amount">
+              R{{ activity.amount | number }}
+            </div>
+          </div>
+        </div>
+
+        <div class="no-activity" *ngIf="recentActivities.length === 0">
+          <div class="no-activity-content">
+            <mat-icon>history</mat-icon>
+            <p>No recent activity to display</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</section>

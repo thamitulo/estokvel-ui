@@ -327,14 +327,10 @@
 }
 
 .step-image.step-3-image {
-  background-image: url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-}
-
-.step-image.step-4-image {
   background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
 }
 
-.step-image.step-5-image {
+.step-image.step-4-image {
   background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1911&q=80');
 }
 
@@ -927,4 +923,8 @@
   .cta-background {
     display: none;
   }
+}
+
+mat-paginator .mat-paginator-page-size {
+  display: none !important;
 }
