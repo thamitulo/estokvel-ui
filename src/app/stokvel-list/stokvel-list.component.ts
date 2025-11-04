@@ -13,15 +13,14 @@ import {StokvelService} from "../services/stokvel.service";
 import {MaterialModule} from "../material.module";
 
 @Component({
-  selector: 'app-stokvel-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MaterialModule
-  ],
-  templateUrl: './stokvel-list.component.html',
-  styleUrls: ['./stokvel-list.component.scss']
+    selector: 'app-stokvel-list',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MaterialModule
+    ],
+    templateUrl: './stokvel-list.component.html',
+    styleUrls: ['./stokvel-list.component.scss']
 })
 export class StokvelListComponent implements OnInit {
   stokvelService = inject(StokvelService);

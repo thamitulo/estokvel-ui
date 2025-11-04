@@ -1,9 +1,10 @@
 import { Component, HostListener, AfterViewInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
-  selector: 'app-faq',
-  templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.scss']
+    selector: 'app-faq',
+    templateUrl: './faq.component.html',
+    styleUrls: ['./faq.component.scss'],
+    standalone: false
 })
 export class FaqComponent implements AfterViewInit {
   @ViewChildren('faqCard') faqCards!: QueryList<ElementRef>;

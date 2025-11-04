@@ -15,23 +15,22 @@ import { MatCard, MatCardModule } from '@angular/material/card';
 import {Stokvel} from "../../models/stokvel";
 
 @Component({
-  selector: 'app-create-stokvel',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCheckboxModule
-  ],
-  templateUrl: './stokvel-create.component.html',
-  styleUrls: ['./stokvel-create.component.scss']
+    selector: 'app-create-stokvel',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatCheckboxModule
+    ],
+    templateUrl: './stokvel-create.component.html',
+    styleUrls: ['./stokvel-create.component.scss']
 })
 export class CreateStokvelComponent implements OnInit {
   stokvelForm!: FormGroup;
