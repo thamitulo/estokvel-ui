@@ -17,7 +17,7 @@
           <div class="welcome-badge">
             <span>🎉 Welcome back!</span>
           </div>
-          <h1 class="dashboard-title">Hello, {{userName}}!</h1>
+          <h1 class="dashboard-title">Hello, {{ (user$ | async)?.name || (user$ | async)?.email || 'Guest' }}!</h1>
           <p class="dashboard-subtitle">Your stokvel portfolio is growing beautifully</p>
         </div>
         <div class="portfolio-summary">

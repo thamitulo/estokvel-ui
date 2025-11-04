@@ -11,21 +11,22 @@ import {MatDialog} from "@angular/material/dialog";
 import {PageEvent} from "@angular/material/paginator";
 
 @Component({
-    selector: 'app-home',
-    imports: [CommonModule, FormsModule, MaterialModule, ActionSectionComponent],
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    animations: [
-        trigger('fade', [
-            transition(':enter', [
-                style({ opacity: 0 }),
-                animate('600ms ease-in', style({ opacity: 1 }))
-            ]),
-            transition(':leave', [
-                animate('600ms ease-out', style({ opacity: 0 }))
-            ])
-        ])
-    ]
+  selector: 'app-home',
+  imports: [CommonModule, FormsModule, MaterialModule],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  standalone: true,
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({opacity: 0}),
+        animate('600ms ease-in', style({opacity: 1}))
+      ]),
+      transition(':leave', [
+        animate('600ms ease-out', style({opacity: 0}))
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
   today = new Date();

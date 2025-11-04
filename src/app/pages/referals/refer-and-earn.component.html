@@ -1,0 +1,271 @@
+<section class="refer-earn-container">
+  <!-- Hero Section -->
+  <div class="refer-hero">
+    <div class="hero-background">
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <nav class="breadcrumb-nav">
+        <a routerLink="/home" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-active">Refer & Earn</span>
+      </nav>
+      <h1 class="hero-title">Refer Friends & Earn Rewards</h1>
+      <p class="hero-subtitle">Share eStokvel with your friends and get rewarded when they join</p>
+
+      <div class="reward-stats">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <mat-icon>people</mat-icon>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">{{ referredCount }}</h3>
+            <p class="stat-label">Friends Referred</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <mat-icon>savings</mat-icon>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">R{{ totalEarnings | number }}</h3>
+            <p class="stat-label">Total Earnings</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <mat-icon>pending_actions</mat-icon>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">{{ pendingReferrals }}</h3>
+            <p class="stat-label">Pending</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="refer-content">
+    <div class="content-grid">
+      <!-- Referral Code Section -->
+      <div class="referral-section">
+        <mat-card class="referral-card">
+          <mat-card-content>
+            <div class="referral-header">
+              <h2>Your Referral Code</h2>
+              <p>Share this code with friends and earn R50 when they sign up and create their first stokvel</p>
+            </div>
+
+            <div class="referral-code-container">
+              <div class="referral-code">
+                <span class="code-text">{{ referralCode }}</span>
+                <button mat-icon-button class="copy-btn" (click)="copyReferralCode()"
+                        [matTooltip]="copyTooltip" matTooltipPosition="above">
+                  <mat-icon>{{ copyIcon }}</mat-icon>
+                </button>
+              </div>
+              <div class="code-actions">
+                <button mat-raised-button color="primary" (click)="shareReferral()" class="share-btn">
+                  <mat-icon>share</mat-icon>
+                  Share Referral
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- How It Works -->
+      <div class="how-it-works-section">
+        <mat-card class="works-card">
+          <mat-card-header>
+            <h2>How It Works</h2>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="steps-container">
+              <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h3>Share Your Code</h3>
+                  <p>Send your unique referral code to friends and family</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h3>They Sign Up</h3>
+                  <p>Your friends use your code when creating their eStokvel account</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h3>They Create Stokvel</h3>
+                  <p>Friends create or join their first stokvel on the platform</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h3>You Get Rewarded</h3>
+                  <p>Earn R50 for each friend who successfully joins and creates a stokvel</p>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Share Options -->
+    <div class="share-section">
+      <mat-card class="share-card">
+        <mat-card-content>
+          <h2>Share via</h2>
+          <div class="share-options">
+            <button mat-raised-button class="share-option whatsapp" (click)="shareViaWhatsApp()">
+              <mat-icon>whatsapp</mat-icon>
+              WhatsApp
+            </button>
+            <button mat-raised-button class="share-option email" (click)="shareViaEmail()">
+              <mat-icon>email</mat-icon>
+              Email
+            </button>
+            <button mat-raised-button class="share-option sms" (click)="shareViaSMS()">
+              <mat-icon>sms</mat-icon>
+              SMS
+            </button>
+            <button mat-raised-button class="share-option link" (click)="copyReferralLink()">
+              <mat-icon>link</mat-icon>
+              Copy Link
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Rewards & Benefits -->
+    <div class="rewards-section">
+      <mat-card class="rewards-card">
+        <mat-card-content>
+          <h2>Rewards & Benefits</h2>
+          <div class="rewards-grid">
+            <div class="reward-item">
+              <div class="reward-icon primary">
+                <mat-icon>celebration</mat-icon>
+              </div>
+              <div class="reward-content">
+                <h3>R50 Cash Bonus</h3>
+                <p>Get R50 deposited to your eStokvel wallet for each successful referral</p>
+              </div>
+            </div>
+            <div class="reward-item">
+              <div class="reward-icon accent">
+                <mat-icon>group_add</mat-icon>
+              </div>
+              <div class="reward-content">
+                <h3>Friend Gets R25</h3>
+                <p>Your friend also receives R25 when they create their first stokvel</p>
+              </div>
+            </div>
+            <div class="reward-item">
+              <div class="reward-icon success">
+                <mat-icon>trending_up</mat-icon>
+              </div>
+              <div class="reward-content">
+                <h3>No Limits</h3>
+                <p>Refer as many friends as you want - unlimited earning potential</p>
+              </div>
+            </div>
+            <div class="reward-item">
+              <div class="reward-icon warning">
+                <mat-icon>bolt</mat-icon>
+              </div>
+              <div class="reward-content">
+                <h3>Instant Payout</h3>
+                <p>Rewards are paid instantly once your friend creates their stokvel</p>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Referral History -->
+    <div class="history-section" *ngIf="referralHistory.length > 0">
+      <mat-card class="history-card">
+        <mat-card-content>
+          <div class="history-header">
+            <h2>Referral History</h2>
+            <button mat-button color="primary" (click)="viewAllHistory()">
+              View All
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+          <div class="history-list">
+            <div class="history-item" *ngFor="let referral of referralHistory">
+              <div class="referral-info">
+                <div class="referral-avatar">
+                  <mat-icon>person</mat-icon>
+                </div>
+                <div class="referral-details">
+                  <h4>{{ referral.friendName }}</h4>
+                  <p>{{ referral.date | date:'mediumDate' }}</p>
+                </div>
+              </div>
+              <div class="referral-status" [ngClass]="referral.status">
+                <span>{{ referral.status }}</span>
+              </div>
+              <div class="referral-amount" *ngIf="referral.amount">
+                +R{{ referral.amount }}
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <mat-card class="faq-card">
+        <mat-card-content>
+          <h2>Frequently Asked Questions</h2>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>How much can I earn per referral?</mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>You earn R50 for each friend who signs up using your referral code and creates their first stokvel.</p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>When do I receive my reward?</mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Rewards are paid instantly once your friend successfully creates their first stokvel on the platform.</p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Is there a limit to how many people I can refer?</mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>No, there's no limit! You can refer as many friends as you want and earn R50 for each successful referral.</p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>What if my friend doesn't create a stokvel?</mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>You only receive the reward when your friend creates or joins their first stokvel. Simply signing up is not enough.</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>

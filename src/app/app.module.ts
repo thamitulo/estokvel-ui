@@ -8,26 +8,46 @@ import { AuthHttpInterceptor } from './auth.interceptor';
 import { environment } from './environments/environment';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { MaterialModule } from './material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './shared/footer/footer.component';
 import { FaqComponent } from './shared/faq/faq.component';
-import { StoreModule } from '@ngrx/store';
 
-@NgModule({ declarations: [AppComponent, ToolbarComponent, FooterComponent, FaqComponent],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        AuthModule.forRoot({
-            domain: environment.auth0.domain,
-            clientId: environment.auth0.clientId,
-            authorizationParams: {
-                redirect_uri: environment.auth0.redirectUri,
-                audience: environment.auth0.audience,
-            },
-        } as unknown as AuthConfig),
-        MaterialModule,
-        BrowserAnimationsModule,
-        StoreModule.forRoot({}, {})], providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { authReducer } from './store/auth/auth.reducer';
+import { AuthEffects } from './store/auth/auth.effects';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ToolbarComponent,
+    FooterComponent,
+    FaqComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AuthModule.forRoot({
+      domain: environment.auth0.domain,
+      clientId: environment.auth0.clientId,
+      authorizationParams: {
+        redirect_uri: environment.auth0.redirectUri,
+        audience: environment.auth0.audience,
+      },
+    } as unknown as AuthConfig),
+    MaterialModule,
+    BrowserAnimationsModule,
+
+    // NgRx store setup
+    StoreModule.forRoot({auth: authReducer}),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi())
+  ],
+  bootstrap: [AppComponent]
+})
 export class AppModule { }

@@ -1,42 +1,43 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { UserService, AppUser } from '../../services/user-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-toolbar',
-    templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.scss'],
-    standalone: false
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss'],
+  standalone: false
 })
 export class ToolbarComponent implements OnInit {
   sidenavOpened = false;
-  userProfile: any;
   isScrolled = false;
+  user$: Observable<AppUser | null>;
+  userName$: Observable<string | null>;
+  isLoggedIn = false;
 
   menuItems = [
-    { label: 'Profile', route: '/profile' },
-    { label: 'Pricing', route: '/pricing' },
-    { label: 'Refer & Earn', route: '/pricing' },
-    { label: 'About', route: '/about' },
+    { label: 'Home', route: '/home' },
+    { label: 'Portfolio', route: '/dashboard' },
+    { label: 'Refer & Earn', route: '/refer-earn' },
+    { label: 'About', route: '/about-us' },
     { label: 'Blog', route: '/blog' },
     { label: 'Contact', route: '/contact' }
   ];
 
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(
+    private router: Router,
+    public auth: AuthService,
+    private userService: UserService
+  ) {
+    this.user$ = this.userService.user$;
+    this.userName$ = this.userService.userName$;
+  }
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(user => {
-      this.userProfile = user;
-    });
-
-
-    // Debug: Check if auth service is working
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      console.log('Is Authenticated:', isAuthenticated);
-    });
-
-    this.auth.error$.subscribe(error => {
-      console.error('Auth Error:', error);
+    this.auth.isAuthenticated$.subscribe(isAuth => {
+      this.isLoggedIn = isAuth;
     });
   }
 
@@ -45,7 +46,6 @@ export class ToolbarComponent implements OnInit {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
     this.isScrolled = scrollPosition > 100;
   }
-
 
   toggleSidenav() {
     this.sidenavOpened = !this.sidenavOpened;
@@ -57,24 +57,28 @@ export class ToolbarComponent implements OnInit {
   }
 
   login() {
-    console.log('Login button clicked'); // Debug log
-    this.auth.loginWithRedirect({
-      appState: { target: this.router.url }
-    }).subscribe({
-      next: (result) => {
-        console.log('Login redirect initiated', result);
-      },
-      error: (error) => {
-        console.error('Login error:', error);
-      }
-    });
+    this.auth.loginWithRedirect({ appState: { target: this.router.url } });
   }
 
   logout() {
-    this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
+    this.auth.logout({ logoutParams: { returnTo: '' } });
   }
 
   get visibleMenuItems() {
-    return this.menuItems.filter(item => item.label !== 'My Stokvels' || this.auth.user$);
+    return this.menuItems.filter(item => {
+      if (item.label === 'Portfolio') {
+        return this.isLoggedIn;
+      }
+      return true;
+    });
+  }
+
+  isActive(route: string): boolean {
+    if (route === '/' || route === '/home') {
+      return false;
+    }
+
+    const currentUrl = this.router.url.split('?')[0];
+    return currentUrl === route || currentUrl.startsWith(route + '/');
   }
 }

@@ -1,0 +1,463 @@
+<!-- contact.component.html -->
+<section class="contact-container">
+  <!-- Hero Section -->
+  <div class="contact-hero">
+    <div class="hero-background">
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <nav class="breadcrumb-nav">
+        <a routerLink="/home" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-active">Contact Us</span>
+      </nav>
+      <h1 class="hero-title">Get in Touch</h1>
+      <p class="hero-subtitle">We're here to help you with any questions about eStokvel</p>
+
+      <div class="contact-stats">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <mat-icon>support_agent</mat-icon>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">24/7</h3>
+            <p class="stat-label">Support</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <mat-icon>schedule</mat-icon>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">< 2 min</h3>
+            <p class="stat-label">Response Time</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <mat-icon>verified</mat-icon>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">100%</h3>
+            <p class="stat-label">Satisfaction</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="contact-content">
+    <div class="content-layout">
+      <!-- Contact Methods -->
+      <div class="contact-methods">
+        <mat-card class="contact-card">
+          <mat-card-content>
+            <h2>Contact Methods</h2>
+            <p class="section-description">Choose your preferred way to get in touch with us</p>
+
+            <div class="method-grid">
+              <!-- WhatsApp Option -->
+              <div class="method-card whatsapp" (click)="openWhatsAppChat()">
+                <div class="method-icon">
+                  <mat-icon>whatsapp</mat-icon>
+                </div>
+                <div class="method-content">
+                  <h3>WhatsApp Chat</h3>
+                  <p>Instant messaging support with our team</p>
+                  <div class="method-features">
+                    <span class="feature">
+                      <mat-icon>check_circle</mat-icon>
+                      Instant response
+                    </span>
+                    <span class="feature">
+                      <mat-icon>check_circle</mat-icon>
+                      File sharing
+                    </span>
+                    <span class="feature">
+                      <mat-icon>check_circle</mat-icon>
+                      24/7 available
+                    </span>
+                  </div>
+                </div>
+                <div class="method-action">
+                  <button mat-raised-button class="whatsapp-btn">
+                    <mat-icon>whatsapp</mat-icon>
+                    Start Chat
+                  </button>
+                </div>
+              </div>
+
+              <!-- Email Option -->
+              <div class="method-card email" (click)="openEmail()">
+                <div class="method-icon">
+                  <mat-icon>email</mat-icon>
+                </div>
+                <div class="method-content">
+                  <h3>Email Support</h3>
+                  <p>Send us a detailed message and get a response within hours</p>
+                  <div class="contact-info">
+                    <span class="info-item">
+                      <mat-icon>email</mat-icon>
+                      support@estokvel.co.za
+                    </span>
+                  </div>
+                </div>
+                <div class="method-action">
+                  <button mat-raised-button class="email-btn">
+                    <mat-icon>email</mat-icon>
+                    Send Email
+                  </button>
+                </div>
+              </div>
+
+              <!-- Phone Option -->
+              <div class="method-card phone" (click)="callSupport()">
+                <div class="method-icon">
+                  <mat-icon>phone</mat-icon>
+                </div>
+                <div class="method-content">
+                  <h3>Phone Support</h3>
+                  <p>Speak directly with our support team</p>
+                  <div class="contact-info">
+                    <span class="info-item">
+                      <mat-icon>phone</mat-icon>
+                      011 234 5678
+                    </span>
+                    <span class="info-item">
+                      <mat-icon>schedule</mat-icon>
+                      Mon-Fri: 8AM-6PM
+                    </span>
+                  </div>
+                </div>
+                <div class="method-action">
+                  <button mat-raised-button class="phone-btn">
+                    <mat-icon>phone</mat-icon>
+                    Call Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- Help Center -->
+              <div class="method-card help" (click)="openHelpCenter()">
+                <div class="method-icon">
+                  <mat-icon>help_center</mat-icon>
+                </div>
+                <div class="method-content">
+                  <h3>Help Center</h3>
+                  <p>Find answers to common questions in our knowledge base</p>
+                  <div class="method-features">
+                    <span class="feature">
+                      <mat-icon>article</mat-icon>
+                      FAQs & Guides
+                    </span>
+                    <span class="feature">
+                      <mat-icon>video_library</mat-icon>
+                      Tutorial Videos
+                    </span>
+                  </div>
+                </div>
+                <div class="method-action">
+                  <button mat-raised-button class="help-btn">
+                    <mat-icon>search</mat-icon>
+                    Browse Articles
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Contact Form -->
+        <mat-card class="form-card">
+          <mat-card-content>
+            <h2>Send us a Message</h2>
+            <p class="section-description">Prefer to fill out a form? We'll get back to you within 24 hours.</p>
+
+            <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+              <div class="form-row">
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="firstName" required>
+                  <mat-icon matSuffix>person</mat-icon>
+                  <mat-error *ngIf="contactForm.get('firstName')?.hasError('required')">
+                    First name is required
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput formControlName="lastName" required>
+                  <mat-icon matSuffix>person</mat-icon>
+                  <mat-error *ngIf="contactForm.get('lastName')?.hasError('required')">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="email" type="email" required>
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+                  Email is required
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+                  Please enter a valid email
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phone" type="tel">
+                <mat-icon matSuffix>phone</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Subject</mat-label>
+                <mat-select formControlName="subject" required>
+                  <mat-option value="general">General Inquiry</mat-option>
+                  <mat-option value="technical">Technical Support</mat-option>
+                  <mat-option value="billing">Billing Issue</mat-option>
+                  <mat-option value="feature">Feature Request</mat-option>
+                  <mat-option value="partnership">Partnership</mat-option>
+                  <mat-option value="other">Other</mat-option>
+                </mat-select>
+                <mat-error *ngIf="contactForm.get('subject')?.hasError('required')">
+                  Please select a subject
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Message</mat-label>
+                <textarea matInput formControlName="message" rows="6" required></textarea>
+                <mat-error *ngIf="contactForm.get('message')?.hasError('required')">
+                  Message is required
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('message')?.hasError('minlength')">
+                  Message must be at least 10 characters
+                </mat-error>
+              </mat-form-field>
+
+              <div class="form-actions">
+                <button mat-raised-button color="primary" type="submit"
+                        [disabled]="!contactForm.valid || isSubmitting"
+                        class="submit-btn">
+                  <mat-icon>send</mat-icon>
+                  {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="contact-sidebar">
+        <!-- WhatsApp Chat Widget -->
+        <mat-card class="whatsapp-widget" *ngIf="!whatsappChatOpen">
+          <mat-card-content>
+            <div class="widget-header">
+              <div class="whatsapp-icon">
+                <mat-icon>whatsapp</mat-icon>
+              </div>
+              <div class="widget-info">
+                <h3>WhatsApp Support</h3>
+                <p class="status online">
+                  <span class="status-dot"></span>
+                  Online now
+                </p>
+              </div>
+            </div>
+
+            <p class="widget-description">
+              Chat with us instantly on WhatsApp for quick answers to your questions.
+            </p>
+
+            <button mat-raised-button class="whatsapp-chat-btn" (click)="openWhatsAppChat()">
+              <mat-icon>whatsapp</mat-icon>
+              Start WhatsApp Chat
+            </button>
+
+            <div class="widget-features">
+              <div class="feature">
+                <mat-icon>schedule</mat-icon>
+                <span>Instant response</span>
+              </div>
+              <div class="feature">
+                <mat-icon>attach_file</mat-icon>
+                <span>Share screenshots</span>
+              </div>
+              <div class="feature">
+                <mat-icon>security</mat-icon>
+                <span>Secure & private</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- WhatsApp Chat Window -->
+        <mat-card class="whatsapp-chat-window" *ngIf="whatsappChatOpen">
+          <mat-card-content>
+            <div class="chat-header">
+              <div class="chat-info">
+                <div class="chat-avatar">
+                  <mat-icon>support_agent</mat-icon>
+                </div>
+                <div class="chat-details">
+                  <h4>eStokvel Support</h4>
+                  <p class="status online">
+                    <span class="status-dot"></span>
+                    Typing...
+                  </p>
+                </div>
+              </div>
+              <button mat-icon-button class="close-chat" (click)="closeWhatsAppChat()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+
+            <div class="chat-messages">
+              <div class="message received">
+                <div class="message-content">
+                  <p>Hello! 👋 Welcome to eStokvel support. How can we help you today?</p>
+                  <span class="message-time">10:30 AM</span>
+                </div>
+              </div>
+
+              <div class="message sent">
+                <div class="message-content">
+                  <p>Hi, I need help with creating my first stokvel.</p>
+                  <span class="message-time">10:31 AM</span>
+                </div>
+              </div>
+
+              <div class="message received">
+                <div class="message-content">
+                  <p>I'd be happy to help you set up your first stokvel! Let me guide you through the process.</p>
+                  <span class="message-time">10:31 AM</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-input">
+              <mat-form-field appearance="outline" class="full-width">
+                <input matInput [(ngModel)]="chatMessage" placeholder="Type your message..."
+                       (keyup.enter)="sendChatMessage()">
+                <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
+              </mat-form-field>
+              <button mat-icon-button color="primary" (click)="sendChatMessage()"
+                      [disabled]="!chatMessage.trim()">
+                <mat-icon>send</mat-icon>
+              </button>
+            </div>
+
+            <div class="quick-replies">
+              <p>Quick questions:</p>
+              <div class="quick-buttons">
+                <button mat-stroked-button (click)="sendQuickMessage('How do I create a stokvel?')">
+                  Create stokvel
+                </button>
+                <button mat-stroked-button (click)="sendQuickMessage('How do I invite members?')">
+                  Invite members
+                </button>
+                <button mat-stroked-button (click)="sendQuickMessage('What are the fees?')">
+                  Pricing
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Office Information -->
+        <mat-card class="office-card">
+          <mat-card-content>
+            <h3>Our Office</h3>
+            <div class="office-info">
+              <div class="info-item">
+                <mat-icon>location_on</mat-icon>
+                <div class="info-content">
+                  <strong>Address</strong>
+                  <p>123 Innovation Street<br>Johannesburg, 2000<br>South Africa</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <mat-icon>schedule</mat-icon>
+                <div class="info-content">
+                  <strong>Business Hours</strong>
+                  <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <mat-icon>language</mat-icon>
+                <div class="info-content">
+                  <strong>Languages</strong>
+                  <p>English, Zulu, Xhosa, Sotho</p>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Emergency Support -->
+        <mat-card class="emergency-card">
+          <mat-card-content>
+            <div class="emergency-header">
+              <mat-icon>warning</mat-icon>
+              <h3>Urgent Support</h3>
+            </div>
+            <p>For urgent account or security issues that need immediate attention.</p>
+            <button mat-raised-button color="warn" class="emergency-btn" (click)="callEmergency()">
+              <mat-icon>emergency</mat-icon>
+              Emergency Support
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <div class="faq-content">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>How do I reset my password?</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>Click on "Forgot Password" on the login page and follow the instructions sent to your email.</p>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>What are your support hours?</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>WhatsApp support is available 24/7. Phone support is available Monday-Friday from 8AM-6PM.</p>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>How secure is my financial data?</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>We use bank-level encryption and comply with POPIA regulations to keep your data safe and secure.</p>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>Can I use eStokvel outside South Africa?</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>Currently, eStokvel is only available for South African residents with valid SA ID numbers.</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</section>

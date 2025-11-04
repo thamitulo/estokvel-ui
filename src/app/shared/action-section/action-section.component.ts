@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/app/material.module';
 
 @Component({
-    selector: 'app-action-section',
-    imports: [CommonModule, MaterialModule],
-    templateUrl: './action-section.component.html',
-    styleUrls: ['./action-section.component.scss']
+  selector: 'app-action-section',
+  imports: [CommonModule, MaterialModule],
+  templateUrl: './action-section.component.html',
+  standalone: true,
+  styleUrls: ['./action-section.component.scss']
 })
 export class ActionSectionComponent {}

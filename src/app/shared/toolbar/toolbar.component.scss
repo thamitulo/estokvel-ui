@@ -314,3 +314,28 @@ body {
     font-size: 18px;
   }
 }
+
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #c2185b;
+}
+
+.fallback-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c2185b;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.desktop-menu button.active-link {
+  background-color: rgba(194, 24, 91, 0.1);
+  color: #c2185b;
+  font-weight: 600;
+}

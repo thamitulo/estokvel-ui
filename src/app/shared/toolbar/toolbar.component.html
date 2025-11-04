@@ -4,24 +4,26 @@
     <div class="top-bar-text">Take control of your future, start today!</div>
     <div class="top-bar-links">
       <a href="#">Faqs</a>
-      <a href="#">Contact Us</a>
+      <a href="#">ContactComponent Us</a>
     </div>
   </div>
 </div>
 
-<!-- Main Toolbar - White (Full Width) -->
+
 <mat-toolbar color="default" class="main-toolbar">
   <div class="toolbar-container">
     <div class="toolbar-left">
       <button mat-icon-button class="mobile-menu-button" (click)="toggleSidenav()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="logo-text">eStokvel</span>
+      <span class="logo-text" style="cursor: pointer;" (click)="navigate('/')">
+        eStokvel
+      </span>
     </div>
 
     <div class="desktop-menu">
-      <button mat-button *ngFor="let item of visibleMenuItems" (click)="navigate(item.route)">
-        {{ item.label }}
+      <button mat-button *ngFor="let item of visibleMenuItems"  [class.active-link]="isActive(item.route)"
+              (click)="navigate(item.route)"> {{ item.label }}
       </button>
     </div>
 
@@ -46,7 +48,20 @@
 
         <mat-menu #profileMenu="matMenu" class="custom-profile-menu">
           <div class="profile-header">
-            <mat-icon>account_circle</mat-icon>
+            <ng-container *ngIf="user.picture; else fallbackAvatar">
+              <img
+                [src]="user.picture"
+                alt="{{ user.name || user.nickname }}"
+                class="profile-avatar"
+              />
+            </ng-container>
+
+            <ng-template #fallbackAvatar>
+              <div class="profile-avatar fallback-avatar">
+                {{ (user.name || user.nickname)?.charAt(0) | uppercase }}
+              </div>
+            </ng-template>
+
             <div class="profile-info">
               <span class="greeting">Hi,</span>
               <span class="name">{{ user.name || user.nickname || 'there' }}</span>
