@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { UserService, AppUser } from '../../services/user-service.service';
 import { Observable } from 'rxjs';
+import {AppUser, UserService} from "../../services/user/user-service.service";
 
 @Component({
   selector: 'app-toolbar',

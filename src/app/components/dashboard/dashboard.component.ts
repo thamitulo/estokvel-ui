@@ -1,22 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import { MaterialModule } from '../../material.module';
-import { UserService, AppUser } from '../../services/user-service.service';
-import { Observable } from 'rxjs';
-
-export interface Stokvel {
-  id: string;
-  name: string;
-  type: string;
-  status: 'active' | 'pending' | 'completed';
-  memberCount: number;
-  collectedAmount: number;
-  targetAmount: number;
-  monthlyContribution: number;
-  nextPayoutDate: Date;
-  myNextPayout?: Date;
-}
+import {Observable, of} from 'rxjs';
+import {AppUser, UserService} from "../../services/user/user-service.service";
+import {StokvelUtils} from "../../utils/StokvelUtils";
+import {Stokvel, StokvelType} from "../../models/stokvel";
+import {StokvelService} from "../../services/stokvel/stokvel.service";
+import {switchMap} from "rxjs/operators";
 
 export interface Activity {
   type: 'contribution' | 'payout' | 'invitation' | 'update';
@@ -65,32 +56,43 @@ export class DashboardComponent implements OnInit {
   ];
 
   // Mock data for simplicity
-  userStokvels: Stokvel[] = [/*...same as before...*/];
-  recentActivities: Activity[] = [/*...same as before...*/];
+  userStokvels$: Observable<Stokvel[]> = of([]);
+  recentActivities: Activity[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(private router: Router,private userService: UserService, private stokvelService: StokvelService) {
     this.user$ = this.userService.user$;
     this.userName$ = this.userService.userName$;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userStokvels$ = this.user$.pipe(
+      switchMap(user => {
+        if (user?.id) {
+          return this.stokvelService.getUserStokvels(user.id);
+        } else {
+          return of([]);
+        }
+      })
+    );
+  }
 
   getPortfolioAmount(percentage: number): number {
     return (this.totalPortfolioValue * percentage) / 100;
   }
 
   getStokvelProgress(stokvel: Stokvel): number {
-    return (stokvel.collectedAmount / stokvel.targetAmount) * 100;
+    return StokvelUtils.getProgress(stokvel);
   }
 
-  getStokvelImageClass(type: string): string {
+  getStokvelImageClass(type: StokvelType): string {
     const map: Record<string, string> = {
-      Contribution: 'contribution',
-      Investment: 'investment',
-      Property: 'property',
-      Family: 'family'
+      [StokvelType.INVESTMENT.name]: 'investment',
+      [StokvelType.PROPERTY.name]: 'property',
+      [StokvelType.FAMILY.name]: 'family',
+      [StokvelType.BURIAL.name]: 'burial',
+      [StokvelType.CONTRIBUTION.name]: 'contribution'
     };
-    return map[type] || 'contribution';
+    return map[type.name] || StokvelType.CONTRIBUTION.name;
   }
 
   getActivityIcon(type: string): string {
@@ -103,7 +105,10 @@ export class DashboardComponent implements OnInit {
     return map[type] || 'info';
   }
 
-  createNewStokvel(): void { console.log('Create new stokvel'); }
+  createNewStokvel(): void {
+    this.router.navigate(['/create-stokvel']);
+  }
+
   joinStokvel(): void { console.log('Join stokvel'); }
   makeContribution(): void { console.log('Make contribution'); }
   viewReports(): void { console.log('View reports'); }

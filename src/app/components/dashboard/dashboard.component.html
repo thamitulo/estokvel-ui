@@ -334,12 +334,12 @@
       </div>
     </div>
 
-    <div class="stokvels-grid" *ngIf="userStokvels.length > 0; else noStokvels">
+    <div class="stokvels-grid" *ngIf="userStokvels$ | async as userStokvels; else noStokvels">
       <mat-card class="stokvel-card glass-card" *ngFor="let stokvel of userStokvels">
         <div class="card-pattern"></div>
         <div class="stokvel-header">
           <div class="stokvel-image-container">
-            <div class="stokvel-image" [ngClass]="getStokvelImageClass(stokvel.type)">
+            <div class="stokvel-image" [ngClass]="getStokvelImageClass(stokvel.stokvelType)">
               <div class="image-overlay"></div>
             </div>
             <div class="stokvel-status" [ngClass]="stokvel.status">
@@ -348,7 +348,7 @@
           </div>
           <div class="stokvel-info">
             <h3 class="stokvel-name">{{ stokvel.name }}</h3>
-            <p class="stokvel-type">{{ stokvel.type }}</p>
+            <p class="stokvel-type">{{ stokvel.stokvelType.name }}</p>
             <div class="stokvel-members">
               <mat-icon>people</mat-icon>
               <span>{{ stokvel.memberCount }} members</span>

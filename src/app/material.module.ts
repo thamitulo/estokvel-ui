@@ -7,7 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
@@ -16,17 +16,25 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatInputModule} from "@angular/material/input";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   exports: [
-    MatToolbarModule,
-    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule,
     MatTableModule,
-    MatFormFieldModule,
     MatMenuModule,
     MatProgressBarModule,
     MatDialogModule,
@@ -35,8 +43,10 @@ import {MatOptionModule} from "@angular/material/core";
     MatTooltipModule,
     MatSnackBarModule,
     MatExpansionModule,
-    MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatDatepickerModule,
+    MatStepperModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule {}

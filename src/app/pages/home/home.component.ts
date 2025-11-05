@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MaterialModule } from 'src/app/material.module';
-import { ActionSectionComponent } from "src/app/shared/action-section/action-section.component";
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {MaterialModule} from 'src/app/material.module';
+import {ActionSectionComponent} from "src/app/shared/action-section/action-section.component";
 import {Observable, map, last} from 'rxjs';
-import { AuthService } from '@auth0/auth0-angular';
-import { trigger, transition, style, animate } from '@angular/animations';
+import {AuthService} from '@auth0/auth0-angular';
+import {trigger, transition, style, animate} from '@angular/animations';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {PageEvent} from "@angular/material/paginator";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule, MaterialModule],
+  imports: [CommonModule, FormsModule, MaterialModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
@@ -59,7 +60,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Savings Club',
       description: 'Monthly savings stokvel for community members',
-      stokvelType: { name: 'Savings' },
+      stokvelType: {name: 'Savings'},
       startDate: [2025, 1, 15],
       active: true,
       contributionAmount: 500,
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Grocery Stokvel',
       description: 'For shared bulk grocery purchases',
-      stokvelType: { name: 'Grocery' },
+      stokvelType: {name: 'Grocery'},
       startDate: [2025, 3, 10],
       active: false,
       contributionAmount: 12500,
@@ -79,7 +80,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'My Property Stokvel',
       description: 'For buing properties together',
-      stokvelType: { name: 'Property' },
+      stokvelType: {name: 'Property'},
       startDate: [2025, 3, 10],
       active: false,
       contributionAmount: 40000,
@@ -89,7 +90,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'My Party Stokvel',
       description: 'For throwing parties',
-      stokvelType: { name: 'Property' },
+      stokvelType: {name: 'Property'},
       startDate: [2025, 3, 10],
       active: false,
       contributionAmount: 300,
@@ -99,7 +100,7 @@ export class HomeComponent implements OnInit {
     {
       name: 'Funeral Cover',
       description: 'Helping hand during bereavement',
-      stokvelType: { name: 'Funeral' },
+      stokvelType: {name: 'Funeral'},
       startDate: [2025, 3, 10],
       active: false,
       contributionAmount: 150,
@@ -121,9 +122,10 @@ export class HomeComponent implements OnInit {
   userName$: Observable<string | null> = new Observable();
   searchValue = '';
 
-  constructor(public auth: AuthService,
+  constructor(private router: Router, public auth: AuthService,
               private dialog: MatDialog,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar) {
+  }
 
   ngOnInit() {
     this.updatePagedData();
@@ -136,8 +138,8 @@ export class HomeComponent implements OnInit {
     console.log('Searching for', this.searchValue);
   }
 
-  createStokvel() {
-    console.log('Navigate to create stokvel');
+  createNewStokvel(): void {
+    this.router.navigate(['/create-stokvel']);
   }
 
   startStokvel() {

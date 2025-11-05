@@ -1,0 +1,301 @@
+<!-- stokvel-create.component.html -->
+<div class="create-stokvel-container">
+  <!-- Header Section -->
+  <section class="create-header-section">
+    <div class="create-header-background"></div>
+    <div class="create-header-content">
+      <h1 class="create-header-title">Create Your Stokvel</h1>
+      <p class="create-header-subtitle">Start your savings journey with a trusted community</p>
+    </div>
+  </section>
+
+  <!-- Progress Stepper -->
+  <div class="progress-section-wrapper">
+    <div class="progress-section mat-elevation-z8">
+      <mat-stepper linear #stepper>
+        <!-- Step 1: Basic Information -->
+        <mat-step [stepControl]="basicInfoForm">
+          <ng-template matStepLabel>Basic Information</ng-template>
+
+          <form [formGroup]="basicInfoForm" class="step-form">
+            <div class="form-section">
+              <h2 class="form-section-title">Stokvel Details</h2>
+              <p class="form-section-subtitle">Enter the basic information about your stokvel</p>
+
+              <div class="form-row">
+                <mat-form-field appearance="outline" class="form-field-full">
+                  <mat-label>Stokvel Name</mat-label>
+                  <input matInput formControlName="name" placeholder="e.g., Family Savings Group 2024">
+                  <mat-icon matSuffix>groups</mat-icon>
+                  <mat-hint>Choose a descriptive name for your stokvel</mat-hint>
+                  @if (basicInfoForm.get('name')?.hasError('required')) {
+                    <mat-error>Stokvel name is required</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+
+              <div class="form-row">
+                <mat-form-field appearance="outline" class="form-field-full">
+                  <mat-label>Description</mat-label>
+                  <textarea matInput formControlName="description" rows="3"
+                            placeholder="Describe the purpose and goals of your stokvel..."></textarea>
+                  <mat-hint>What is this stokvel about? What are your goals?</mat-hint>
+                  @if (basicInfoForm.get('description')?.hasError('required')) {
+                    <mat-error>Description is required</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+
+              <div class="form-row">
+                <mat-form-field appearance="outline" class="form-field-half">
+                  <mat-label>Stokvel Type</mat-label>
+                  <mat-select formControlName="type">
+                    @for (stokvelType of stokvelTypes; track stokvelType.name) {
+                      <mat-option [value]="stokvelType.name">
+                        {{ getStokvelTypeDisplayName(stokvelType.name) }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                  <mat-icon matSuffix>category</mat-icon>
+                  @if (basicInfoForm.get('type')?.hasError('required')) {
+                    <mat-error>Stokvel type is required</mat-error>
+                  }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field-half">
+                  <mat-label>Privacy Setting</mat-label>
+                  <mat-select formControlName="privacy">
+                    <mat-option value="private">
+                      <div class="privacy-option">
+                        <span>Private (Invite Only)</span>
+                      </div>
+                    </mat-option>
+                    <mat-option value="public">
+                      <div class="privacy-option">
+                        <span>Public (Anyone can join)</span>
+                      </div>
+                    </mat-option>
+                  </mat-select>
+                  <mat-hint>Choose who can see and join your stokvel</mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button mat-raised-button color="primary" matStepperNext [disabled]="!basicInfoForm.valid">
+                Continue to Financials
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Step 2: Financial Settings -->
+        <mat-step [stepControl]="financialForm">
+          <ng-template matStepLabel>Financial Settings</ng-template>
+
+          <form [formGroup]="financialForm" class="step-form">
+            <div class="form-section">
+              <h2 class="form-section-title">Financial Configuration</h2>
+              <p class="form-section-subtitle">Set up the financial rules for your stokvel</p>
+
+              <div class="financial-cards">
+                <mat-card class="financial-card mat-elevation-z2">
+                  <mat-card-content>
+                    <div class="financial-icon">
+                      <mat-icon>savings</mat-icon>
+                    </div>
+                    <h3>Contribution Amount</h3>
+                    <p>Set the regular contribution amount for members</p>
+
+                    <mat-form-field appearance="outline" class="form-field-full">
+                      <mat-label>Monthly Contribution (ZAR)</mat-label>
+                      <input matInput type="number" formControlName="monthlyContribution"
+                             placeholder="0.00" min="0">
+                      <span matPrefix>R&nbsp;</span>
+                      <mat-hint>Amount each member contributes monthly</mat-hint>
+                      @if (financialForm.get('monthlyContribution')?.hasError('required')) {
+                        <mat-error>Contribution amount is required</mat-error>
+                      }
+                      @if (financialForm.get('monthlyContribution')?.hasError('min')) {
+                        <mat-error>Contribution must be at least R50</mat-error>
+                      }
+                    </mat-form-field>
+                  </mat-card-content>
+                </mat-card>
+
+                <mat-card class="financial-card mat-elevation-z2">
+                  <mat-card-content>
+                    <div class="financial-icon">
+                      <mat-icon>target</mat-icon>
+                    </div>
+                    <h3>Savings Target</h3>
+                    <p>Set your stokvel's financial goal (optional)</p>
+
+                    <mat-form-field appearance="outline" class="form-field-full">
+                      <mat-label>Target Amount (ZAR)</mat-label>
+                      <input matInput type="number" formControlName="targetAmount"
+                             placeholder="0.00" min="0">
+                      <span matPrefix>R&nbsp;</span>
+                      <mat-hint>Leave empty for ongoing stokvel</mat-hint>
+                    </mat-form-field>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+
+              <div class="form-row">
+                <mat-form-field appearance="outline" class="form-field-half">
+                  <mat-label>Payout Cycle</mat-label>
+                  <mat-select formControlName="payoutCycle">
+                    <mat-option value="monthly">Monthly</mat-option>
+                    <mat-option value="quarterly">Quarterly</mat-option>
+                    <mat-option value="biannual">Every 6 Months</mat-option>
+                    <mat-option value="annual">Annual</mat-option>
+                    <mat-option value="rotational">Rotational</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>calendar_today</mat-icon>
+                  <mat-hint>How often will payouts occur?</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field-half">
+                  <mat-label>Maximum Members</mat-label>
+                  <input matInput type="number" formControlName="maxMembers" min="3" max="50">
+                  <mat-icon matSuffix>people</mat-icon>
+                  <mat-hint>Minimum 3 members required</mat-hint>
+                  @if (financialForm.get('maxMembers')?.hasError('min')) {
+                    <mat-error>Minimum 3 members required</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+
+              @if (financialForm.get('payoutCycle')?.value === 'rotational') {
+                <div class="form-row">
+                  <mat-form-field appearance="outline" class="form-field-full">
+                    <mat-label>Rotation Order</mat-label>
+                    <mat-select formControlName="rotationOrder">
+                      <mat-option value="alphabetical">Alphabetical by Name</mat-option>
+                      <mat-option value="joining">Order of Joining</mat-option>
+                      <mat-option value="random">Random</mat-option>
+                      <mat-option value="manual">Manual Selection</mat-option>
+                    </mat-select>
+                    <mat-hint>How will payout order be determined?</mat-hint>
+                  </mat-form-field>
+                </div>
+              }
+            </div>
+
+            <div class="step-actions">
+              <button mat-button matStepperPrevious class="back-button">
+                <mat-icon>arrow_back</mat-icon>
+                Back
+              </button>
+              <button mat-raised-button color="primary" matStepperNext [disabled]="!financialForm.valid">
+                Continue to Rules
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Step 3: Rules & Agreement -->
+        <mat-step [stepControl]="rulesForm">
+          <ng-template matStepLabel>Rules & Agreement</ng-template>
+
+          <form [formGroup]="rulesForm" class="step-form">
+            <div class="form-section">
+              <h2 class="form-section-title">Stokvel Rules</h2>
+              <p class="form-section-subtitle">Define the rules and terms for your stokvel</p>
+
+              <div class="rules-section">
+                <h3 class="rules-title">Default Rules</h3>
+                <div class="rules-list">
+                  @for (rule of defaultRules; track rule.id) {
+                    <mat-card class="rule-card mat-elevation-z1">
+                      <mat-card-content>
+                        <div class="rule-header">
+                          <mat-checkbox [checked]="rule.enabled" (change)="toggleRule(rule, $event)">
+                            {{ rule.title }}
+                          </mat-checkbox>
+                        </div>
+                        <p class="rule-description">{{ rule.description }}</p>
+                      </mat-card-content>
+                    </mat-card>
+                  }
+                </div>
+
+                <div class="custom-rules">
+                  <h3 class="rules-title">Custom Rules</h3>
+                  <p class="rules-subtitle">Add your own specific rules (optional)</p>
+
+                  <div formArrayName="customRules" class="custom-rules-list">
+                    @for (rule of customRules.controls; track i; let i = $index) {
+                      <div [formGroupName]="i" class="custom-rule-item">
+                        <mat-form-field appearance="outline" class="form-field-full">
+                          <mat-label>Rule Description</mat-label>
+                          <input matInput formControlName="description"
+                                 placeholder="e.g., All members must attend monthly meetings">
+                          <button mat-icon-button matSuffix (click)="removeCustomRule(i)">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </div>
+                    }
+                  </div>
+
+                  <button mat-button color="primary" (click)="addCustomRule()" class="add-rule-button">
+                    <mat-icon>add</mat-icon>
+                    Add Custom Rule
+                  </button>
+                </div>
+
+                <mat-card class="agreement-card mat-elevation-z2">
+                  <mat-card-content>
+                    <h3 class="agreement-title">Stokvel Agreement</h3>
+                    <div class="agreement-content">
+                      <p>By creating this stokvel, you agree to:</p>
+                      <ul class="agreement-terms">
+                        <li>Act as the stokvel administrator</li>
+                        <li>Ensure transparent financial management</li>
+                        <li>Communicate regularly with members</li>
+                        <li>Follow the established rules and payout schedules</li>
+                        <li>Maintain accurate records of all transactions</li>
+                      </ul>
+                    </div>
+                    <mat-checkbox formControlName="agreeToTerms" color="primary">
+                      I accept the terms and responsibilities of being a stokvel administrator
+                    </mat-checkbox>
+                    @if (rulesForm.get('agreeToTerms')?.hasError('required') && rulesForm.get('agreeToTerms')?.touched) {
+                      <mat-error>You must accept the terms to continue</mat-error>
+                    }
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button mat-button matStepperPrevious class="back-button">
+                <mat-icon>arrow_back</mat-icon>
+                Back
+              </button>
+              <button mat-raised-button
+                      color="primary"
+                      (click)="createStokvel()"
+                      [disabled]="!rulesForm.valid || isCreating"
+                      class="create-button">
+                <div class="button-content">
+                  @if (!isCreating) {
+                    <mat-icon>check_circle</mat-icon>
+                  }
+                  @if (isCreating) {
+                    <mat-spinner diameter="20" strokeWidth="3"></mat-spinner>
+                  }
+                  <span>{{ isCreating ? 'Creating Stokvel...' : 'Create Stokvel' }}</span>
+                </div>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  </div>
+</div>

@@ -1,84 +1,98 @@
+<!-- footer.component.html -->
 <footer class="footer">
   <div class="footer-content">
+    <!-- Company Column -->
     <div class="footer-column">
       <h3>Company</h3>
       <ul>
-        <li><a routerLink="/about-us"
-               routerLinkActive="active"
-               [routerLinkActiveOptions]="{exact: true}">About Us</a></li>
-        <li><a routerLink="/careers"
-               routerLinkActive="active">CareersComponent</a></li>
-        <li><a routerLink="/press"
-               routerLinkActive="active">PressComponent</a></li>
-        <li><a routerLink="/legal"
-               routerLinkActive="active">LegalComponent</a></li>
+        <li><a routerLink="/about-us" routerLinkActive="active">About Us</a></li>
+        <li><a routerLink="/careers" routerLinkActive="active">Careers</a></li>
+        <li><a routerLink="/press" routerLinkActive="active">Press</a></li>
+        <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
       </ul>
     </div>
+
+    <!-- Support Column -->
     <div class="footer-column">
       <h3>Support</h3>
       <ul>
-        <li><a routerLink="/contact"
-               routerLinkActive="active">ContactComponent Us</a></li>
-        <li><a routerLink="/security"
-               routerLinkActive="active">Security</a></li>
-        <li><a routerLink="/privacy-policy"
-               routerLinkActive="active">Privacy Policy</a></li>
-        <li><a routerLink="/terms"
-               routerLinkActive="active">Terms of Service</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact Us</a></li>
+        <li><a routerLink="/help-center" routerLinkActive="active">Help Center</a></li>
+        <li><a routerLink="/security" routerLinkActive="active">Security</a></li>
+        <li><a routerLink="/privacy-policy" routerLinkActive="active">Privacy Policy</a></li>
+        <li><a routerLink="/terms" routerLinkActive="active">Terms of Service</a></li>
       </ul>
     </div>
+
+    <!-- Learn Column -->
     <div class="footer-column">
       <h3>Learn</h3>
       <ul>
-        <li><a routerLink="/stokvel-basics"
-               routerLinkActive="active">Stokvel Basics</a></li>
-        <li><a routerLink="/tutorials"
-               routerLinkActive="active">Tutorials</a></li>
-        <li><a routerLink="/glossary"
-               routerLinkActive="active">Glossary</a></li>
-        <li><a routerLink="/faq"
-               routerLinkActive="active">FAQs</a></li>
+        <li><a routerLink="/stokvel-basics" routerLinkActive="active">Stokvel Basics</a></li>
+        <li><a routerLink="/tutorials" routerLinkActive="active">Tutorials</a></li>
+        <li><a routerLink="/glossary" routerLinkActive="active">Glossary</a></li>
+        <li><a routerLink="/faq" routerLinkActive="active">FAQs</a></li>
+        <li><a routerLink="/resources" routerLinkActive="active">Resources</a></li>
       </ul>
     </div>
+
+    <!-- Legal Column -->
     <div class="footer-column">
-      <h3>LegalComponent</h3>
+      <h3>Legal</h3>
       <ul>
-        <li><a routerLink="/regulatory"
-               routerLinkActive="active">Regulatory</a></li>
-        <li><a routerLink="/compliance"
-               routerLinkActive="active">Compliance</a></li>
-        <li><a routerLink="/popia"
-               routerLinkActive="active">POPIA</a></li>
+        <li><a routerLink="/regulatory" routerLinkActive="active">Regulatory</a></li>
+        <li><a routerLink="/compliance" routerLinkActive="active">Compliance</a></li>
+        <li><a routerLink="/popia" routerLinkActive="active">POPIA</a></li>
+        <li><a routerLink="/fsca" routerLinkActive="active">FSCA</a></li>
+        <li><a routerLink="/disclaimer" routerLinkActive="active">Disclaimer</a></li>
       </ul>
     </div>
+
+    <!-- Connect Column -->
     <div class="footer-column">
       <h3>Connect With Us</h3>
       <div class="social-links">
-        <a href="#" aria-label="Facebook">
+        <a [href]="socialLinks.facebook" target="_blank" aria-label="Facebook">
           <mat-icon>facebook</mat-icon>
         </a>
-        <a href="#" aria-label="Twitter">
+        <a [href]="socialLinks.twitter" target="_blank" aria-label="Twitter">
           <mat-icon>twitter</mat-icon>
         </a>
-        <a href="#" aria-label="Instagram">
+        <a [href]="socialLinks.instagram" target="_blank" aria-label="Instagram">
           <mat-icon>instagram</mat-icon>
         </a>
-        <a href="#" aria-label="LinkedIn">
+        <a [href]="socialLinks.linkedin" target="_blank" aria-label="LinkedIn">
           <mat-icon>linkedin</mat-icon>
         </a>
-        <a href="#" aria-label="YouTube">
+        <a [href]="socialLinks.youtube" target="_blank" aria-label="YouTube">
           <mat-icon>youtube</mat-icon>
         </a>
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <mat-icon>email</mat-icon>
+          <span>{{ contactInfo.supportEmail }}</span>
+        </div>
+        <div class="contact-item">
+          <mat-icon>phone</mat-icon>
+          <span>{{ contactInfo.phone }}</span>
+        </div>
+        <div class="contact-item">
+          <mat-icon>whatsapp</mat-icon>
+          <span>{{ contactInfo.whatsapp }}</span>
+        </div>
       </div>
 
       <div class="app-download">
         <p>Download our app</p>
         <div class="download-buttons">
-          <a href="#" class="download-btn">
+          <a [href]="appLinks.playStore" target="_blank" class="download-btn">
             <mat-icon>android</mat-icon>
             <span>Google Play</span>
           </a>
-          <a href="#" class="download-btn">
+          <a [href]="appLinks.appStore" target="_blank" class="download-btn">
             <mat-icon>apple</mat-icon>
             <span>App Store</span>
           </a>
@@ -86,11 +100,13 @@
       </div>
     </div>
   </div>
+
   <div class="footer-bottom">
-    <p>&copy; {{ year }} eStokvel. All rights reserved. eStokvel is an approved NASASA member.</p>
+    <p>&copy; {{ year }} eStokvel. All rights reserved. eStokvel is an approved NASASA member. FSP No: 12345</p>
     <div class="compliance-badges">
-      <img src="/assets/images/popia-badge.png" alt="POPIA Compliant" class="compliance-badge">
-      <img src="/assets/images/nasasa-badge.png" alt="NASASA Member" class="compliance-badge">
+      <img src="/assets/images/compliance/popia-badge.png" alt="POPIA Compliant" class="compliance-badge">
+      <img src="/assets/images/compliance/nasasa-badge.png" alt="NASASA Member" class="compliance-badge">
+      <img src="/assets/images/compliance/fsca-badge.png" alt="FSCA Registered" class="compliance-badge">
     </div>
   </div>
 </footer>

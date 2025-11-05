@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FaqComponent } from './shared/faq/faq.component';
 import { AuthGuard } from "@auth0/auth0-angular";
+import {StokvelCreateComponent} from "./components/stokvel-create/stokvel-create.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -126,8 +127,9 @@ const routes: Routes = [
   {
     path: 'create-stokvel',
     loadComponent: () =>
-      import('./pages/stokvel-create/stokvel-create.component')
-        .then(m => m.CreateStokvelComponent)
+      import('./components/stokvel-create/stokvel-create.component')
+        .then(m => m.StokvelCreateComponent),
+    canActivate: [AuthGuard]
   },
   {
     path: 'refer-earn',
