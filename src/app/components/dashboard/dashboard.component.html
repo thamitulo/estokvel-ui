@@ -339,7 +339,7 @@
         <div class="card-pattern"></div>
         <div class="stokvel-header">
           <div class="stokvel-image-container">
-            <div class="stokvel-image" [ngClass]="getStokvelImageClass(stokvel.stokvelType)">
+            <div class="stokvel-image" [ngClass]="getStokvelImageClass(stokvel.type)">
               <div class="image-overlay"></div>
             </div>
             <div class="stokvel-status" [ngClass]="stokvel.status">
@@ -348,7 +348,7 @@
           </div>
           <div class="stokvel-info">
             <h3 class="stokvel-name">{{ stokvel.name }}</h3>
-            <p class="stokvel-type">{{ stokvel.stokvelType.name }}</p>
+            <p class="stokvel-type">{{ stokvel.type }}</p>
             <div class="stokvel-members">
               <mat-icon>people</mat-icon>
               <span>{{ stokvel.memberCount }} members</span>
@@ -368,7 +368,7 @@
               color="primary">
             </mat-progress-bar>
             <div class="progress-details">
-              <span>R{{ stokvel.collectedAmount | number }} collected</span>
+              <span>R{{ stokvel.targetAmount | number }} collected</span>
               <span>R{{ stokvel.targetAmount | number }} target</span>
             </div>
           </div>
@@ -376,15 +376,16 @@
           <div class="stokvel-details">
             <div class="detail-item">
               <mat-icon>calendar_today</mat-icon>
-              <span>Next payout: {{ stokvel.nextPayoutDate | date:'mediumDate' }}</span>
+              <span>Next payout: {{ '2026-01-01' | date:'mediumDate' }}</span>
             </div>
             <div class="detail-item">
               <mat-icon>payments</mat-icon>
               <span>Monthly: R{{ stokvel.monthlyContribution | number }}</span>
             </div>
-            <div class="detail-item" *ngIf="stokvel.myNextPayout">
+            <!--div class="detail-item" *ngIf="stokvel.myNextPayout"-->
+            <div class="detail-item" >
               <mat-icon>schedule</mat-icon>
-              <span>My payout: {{ stokvel.myNextPayout | date:'mediumDate' }}</span>
+              <span>My payout: {{ '2026-01-02' | date:'mediumDate' }}</span>
             </div>
           </div>
         </mat-card-content>

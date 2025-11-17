@@ -15,6 +15,7 @@ export interface Referral {
   status: 'completed' | 'pending' | 'failed';
   amount?: number;
   email: string;
+  cellphone: string;
 }
 
 export interface FAQ {
@@ -88,33 +89,38 @@ export class CommonService {
         email: 'sarah.j@email.com',
         date: new Date('2024-01-15'),
         status: 'completed',
-        amount: 50
+        amount: 50,
+        cellphone: '0788778174'
       },
       {
         friendName: 'Mike Thompson',
         email: 'mike.t@email.com',
         date: new Date('2024-01-12'),
         status: 'completed',
-        amount: 50
+        amount: 50,
+        cellphone: '0788778174'
       },
       {
         friendName: 'Lisa Brown',
         email: 'lisa.b@email.com',
         date: new Date('2024-01-10'),
-        status: 'pending'
+        status: 'pending',
+        cellphone: '0788778174'
       },
       {
         friendName: 'David Wilson',
         email: 'david.w@email.com',
         date: new Date('2024-01-08'),
         status: 'completed',
-        amount: 50
+        amount: 50,
+        cellphone: '0788778174'
       },
       {
         friendName: 'Emma Davis',
         email: 'emma.d@email.com',
         date: new Date('2024-01-05'),
-        status: 'pending'
+        status: 'pending',
+        cellphone: '0788778174'
       }
     ];
   }

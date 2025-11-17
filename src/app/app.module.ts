@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { AuthConfig, AuthModule } from '@auth0/auth0-angular';
+import { AuthModule } from '@auth0/auth0-angular';
 import { AuthHttpInterceptor } from './auth.interceptor';
 import { environment } from './environments/environment';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
@@ -35,7 +35,20 @@ import { AuthEffects } from './store/auth/auth.effects';
         redirect_uri: environment.auth0.redirectUri,
         audience: environment.auth0.audience,
       },
-    } as unknown as AuthConfig),
+      // httpInterceptor configuration
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri: `${environment.apiUrl}/*`,
+            tokenOptions: {
+              authorizationParams: {
+                audience: environment.auth0.audience
+              }
+            }
+          }
+        ]
+      }
+    }),
     MaterialModule,
     BrowserAnimationsModule,
 

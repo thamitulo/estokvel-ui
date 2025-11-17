@@ -48,7 +48,7 @@ export class StokvelCreateComponent implements OnInit {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
-      type: [StokvelType.CONTRIBUTION.name, Validators.required],
+      type: [StokvelType.MONTHLY.name, Validators.required],
       privacy: ['private', Validators.required]
     });
   }
@@ -109,17 +109,19 @@ export class StokvelCreateComponent implements OnInit {
       const selectedTypeName = this.basicInfoForm.get('type')?.value;
       const selectedStokvelType = this.stokvelTypes.find(type => type.name === selectedTypeName);
 
-      // Prepare the data for API call
+      const typePayload = selectedStokvelType ? selectedStokvelType.name.toUpperCase() : null;
+
       const stokvelData = {
         ...this.basicInfoForm.value,
         ...this.financialForm.value,
-        type: selectedStokvelType,
-        typeName: this.getStokvelTypeDisplayName(selectedTypeName),
-        rules: {
-          default: this.defaultRules.filter(rule => rule.enabled),
-          custom: this.customRules.value
-        },
-        createdAt: new Date(),
+        type: typePayload,
+        typeName: selectedStokvelType
+          ? this.getStokvelTypeDisplayName(selectedStokvelType.name)
+          : '',
+        rules: [
+          ...this.defaultRules.filter(rule => rule.enabled),
+          ...this.customRules.value
+        ],
         status: 'active'
       };
 

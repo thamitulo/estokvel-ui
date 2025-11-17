@@ -17,7 +17,7 @@
         <mat-step [stepControl]="basicInfoForm">
           <ng-template matStepLabel>Basic Information</ng-template>
 
-          <form [formGroup]="basicInfoForm" class="step-form">
+          <form [formGroup]="basicInfoForm" class="step-form" (ngSubmit)="createStokvel()">
             <div class="form-section">
               <h2 class="form-section-title">Stokvel Details</h2>
               <p class="form-section-subtitle">Enter the basic information about your stokvel</p>
@@ -277,7 +277,7 @@
                 <mat-icon>arrow_back</mat-icon>
                 Back
               </button>
-              <button mat-raised-button
+              <button mat-raised-button type="submit"
                       color="primary"
                       (click)="createStokvel()"
                       [disabled]="!rulesForm.valid || isCreating"

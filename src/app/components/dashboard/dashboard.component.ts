@@ -5,7 +5,7 @@ import { MaterialModule } from '../../material.module';
 import {Observable, of} from 'rxjs';
 import {AppUser, UserService} from "../../services/user/user-service.service";
 import {StokvelUtils} from "../../utils/StokvelUtils";
-import {Stokvel, StokvelType} from "../../models/stokvel";
+import {Stokvel, StokvelResponse, StokvelType} from "../../models/stokvel";
 import {StokvelService} from "../../services/stokvel/stokvel.service";
 import {switchMap} from "rxjs/operators";
 
@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
   ];
 
   // Mock data for simplicity
-  userStokvels$: Observable<Stokvel[]> = of([]);
+  userStokvels$: Observable<StokvelResponse[]> = of([]);
   recentActivities: Activity[] = [];
 
   constructor(private router: Router,private userService: UserService, private stokvelService: StokvelService) {
@@ -80,19 +80,20 @@ export class DashboardComponent implements OnInit {
     return (this.totalPortfolioValue * percentage) / 100;
   }
 
-  getStokvelProgress(stokvel: Stokvel): number {
+  getStokvelProgress(stokvel: StokvelResponse): number {
     return StokvelUtils.getProgress(stokvel);
   }
 
-  getStokvelImageClass(type: StokvelType): string {
+  getStokvelImageClass(type: string): string {
     const map: Record<string, string> = {
-      [StokvelType.INVESTMENT.name]: 'investment',
-      [StokvelType.PROPERTY.name]: 'property',
-      [StokvelType.FAMILY.name]: 'family',
-      [StokvelType.BURIAL.name]: 'burial',
-      [StokvelType.CONTRIBUTION.name]: 'contribution'
+      INVESTMENT: 'investment',
+      PROPERTY: 'property',
+      FAMILY: 'family',
+      BURIAL: 'burial',
+      MONTHLY: 'monthly'
     };
-    return map[type.name] || StokvelType.CONTRIBUTION.name;
+
+    return map[type.toUpperCase()] || 'monthly';
   }
 
   getActivityIcon(type: string): string {
@@ -112,8 +113,10 @@ export class DashboardComponent implements OnInit {
   joinStokvel(): void { console.log('Join stokvel'); }
   makeContribution(): void { console.log('Make contribution'); }
   viewReports(): void { console.log('View reports'); }
-  viewStokvelDetails(stokvel: Stokvel): void { console.log('View stokvel details:', stokvel); }
-  makeStokvelContribution(stokvel: Stokvel): void { console.log('Contribution to stokvel:', stokvel); }
+  viewStokvelDetails(stokvel: StokvelResponse): void { console.log('View stokvel details:', stokvel); }
+  makeStokvelContribution(stokvel: StokvelResponse): void { console.log('Contribution to stokvel:', stokvel); }
   viewAllActivity(): void { console.log('View all activity'); }
   viewAllStokvels(): void { console.log('View all stokvels'); }
+
+  protected readonly StokvelType = StokvelType;
 }

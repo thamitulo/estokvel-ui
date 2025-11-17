@@ -28,14 +28,6 @@ export interface Activity {
   status: 'completed' | 'pending' | 'failed';
 }
 
-export interface Referral {
-  friendName: string;
-  date: Date;
-  status: 'completed' | 'pending' | 'failed';
-  amount?: number;
-  email: string;
-}
-
 export interface FAQ {
   question: string;
   answer: string;
@@ -183,45 +175,6 @@ export class BackendService {
         date: new Date('2024-01-03'),
         amount: 2000,
         status: 'completed'
-      }
-    ];
-  }
-
-  // Referral Data
-  getReferralHistory(): Referral[] {
-    return [
-      {
-        friendName: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        date: new Date('2024-01-15'),
-        status: 'completed',
-        amount: 50
-      },
-      {
-        friendName: 'Mike Thompson',
-        email: 'mike.t@email.com',
-        date: new Date('2024-01-12'),
-        status: 'completed',
-        amount: 50
-      },
-      {
-        friendName: 'Lisa Brown',
-        email: 'lisa.b@email.com',
-        date: new Date('2024-01-10'),
-        status: 'pending'
-      },
-      {
-        friendName: 'David Wilson',
-        email: 'david.w@email.com',
-        date: new Date('2024-01-08'),
-        status: 'completed',
-        amount: 50
-      },
-      {
-        friendName: 'Emma Davis',
-        email: 'emma.d@email.com',
-        date: new Date('2024-01-05'),
-        status: 'pending'
       }
     ];
   }

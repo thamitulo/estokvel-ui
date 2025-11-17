@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import {PageEvent} from '@angular/material/paginator';
 import {MaterialModule} from "../../material.module";
 import {StokvelService} from "../../services/stokvel/stokvel.service";
-import {Stokvel, StokvelType} from "../../models/stokvel";
+import {Stokvel, StokvelResponse, StokvelType} from "../../models/stokvel";
 import {StokvelUtils} from "../../utils/StokvelUtils";
 
 @Component({
@@ -25,9 +25,9 @@ export class StokvelListComponent implements OnInit {
   dialog = inject(MatDialog);
   snack = inject(MatSnackBar);
 
-  sourceStokvels: Stokvel[] = [];
-  filteredStokvels: Stokvel[] = [];
-  pagedStokvels: Stokvel[] = [];
+  sourceStokvels: StokvelResponse[] = [];
+  filteredStokvels: StokvelResponse[] = [];
+  pagedStokvels: StokvelResponse[] = [];
 
   pageIndex = 0;
   pageSize = 3;
@@ -63,19 +63,19 @@ export class StokvelListComponent implements OnInit {
     this.updatePagedData();
   }
 
-  progress(stokvel: Stokvel): number {
+  progress(stokvel: StokvelResponse): number {
     return StokvelUtils.getProgress(stokvel);
   }
 
-  progressColor(stokvel: Stokvel): string {
+  progressColor(stokvel: StokvelResponse): string {
       return StokvelUtils.progressColor(stokvel)
   }
 
-  remainingAmount(stokvel: Stokvel): number {
+  remainingAmount(stokvel: StokvelResponse): number {
     return  StokvelUtils.getRemainingAmount(stokvel);
   }
 
-  getCollectedAmount(stokvel: Stokvel): number {
+  getCollectedAmount(stokvel: StokvelResponse): number {
     return StokvelUtils.getCollectedAmount(stokvel);
   }
 

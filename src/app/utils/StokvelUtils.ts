@@ -1,28 +1,28 @@
-import {Stokvel, StokvelType} from "../models/stokvel";
+import {Stokvel, StokvelResponse, StokvelType} from "../models/stokvel";
 
 export class StokvelUtils {
 
-  static getCollectedAmount(stokvel: Stokvel): number {
-    return stokvel.contributionAmount;
+  static getCollectedAmount(stokvel: StokvelResponse): number {
+    return stokvel.monthlyContribution;
   }
 
-  static getProgress(stokvel: Stokvel): number {
+  static getProgress(stokvel: StokvelResponse): number {
     const collected = this.getCollectedAmount(stokvel);
     const progress = (collected / (stokvel.targetAmount || 0)) * 100;
     return Math.min(progress, 100);
   }
 
-  static getRemainingAmount(stokvel: Stokvel): number {
+  static getRemainingAmount(stokvel: StokvelResponse): number {
     const collected = this.getCollectedAmount(stokvel);
     return Math.max((stokvel?.targetAmount || 0 ) - collected, 0);
   }
 
-  static isTargetReached(stokvel: Stokvel): boolean {
+  static isTargetReached(stokvel: StokvelResponse): boolean {
     return this.getProgress(stokvel) >= 100;
   }
 
 
-  static getFormattedProgress(stokvel: Stokvel): string {
+  static getFormattedProgress(stokvel: StokvelResponse): string {
     return `${this.getProgress(stokvel).toFixed(1)}%`;
   }
 
@@ -30,7 +30,7 @@ export class StokvelUtils {
     return stokvel?.collectedAmount ?? 0;
   }
 
-  static progressColor(stokvel: Stokvel): string {
+  static progressColor(stokvel: StokvelResponse): string {
     const pct = this.getProgress(stokvel);
     if (pct >= 100) return 'primary';
     if (pct >= 50) return 'accent';
@@ -78,7 +78,7 @@ export class StokvelUtils {
       [StokvelType.PROPERTY.name]: 'Property Stokvel',
       [StokvelType.FAMILY.name]: 'Family Stokvel',
       [StokvelType.BURIAL.name]: 'Burial Stokvel',
-      [StokvelType.CONTRIBUTION.name]: 'Contribution Stokvel'
+      [StokvelType.MONTHLY.name]: 'Monthly Rotational Stokvel'
     };
 
     return displayNames[typeName] || typeName;
