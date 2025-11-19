@@ -37,6 +37,7 @@ export interface Stokvel {
   nextPayoutDate: Date;
   myNextPayout?: Date;
   progress: number;
+  isOwner?: boolean;
 }
 
 export interface StokvelResponse {
@@ -77,6 +78,7 @@ export interface StokvelResponse {
   members: StokvelMemberDto[];
   adminMembers: StokvelMemberDto[];
   regularMembers: StokvelMemberDto[];
+  isOwner?: boolean;
 }
 
 export interface StokvelRuleDto {

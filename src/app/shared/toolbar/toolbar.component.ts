@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
 import {AppUser, UserService} from "../../services/user/user-service.service";
+import {StokvelService} from "../../services/stokvel/stokvel.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -29,7 +30,8 @@ export class ToolbarComponent implements OnInit {
   constructor(
     private router: Router,
     public auth: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private stokvelService: StokvelService
   ) {
     this.user$ = this.userService.user$;
     this.userName$ = this.userService.userName$;
@@ -61,6 +63,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   logout() {
+    this.stokvelService.clearAllStokvelCache();
     this.auth.logout({ logoutParams: { returnTo: '' } });
   }
 

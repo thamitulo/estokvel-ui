@@ -17,18 +17,18 @@
           <div class="welcome-badge">
             <span>🎉 Welcome back!</span>
           </div>
-          <h1 class="dashboard-title">Hello, {{ (user$ | async)?.name || (user$ | async)?.email || 'Guest' }}!</h1>
+          <h1 class="dashboard-title">Hello, {{ (userName$ | async) || 'Guest' }}!</h1>
           <p class="dashboard-subtitle">Your stokvel portfolio is growing beautifully</p>
         </div>
         <div class="portfolio-summary">
           <div class="portfolio-value-card">
             <div class="value-content">
               <span class="value-label">Total Portfolio Value</span>
-              <h2 class="value-amount">R{{ totalPortfolioValue | number }}</h2>
+              <h2 class="value-amount">R{{ (totalPortfolioValue$ | async) | number }}</h2>
               <div class="value-change positive">
                 <div class="change-indicator">
                   <mat-icon>trending_up</mat-icon>
-                  <span>+R{{ portfolioChange | number }} ({{portfolioChangePercent}}%) today</span>
+                  <span>+R{{ (portfolioChange$ | async) | number }} ({{(portfolioChangePercent$ | async)}}%) today</span>
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@
             </div>
           </div>
           <div class="stat-content">
-            <h3 class="stat-value">{{ userStokvelsCount }}</h3>
+            <h3 class="stat-value">{{ userStokvelsCount$ | async }}</h3>
             <p class="stat-label">Active Stokvels</p>
             <div class="stat-comparison">+2 from last month</div>
           </div>
@@ -86,9 +86,9 @@
             </div>
           </div>
           <div class="stat-content">
-            <h3 class="stat-value">R{{ totalContributions | number }}</h3>
+            <h3 class="stat-value">R{{ (totalContributions$ | async) | number }}</h3>
             <p class="stat-label">Total Contributions</p>
-            <div class="stat-comparison">R{{ monthlyChange | number }} this month</div>
+            <div class="stat-comparison">R{{ (monthlyChange$ | async) | number }} this month</div>
           </div>
           <div class="stat-decoration">
             <div class="decoration-wave"></div>
@@ -105,11 +105,11 @@
             </div>
             <div class="stat-indicator upcoming">
               <mat-icon>schedule</mat-icon>
-              <span>{{daysUntilPayout}} days</span>
+              <span>{{ (daysUntilPayout$ | async) }} days</span>
             </div>
           </div>
           <div class="stat-content">
-            <h3 class="stat-value">R{{ nextPayout | number }}</h3>
+            <h3 class="stat-value">R{{ (nextPayout$ | async) | number }}</h3>
             <p class="stat-label">Next Payout</p>
             <div class="stat-comparison">Get ready to celebrate! 🎊</div>
           </div>
@@ -132,7 +132,7 @@
             </div>
           </div>
           <div class="stat-content">
-            <h3 class="stat-value">R{{ totalSavings | number }}</h3>
+            <h3 class="stat-value">R{{ (totalSavings$ | async) | number }}</h3>
             <p class="stat-label">Total Growth</p>
             <div class="stat-comparison">All time performance</div>
           </div>
@@ -167,7 +167,7 @@
             <div class="pie-chart-visual">
               <div class="chart-wrapper">
                 <div class="pie-chart">
-                  <div class="chart-segment" *ngFor="let segment of portfolioDistribution"
+                  <div class="chart-segment" *ngFor="let segment of portfolioDistribution$ | async"
                        [style.background]="segment.color"
                        [style.transform]="'rotate(' + segment.rotation + 'deg)'"
                        [style.opacity]="segment.opacity">
@@ -176,12 +176,12 @@
                 <div class="chart-center">
                   <div class="center-content">
                     <span class="chart-total">Total Value</span>
-                    <span class="chart-amount">R{{ totalPortfolioValue | number }}</span>
+                    <span class="chart-amount">R{{ (totalPortfolioValue$ | async) | number }}</span>
                   </div>
                 </div>
               </div>
               <div class="chart-legends">
-                <div class="legend-item" *ngFor="let item of portfolioDistribution">
+                <div class="legend-item" *ngFor="let item of portfolioDistribution$ | async">
                   <div class="legend-marker">
                     <div class="legend-color" [style.background]="item.color"></div>
                   </div>
@@ -348,10 +348,15 @@
           </div>
           <div class="stokvel-info">
             <h3 class="stokvel-name">{{ stokvel.name }}</h3>
-            <p class="stokvel-type">{{ stokvel.type }}</p>
+            <p class="stokvel-type">{{ getStokvelTypeDisplayName(stokvel.typeName) }}</p>
             <div class="stokvel-members">
               <mat-icon>people</mat-icon>
               <span>{{ stokvel.memberCount }} members</span>
+            </div>
+            <!-- Ownership badge -->
+            <div *ngIf="stokvel.isOwner" class="owner-badge">
+              <mat-icon>star</mat-icon>
+              <span>You created this stokvel</span>
             </div>
           </div>
         </div>
@@ -360,15 +365,15 @@
           <div class="stokvel-progress">
             <div class="progress-header">
               <span class="progress-label">Contribution Progress</span>
-              <span class="progress-percentage">{{ getStokvelProgress(stokvel) }}%</span>
+              <span class="progress-percentage">{{ getStokvelProgress(stokvel) | number:'1.0-1' }}%</span>
             </div>
             <mat-progress-bar
               mode="determinate"
               [value]="getStokvelProgress(stokvel)"
-              color="primary">
+              [color]="getStokvelProgressColor(stokvel)">
             </mat-progress-bar>
             <div class="progress-details">
-              <span>R{{ stokvel.targetAmount | number }} collected</span>
+              <span>R{{ getStokvelCollectedAmount(stokvel) | number }} collected</span>
               <span>R{{ stokvel.targetAmount | number }} target</span>
             </div>
           </div>
@@ -382,8 +387,7 @@
               <mat-icon>payments</mat-icon>
               <span>Monthly: R{{ stokvel.monthlyContribution | number }}</span>
             </div>
-            <!--div class="detail-item" *ngIf="stokvel.myNextPayout"-->
-            <div class="detail-item" >
+            <div class="detail-item">
               <mat-icon>schedule</mat-icon>
               <span>My payout: {{ '2026-01-02' | date:'mediumDate' }}</span>
             </div>
@@ -443,7 +447,7 @@
       <div class="card-pattern"></div>
       <mat-card-content>
         <div class="activity-list">
-          <div class="activity-item" *ngFor="let activity of recentActivities">
+          <div class="activity-item" *ngFor="let activity of recentActivities$ | async">
             <div class="activity-icon" [ngClass]="activity.type">
               <mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
             </div>
@@ -462,7 +466,7 @@
           </div>
         </div>
 
-        <div class="no-activity" *ngIf="recentActivities.length === 0">
+        <div class="no-activity" *ngIf="(recentActivities$ | async)?.length === 0">
           <div class="no-activity-content">
             <mat-icon>history</mat-icon>
             <p>No recent activity to display</p>

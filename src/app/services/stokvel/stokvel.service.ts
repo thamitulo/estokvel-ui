@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Stokvel, StokvelResponse, StokvelType} from "../../models/stokvel";
 import {environment} from "../../environments/environment";
+import {map, shareReplay, tap} from "rxjs/operators";
+import {PaginatedResponse, StokvelResponse} from "../../models";
+import {CacheService} from "../cache/cache.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,11 @@ import {environment} from "../../environments/environment";
 export class StokvelService {
 
   private baseUrl = `${environment.apiUrl}` + 'stokvels';
+  private cache = new Map<string, Observable<any>>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private cacheService: CacheService) {
+  }
 
   getStokvelTypes(): Observable<any[]> {
     return this.http.get<any[]>('types');
@@ -21,16 +26,82 @@ export class StokvelService {
     return this.http.get<any[]>('savingsTerms');
   }
 
-  createStokvel(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}`, data);
+  createStokvel(stokvelData: any): Observable<any> {
+    return this.http.post('/api/stokvels', stokvelData).pipe(
+      tap(() => {
+        this.clearAllStokvelCache();
+      })
+    );
   }
 
-  getUserStokvels(username: string): Observable<StokvelResponse[]> {
-    return this.http.get<any>(`${this.baseUrl}` + '/my-stokvels');
+  getUserStokvels(auth0Id: string): Observable<StokvelResponse[]> {
+    const cacheKey = `user-stokvels-${auth0Id}`;
+
+    const cached = this.cacheService.get<StokvelResponse[]>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const request$ = this.http.get<PaginatedResponse<StokvelResponse>>(`${this.baseUrl}/my-stokvels`).pipe(
+      map(response => response.content)
+    );
+
+    this.cacheService.set(cacheKey, request$, 2 * 60 * 1000); // 2 minutes TTL
+    return request$;
+  }
+
+  // Get with forced refresh (bypass cache)
+  getUserStokvelsForceRefresh(auth0Id: string): Observable<StokvelResponse[]> {
+    const cacheKey = `user-stokvels-${auth0Id}`;
+    this.cacheService.delete(cacheKey);
+    return this.getUserStokvels(auth0Id);
+  }
+
+  // Get full paginated response with caching
+  getUserStokvelsPaginated(auth0Id: string, page: number = 0, size: number = 10): Observable<PaginatedResponse<StokvelResponse>> {
+    const cacheKey = `user-stokvels-paginated-${auth0Id}-${page}-${size}`;
+
+    const cached = this.cacheService.get<PaginatedResponse<StokvelResponse>>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const request$ = this.http.get<PaginatedResponse<StokvelResponse>>(
+      `${this.baseUrl}/my-stokvels?page=${page}&size=${size}`
+    );
+
+    this.cacheService.set(cacheKey, request$, 2 * 60 * 1000);
+    return request$;
+  }
+
+  // Clear cache when stokvel is created/updated
+  clearUserStokvelsCache(auth0Id: string): void {
+    const keysToDelete: string[] = [];
+
+    this.cacheService['cache'].forEach((value, key) => {
+      if (key.startsWith(`user-stokvels-${auth0Id}`)) {
+        keysToDelete.push(key);
+      }
+    });
+
+    keysToDelete.forEach(key => this.cacheService.delete(key));
+  }
+
+  // Clear all stokvel-related cache
+  clearAllStokvelCache(): void {
+    const keysToDelete: string[] = [];
+
+    this.cacheService['cache'].forEach((value, key) => {
+      if (key.startsWith('user-stokvels-')) {
+        keysToDelete.push(key);
+      }
+    });
+
+    keysToDelete.forEach(key => this.cacheService.delete(key));
   }
 
   getStokvels(): Observable<StokvelResponse[]> {
-   // return this.http.get<Stokvel[]>(this.baseUrl);
+    // return this.http.get<Stokvel[]>(this.baseUrl);
     const stokvels: StokvelResponse[] = [
       {
         id: 1,
