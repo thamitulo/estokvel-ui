@@ -46,6 +46,8 @@ export class DashboardComponent implements OnInit {
   portfolioChange$: Observable<number>;
   portfolioChangePercent$: Observable<number>;
   userStokvelsCount$: Observable<number>;
+  newlyJoinedStokvelCount$: Observable<number>;
+  percentageChangeForJoinedStokvels$: Observable<number>;
   totalContributions$: Observable<number>;
   monthlyChange$: Observable<number>;
   nextPayout$: Observable<number>;
@@ -92,6 +94,17 @@ export class DashboardComponent implements OnInit {
       map(data => data.userStokvelsCount),
       shareReplay(1)
     );
+
+    this.newlyJoinedStokvelCount$ = this.dashboardData$.pipe(
+      map(data => data.newlyJoinedStokvelCount),
+      shareReplay(1)
+    );
+
+    this.percentageChangeForJoinedStokvels$ = this.dashboardData$.pipe(
+      map(data => data.percentageChangeForJoinedStokvels),
+      shareReplay(1)
+    );
+
     this.totalContributions$ = this.dashboardData$.pipe(
       map(data => data.totalContributions),
       shareReplay(1)

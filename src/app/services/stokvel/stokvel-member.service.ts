@@ -18,6 +18,7 @@ export class StokvelMemberService {
         totalContributed: 4500,
         nextPayoutAmount: 18000,
         nextPayOutDate: new Date('2024-02-01'),
+        joinedAt: new Date('2025-11-19'),
         stokvel: { id: 1, name: 'Mabogo Dinku Stokvel' }
       },
       {
@@ -25,7 +26,8 @@ export class StokvelMemberService {
         userAuth0Id: auth0Id,
         totalContributed: 6000,
         nextPayoutAmount: 24000,
-        nextPayOutDate: new Date('2024-03-01'),
+        joinedAt: new Date('2025-10-18'),
+        nextPayOutDate: new Date('2026-02-01'),
         stokvel: { id: 2, name: 'Family Fund' }
       }
     ]);

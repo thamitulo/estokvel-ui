@@ -3,6 +3,7 @@ import { Observable, map, combineLatest, of, switchMap, shareReplay, take } from
 import { StokvelService } from "../stokvel/stokvel.service";
 import { StokvelMemberService } from "../stokvel/stokvel-member.service";
 import { UserService } from "../user/user-service.service";
+import {countStokvelsJoinedLastMonth, percentageIncreaseForJoinedStokvels} from "../../components/dashboard/stats.util";
 
 export interface DashboardData {
   user: any;
@@ -10,6 +11,8 @@ export interface DashboardData {
   portfolioChange: number;
   portfolioChangePercent: number;
   userStokvelsCount: number;
+  newlyJoinedStokvelCount: number;
+  percentageChangeForJoinedStokvels: number,
   totalContributions: number;
   monthlyChange: number;
   nextPayout: number;
@@ -43,7 +46,7 @@ export class DashboardService {
 
         return combineLatest({
           userStokvels: this.getUserStokvels(auth0Id),
-          stokvelMembers: this.getUserStokvelMembers(auth0Id),
+          stokvelMembers: this.getUserStokvelMemberships(auth0Id),
           recentActivities: this.getRecentActivities(auth0Id)
         }).pipe(
           map(({ userStokvels, stokvelMembers, recentActivities }) => {
@@ -57,6 +60,8 @@ export class DashboardService {
               portfolioChange: portfolioData.dailyChange,
               portfolioChangePercent: portfolioData.dailyChangePercent,
               userStokvelsCount: stats.stokvelsCount,
+              newlyJoinedStokvelCount: stats.newlyJoinedStokvelCount,
+              percentageChangeForJoinedStokvels: stats.percentageChangeForJoinedStokvels,
               totalContributions: stats.totalContributions,
               monthlyChange: stats.monthlyChange,
               nextPayout: stats.nextPayout,
@@ -80,6 +85,8 @@ export class DashboardService {
       portfolioChange: 0,
       portfolioChangePercent: 0,
       userStokvelsCount: 0,
+      newlyJoinedStokvelCount: 0,
+      percentageChangeForJoinedStokvels: 0,
       totalContributions: 0,
       monthlyChange: 0,
       nextPayout: 0,
@@ -103,9 +110,9 @@ export class DashboardService {
     );
   }
 
-  private getUserStokvelMembers(auth0Id: string): Observable<any[]> {
+  private getUserStokvelMemberships(auth0Id: string): Observable<any[]> {
     return this.stokvelMemberService.getUserMemberships(auth0Id).pipe(
-      take(1), // Ensure only one request
+      take(1),
       shareReplay(1)
     );
   }
@@ -144,17 +151,22 @@ export class DashboardService {
     };
   }
 
-  private calculateStats(userStokvels: any[], stokvelMembers: any[], auth0Id: string): any {
+  private calculateStats(userStokvels: any[], stokvelMemberships: any[], auth0Id: string): any {
     const stokvelsCount = userStokvels.length;
 
+    const now = new Date();
+
+    const newlyJoinedStokvelCount = countStokvelsJoinedLastMonth(stokvelMemberships) ;
+    const percentageChangeForJoinedStokvels = percentageIncreaseForJoinedStokvels(stokvelMemberships);
+
     // Calculate total contributions from members
-    const totalContributions = stokvelMembers.reduce((sum, member) => {
+    const totalContributions = stokvelMemberships.reduce((sum, member) => {
       return sum + (Number(member.totalContributed) || 0);
     }, 0);
 
     // Mock changes
     const monthlyChange = totalContributions * 0.083;
-    const nextPayout = stokvelMembers.reduce((sum, member) => {
+    const nextPayout = stokvelMemberships.reduce((sum, member) => {
       if (member.nextPayoutAmount && member.nextPayOutDate) {
         return sum + (Number(member.nextPayoutAmount) || 0);
       }
@@ -162,10 +174,12 @@ export class DashboardService {
     }, 0);
 
     const daysUntilPayout = 7;
-    const totalSavings = this.calculatePortfolioData(userStokvels, stokvelMembers, auth0Id).totalValue;
+    const totalSavings = this.calculatePortfolioData(userStokvels, stokvelMemberships, auth0Id).totalValue;
 
     return {
       stokvelsCount,
+      newlyJoinedStokvelCount,
+      percentageChangeForJoinedStokvels,
       totalContributions,
       monthlyChange,
       nextPayout,

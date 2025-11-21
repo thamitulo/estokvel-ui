@@ -59,13 +59,13 @@
             </div>
             <div class="stat-trend positive">
               <mat-icon>arrow_upward</mat-icon>
-              <span>12.5%</span>
+              <span>{{ percentageChangeForJoinedStokvels$ | async }}</span>
             </div>
           </div>
           <div class="stat-content">
             <h3 class="stat-value">{{ userStokvelsCount$ | async }}</h3>
             <p class="stat-label">Active Stokvels</p>
-            <div class="stat-comparison">+2 from last month</div>
+            <div class="stat-comparison">+{{ newlyJoinedStokvelCount$ | async }} from last month</div>
           </div>
           <div class="stat-decoration">
             <div class="decoration-dots"></div>
