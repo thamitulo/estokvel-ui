@@ -48,7 +48,7 @@ export class StokvelCreateComponent implements OnInit {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
-      type: [StokvelType.MONTHLY.name, Validators.required],
+      type: [StokvelType.ROTATIONAL.name, Validators.required],
       privacy: ['private', Validators.required]
     });
   }

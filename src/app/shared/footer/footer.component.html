@@ -50,51 +50,61 @@
     </div>
 
     <!-- Connect Column -->
-    <div class="footer-column">
+    <div class="footer-column connect-column">
       <h3>Connect With Us</h3>
+
+      <!-- Social Links -->
       <div class="social-links">
-        <a [href]="socialLinks.facebook" target="_blank" aria-label="Facebook">
+        <a [href]="socialLinks.facebook" target="_blank" class="social-link" aria-label="Facebook">
           <mat-icon>facebook</mat-icon>
         </a>
-        <a [href]="socialLinks.twitter" target="_blank" aria-label="Twitter">
+        <a [href]="socialLinks.twitter" target="_blank" class="social-link" aria-label="Twitter">
           <mat-icon>twitter</mat-icon>
         </a>
-        <a [href]="socialLinks.instagram" target="_blank" aria-label="Instagram">
+        <a [href]="socialLinks.instagram" target="_blank" class="social-link" aria-label="Instagram">
           <mat-icon>instagram</mat-icon>
         </a>
-        <a [href]="socialLinks.linkedin" target="_blank" aria-label="LinkedIn">
-          <mat-icon>linkedin</mat-icon>
+        <a [href]="socialLinks.linkedin" target="_blank" class="social-link" aria-label="LinkedIn">
+          <mat-icon>linkedn</mat-icon>
         </a>
-        <a [href]="socialLinks.youtube" target="_blank" aria-label="YouTube">
-          <mat-icon>youtube</mat-icon>
+        <a [href]="socialLinks.youtube" target="_blank" class="social-link" aria-label="YouTube">
+          <mat-icon>play_circle</mat-icon>
         </a>
       </div>
 
+      <!-- Contact Info -->
       <div class="contact-info">
         <div class="contact-item">
-          <mat-icon>email</mat-icon>
-          <span>{{ contactInfo.supportEmail }}</span>
+          <mat-icon class="contact-icon">email</mat-icon>
+          <span class="contact-text">{{ contactInfo.supportEmail }}</span>
         </div>
         <div class="contact-item">
-          <mat-icon>phone</mat-icon>
-          <span>{{ contactInfo.phone }}</span>
+          <mat-icon class="contact-icon">phone</mat-icon>
+          <span class="contact-text">{{ contactInfo.phone }}</span>
         </div>
         <div class="contact-item">
-          <mat-icon>whatsapp</mat-icon>
-          <span>{{ contactInfo.whatsapp }}</span>
+          <mat-icon class="contact-icon">chat</mat-icon>
+          <span class="contact-text">{{ contactInfo.whatsapp }}</span>
         </div>
       </div>
 
+      <!-- App Download - Inline Layout -->
       <div class="app-download">
-        <p>Download our app</p>
+        <p class="download-title">Download our app</p>
         <div class="download-buttons">
-          <a [href]="appLinks.playStore" target="_blank" class="download-btn">
-            <mat-icon>android</mat-icon>
-            <span>Google Play</span>
+          <a [href]="appLinks.playStore" target="_blank" class="download-btn play-store">
+            <mat-icon class="store-icon">android</mat-icon>
+            <div class="store-text">
+              <span class="get-text">GET IT ON</span>
+              <span class="store-name">Google Play</span>
+            </div>
           </a>
-          <a [href]="appLinks.appStore" target="_blank" class="download-btn">
-            <mat-icon>apple</mat-icon>
-            <span>App Store</span>
+          <a [href]="appLinks.appStore" target="_blank" class="download-btn app-store">
+            <mat-icon class="store-icon">apple</mat-icon>
+            <div class="store-text">
+              <span class="get-text">Download on the</span>
+              <span class="store-name">App Store</span>
+            </div>
           </a>
         </div>
       </div>
@@ -104,9 +114,9 @@
   <div class="footer-bottom">
     <p>&copy; {{ year }} eStokvel. All rights reserved. eStokvel is an approved NASASA member. FSP No: 12345</p>
     <div class="compliance-badges">
-      <img src="/assets/images/compliance/popia-badge.png" alt="POPIA Compliant" class="compliance-badge">
-      <img src="/assets/images/compliance/nasasa-badge.png" alt="NASASA Member" class="compliance-badge">
-      <img src="/assets/images/compliance/fsca-badge.png" alt="FSCA Registered" class="compliance-badge">
+      <div class="compliance-badge">POPIA Compliant</div>
+      <div class="compliance-badge">NASASA Member</div>
+      <div class="compliance-badge">FSCA Registered</div>
     </div>
   </div>
 </footer>

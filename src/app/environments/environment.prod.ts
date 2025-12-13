@@ -6,6 +6,6 @@ export const environment = {
       audience: 'YOUR_BACKEND_API_IDENTIFIER',
       redirectUri: 'https://yourdomain.com'
     },
-    apiUrl: 'https://api.yourdomain.com'
+    apiUrl: 'https://api.yourdomain.com/api',
+    publicUril: 'https://api.yourdomain.com/public'
   };
-  

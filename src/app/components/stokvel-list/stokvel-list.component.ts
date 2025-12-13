@@ -8,6 +8,7 @@ import {MaterialModule} from "../../material.module";
 import {StokvelService} from "../../services/stokvel/stokvel.service";
 import {Stokvel, StokvelResponse, StokvelType} from "../../models/stokvel";
 import {StokvelUtils} from "../../utils/StokvelUtils";
+import {PaginatedResponse} from "../../models";
 
 @Component({
   selector: 'app-stokvel-list',
@@ -35,9 +36,9 @@ export class StokvelListComponent implements OnInit {
   searchControl = new FormControl('');
 
   ngOnInit(): void {
-    this.stokvelService.getStokvels().subscribe(data => {
-      this.sourceStokvels = data;
-      this.filteredStokvels = [...data];
+    this.stokvelService.getPublicStokvels().subscribe((response: PaginatedResponse<StokvelResponse>) => {
+      this.sourceStokvels = response.content;
+      this.filteredStokvels = [...response.content];
       this.updatePagedData();
     });
 

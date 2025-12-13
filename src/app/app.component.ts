@@ -13,9 +13,6 @@ export class AppComponent {
 
   data: any;
 
-  constructor(public auth: AuthService, private backend: BackendService) {}
+  constructor() {}
 
-  callBackend() {
-    this.backend.getProtectedData().subscribe(res => (this.data = res));
-  }
 }

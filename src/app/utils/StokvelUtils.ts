@@ -78,7 +78,7 @@ export class StokvelUtils {
       [StokvelType.PROPERTY.name]: 'Property Stokvel',
       [StokvelType.FAMILY.name]: 'Family Stokvel',
       [StokvelType.BURIAL.name]: 'Burial Stokvel',
-      [StokvelType.MONTHLY.name]: 'Monthly Rotational Stokvel'
+      [StokvelType.ROTATIONAL.name]: 'Rotational Payment Stokvel'
     };
 
     return displayNames[typeName] || typeName;

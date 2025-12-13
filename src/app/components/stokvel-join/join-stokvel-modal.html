@@ -1,0 +1,142 @@
+<!-- join-stokvel-modal.component.html -->
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 class="modal-title">Request to Join {{ data.stokvelName }}</h2>
+    <button mat-icon-button class="close-button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content class="modal-content">
+    <div class="confirmation-section">
+      <!-- Profile Card (keep existing profile card) -->
+      <mat-card class="profile-card mat-elevation-z4">
+        <div class="profile-header">
+          <div class="profile-avatar-container">
+            <img [src]="data.userProfile?.picture || 'assets/default-avatar.png'"
+                 alt="Profile picture"
+                 class="profile-avatar"
+                 *ngIf="data.userProfile?.picture">
+            <div class="profile-avatar-placeholder" *ngIf="!data.userProfile?.picture">
+              <mat-icon>person</mat-icon>
+            </div>
+          </div>
+          <div class="profile-info">
+            <h3 class="profile-name">{{ data.userProfile?.name || 'User' }}</h3>
+            <p class="profile-email">{{ data.userProfile?.email || 'Email not provided' }}</p>
+            <div class="member-since">
+              <mat-icon class="member-icon">calendar_today</mat-icon>
+              <span>Member since {{ data.userProfile?.joinDate || 'recently' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Keep existing profile stats and details -->
+        <!-- ... existing profile content ... -->
+      </mat-card>
+
+      <!-- Contribution Amount Input -->
+      <mat-card class="contribution-card mat-elevation-z2">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>payments</mat-icon>
+            Proposed Contribution Amount
+          </mat-card-title>
+          <mat-card-subtitle>
+            This will be your monthly contribution to the stokvel
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <form [formGroup]="joinForm" class="contribution-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Monthly Contribution Amount</mat-label>
+              <span matPrefix>R &nbsp;</span>
+              <input
+                matInput
+                type="number"
+                formControlName="contributionAmount"
+                placeholder="Enter amount"
+                min="1"
+                max="100000"
+                step="50">
+              <mat-hint>
+                Suggested: {{ formatCurrency(data.monthlyContribution || 500) }}
+              </mat-hint>
+              <mat-error *ngIf="joinForm.get('contributionAmount')?.hasError('required')">
+                Contribution amount is required
+              </mat-error>
+              <mat-error *ngIf="joinForm.get('contributionAmount')?.hasError('min')">
+                Amount must be at least R 1
+              </mat-error>
+              <mat-error *ngIf="joinForm.get('contributionAmount')?.hasError('max')">
+                Amount cannot exceed R 100,000
+              </mat-error>
+            </mat-form-field>
+
+            <div class="contribution-info">
+              <div class="info-item">
+                <mat-icon>info</mat-icon>
+                <span>This amount indicates what you're comfortable contributing monthly</span>
+              </div>
+              <div class="info-item" *ngIf="data.monthlyContribution">
+                <mat-icon>trending_up</mat-icon>
+                <span>Stokvel's standard contribution: {{ formatCurrency(data.monthlyContribution) }}</span>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Information Message -->
+      <div class="info-message">
+        <div class="info-icon">
+          <mat-icon>info</mat-icon>
+        </div>
+        <div class="info-content">
+          <h4>Your profile and contribution amount will be shared</h4>
+          <p>The stokvel administrators will review your profile and proposed contribution amount. Make sure your profile is up to date!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agreement Form -->
+    <form [formGroup]="joinForm" class="agreement-form">
+      <mat-card class="agreement-card mat-elevation-z2">
+        <mat-card-content>
+          <mat-checkbox formControlName="agreeToTerms" color="primary" class="agreement-checkbox">
+            <div class="agreement-text">
+              <strong>I agree to abide by the stokvel's rules and constitution</strong>
+              <p class="agreement-subtext">I understand that my profile information and proposed contribution amount will be shared with the stokvel administrators for review purposes.</p>
+            </div>
+          </mat-checkbox>
+          <mat-error *ngIf="joinForm.get('agreeToTerms')?.hasError('required') && joinForm.get('agreeToTerms')?.touched"
+                     class="agreement-error">
+            You must agree to the terms to continue
+          </mat-error>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="modal-actions">
+    <button mat-button
+            class="cancel-button"
+            (click)="onCancel()"
+            [disabled]="isLoading">
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="submit-button"
+      (click)="onSubmit()"
+      [disabled]="joinForm.invalid || isLoading">
+      <span *ngIf="!isLoading">Send Join Request</span>
+      <div class="loading-content" *ngIf="isLoading">
+        <mat-spinner diameter="20"></mat-spinner>
+        <span>Sending...</span>
+      </div>
+    </button>
+  </mat-dialog-actions>
+</div>

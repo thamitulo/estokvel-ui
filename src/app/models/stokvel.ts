@@ -5,7 +5,7 @@ export class StokvelType {
   static readonly PROPERTY = new StokvelType('property');
   static readonly FAMILY = new StokvelType('family');
   static readonly BURIAL = new StokvelType('burial');
-  static readonly MONTHLY = new StokvelType('monthly');
+  static readonly ROTATIONAL = new StokvelType('rotational');
 
   static values(): StokvelType[] {
     return [
@@ -13,7 +13,7 @@ export class StokvelType {
       StokvelType.PROPERTY,
       StokvelType.FAMILY,
       StokvelType.BURIAL,
-      StokvelType.MONTHLY
+      StokvelType.ROTATIONAL
     ];
   }
 }

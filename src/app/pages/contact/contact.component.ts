@@ -27,10 +27,10 @@ export class ContactComponent {
   contactForm: FormGroup;
   isSubmitting: boolean = false;
 
-  readonly whatsappNumber: string = '27721234567';
+  readonly whatsappNumber: string = '0788778174';
   readonly supportEmail: string = 'support@estokvel.co.za';
-  readonly supportPhone: string = '0112345678';
-  readonly emergencyPhone: string = '0112345679';
+  readonly supportPhone: string = '0788778174';
+  readonly emergencyPhone: string = '0788778174';
 
   constructor(
     private fb: FormBuilder,

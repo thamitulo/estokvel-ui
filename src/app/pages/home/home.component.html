@@ -214,97 +214,182 @@
         </mat-card>
       </div>
       <div class="success-stories-col">
-        <mat-card class="success-stories-card mat-elevation-z4">
-          <mat-card-content>
-            <div class="card-title-public-pages-container">
-              <h3 class="card-title-public-pages-text">Trending Stokvels</h3>
-              <div class="fuelled-by-giving-text">
-                empowered by community contributions
+        <div>
+          <mat-card class="success-stories-card mat-elevation-z4">
+            <mat-card-content>
+              <div class="card-title-public-pages-container">
+                <h3 class="card-title-public-pages-text">Trending Stokvels</h3>
+                <div class="fuelled-by-giving-text">
+                  Empowered by community contributions
+                </div>
               </div>
-            </div>
 
-            <div>
-              <div class="campaign-result-card"
-                   *ngFor="let stokvel of pagedStokvels; let last = last">
-                <mat-card class="campaign-card mat-elevation-z2"
-                          (click)="openCampaign(stokvel)">
-                  <div class="card-row">
-                    <div class="campaign-img-container">
-                      <div class="campaign-img"
-                           [ngClass]="getImageClass(stokvel.stokvelType.name)">
-                      </div>
-                    </div>
+              <!-- Loading State -->
+              <div *ngIf="isLoading" class="loading-container">
+                <mat-spinner diameter="40"></mat-spinner>
+                <p>Loading trending stokvels...</p>
+              </div>
 
-                    <div class="campaign-content">
-                      <div class="campaign-header">
-                        <div class="campaign-title">{{ stokvel.name }}</div>
-                      </div>
+              <!-- Content when loaded -->
+              <div *ngIf="!isLoading">
+                <div *ngIf="pagedStokvels.length === 0" class="no-stokvels">
+                  <mat-icon>search_off</mat-icon>
+                  <h4>No trending stokvels found</h4>
+                  <p>Be the first to create a stokvel!</p>
+                  <button mat-raised-button color="primary" (click)="createNewStokvel()">
+                    Create Stokvel
+                  </button>
+                </div>
 
-                      <div class="campaign-description">
-                        {{ stokvel.description }}
-                      </div>
+                <div *ngIf="pagedStokvels.length > 0" class="trending-stokvels-list">
+                  <mat-card class="stokvel-card glass-card"
+                            *ngFor="let stokvel of pagedStokvels; let last = last"
+                            (click)="openCampaign(stokvel)">
+                    <div class="card-pattern"></div>
 
-                      <div class="campaign-progress">
-                        <mat-progress-bar
-                          mode="determinate"
-                          [value]="getProgress(stokvel)"
-                          color="primary">
-                        </mat-progress-bar>
+                    <!-- Stokvel Header -->
+                    <div class="stokvel-header">
+                      <div class="stokvel-image-container">
+                        <div class="stokvel-image">
+                          <div class="image-overlay"></div>
+                          <div class="stokvel-type-badge">
 
-                        <div class="progress-info">
-                          <div class="perc-text">
-                            Contributed: R{{ getCollectedAmount(stokvel) | number }}
-                            <span class="perc-total">
-        Goal: R{{ stokvel.targetAmount | number }}
-      </span>
                           </div>
-                          <div class="last-contribution">
-                            <p class="last-txt">Progress</p>
-                            <p class="ago-txt">{{ getProgress(stokvel) | number:'1.0-0' }}%</p>
+                        </div>
+                        <div class="stokvel-status" [ngClass]="stokvel.status">
+                          {{ stokvel.status }}
+                        </div>
+                      </div>
+                      <div class="stokvel-info">
+                        <h3 class="stokvel-name">{{ stokvel.name }}</h3>
+                        <p class="stokvel-description">{{ stokvel.description }}</p>
+
+                        <div class="stokvel-meta">
+                          <div class="stokvel-members">
+                            <mat-icon>people</mat-icon>
+                            <span>{{ stokvel.memberCount || 0 }} members</span>
+                          </div>
+                          <div class="stokvel-duration">
+                            <mat-icon>calendar_today</mat-icon>
+                            <span>12 months</span>
                           </div>
                         </div>
 
+                        <!-- Performance Indicators -->
+                        <div class="performance-indicators">
+                          <div class="performance-item">
+                            <div class="performance-label">Reliability</div>
+                            <div class="performance-bar">
+                              <div class="performance-fill" [style.width.%]="78"></div>
+                            </div>
+                            <div class="performance-value">78%</div>
+                          </div>
 
-                      <div class="join-btn-container">
-                        <button mat-raised-button
-                                color="primary"
-                                class="join-btn"
-                                (click)="joinStokvel(stokvel); $event.stopPropagation();">
-                          Request to Join
-                        </button>
+                          <div class="performance-item">
+                            <div class="performance-label">Avg Contribution</div>
+                            <div class="performance-value">R2500</div>
+                          </div>
+                        </div>
                       </div>
-
                     </div>
 
-                  </div>
+                    <mat-card-content>
+                      <!-- Key Metrics -->
+                      <div class="stokvel-metrics">
+                        <div class="metric-grid">
+                          <div class="metric-item">
+                            <div class="metric-icon">
+                              <mat-icon>payments</mat-icon>
+                            </div>
+                            <div class="metric-content">
+                              <div class="metric-value">
+                                R{{ stokvel.monthlyContribution || stokvel.targetAmount / 12 | number }}
+                              </div>
+                              <div class="metric-label">Monthly</div>
+                            </div>
+                          </div>
+
+                          <div class="metric-item">
+                            <div class="metric-icon">
+                              <mat-icon>rotate_right</mat-icon>
+                            </div>
+                            <div class="metric-content">
+                              <div class="metric-value">{{ stokvel.payoutCycle || 'Monthly' }}</div>
+                              <div class="metric-label">Payout Cycle</div>
+                            </div>
+                          </div>
+
+                          <div class="metric-item">
+                            <div class="metric-icon">
+                              <mat-icon>trending_up</mat-icon>
+                            </div>
+                            <div class="metric-content">
+                              <div class="metric-value" [ngClass]="'positive'">
+                                79%
+                              </div>
+                              <div class="metric-label">Growth</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Additional Details -->
+                      <div class="stokvel-details">
+                        <div class="detail-item">
+                          <mat-icon>calendar_today</mat-icon>
+                          <span>Next payout: Jan 03 2025 </span>
+                        </div>
+                        <div class="detail-item">
+                          <mat-icon>event_available</mat-icon>
+                          <span>Established: Jan 2025</span>
+                        </div>
+                      </div>
+                    </mat-card-content>
+
+                    <mat-card-actions>
+                      <button mat-raised-button
+                              color="primary"
+                              class="join-btn"
+                              (click)="joinStokvel(stokvel); $event.stopPropagation();">
+                        <mat-icon>group_add</mat-icon>
+                        Request to Join
+                      </button>
+                      <button mat-button
+                              color="accent"
+                              class="details-btn"
+                              (click)="openCampaign(stokvel); $event.stopPropagation();">
+                        <mat-icon>visibility</mat-icon>
+                        View Details
+                      </button>
+                    </mat-card-actions>
+                  </mat-card>
+
+                  <mat-divider *ngIf="!last"></mat-divider>
+                </div>
+
+                <!-- Paginator - only show if we have stokvels -->
+                <mat-paginator *ngIf="totalStokvels > 0"
+                               [length]="totalStokvels"
+                               [pageSize]="pageSize"
+                               [pageSizeOptions]="[3, 6, 12, 24]"
+                               [pageIndex]="currentPage"
+                               (page)="onPageChange($event)">
+                </mat-paginator>
               </div>
-        </mat-card>
+            </mat-card-content>
+          </mat-card>
+        </div>
 
-        <mat-divider *ngIf="!last"></mat-divider>
+        <!-- CTA Section -->
+        <section class="cta-section">
+          <div class="cta-background"></div>
+          <div class="cta-content">
+            <h2 class="cta-title">Ready to Start Your Savings Journey?</h2>
+            <p class="cta-subtitle">Join thousands of South Africans building wealth together through eStokvel</p>
+            <button mat-raised-button color="primary" class="btn-hero">Get Started Today</button>
+          </div>
+        </section>
       </div>
-
-      <mat-paginator
-        [length]="stokvels.length"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="[3]"
-        (page)="onPageChange($event)">
-      </mat-paginator>
-
     </div>
-    </mat-card-content>
-    </mat-card>
-  </div>
-
-  </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="cta-section">
-  <div class="cta-background"></div>
-  <div class="cta-content">
-    <h2 class="cta-title">Ready to Start Your Savings Journey?</h2>
-    <p class="cta-subtitle">Join thousands of South Africans building wealth together through eStokvel</p>
-    <button mat-raised-button color="primary" class="btn-hero">Get Started Today</button>
   </div>
 </section>

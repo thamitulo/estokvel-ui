@@ -2,15 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
-import { ActionSectionComponent } from "src/app/shared/action-section/action-section.component";
-import { Observable, map } from 'rxjs';
+import {Observable, map, last} from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDialog } from "@angular/material/dialog";
 import { PageEvent } from "@angular/material/paginator";
 import { Router, RouterLink } from "@angular/router";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { StokvelService } from "../../services/stokvel/stokvel.service";
+import { StokvelResponse } from "../../models";
+import { JoinStokvelModalComponent } from "../../components/stokvel-join/join-stokvel-modal";
+import { AppUser, UserService } from "../../services/user/user-service.service";
 
 @Component({
   selector: 'app-home',
@@ -36,8 +39,13 @@ export class HomeComponent implements OnInit {
 
   pageSize = 3;
   currentPage = 0;
-  pagedStokvels: any[] = [];
-  stokvels: any[] = [];
+  totalStokvels = 0;
+  pagedStokvels: StokvelResponse[] = [];
+
+  currentUser$: Observable<AppUser | null>;
+  isAuthenticated$: Observable<boolean>;
+
+  isLoading = true;
 
   images = [
     'assets/hero/hero1.png',
@@ -56,56 +64,48 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public auth: AuthService,
+    public authService: AuthService,
+    private userService: UserService,
+    private stokvelService: StokvelService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private http: HttpClient
-  ) { }
+  ) {
+    this.currentUser$ = this.userService.user$;
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+  }
 
   ngOnInit() {
-    this.userName$ = this.auth.user$.pipe(
+    this.userName$ = this.authService.user$.pipe(
       map(user => user?.name || user?.email || null)
     );
-
-    // Fetch secured API data
-    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
-      if (isAuthenticated) {
-        this.auth.getAccessTokenSilently({
-          authorizationParams: {
-            audience: 'https://dev-5vp2r4v7ipexzaw3.us.auth0.com/api/v2/'
-          }
-        }).subscribe({
-          next: token => this.loadStokvels(token),
-          error: err => console.error('Token error:', err)
-        });
-      }
-    });
-
-    this.updatePagedData();
+    this.loadStokvels();
   }
 
-  private loadStokvels(token: string) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.get<any[]>('http://localhost:8080/api/stokvels', { headers })
+  loadStokvels() {
+    this.isLoading = true;
+
+    this.stokvelService.getPublicStokvels(this.currentPage, this.pageSize)
       .subscribe({
-        next: data => {
-          console.log('Backend response:', data);
-          this.stokvels = data;
-          this.updatePagedData();
+        next: (response) => {
+          this.pagedStokvels = response.content;
+          this.totalStokvels = response.totalElements;
+          this.isLoading = false;
         },
-        error: err => console.error('Backend error:', err)
+        error: (error) => {
+          console.error('Error loading stokvels:', error);
+          this.isLoading = false;
+          this.snackBar.open('Failed to load stokvels. Please try again.', 'Close', { duration: 3000 });
+          this.pagedStokvels = [];
+          this.totalStokvels = 0;
+        }
       });
-  }
-
-  updatePagedData() {
-    const start = this.currentPage * this.pageSize;
-    this.pagedStokvels = this.stokvels.slice(start, start + this.pageSize);
   }
 
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.updatePagedData();
+    this.loadStokvels(); // Fetch new page from server
   }
 
   getImageClass(type: string): string {
@@ -121,18 +121,54 @@ export class HomeComponent implements OnInit {
   }
 
   startStokvel() { console.log('Navigate to start stokvel'); }
-  joinStokvel(stokvel: any) { console.log('Join stokvel', stokvel); }
+
+  joinStokvel(stokvel: StokvelResponse): void {
+    this.isAuthenticated$.subscribe(isAuthenticated => {
+      if (!isAuthenticated) {
+        this.authService.loginWithRedirect({
+          appState: { target: '/home' }
+        });
+        return;
+      }
+
+      this.currentUser$.subscribe(user => {
+        if (!user?.id) {
+          console.error('User ID not available');
+          return;
+        }
+
+        const dialogRef = this.dialog.open(JoinStokvelModalComponent, {
+          width: '600px',
+          data: {
+            stokvelId: stokvel.id,
+            stokvelName: stokvel.name,
+            currentUserId: user.id,
+            userName: user.name || user.email,
+            userProfile: user,
+            monthlyContribution: stokvel.monthlyContribution || 0
+          }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            console.log('Join request submitted successfully');
+          }
+        });
+      });
+    });
+  }
+
   learnMore() { console.log('Learn more'); }
 
   openCampaign(campaignId: any) {
     this.snackBar.open(`Opening campaign ${campaignId} details...`, 'Close', { duration: 3000 });
   }
 
-  getCollectedAmount(stokvel: any): number { return stokvel.contributionAmount; }
+  getCollectedAmount(stokvel: any): number { return stokvel.contributionAmount || 0; }
 
   getProgress(stokvel: any): number {
     const collected = this.getCollectedAmount(stokvel);
-    return Math.min((collected / stokvel.targetAmount) * 100);
+    return Math.min((collected / (stokvel.targetAmount || 1)) * 100);
   }
 
   getRemainingAmount(stokvel: any): number {
@@ -150,4 +186,6 @@ export class HomeComponent implements OnInit {
   hasReachedGoal(stokvel: any): boolean {
     return this.getProgress(stokvel) >= 100;
   }
+
+  protected readonly last = last;
 }

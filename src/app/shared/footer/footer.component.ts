@@ -30,10 +30,10 @@ export class FooterComponent {
       return {
         supportEmail: 'support@estokvel.co.za',
         generalEmail: 'info@estokvel.co.za',
-        phone: '011 234 5678',
-        emergencyPhone: '011 234 5679',
-        address: '123 Innovation Street, Johannesburg, 2000, South Africa',
-        whatsapp: '+27 72 123 4567',
+        phone: '+27 788 778 174',
+        emergencyPhone: '+27 788 778 174',
+        address: '11 Van Der Kloof Street, Amarosa, 1724, South Africa',
+        whatsapp: '+27 788 778 174',
         businessHours: {
           weekdays: '8:00 AM - 6:00 PM',
           saturday: '9:00 AM - 1:00 PM',

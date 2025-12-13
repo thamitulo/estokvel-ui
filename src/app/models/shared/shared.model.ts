@@ -1,30 +1,15 @@
 export interface PaginatedResponse<T> {
   content: T[];
-  totalElements: number;
-  totalPages: number;
-  size: number;
-  number: number;
+  empty: boolean;
   first: boolean;
   last: boolean;
-  empty?: boolean;
-  numberOfElements?: number;
-  pageable?: {
-    offset: number;
-    pageNumber: number;
-    pageSize: number;
-    paged: boolean;
-    sort: {
-      empty: boolean;
-      sorted: boolean;
-      unsorted: boolean;
-    };
-    unpaged: boolean;
-  };
-  sort?: {
-    empty: boolean;
-    sorted: boolean;
-    unsorted: boolean;
-  };
+  number: number;
+  numberOfElements: number;
+  pageable: any;
+  size: number;
+  sort: any;
+  totalElements: number;
+  totalPages: number;
 }
 
 
@@ -40,4 +25,12 @@ export interface ApiResponse<T> {
   message?: string;
   success: boolean;
   timestamp?: string;
+}
+
+export interface StokvelJoinData {
+  stokvelId: number;
+  stokvelName: string;
+  currentUserId: string;
+  userProfile: any;
+  monthlyContribution?: number;
 }

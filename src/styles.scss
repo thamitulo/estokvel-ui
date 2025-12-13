@@ -67,3 +67,39 @@ $my-theme: mat.m2-define-light-theme((
     }
   }
 }
+
+/* Hide the entire "Items per page" block */
+.mat-mdc-paginator-page-size {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Extra safety: hide label + value individually */
+.mat-mdc-paginator-page-size-label,
+.mat-mdc-paginator-page-size-value {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.success-snackbar {
+  background: #4caf50 !important;
+  color: white !important;
+
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
+
+.error-snackbar {
+  background: #f44336 !important;
+  color: white !important;
+
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
+
+/* Custom backdrop for modal */
+.custom-modal-backdrop {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
