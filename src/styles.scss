@@ -1,71 +1,212 @@
 // Angular Material theming
 @use '@angular/material' as mat;
 
+@include mat.core();
+
 // Include the common styles for Angular Material
 @include mat.elevation-classes();
 @include mat.app-background();
 
-// Define your palettes
-$my-primary: mat.m2-define-palette(mat.$m2-pink-palette, 600);
-$my-accent: mat.m2-define-palette(mat.$m2-purple-palette, A200, A100, A400);
-$my-warn: mat.m2-define-palette(mat.$m2-orange-palette);
-
-// Create the theme object
-$my-theme: mat.m2-define-light-theme((
+// Material 3 token-based theme configuration.
+$app-theme: mat.define-theme((
   color: (
-    primary: $my-primary,
-    accent: $my-accent,
-    warn: $my-warn,
+    theme-type: light,
+    primary: mat.$rose-palette,
+    tertiary: mat.$violet-palette,
+    use-system-variables: true,
   ),
-  typography: mat.m2-define-typography-config(),
-  density: 0,
+  typography: (
+    brand-family: 'Inter, "Segoe UI", Roboto, sans-serif',
+    plain-family: 'Inter, "Segoe UI", Roboto, sans-serif',
+    use-system-variables: true,
+  ),
+  density: (
+    scale: 0,
+  ),
 ));
 
 // Include theme styles for core and each component used in your app
-@include mat.all-component-themes($my-theme);
+@include mat.all-component-themes($app-theme);
 
-// Optional: Include theme styles for your custom components
-// @include mat.all-component-colors($my-theme);
-// @include mat.all-component-typographies($my-theme);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  @include mat.system-level-colors($app-theme);
+  @include mat.system-level-typography($app-theme);
+
+  --bg: var(--mat-sys-surface-container-low, #f5f7fb);
+  --surface: var(--mat-sys-surface, #ffffff);
+  --surface-soft: var(--mat-sys-surface-container-lowest, #f9fafc);
+  --text: var(--mat-sys-on-surface, #111827);
+  --muted: var(--mat-sys-on-surface-variant, #6b7280);
+  --brand-500: var(--mat-sys-primary, #e91e63);
+  --brand-600: var(--mat-sys-primary, #c2185b);
+  --brand-700: #a0144c;
+  --violet-600: #7b1fa2;
+  --on-brand: #ffffff;
+  --focus-ring: rgba(194, 24, 91, 0.38);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 6px 20px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 20px 45px rgba(15, 23, 42, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 0 0, #fff3f8 0%, transparent 42%), var(--bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--brand-600);
+}
+
+.mat-mdc-card,
+.mat-mdc-dialog-container,
+.mat-mdc-menu-panel,
+.mat-mdc-select-panel,
+.mat-mdc-table {
+  color: var(--text);
+}
+
+.mat-mdc-form-field,
+.mat-mdc-input-element,
+.mat-mdc-select-value,
+.mat-mdc-option,
+.mat-mdc-option .mdc-list-item__primary-text {
+  color: var(--text) !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-hint,
+.mat-mdc-form-field .mat-mdc-form-field-error,
+.mat-mdc-form-field .mat-mdc-form-field-required-marker,
+.mat-mdc-form-field .mdc-floating-label {
+  color: var(--muted) !important;
+}
 
 .action-btn {
-  height: 50px;
-  border-radius: 8px;
+  height: 48px;
+  border-radius: 999px;
   min-width: 180px;
-  font-weight: 600;
-  font-size: 0.9rem;
+  padding: 0 1.35rem;
+  font-weight: 700;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  color: white;
-  transition: all 0.3s ease;
+  color: #fff;
+  --mdc-protected-button-label-text-color: var(--on-brand);
+  --mdc-filled-button-label-text-color: var(--on-brand);
+  --mdc-text-button-label-text-color: var(--on-brand);
+  --mdc-protected-button-container-color: transparent;
+  --mat-mdc-button-persistent-ripple-color: rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    filter: saturate(1.06);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 
   &.primary {
-    background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
-
-    &:hover {
-      background: linear-gradient(135deg, #a0144c 0%, #d81b60 100%);
-      transform: translateY(-2px);
-    }
+    background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-500) 100%);
   }
 
   &.accent {
     background: linear-gradient(135deg, #ff4081 0%, #f50057 100%);
-
-    &:hover {
-      background: linear-gradient(135deg, #e73370 0%, #d5004f 100%);
-      transform: translateY(-2px);
-    }
   }
 
   &.secondary {
-    background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
-
-    &:hover {
-      background: linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%);
-      transform: translateY(-2px);
-    }
+    background: linear-gradient(135deg, var(--violet-600) 0%, #6a1b9a 100%);
   }
+}
+
+.action-btn .mdc-button__label,
+.action-btn .mat-icon {
+  color: var(--on-brand) !important;
+}
+
+.mat-mdc-raised-button.action-btn.primary,
+.mat-mdc-raised-button.action-btn.accent,
+.mat-mdc-raised-button.action-btn.secondary {
+  color: var(--on-brand) !important;
+  background-color: transparent !important;
+  --mdc-protected-button-label-text-color: var(--on-brand);
+  --mdc-protected-button-container-color: transparent;
+}
+
+.action-btn:focus-visible,
+.mat-mdc-raised-button:focus-visible,
+.mat-mdc-unelevated-button:focus-visible,
+.mat-mdc-outlined-button:focus-visible,
+.mat-mdc-icon-button:focus-visible,
+.mat-mdc-menu-item:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+mat-card {
+  border-radius: var(--radius-md) !important;
+}
+
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+
+.mat-mdc-raised-button.mat-unthemed:not(:disabled),
+.mat-mdc-unelevated-button.mat-unthemed:not(:disabled) {
+  color: var(--text);
+}
+
+.mat-mdc-outlined-button {
+  border-radius: 999px !important;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  margin-top: 2px;
 }
 
 /* Hide the entire "Items per page" block */

@@ -73,46 +73,6 @@
   flex-wrap: wrap;
 }
 
-.action-btn {
-  height: 50px;
-  border-radius: 8px;
-  min-width: 180px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-.action-btn.primary {
-  background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
-}
-
-.action-btn.primary:hover {
-  background: linear-gradient(135deg, #a0144c 0%, #d81b60 100%);
-  transform: translateY(-2px);
-}
-
-.action-btn.accent {
-  background: linear-gradient(135deg, #ff4081 0%, #f50057 100%);
-}
-
-.action-btn.accent:hover {
-  background: linear-gradient(135deg, #e73370 0%, #d5004f 100%);
-  transform: translateY(-2px);
-}
-
-.action-btn.secondary {
-  background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
-}
-
-.action-btn.secondary:hover {
-  background: linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%);
-  transform: translateY(-2px);
-}
-
 /* Features Section */
 .features-section {
   padding: 80px 20px;
@@ -1387,19 +1347,239 @@ mat-paginator {
   background: transparent;
 }
 
-/* If you don't have these styles yet, add them for better card display */
-.trending-stokvels-list {
+/* Modern refresh overrides */
+.hero-section {
+  min-height: clamp(400px, 60vh, 620px);
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  padding: 150px 20px 96px;
 }
 
-.stokvel-card {
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.15) 0%, rgba(17, 24, 39, 0.45) 100%);
+  pointer-events: none;
+}
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+.hero-background {
+  transform: scale(1.04);
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.hero-content {
+  max-width: 900px;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: clamp(2.1rem, 5.3vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.03rem, 2.2vw, 1.3rem);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.action-section-wrapper {
+  margin-top: -4.6rem;
+  margin-bottom: 4.2rem;
+}
+
+.action-section {
+  width: min(100%, 980px);
+  border-radius: 22px;
+  padding: 26px;
+  border: 1px solid rgba(17, 24, 39, 0.06);
+  box-shadow: 0 26px 55px rgba(15, 23, 42, 0.14);
+}
+
+.features-section,
+.stokvel-types-section,
+.how-it-works-section {
+  padding: 92px 20px;
+}
+
+.section-title h2 {
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  max-width: 680px;
+  line-height: 1.7;
+}
+
+.feature-card,
+.type-card,
+.step-card,
+.how-it-works-card,
+.success-stories-card,
+.stokvel-card {
+  border-radius: 18px !important;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08) !important;
+  overflow: hidden;
+}
+
+.feature-card:hover,
+.type-card:hover,
+.step-card:hover,
+.stokvel-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.14) !important;
+}
+
+.feature-image-container,
+.step-image,
+.type-image {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.feature-icon,
+.type-icon {
+  filter: drop-shadow(0 8px 16px rgba(194, 24, 91, 0.28));
+}
+
+.feature-card h3,
+.step-card h3,
+.type-card h3,
+.how-it-works-title,
+.stokvel-name,
+.cta-title {
+  letter-spacing: -0.015em;
+}
+
+.feature-benefits li {
+  padding-left: 30px;
+}
+
+.feature-benefits li::before {
+  box-shadow: 0 2px 8px rgba(194, 24, 91, 0.2);
+}
+
+.success-stories-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.55) 100%);
+}
+
+.stokvel-header {
+  padding-top: 6px;
+}
+
+.stokvel-status {
+  border-radius: 999px;
+  padding: 4px 10px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.stokvel-description {
+  line-height: 1.6;
+}
+
+.metric-item {
+  border-radius: 12px;
+}
+
+mat-card-actions {
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+.join-btn {
+  box-shadow: 0 8px 18px rgba(194, 24, 91, 0.24);
+}
+
+.details-btn {
+  border-radius: 999px;
+}
+
+.cta-section {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(194, 24, 91, 0.2);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+}
+
+.cta-background {
+  filter: saturate(1.12) contrast(1.05);
+}
+
+.btn-hero {
+  min-width: 190px;
+  border-radius: 999px;
+}
+
+@media (max-width: 992px) {
+  .hero-section {
+    min-height: 440px;
+    padding: 118px 16px 72px;
+  }
+
+  .action-section {
+    border-radius: 18px;
+    padding: 20px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 }
+
+@media (max-width: 768px) {
+  .hero-title {
+    line-height: 1.1;
+  }
+
+  .action-section-wrapper {
+    margin-top: -3.4rem;
+    margin-bottom: 2.8rem;
+  }
+
+  .features-section,
+  .stokvel-types-section,
+  .how-it-works-section {
+    padding: 72px 16px;
+  }
+}
+
+/* Use keyboard-visible focus rings on primary interactive controls. */
+.action-btn:focus-visible,
+.btn-hero:focus-visible,
+.join-btn:focus-visible,
+.details-btn:focus-visible {
+  outline: 3px solid rgba(194, 24, 91, 0.35);
+  outline-offset: 2px;
+}
+
+/* Respect reduced-motion system settings. */
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .type-card,
+  .step-card,
+  .stokvel-card,
+  .feature-image,
+  .action-btn,
+  .btn-hero,
+  .join-btn,
+  .details-btn {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .feature-card:hover,
+  .type-card:hover,
+  .step-card:hover,
+  .stokvel-card:hover,
+  .action-btn:hover,
+  .join-btn:hover,
+  .details-btn:hover {
+    transform: none !important;
+  }
+}
+

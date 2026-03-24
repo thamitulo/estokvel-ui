@@ -281,3 +281,143 @@ footer {
     }
   }
 }
+
+/* Modern refresh overrides */
+footer {
+  background: linear-gradient(160deg, #80123a 0%, #b91c5d 48%, #d81b60 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 90% 15%, rgba(255, 255, 255, 0.2), transparent 42%);
+  pointer-events: none;
+}
+
+.footer-content,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-content {
+  max-width: 1280px;
+  gap: 24px;
+}
+
+.footer-column {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 18px 16px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.footer-column h3 {
+  font-size: 1rem;
+}
+
+.footer-column a {
+  opacity: 0.95;
+}
+
+.footer-column a:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.connect-column .social-link {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.connect-column .download-btn {
+  border-radius: 10px;
+}
+
+/* Ensure app store buttons align consistently regardless of label length/case. */
+.connect-column .app-download .download-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.connect-column .app-download .download-btn {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  align-items: center;
+  column-gap: 10px;
+  min-height: 52px;
+  min-width: 0;
+  width: 100%;
+  padding: 10px 12px;
+  box-sizing: border-box;
+}
+
+.connect-column .app-download .store-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+  place-self: center;
+}
+
+.connect-column .app-download .store-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 30px;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.connect-column .app-download .get-text,
+.connect-column .app-download .store-name {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .connect-column .app-download .download-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-bottom {
+  max-width: 1280px;
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+.footer-bottom .compliance-badge {
+  border-radius: 999px;
+}
+
+/* Icon alignment hardening for the connect column. */
+.connect-column mat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.connect-column .social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connect-column .contact-item {
+  align-items: center;
+}
+
+.connect-column .download-btn {
+  align-items: center;
+}
+
