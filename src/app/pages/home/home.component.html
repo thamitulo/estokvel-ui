@@ -24,7 +24,7 @@
 <section class="features-section">
   <div class="section-title">
     <h2>Why Choose eStokvel?</h2>
-    <p>Modern, secure, and transparent community savings platform</p>
+    <p>Modern, secure and transparent community savings platform</p>
   </div>
   <div class="features-grid">
     <mat-card class="feature-card mat-elevation-z4">
@@ -87,7 +87,7 @@
       <div class="step-number">1</div>
       <div class="step-image step-1-image"></div>
       <h3>Create Account</h3>
-      <p>Sign up with your email, activate your account, and set up secure login details.</p>
+      <p>Sign up with your email, activate your account and set up secure login details.</p>
     </div>
 
     <div class="step-card">
@@ -267,7 +267,7 @@
                         <div class="stokvel-meta">
                           <div class="stokvel-members">
                             <mat-icon>people</mat-icon>
-                            <span>{{ stokvel.memberCount || 0 }} members</span>
+                            <span>  {{ stokvelMemberCount(stokvel) }} member(s)</span>
                           </div>
                           <div class="stokvel-duration">
                             <mat-icon>calendar_today</mat-icon>
@@ -276,20 +276,20 @@
                         </div>
 
                         <!-- Performance Indicators -->
-                        <div class="performance-indicators">
+                        <!--div class="performance-indicators">
                           <div class="performance-item">
                             <div class="performance-label">Reliability</div>
                             <div class="performance-bar">
-                              <div class="performance-fill" [style.width.%]="78"></div>
+                              <div class="performance-fill" [style.width.%]="{{ reliability }}"></div>
                             </div>
-                            <div class="performance-value">78%</div>
+                            <div class="performance-value">{{ reliability }}</div>
                           </div>
 
                           <div class="performance-item">
                             <div class="performance-label">Avg Contribution</div>
-                            <div class="performance-value">R2500</div>
+                            <div class="performance-value">{{ averageContribution }}</div>
                           </div>
-                        </div>
+                        </div-->
                       </div>
                     </div>
 
@@ -335,13 +335,13 @@
 
                       <!-- Additional Details -->
                       <div class="stokvel-details">
-                        <div class="detail-item">
+                        <!--div class="detail-item">
                           <mat-icon>calendar_today</mat-icon>
                           <span>Next payout: Jan 03 2025 </span>
-                        </div>
+                        </div-->
                         <div class="detail-item">
                           <mat-icon>event_available</mat-icon>
-                          <span>Established: Jan 2025</span>
+                          <span>Established: {{ stokvel.createdAt | date:'MMM yyyy' }}</span>
                         </div>
                       </div>
                     </mat-card-content>

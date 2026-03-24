@@ -1,0 +1,233 @@
+// join-requests.component.scss
+.join-requests-container {
+  .requests-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    mat-card-header {
+      background: #f8f9fa;
+      padding: 24px;
+      border-bottom: 1px solid #e9ecef;
+
+      mat-card-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+
+        mat-icon {
+          color: #2196f3;
+        }
+
+        .request-count {
+          background: #2196f3;
+          color: white;
+          padding: 2px 8px;
+          border-radius: 12px;
+          font-size: 12px;
+          font-weight: 600;
+          margin-left: 8px;
+        }
+      }
+
+      mat-card-subtitle {
+        color: #666;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+    }
+
+    mat-card-content {
+      padding: 24px;
+    }
+  }
+
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    gap: 16px;
+
+    p {
+      color: #666;
+      margin: 0;
+    }
+  }
+
+  .error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    text-align: center;
+    gap: 16px;
+
+    mat-icon {
+      font-size: 48px;
+      color: #f44336;
+    }
+
+    p {
+      color: #666;
+      margin: 0;
+    }
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    text-align: center;
+
+    mat-icon {
+      font-size: 48px;
+      color: #4caf50;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: #666;
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+
+    .subtext {
+      color: #999;
+      font-size: 14px;
+    }
+  }
+
+  .requests-list {
+    .request-item {
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: box-shadow 0.3s;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .request-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
+    .requester-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .requester-avatar {
+        width: 50px;
+        height: 50px;
+        background: #f0f7ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        mat-icon {
+          color: #2196f3;
+          font-size: 24px;
+        }
+      }
+
+      .requester-details {
+        h4 {
+          margin: 0 0 4px 0;
+          font-size: 16px;
+          font-weight: 600;
+          color: #333;
+        }
+
+        p {
+          margin: 0 0 4px 0;
+          color: #666;
+          font-size: 14px;
+        }
+
+        .request-time {
+          font-size: 12px;
+          color: #999;
+        }
+      }
+    }
+
+    .request-actions {
+      button {
+        mat-icon {
+          margin-right: 4px;
+          font-size: 18px;
+        }
+      }
+    }
+
+    .request-message {
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 8px;
+
+      p {
+        margin: 0;
+        color: #666;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+
+    .request-status {
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+
+        &.pending {
+          background: rgba(255, 152, 0, 0.1);
+          color: #ff9800;
+        }
+
+        mat-icon {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  mat-card-actions {
+    padding: 16px 24px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    gap: 12px;
+
+    button {
+      mat-icon {
+        margin-right: 4px;
+      }
+    }
+  }
+}

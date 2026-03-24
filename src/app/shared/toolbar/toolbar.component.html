@@ -1,10 +1,9 @@
-<!-- Top Bar Section - Pink (Full Width) -->
 <div class="top-bar">
   <div class="top-bar-content">
     <div class="top-bar-text">Take control of your future, start today!</div>
     <div class="top-bar-links">
-      <a href="#">Faqs</a>
-      <a href="#">Contact Us</a>
+      <a routerLink="/faq">Faqs</a>
+      <a routerLink="contact-us">Contact Us</a>
     </div>
   </div>
 </div>
@@ -37,6 +36,7 @@
 
       <!-- Show profile dropdown when authenticated -->
       <ng-container *ngIf="auth.user$ | async as user">
+        <app-notification-bell></app-notification-bell>
         <button
           mat-button
           [matMenuTriggerFor]="profileMenu"

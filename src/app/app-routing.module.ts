@@ -58,7 +58,7 @@ const routes: Routes = [
     path: 'contact',
     loadComponent: () =>
       import('./pages/contact/contact.component').then(m => m.ContactComponent),
-    title: 'ContactComponent Us - eStokvel'
+    title: 'Contact Us - eStokvel'
   },
 
   {

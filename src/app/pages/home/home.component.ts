@@ -14,6 +14,7 @@ import { StokvelService } from "../../services/stokvel/stokvel.service";
 import { StokvelResponse } from "../../models";
 import { JoinStokvelModalComponent } from "../../components/stokvel-join/join-stokvel-modal";
 import { AppUser, UserService } from "../../services/user/user-service.service";
+import {stokvelMemberCount} from "../../components/dashboard/stats.util";
 
 @Component({
   selector: 'app-home',
@@ -188,4 +189,6 @@ export class HomeComponent implements OnInit {
   }
 
   protected readonly last = last;
+  protected readonly length = length;
+  protected readonly stokvelMemberCount = stokvelMemberCount;
 }

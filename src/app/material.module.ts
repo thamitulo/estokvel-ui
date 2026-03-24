@@ -21,6 +21,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatInputModule} from "@angular/material/input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatBadgeModule} from "@angular/material/badge";
 
 @NgModule({
   exports: [
@@ -28,6 +30,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatInputModule,
     MatSelectModule,
     MatIconModule,
+    MatBadgeModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -40,6 +43,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatDialogModule,
     MatSnackBarModule,
     MatPaginatorModule,
+    MatRadioModule,
     MatTooltipModule,
     MatSnackBarModule,
     MatExpansionModule,

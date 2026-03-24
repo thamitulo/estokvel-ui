@@ -1,1 +1,214 @@
-<p>press works!</p>
+<div class="press-container">
+  <!-- Hero Section -->
+  <section class="press-hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Press & Media</h1>
+      <p class="hero-subtitle">Stay updated with the latest news and coverage about eStokvel</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="press-content">
+    <div class="container">
+      <!-- Latest Coverage Section -->
+      <div class="coverage-section">
+        <div class="section-header">
+          <h2>Latest Coverage</h2>
+          <p class="section-subtitle">Read what the media is saying about eStokvel</p>
+        </div>
+
+        <!-- Featured Article -->
+        <div class="featured-article">
+          <mat-card class="article-card">
+            <div class="article-header">
+              <div class="source-info">
+                <img src="assets/images/press/itweb-logo.png" alt="ITWeb Logo" class="source-logo" onerror="this.src='assets/images/press/default-logo.png'">
+                <div class="source-details">
+                  <span class="source-name">ITWeb</span>
+                  <span class="article-date">September 2024</span>
+                </div>
+              </div>
+              <span class="article-type">Feature Article</span>
+            </div>
+
+            <mat-card-content>
+              <h3 class="article-title">eStokvel turns stokvels into business entities</h3>
+
+              <div class="article-excerpt">
+                <p>eStokvel, a South African fintech startup, is revolutionizing traditional stokvels by transforming them into formal business entities through its digital platform.</p>
+
+                <p>The platform enables stokvel groups to manage their finances transparently, access banking services, and operate with legal recognition, bridging the gap between informal savings groups and formal financial systems.</p>
+              </div>
+
+              <div class="article-highlights">
+                <h4>Key Highlights:</h4>
+                <ul>
+                  <li>Digital transformation of traditional stokvels</li>
+                  <li>Legal entity status for stokvel groups</li>
+                  <li>Transparent financial management tools</li>
+                  <li>Integration with formal banking systems</li>
+                  <li>Focus on financial inclusion and empowerment</li>
+                </ul>
+              </div>
+
+              <div class="article-actions">
+                <a href="https://www.itweb.co.za/article/estokvel-turns-stokvels-into-business-entities/KwbrpOqgjpAMDLZn"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   mat-raised-button
+                   color="primary"
+                   class="read-article-btn">
+                  <mat-icon>open_in_new</mat-icon>
+                  Read Full Article on ITWeb
+                </a>
+
+                <button mat-stroked-button color="primary" class="share-btn" (click)="shareArticle()">
+                  <mat-icon>share</mat-icon>
+                  Share Article
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Media Assets -->
+        <div class="media-assets">
+          <div class="section-header">
+            <h3>Media Assets</h3>
+            <p class="section-subtitle">Download official eStokvel media resources</p>
+          </div>
+
+          <div class="assets-grid">
+            <mat-card class="asset-card">
+              <mat-card-content>
+                <div class="asset-icon">
+                  <mat-icon>photo_library</mat-icon>
+                </div>
+                <h4>Brand Logos</h4>
+                <p>Official eStokvel logos in various formats</p>
+                <button mat-button color="primary" (click)="downloadAsset('logos')">
+                  <mat-icon>download</mat-icon>
+                  Download
+                </button>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="asset-card">
+              <mat-card-content>
+                <div class="asset-icon">
+                  <mat-icon>portrait</mat-icon>
+                </div>
+                <h4>Team Photos</h4>
+                <p>High-resolution photos of our team</p>
+                <button mat-button color="primary" (click)="downloadAsset('photos')">
+                  <mat-icon>download</mat-icon>
+                  Download
+                </button>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="asset-card">
+              <mat-card-content>
+                <div class="asset-icon">
+                  <mat-icon>description</mat-icon>
+                </div>
+                <h4>Press Kit</h4>
+                <p>Complete company information pack</p>
+                <button mat-button color="primary" (click)="downloadAsset('presskit')">
+                  <mat-icon>download</mat-icon>
+                  Download
+                </button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+
+      <!-- Press Contact -->
+      <div class="press-contact">
+        <mat-card class="contact-card">
+          <mat-card-content>
+            <div class="contact-header">
+              <div class="contact-icon">
+                <mat-icon>contact_mail</mat-icon>
+              </div>
+              <div class="contact-info">
+                <h3>Press & Media Inquiries</h3>
+                <p>For media inquiries, interview requests, or additional information, please contact our press team.</p>
+              </div>
+            </div>
+
+            <div class="contact-details">
+              <div class="contact-item">
+                <mat-icon>person</mat-icon>
+                <div>
+                  <strong>Press Contact</strong>
+                  <p>Marketing & Communications Team</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <mat-icon>email</mat-icon>
+                <div>
+                  <strong>Email</strong>
+                  <p>press&#64;estokvel.co.za</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <mat-icon>phone</mat-icon>
+                <div>
+                  <strong>Phone</strong>
+                  <p>+27 11 234 5678</p>
+                </div>
+              </div>
+            </div>
+
+            <button mat-raised-button color="primary" class="contact-btn" (click)="openContactForm()">
+              <mat-icon>mail</mat-icon>
+              Contact Press Team
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Stay Updated -->
+      <div class="newsletter-section">
+        <mat-card class="newsletter-card">
+          <mat-card-content>
+            <h3>Stay Updated</h3>
+            <p>Subscribe to receive press releases and company updates</p>
+
+            <form [formGroup]="newsletterForm" class="newsletter-form">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Your Email</mat-label>
+                <input matInput formControlName="email" type="email" placeholder="Enter your email">
+                <mat-error *ngIf="newsletterForm.get('email')?.hasError('required')">
+                  Email is required
+                </mat-error>
+                <mat-error *ngIf="newsletterForm.get('email')?.hasError('email')">
+                  Please enter a valid email
+                </mat-error>
+              </mat-form-field>
+
+              <mat-checkbox formControlName="consent" color="primary">
+                I agree to receive press releases and updates from eStokvel
+              </mat-checkbox>
+
+              <button mat-raised-button
+                      color="primary"
+                      type="submit"
+                      [disabled]="newsletterForm.invalid || isSubmitting"
+                      class="subscribe-btn">
+                <span *ngIf="!isSubmitting">Subscribe</span>
+                <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
+              </button>
+            </form>
+
+            <p class="privacy-note">We respect your privacy. Unsubscribe at any time.</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+</div>

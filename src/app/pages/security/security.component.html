@@ -1,1 +1,492 @@
-<p>security.component works!</p>
+<div class="security-container">
+  <!-- Hero Section -->
+  <section class="security-hero">
+    <div class="hero-content">
+      <div class="hero-icon">
+        <mat-icon>security</mat-icon>
+      </div>
+      <h1 class="hero-title">Security & Trust Center</h1>
+      <p class="hero-subtitle">Protecting your financial data is our highest priority</p>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="trust-badges">
+    <div class="container">
+      <div class="badges-grid">
+        <div class="badge-item">
+          <mat-icon>https</mat-icon>
+          <span>256-bit SSL Encryption</span>
+        </div>
+        <div class="badge-item">
+          <mat-icon>verified_user</mat-icon>
+          <span>POPIA Compliant</span>
+        </div>
+        <div class="badge-item">
+          <mat-icon>vpn_lock</mat-icon>
+          <span>Bank-Level Security</span>
+        </div>
+        <div class="badge-item">
+          <mat-icon>cloud_done</mat-icon>
+          <span>SOC 2 Certified</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="security-content">
+    <div class="container">
+      <!-- Quick Navigation -->
+      <div class="navigation-section">
+        <mat-card class="nav-card">
+          <mat-card-content>
+            <h3>Security Overview</h3>
+            <div class="nav-links">
+              <a href="#encryption" class="nav-link">Data Encryption</a>
+              <a href="#compliance" class="nav-link">Compliance</a>
+              <a href="#authentication" class="nav-link">Authentication</a>
+              <a href="#infrastructure" class="nav-link">Infrastructure</a>
+              <a href="#monitoring" class="nav-link">Monitoring</a>
+              <a href="#privacy" class="nav-link">Privacy</a>
+              <a href="#best-practices" class="nav-link">Best Practices</a>
+              <a href="#incident" class="nav-link">Incident Response</a>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Security Sections -->
+      <div class="security-sections">
+        <!-- Data Encryption -->
+        <section id="encryption" class="security-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <mat-icon>enhanced_encryption</mat-icon>
+            </div>
+            <div>
+              <h2>Data Encryption</h2>
+              <p class="section-subtitle">Protecting your data at rest and in transit</p>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="features-grid">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <mat-icon>swap_vert</mat-icon>
+                </div>
+                <h3>In Transit</h3>
+                <p>All data transmitted between your device and our servers is encrypted using TLS 1.2/1.3 with 256-bit encryption.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <mat-icon>storage</mat-icon>
+                </div>
+                <h3>At Rest</h3>
+                <p>Sensitive data is encrypted using AES-256 encryption before being stored in our databases.</p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <mat-icon>key</mat-icon>
+                </div>
+                <h3>Key Management</h3>
+                <p>Encryption keys are managed using industry-standard key management systems with regular rotation.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Compliance -->
+        <section id="compliance" class="security-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <mat-icon>gavel</mat-icon>
+            </div>
+            <div>
+              <h2>Compliance & Certifications</h2>
+              <p class="section-subtitle">Meeting the highest standards of data protection</p>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="compliance-cards">
+              <mat-card class="compliance-card">
+                <mat-card-content>
+                  <div class="compliance-icon popia">
+                    <mat-icon>balance</mat-icon>
+                  </div>
+                  <h3>POPIA Compliant</h3>
+                  <p>Fully compliant with South Africa's Protection of Personal Information Act (POPIA). We implement strict data processing principles and user rights management.</p>
+                  <ul>
+                    <li>Data minimization and purpose limitation</li>
+                    <li>User consent management</li>
+                    <li>Right to access and deletion</li>
+                    <li>Data breach notification procedures</li>
+                  </ul>
+                </mat-card-content>
+              </mat-card>
+
+              <mat-card class="compliance-card">
+                <mat-card-content>
+                  <div class="compliance-icon fica">
+                    <mat-icon>account_balance</mat-icon>
+                  </div>
+                  <h3>FICA Ready</h3>
+                  <p>Designed to support Financial Intelligence Centre Act (FICA) compliance for financial institutions using our platform.</p>
+                  <ul>
+                    <li>Customer identification procedures</li>
+                    <li>Transaction monitoring capabilities</li>
+                    <li>Suspicious activity reporting</li>
+                    <li>Record keeping requirements</li>
+                  </ul>
+                </mat-card-content>
+              </mat-card>
+
+              <mat-card class="compliance-card">
+                <mat-card-content>
+                  <div class="compliance-icon soc">
+                    <mat-icon>verified</mat-icon>
+                  </div>
+                  <h3>SOC 2 Type II</h3>
+                  <p>Successfully completed SOC 2 Type II audits covering security, availability, processing integrity, confidentiality, and privacy.</p>
+                  <ul>
+                    <li>Regular third-party security audits</li>
+                    <li>Continuous monitoring and improvement</li>
+                    <li>Transparent reporting practices</li>
+                    <li>Independent verification</li>
+                  </ul>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </section>
+
+        <!-- Authentication -->
+        <section id="authentication" class="security-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <mat-icon>fingerprint</mat-icon>
+            </div>
+            <div>
+              <h2>Authentication & Access</h2>
+              <p class="section-subtitle">Multi-layered protection for your account</p>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="auth-features">
+              <div class="auth-feature">
+                <div class="auth-icon">
+                  <mat-icon>two_factor_authentication</mat-icon>
+                </div>
+                <div class="auth-content">
+                  <h3>Two-Factor Authentication (2FA)</h3>
+                  <p>Mandatory 2FA for all user accounts using TOTP or SMS verification. Additional security for administrative functions and high-value transactions.</p>
+                </div>
+              </div>
+
+              <div class="auth-feature">
+                <div class="auth-icon">
+                  <mat-icon>password</mat-icon>
+                </div>
+                <div class="auth-content">
+                  <h3>Password Security</h3>
+                  <p>Strong password requirements with bcrypt hashing. Regular password expiration and prevention of password reuse.</p>
+                </div>
+              </div>
+
+              <div class="auth-feature">
+                <div class="auth-icon">
+                  <mat-icon>device_hub</mat-icon>
+                </div>
+                <div class="auth-content">
+                  <h3>Session Management</h3>
+                  <p>Automatic session timeout after 15 minutes of inactivity. Single sign-on (SSO) capability for enterprise customers.</p>
+                </div>
+              </div>
+
+              <div class="auth-feature">
+                <div class="auth-icon">
+                  <mat-icon>admin_panel_settings</mat-icon>
+                </div>
+                <div class="auth-content">
+                  <h3>Role-Based Access</h3>
+                  <p>Granular permission system for stokvel administrators and members. Principle of least privilege enforced.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Infrastructure -->
+        <section id="infrastructure" class="security-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <mat-icon>cloud</mat-icon>
+            </div>
+            <div>
+              <h2>Infrastructure Security</h2>
+              <p class="section-subtitle">Enterprise-grade cloud infrastructure</p>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="infrastructure-grid">
+              <div class="infra-item">
+                <h3>Cloud Infrastructure</h3>
+                <p>Hosted on AWS with multiple availability zones for high availability. Regular security patching and updates.</p>
+              </div>
+
+              <div class="infra-item">
+                <h3>Network Security</h3>
+                <p>Web Application Firewall (WAF), DDoS protection, and intrusion detection systems. All traffic filtered through security layers.</p>
+              </div>
+
+              <div class="infra-item">
+                <h3>Backup & Recovery</h3>
+                <p>Automated daily backups with 30-day retention. Disaster recovery plans tested quarterly. Point-in-time recovery capability.</p>
+              </div>
+
+              <div class="infra-item">
+                <h3>Physical Security</h3>
+                <p>Data centers with 24/7 monitoring, biometric access controls, and environmental controls. SAS 70 Type II certified facilities.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Monitoring -->
+        <section id="monitoring" class="security-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <mat-icon>monitoring</mat-icon>
+            </div>
+            <div>
+              <h2>Monitoring & Detection</h2>
+              <p class="section-subtitle">24/7 surveillance and threat detection</p>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="monitoring-features">
+              <div class="monitoring-card">
+                <h3>Real-time Monitoring</h3>
+                <p>Continuous monitoring of system logs, network traffic, and user activities. Automated alerts for suspicious patterns.</p>
+              </div>
+
+              <div class="monitoring-card">
+                <h3>Vulnerability Scanning</h3>
+                <p>Regular automated and manual vulnerability assessments. Third-party penetration testing conducted quarterly.</p>
+              </div>
+
+              <div class="monitoring-card">
+                <h3>SIEM Integration</h3>
+                <p>Security Information and Event Management (SIEM) system for centralized log analysis and threat correlation.</p>
+              </div>
+
+              <div class="monitoring-card">
+                <h3>Fraud Detection</h3>
+                <p>AI-powered fraud detection systems analyzing transaction patterns and user behavior for anomalies.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Privacy -->
+        <section id="privacy" class="security-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <mat-icon>visibility_off</mat-icon>
+            </div>
+            <div>
+              <h2>Privacy Protection</h2>
+              <p class="section-subtitle">Your data privacy is our commitment</p>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="privacy-features">
+              <div class="privacy-card">
+                <mat-icon>data_usage</mat-icon>
+                <h3>Data Minimization</h3>
+                <p>We only collect data necessary for providing our services. No unnecessary personal information is stored.</p>
+              </div>
+
+              <div class="privacy-card">
+                <mat-icon>share</mat-icon>
+                <h3>Limited Sharing</h3>
+                <p>Personal data is never sold to third parties. Sharing only occurs with your consent or as required by law.</p>
+              </div>
+
+              <div class="privacy-card">
+                <mat-icon>delete</mat-icon>
+                <h3>Right to Delete</h3>
+                <p>Full compliance with right to deletion requests. Data permanently removed within 30 days of request.</p>
+              </div>
+
+              <div class="privacy-card">
+                <mat-icon>visibility</mat-icon>
+                <h3>Transparency</h3>
+                <p>Clear privacy policies and regular transparency reports. You control what data is shared within your stokvel.</p>
+              </div>
+            </div>
+
+            <div class="privacy-link">
+              <a routerLink="/privacy-policy" class="privacy-btn">
+                <mat-icon>policy</mat-icon>
+                View Full Privacy Policy
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section id="best-practices" class="security-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <mat-icon>school</mat-icon>
+            </div>
+            <div>
+              <h2>Security Best Practices</h2>
+              <p class="section-subtitle">How you can help keep your account secure</p>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="practices-grid">
+              <div class="practice-card">
+                <div class="practice-number">1</div>
+                <div class="practice-content">
+                  <h3>Enable 2FA</h3>
+                  <p>Always use two-factor authentication for an extra layer of security beyond your password.</p>
+                </div>
+              </div>
+
+              <div class="practice-card">
+                <div class="practice-number">2</div>
+                <div class="practice-content">
+                  <h3>Strong Passwords</h3>
+                  <p>Use unique, complex passwords for your eStokvel account. Consider using a password manager.</p>
+                </div>
+              </div>
+
+              <div class="practice-card">
+                <div class="practice-number">3</div>
+                <div class="practice-content">
+                  <h3>Regular Updates</h3>
+                  <p>Keep your devices and browsers updated with the latest security patches.</p>
+                </div>
+              </div>
+
+              <div class="practice-card">
+                <div class="practice-number">4</div>
+                <div class="practice-content">
+                  <h3>Watch for Phishing</h3>
+                  <p>Be cautious of suspicious emails or messages asking for your login credentials.</p>
+                </div>
+              </div>
+
+              <div class="practice-card">
+                <div class="practice-number">5</div>
+                <div class="practice-content">
+                  <h3>Monitor Activity</h3>
+                  <p>Regularly review your account activity and report any unauthorized transactions immediately.</p>
+                </div>
+              </div>
+
+              <div class="practice-card">
+                <div class="practice-number">6</div>
+                <div class="practice-content">
+                  <h3>Secure Devices</h3>
+                  <p>Use device passwords, biometric locks, and avoid accessing your account on public computers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Incident Response -->
+        <section id="incident" class="security-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <mat-icon>emergency</mat-icon>
+            </div>
+            <div>
+              <h2>Incident Response</h2>
+              <p class="section-subtitle">Our commitment to transparency and rapid response</p>
+            </div>
+          </div>
+
+          <div class="section-content">
+            <div class="incident-cards">
+              <mat-card class="incident-card">
+                <mat-card-header>
+                  <mat-card-title>Response Team</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>Dedicated security incident response team available 24/7 to handle any security concerns or breaches.</p>
+                </mat-card-content>
+              </mat-card>
+
+              <mat-card class="incident-card">
+                <mat-card-header>
+                  <mat-card-title>Notification Process</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>We commit to notifying affected users within 72 hours of confirming a security incident that impacts their data.</p>
+                </mat-card-content>
+              </mat-card>
+
+              <mat-card class="incident-card">
+                <mat-card-header>
+                  <mat-card-title>Continuous Improvement</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>Every incident is thoroughly analyzed to improve our security measures and prevent future occurrences.</p>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+            <div class="report-section">
+              <h3>Report a Security Concern</h3>
+              <p>If you suspect any security issue or vulnerability, please report it immediately:</p>
+              <div class="report-options">
+                <a href="mailto:security@estokvel.co.za" class="report-btn">
+                  <mat-icon>email</mat-icon>
+                  Email Security Team
+                </a>
+                <button mat-stroked-button class="report-btn" (click)="openContactForm()">
+                  <mat-icon>contact_support</mat-icon>
+                  Contact Support
+                </button>
+              </div>
+              <p class="report-note">We offer a responsible disclosure program and welcome security researchers to help us improve.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Security Commitment -->
+        <div class="commitment-section">
+          <mat-card class="commitment-card">
+            <mat-card-content>
+              <div class="commitment-content">
+                <mat-icon>verified</mat-icon>
+                <div>
+                  <h3>Our Security Commitment</h3>
+                  <p>At eStokvel, security is not an afterthought—it's fundamental to everything we do. We continuously invest in security infrastructure, employee training, and best practices to protect your financial data and maintain your trust.</p>
+                </div>
+              </div>
+              <div class="update-info">
+                <p><strong>Last Security Review:</strong> October 2024</p>
+                <p><strong>Next Scheduled Audit:</strong> January 2025</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

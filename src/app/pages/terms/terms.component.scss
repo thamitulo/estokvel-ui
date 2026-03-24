@@ -1,0 +1,476 @@
+.terms-container {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.terms-hero {
+  background: linear-gradient(135deg, rgba(160, 20, 76, 0.9), rgba(194, 24, 91, 0.9));
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: white;
+
+      @media (max-width: 768px) {
+        font-size: 36px;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+  }
+}
+
+/* Main Content */
+.terms-content {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navigation Section */
+.navigation-section {
+  margin-bottom: 40px;
+
+  .nav-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    mat-card-content {
+      padding: 30px;
+
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+
+        .nav-link {
+          display: block;
+          padding: 12px 16px;
+          background: #f8f9fa;
+          color: #333;
+          text-decoration: none;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          border-left: 3px solid transparent;
+
+          &:hover {
+            background: #e9ecef;
+            border-left-color: #c2185b;
+            color: #c2185b;
+            transform: translateX(5px);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Terms Sections */
+.terms-sections {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+}
+
+.terms-section {
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #e9ecef;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .section-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #333;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 24px;
+        background: #c2185b;
+        margin-right: 12px;
+        border-radius: 2px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .section-content {
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+      margin: 25px 0 15px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.8;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+
+      li {
+        color: #666;
+        margin-bottom: 10px;
+        line-height: 1.6;
+        position: relative;
+
+        &::before {
+          content: '•';
+          color: #c2185b;
+          font-weight: bold;
+          display: inline-block;
+          width: 1em;
+          margin-left: -1em;
+        }
+      }
+    }
+
+    strong {
+      color: #333;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Notice Cards */
+.notice-card {
+  background: #fff8f8;
+  border-left: 4px solid #c2185b;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+
+  &.info {
+    background: #f0f7ff;
+    border-left-color: #2196f3;
+  }
+
+  &.warning {
+    background: #fff3e0;
+    border-left-color: #ff9800;
+  }
+
+  mat-icon {
+    color: #c2185b;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &.info mat-icon {
+    color: #2196f3;
+  }
+
+  &.warning mat-icon {
+    color: #ff9800;
+  }
+
+  p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+
+    strong {
+      color: #333;
+    }
+  }
+}
+
+.privacy-link {
+  color: #c2185b;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Contact Information */
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      background: #f0f7ff;
+    }
+
+    mat-icon {
+      color: #c2185b;
+      font-size: 24px;
+      margin-top: 2px;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+}
+
+/* Acceptance Section */
+.acceptance-section {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 2px solid #e9ecef;
+
+  .acceptance-card {
+    background: linear-gradient(135deg, rgba(160, 20, 76, 0.05), rgba(194, 24, 91, 0.05));
+    border: 2px solid rgba(194, 24, 91, 0.1);
+    border-radius: 12px;
+
+    mat-card-content {
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .acceptance-content {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex: 1;
+
+        mat-icon {
+          font-size: 48px;
+          color: #4caf50;
+          height: 48px;
+          width: 48px;
+        }
+
+        h3 {
+          font-size: 22px;
+          font-weight: 700;
+          color: #333;
+          margin-bottom: 8px;
+        }
+
+        p {
+          color: #666;
+          margin: 0;
+          max-width: 500px;
+        }
+      }
+
+      .acceptance-date {
+        text-align: right;
+
+        @media (max-width: 768px) {
+          text-align: center;
+        }
+
+        p {
+          color: #666;
+          margin: 5px 0;
+
+          strong {
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .terms-hero {
+    padding: 60px 20px;
+
+    .hero-title {
+      font-size: 36px;
+    }
+  }
+
+  .terms-content {
+    padding: 40px 0;
+  }
+
+  .terms-sections {
+    padding: 25px;
+  }
+
+  .navigation-section {
+    .nav-links {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+  }
+
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+
+  .acceptance-card {
+    mat-card-content {
+      padding: 20px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .terms-sections {
+    padding: 20px;
+  }
+
+  .terms-section {
+    .section-header {
+      h2 {
+        font-size: 22px;
+      }
+    }
+
+    .section-content {
+      h3 {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .notice-card {
+    flex-direction: column;
+    align-items: flex-start;
+
+    mat-icon {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+/* Print Styles */
+@media print {
+  .terms-container {
+    background: white;
+  }
+
+  .terms-hero {
+    background: none;
+    color: black;
+    padding: 20px 0;
+
+    .hero-title {
+      color: black;
+    }
+
+    .hero-subtitle {
+      color: #666;
+    }
+  }
+
+  .terms-content {
+    background: white;
+    padding: 20px 0;
+  }
+
+  .navigation-section,
+  .acceptance-card {
+    display: none;
+  }
+
+  .terms-sections {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .notice-card {
+    break-inside: avoid;
+  }
+}

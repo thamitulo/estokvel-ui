@@ -1,0 +1,77 @@
+<!-- join-request-response-dialog.component.html -->
+<div class="response-dialog">
+  <h2 mat-dialog-title>Respond to Join Request</h2>
+
+  <mat-dialog-content>
+    <div class="request-info">
+      <div class="info-item">
+        <mat-icon>groups</mat-icon>
+        <div>
+          <strong>Stokvel:</strong>
+          <p>{{ data.stokvelName }}</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <mat-icon>person</mat-icon>
+        <div>
+          <strong>Requester:</strong>
+          <p>{{ data.requesterName }}</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <mat-icon>schedule</mat-icon>
+        <div>
+          <strong>Request Date:</strong>
+          <p>{{ data.notification.createdAt | date:'medium' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="responseForm" class="response-form">
+      <h3>Decision</h3>
+      <mat-radio-group formControlName="decision" class="decision-options">
+        <mat-radio-button value="approve" color="primary">
+          <div class="option-content">
+            <mat-icon>check_circle</mat-icon>
+            <div>
+              <strong>Approve Request</strong>
+              <p>Allow {{ data.requesterName }} to join {{ data.stokvelName }}</p>
+            </div>
+          </div>
+        </mat-radio-button>
+
+        <mat-radio-button value="decline" color="warn">
+          <div class="option-content">
+            <mat-icon>cancel</mat-icon>
+            <div>
+              <strong>Decline Request</strong>
+              <p>Reject {{ data.requesterName }}'s request to join</p>
+            </div>
+          </div>
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Notes (Optional)</mat-label>
+        <textarea matInput formControlName="notes" rows="4"
+                  placeholder="Add any notes or reasons for your decision"></textarea>
+        <mat-hint>This message will be sent to the requester</mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()" [disabled]="isSubmitting">
+      Cancel
+    </button>
+    <button mat-raised-button
+            color="primary"
+            (click)="onSubmit()"
+            [disabled]="responseForm.invalid || isSubmitting">
+      <span *ngIf="!isSubmitting">Submit Response</span>
+      <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -17,6 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { authReducer } from './store/auth/auth.reducer';
 import { AuthEffects } from './store/auth/auth.effects';
+import {NotificationBellComponent} from "./components/notifications/notification-bell/notification-bell";
 
 @NgModule({
   declarations: [
@@ -25,38 +26,39 @@ import { AuthEffects } from './store/auth/auth.effects';
     FooterComponent,
     FaqComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AuthModule.forRoot({
-      domain: environment.auth0.domain,
-      clientId: environment.auth0.clientId,
-      authorizationParams: {
-        redirect_uri: environment.auth0.redirectUri,
-        audience: environment.auth0.audience,
-      },
-      // httpInterceptor configuration
-      httpInterceptor: {
-        allowedList: [
-          {
-            uri: `${environment.apiUrl}/*`,
-            tokenOptions: {
-              authorizationParams: {
-                audience: environment.auth0.audience
-              }
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AuthModule.forRoot({
+            domain: environment.auth0.domain,
+            clientId: environment.auth0.clientId,
+            authorizationParams: {
+                redirect_uri: environment.auth0.redirectUri,
+                audience: environment.auth0.audience,
+            },
+            // httpInterceptor configuration
+            httpInterceptor: {
+                allowedList: [
+                    {
+                        uri: `${environment.apiUrl}/*`,
+                        tokenOptions: {
+                            authorizationParams: {
+                                audience: environment.auth0.audience
+                            }
+                        }
+                    }
+                ]
             }
-          }
-        ]
-      }
-    }),
-    MaterialModule,
-    BrowserAnimationsModule,
+        }),
+        MaterialModule,
+        BrowserAnimationsModule,
 
-    // NgRx store setup
-    StoreModule.forRoot({auth: authReducer}),
-    EffectsModule.forRoot([AuthEffects]),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
-  ],
+        // NgRx store setup
+        StoreModule.forRoot({auth: authReducer}),
+        EffectsModule.forRoot([AuthEffects]),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+        NotificationBellComponent
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
     provideHttpClient(withInterceptorsFromDi())

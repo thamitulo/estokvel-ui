@@ -1,35 +1,48 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-import { Observable, of } from 'rxjs';
-import {AuthService} from "@auth0/auth0-angular";
+export interface StokvelMember {
+  id: number;
+  userAuth0Id: string;
+  totalContributed: number;
+  nextPayoutAmount: number;
+  nextPayOutDate: Date;
+  joinedAt: Date;
+  stokvel: { id: number; name: string };
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class StokvelMemberService {
 
-  constructor(private authService: AuthService) {}
+  private apiUrl = `${environment.apiUrl}stokvel-members`;
 
-  getUserMemberships(auth0Id: String): Observable<any[]> {
-    return of([
-      {
-        id: 1,
-        userAuth0Id: auth0Id,
-        totalContributed: 4500,
-        nextPayoutAmount: 18000,
-        nextPayOutDate: new Date('2024-02-01'),
-        joinedAt: new Date('2025-11-19'),
-        stokvel: { id: 1, name: 'Mabogo Dinku Stokvel' }
-      },
-      {
-        id: 2,
-        userAuth0Id: auth0Id,
-        totalContributed: 6000,
-        nextPayoutAmount: 24000,
-        joinedAt: new Date('2025-10-18'),
-        nextPayOutDate: new Date('2026-02-01'),
-        stokvel: { id: 2, name: 'Family Fund' }
-      }
-    ]);
+  constructor(private http: HttpClient) {}
+
+  /**
+   * Fetch user's stokvel memberships from backend.
+   * This replaces the hardcoded mock data with real API call.
+   */
+  getUserMemberships(auth0Id: String): Observable<StokvelMember[]> {
+    return this.http.get<StokvelMember[]>(`${this.apiUrl}/user/memberships`);
+  }
+
+  /**
+   * Get total contributions for authenticated user
+   */
+  getUserTotalContributions(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/user/contributions`);
+  }
+
+  /**
+   * Get next payout info for authenticated user
+   */
+  getUserNextPayout(): Observable<{ amount: number; daysUntilPayout: number }> {
+    return this.http.get<{ amount: number; daysUntilPayout: number }>(
+      `${this.apiUrl}/user/next-payout`
+    );
   }
 }

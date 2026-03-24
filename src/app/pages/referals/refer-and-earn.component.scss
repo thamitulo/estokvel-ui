@@ -202,11 +202,94 @@
   }
 }
 
+/* CTA Section for Non-Logged In Users */
+.cta-section {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 40px 30px;
+  max-width: 600px;
+  margin: 40px auto 0;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+    margin-top: 30px;
+  }
+}
+
+.cta-content {
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: white;
+
+    @media (max-width: 768px) {
+      font-size: 26px;
+    }
+  }
+
+  p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin: 0 0 32px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .cta-button {
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    min-width: 180px;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    mat-icon {
+      margin-right: 8px;
+    }
+
+    &:first-child {
+      background: white;
+      color: #c2185b;
+    }
+
+    &:last-child {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+  }
+}
+
 /* Main Content */
 .refer-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 60px 20px;
+
+  @media (max-width: 768px) {
+    padding: 40px 15px;
+  }
 }
 
 .content-grid {
@@ -457,6 +540,129 @@ mat-card {
   }
 }
 
+/* Sign Up CTA Section */
+.signup-cta-section {
+  margin-bottom: 40px;
+}
+
+.signup-cta-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+  border: 2px solid #e0e0e0 !important;
+
+  mat-card-content {
+    padding: 40px;
+  }
+}
+
+.signup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .signup-icon {
+    margin-bottom: 24px;
+
+    mat-icon {
+      font-size: 64px;
+      height: 64px;
+      width: 64px;
+      color: #c2185b;
+    }
+  }
+
+  .signup-text {
+    max-width: 700px;
+    margin-bottom: 32px;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 16px;
+      color: #333;
+
+      @media (max-width: 768px) {
+        font-size: 26px;
+      }
+    }
+
+    p {
+      font-size: 18px;
+      color: #666;
+      margin: 0 0 24px;
+      line-height: 1.6;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 0 auto 32px;
+    text-align: left;
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: #333;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      mat-icon {
+        color: #4caf50;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  .signup-action {
+    .signup-button {
+      background: linear-gradient(135deg, #a0144c, #c2185b);
+      color: white;
+      padding: 16px 40px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(194, 24, 91, 0.3);
+      }
+
+      mat-icon {
+        margin-right: 12px;
+      }
+    }
+
+    .signup-note {
+      font-size: 15px;
+      color: #666;
+
+      .login-link {
+        color: #c2185b;
+        text-decoration: none;
+        font-weight: 600;
+        margin-left: 4px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
 /* Rewards Section */
 .rewards-section {
   margin-bottom: 40px;
@@ -690,6 +896,109 @@ mat-panel-title {
   color: #333;
 }
 
+/* Final CTA Section */
+.final-cta-section {
+  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 50px 40px;
+  text-align: center;
+  margin-top: 40px;
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+    margin-top: 30px;
+  }
+}
+
+.final-cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 20px;
+    color: white;
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+    }
+  }
+
+  p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin: 0 0 32px;
+    line-height: 1.6;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.final-cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .cta-primary {
+    background: white;
+    color: #c2185b;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    min-width: 200px;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .cta-secondary {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    min-width: 200px;
+    transition: all 0.3s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+/* Loading States */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+
+  mat-spinner {
+    margin-right: 16px;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .refer-hero {
@@ -726,8 +1035,23 @@ mat-panel-title {
     font-size: 22px;
   }
 
-  .refer-content {
-    padding: 40px 15px;
+  .cta-section {
+    padding: 30px 20px;
+    margin-top: 30px;
+  }
+
+  .cta-content h2 {
+    font-size: 26px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 280px;
   }
 
   .content-grid {
@@ -752,6 +1076,33 @@ mat-panel-title {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+
+  .signup-content .signup-text h2 {
+    font-size: 26px;
+  }
+
+  .signup-cta-card mat-card-content {
+    padding: 30px 20px;
+  }
+
+  .signup-action .signup-button {
+    width: 100%;
+  }
+
+  .final-cta-content h2 {
+    font-size: 28px;
+  }
+
+  .final-cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+    max-width: 280px;
   }
 }
 
@@ -785,5 +1136,28 @@ mat-panel-title {
 
   .rewards-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Snackbar Styles */
+::ng-deep {
+  .success-snackbar {
+    background: #4caf50 !important;
+    color: white !important;
+  }
+
+  .error-snackbar {
+    background: #f44336 !important;
+    color: white !important;
+  }
+
+  .info-snackbar {
+    background: #2196f3 !important;
+    color: white !important;
+  }
+
+  .warning-snackbar {
+    background: #ff9800 !important;
+    color: white !important;
   }
 }

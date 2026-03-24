@@ -1,1 +1,397 @@
-<p>careers works!</p>
+<div class="careers-container">
+  <!-- Hero Section -->
+  <section class="careers-hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1 class="hero-title">Join Our Mission</h1>
+        <p class="hero-subtitle">Help us revolutionize stokvel management across Africa</p>
+        <a href="#open-positions" class="hero-cta">
+          <button mat-raised-button class="cta-button">
+            View Open Positions
+            <mat-icon>arrow_downward</mat-icon>
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Values -->
+  <section class="mission-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Mission & Values</h2>
+        <p class="section-subtitle">We're building the future of financial empowerment for African communities</p>
+      </div>
+
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="mission-icon">
+            <mat-icon>target</mat-icon>
+          </div>
+          <h3>Our Mission</h3>
+          <p>To democratize access to safe, transparent, and efficient stokvel management tools, empowering millions of Africans to achieve their financial goals together.</p>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-icon">
+            <mat-icon>diversity_3</mat-icon>
+          </div>
+          <h3>Our Values</h3>
+          <ul class="values-list">
+            <li><mat-icon>check_circle</mat-icon> Community First</li>
+            <li><mat-icon>check_circle</mat-icon> Trust & Transparency</li>
+            <li><mat-icon>check_circle</mat-icon> Innovation with Purpose</li>
+            <li><mat-icon>check_circle</mat-icon> Collaborative Excellence</li>
+          </ul>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-icon">
+            <mat-icon>rocket_launch</mat-icon>
+          </div>
+          <h3>Our Impact</h3>
+          <p>Join a team that's already helped over 50,000 users manage R500+ million in stokvel funds, creating real financial impact across communities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Join Us -->
+  <section class="benefits-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Join eStokvel?</h2>
+        <p class="section-subtitle">We offer more than just a job - we offer a career with purpose</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <mat-icon>savings</mat-icon>
+          </div>
+          <h3>Competitive Compensation</h3>
+          <p>Attractive salary packages, performance bonuses, and equity options for early team members.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <mat-icon>self_improvement</mat-icon>
+          </div>
+          <h3>Growth & Development</h3>
+          <p>Continuous learning opportunities, mentorship programs, and clear career progression paths.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <mat-icon>flexibility</mat-icon>
+          </div>
+          <h3>Flexible Work</h3>
+          <p>Hybrid work model, flexible hours, and generous leave policies for work-life balance.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <mat-icon>health_and_safety</mat-icon>
+          </div>
+          <h3>Health & Wellness</h3>
+          <p>Comprehensive medical aid, mental health support, and wellness programs.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <mat-icon>celebration</mat-icon>
+          </div>
+          <h3>Great Culture</h3>
+          <p>Inclusive environment, team-building activities, and regular social events.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <mat-icon>public</mat-icon>
+          </div>
+          <h3>Make an Impact</h3>
+          <p>Work on products that directly improve financial inclusion and community empowerment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section id="open-positions" class="positions-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Open Positions</h2>
+        <p class="section-subtitle">Join our growing team and help shape the future of fintech in Africa</p>
+      </div>
+
+      <div class="positions-filters">
+        <mat-form-field appearance="outline">
+          <mat-label>Department</mat-label>
+          <mat-select [(value)]="selectedDepartment" (selectionChange)="filterPositions()">
+            <mat-option value="all">All Departments</mat-option>
+            <mat-option value="engineering">Engineering</mat-option>
+            <mat-option value="product">Product</mat-option>
+            <mat-option value="design">Design</mat-option>
+            <mat-option value="marketing">Marketing</mat-option>
+            <mat-option value="sales">Sales</mat-option>
+            <mat-option value="operations">Operations</mat-option>
+            <mat-option value="finance">Finance</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Location</mat-label>
+          <mat-select [(value)]="selectedLocation" (selectionChange)="filterPositions()">
+            <mat-option value="all">All Locations</mat-option>
+            <mat-option value="remote">Remote</mat-option>
+            <mat-option value="johannesburg">Johannesburg</mat-option>
+            <mat-option value="cape-town">Cape Town</mat-option>
+            <mat-option value="pretoria">Pretoria</mat-option>
+            <mat-option value="durban">Durban</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Job Type</mat-label>
+          <mat-select [(value)]="selectedType" (selectionChange)="filterPositions()">
+            <mat-option value="all">All Types</mat-option>
+            <mat-option value="full-time">Full Time</mat-option>
+            <mat-option value="part-time">Part Time</mat-option>
+            <mat-option value="contract">Contract</mat-option>
+            <mat-option value="internship">Internship</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="positions-grid">
+        <!-- Engineering Positions -->
+        <div class="position-card" *ngFor="let position of filteredPositions">
+          <div class="position-header">
+            <h3>{{position.title}}</h3>
+            <div class="position-tags">
+              <span class="tag department">{{position.department}}</span>
+              <span class="tag location">{{position.location}}</span>
+              <span class="tag type">{{position.type}}</span>
+            </div>
+          </div>
+
+          <div class="position-details">
+            <p>{{position.description}}</p>
+
+            <div class="position-requirements">
+              <h4>Requirements:</h4>
+              <ul>
+                <li *ngFor="let req of position.requirements">{{req}}</li>
+              </ul>
+            </div>
+
+            <div class="position-benefits">
+              <h4>What we offer:</h4>
+              <ul>
+                <li *ngFor="let benefit of position.benefits">{{benefit}}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="position-footer">
+            <div class="position-meta">
+              <div class="meta-item">
+                <mat-icon>schedule</mat-icon>
+                <span>{{position.experience}} experience</span>
+              </div>
+              <div class="meta-item">
+                <mat-icon>attach_money</mat-icon>
+                <span>{{position.salary}}</span>
+              </div>
+              <div class="meta-item">
+                <mat-icon>calendar_today</mat-icon>
+                <span>Posted {{position.postedDate}}</span>
+              </div>
+            </div>
+
+            <button mat-raised-button color="primary" (click)="applyForPosition(position)">
+              Apply Now
+              <mat-icon>send</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- No positions message -->
+        <div class="no-positions" *ngIf="filteredPositions.length === 0">
+          <mat-icon>search_off</mat-icon>
+          <h3>No positions match your filters</h3>
+          <p>Try adjusting your filters or check back later for new openings</p>
+          <button mat-button (click)="clearFilters()">Clear All Filters</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Process -->
+  <section class="process-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Hiring Process</h2>
+        <p class="section-subtitle">Transparent and respectful - we value your time</p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Application Review</h3>
+            <p>We review your application within 3-5 business days</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Screening Call</h3>
+            <p>30-minute chat with our HR team to learn more about each other</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Skills Assessment</h3>
+            <p>Practical assessment relevant to the role (take-home or live)</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Team Interviews</h3>
+            <p>Meet with the team and potential manager (2-3 interviews)</p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3>Offer & Onboarding</h3>
+            <p>Offer extended within 48 hours, followed by smooth onboarding</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Life at eStokvel -->
+  <section class="culture-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Life at eStokvel</h2>
+        <p class="section-subtitle">See what makes our culture special</p>
+      </div>
+
+      <div class="culture-grid">
+        <div class="culture-card">
+          <div class="culture-image">
+            <img src="assets/images/culture/team.jpg" alt="Team Collaboration">
+          </div>
+          <div class="culture-content">
+            <h3>Collaborative Environment</h3>
+            <p>Weekly team syncs, cross-functional projects, and open communication channels</p>
+          </div>
+        </div>
+
+        <div class="culture-card">
+          <div class="culture-image">
+            <img src="assets/images/culture/learning.jpg" alt="Learning Sessions">
+          </div>
+          <div class="culture-content">
+            <h3>Continuous Learning</h3>
+            <p>Monthly tech talks, conference budgets, and dedicated learning time</p>
+          </div>
+        </div>
+
+        <div class="culture-card">
+          <div class="culture-image">
+            <img src="assets/images/culture/events.jpg" alt="Team Events">
+          </div>
+          <div class="culture-content">
+            <h3>Social Connections</h3>
+            <p>Regular team outings, quarterly retreats, and celebration of milestones</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p class="section-subtitle">Get answers to common questions about working with us</p>
+      </div>
+
+      <mat-accordion class="faq-accordion">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>What's the typical interview timeline?</mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Our process typically takes 2-3 weeks from application to offer. We move quickly because we respect your time and know great talent gets snapped up fast.</p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Do you offer remote work?</mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Yes! We're a hybrid-first company. Most roles offer flexibility to work remotely or from our offices in major South African cities.</p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>What's the career growth like?</mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>We provide clear career paths, regular performance reviews, and support for both technical and leadership growth tracks.</p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Do you sponsor work visas?</mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Yes, we sponsor visas for exceptional candidates. We're building a diverse team with talent from across Africa and beyond.</p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>What's the company culture like?</mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>We're driven by our mission, collaborative by nature, and believe in work-life harmony. We celebrate wins together and support each other through challenges.</p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Do you have internship programs?</mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Yes! We offer paid internships in engineering, design, and marketing. Check our open positions for current internship opportunities.</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Build the Future with Us?</h2>
+        <p>If you don't see a perfect match but believe you'd be a great addition to our team, we'd still love to hear from you!</p>
+        <div class="cta-actions">
+          <button mat-raised-button class="cta-button" (click)="sendGeneralApplication()">
+            Submit General Application
+            <mat-icon>send</mat-icon>
+          </button>
+          <button mat-stroked-button class="cta-button-secondary" routerLink="/contact">
+            Contact Our Talent Team
+            <mat-icon>chat</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

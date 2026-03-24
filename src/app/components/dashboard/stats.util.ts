@@ -1,3 +1,5 @@
+import {StokvelResponse} from "../../models";
+
 export function countStokvelsJoinedLastMonth(memberships: any[]): number {
   const now = new Date();
   const oneMonthAgo = new Date();
@@ -34,5 +36,13 @@ export function percentageIncreaseForJoinedStokvels(memberships: any[]): number 
   }
 
   return ((current - previous) / previous) * 100;
+}
+
+
+export function stokvelMemberCount(stokvel: StokvelResponse): number {
+  return stokvel.members.filter(
+    member => member.membershipStatus === 'ACTIVE'
+  ).length;
+
 }
 

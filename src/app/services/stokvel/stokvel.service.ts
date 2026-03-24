@@ -11,7 +11,7 @@ import {CacheService} from "../cache/cache.service";
 })
 export class StokvelService {
 
-  private apiUrl = `${environment.apiUrl}`;
+  private apiUrl = `${environment.apiUrl}stokvels`;
   private httpWithoutInterceptor: HttpClient;
   private cache = new Map<string, Observable<any>>();
 
@@ -22,15 +22,15 @@ export class StokvelService {
   }
 
   getStokvelTypes(): Observable<any[]> {
-    return this.http.get<any[]>('types');
+    return this.http.get<any[]>(`${environment.apiUrl}stokvel-types`);
   }
 
   getSavingsTerms(): Observable<any[]> {
-    return this.http.get<any[]>('savingsTerms');
+    return this.http.get<any[]>(`${environment.apiUrl}savings-terms`);
   }
 
   createStokvel(stokvelData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}` + `stokvels`, stokvelData).pipe(
+    return this.http.post(`${this.apiUrl}`, stokvelData).pipe(
       tap(() => {
         this.clearAllStokvelCache();
       })
@@ -45,7 +45,7 @@ export class StokvelService {
       return cached;
     }
 
-    const request$ = this.http.get<PaginatedResponse<StokvelResponse>>(`${this.apiUrl}` + `stokvels/my-stokvels`).pipe(
+    const request$ = this.http.get<PaginatedResponse<StokvelResponse>>(`${this.apiUrl}/my-stokvels`).pipe(
       map(response => response.content)
     );
 
@@ -70,7 +70,7 @@ export class StokvelService {
     }
 
     const request$ = this.http.get<PaginatedResponse<StokvelResponse>>(
-      `${this.apiUrl}` + `my-stokvels?page=${page}&size=${size}`
+      `${this.apiUrl}/my-stokvels?page=${page}&size=${size}`
     );
 
     this.cacheService.set(cacheKey, request$, 2 * 60 * 1000);
@@ -107,10 +107,10 @@ export class StokvelService {
       .set('page', page.toString())
       .set('size', size.toString());
 
-    return this.httpWithoutInterceptor.get<PaginatedResponse<StokvelResponse>>(`${this.apiUrl}` + `public/get-public-stokvels`, { params });
+    return this.httpWithoutInterceptor.get<PaginatedResponse<StokvelResponse>>(`${this.apiUrl}/get-public-stokvels`, { params });
   }
 
   joinStokvel(payload: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}` + `stokvels/join-request`, payload);
+    return this.http.post(`${this.apiUrl}/join-request`, payload);
   }
 }
