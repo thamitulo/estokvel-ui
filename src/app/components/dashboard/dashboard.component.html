@@ -15,12 +15,26 @@
       <div class="dashboard-hero-content">
         <div class="hero-text">
           <div class="welcome-badge">
-            <span>🎉 Welcome back!</span>
+            <span>{{ heroEmoji$ | async }}</span>
           </div>
           <h1 class="dashboard-title">Hello, {{ (userName$ | async) || 'Guest' }}!</h1>
-          <p class="dashboard-subtitle">Your stokvel portfolio is growing beautifully</p>
+          <p class="dashboard-subtitle" [ngClass]="heroSubtitleClass$ | async">
+            {{ heroSubtitle$ | async }}
+          </p>
+
+          <!-- CTA for users with no stokvels -->
+          <div class="hero-cta-new" *ngIf="(hasStokvels$ | async) === false">
+            <button class="hero-btn-create" (click)="createNewStokvel()">
+              <mat-icon>add_circle</mat-icon> Create your first stokvel
+            </button>
+            <button class="hero-btn-browse" (click)="joinStokvel()">
+              <mat-icon>explore</mat-icon> Browse public stokvels
+            </button>
+          </div>
         </div>
-        <div class="portfolio-summary">
+
+        <!-- Portfolio value — only meaningful once they have stokvels -->
+        <div class="portfolio-summary" *ngIf="hasStokvels$ | async; else noPortfolio">
           <div class="portfolio-value-card">
             <div class="value-content">
               <span class="value-label">Total Portfolio Value</span>
@@ -28,7 +42,7 @@
               <div class="value-change positive">
                 <div class="change-indicator">
                   <mat-icon>trending_up</mat-icon>
-                  <span>+R{{ (portfolioChange$ | async) | number }} ({{(portfolioChangePercent$ | async)}}%) today</span>
+                  <span>+R{{ (portfolioChange$ | async) | number }} ({{ portfolioChangePercent$ | async }}%) today</span>
                 </div>
               </div>
             </div>
@@ -36,15 +50,24 @@
               <div class="sparkline-chart">
                 <svg viewBox="0 0 100 40" class="chart-line">
                   <path d="M0,35 L20,25 L40,15 L60,20 L80,10 L100,5"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        stroke-linecap="round"/>
+                        stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
                 </svg>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- No-portfolio placeholder -->
+        <ng-template #noPortfolio>
+          <div class="portfolio-empty-card">
+            <div class="empty-portfolio-icon">
+              <mat-icon>account_balance_wallet</mat-icon>
+            </div>
+            <p class="empty-portfolio-label">Your portfolio starts here</p>
+            <p class="empty-portfolio-sub">Join or create a stokvel to begin building your wealth</p>
+          </div>
+        </ng-template>
+
       </div>
 
       <!-- Enhanced Stats Cards -->
@@ -109,9 +132,19 @@
             </div>
           </div>
           <div class="stat-content">
-            <h3 class="stat-value">R{{ (nextPayout$ | async) | number }}</h3>
+            <ng-container *ngIf="(nextPayout$ | async) as nextPayout; else noPayoutStat">
+              <h3 class="stat-value" [class.stat-zero]="nextPayout === 0">
+                {{ nextPayout === 0 ? '—' : 'R' + (nextPayout | number) }}
+              </h3>
+            </ng-container>
+            <ng-template #noPayoutStat><h3 class="stat-value stat-zero">—</h3></ng-template>
             <p class="stat-label">Next Payout</p>
-            <div class="stat-comparison">Get ready to celebrate! 🎊</div>
+            <div class="stat-comparison" *ngIf="nextPayoutStokvelName$ | async as name; else noPayoutHint">
+              📍 {{ name }}
+            </div>
+            <ng-template #noPayoutHint>
+              <div class="stat-comparison stat-hint">No upcoming payout scheduled</div>
+            </ng-template>
           </div>
           <div class="stat-decoration">
             <div class="decoration-confetti"></div>
@@ -128,13 +161,13 @@
             </div>
             <div class="stat-trend positive">
               <mat-icon>arrow_upward</mat-icon>
-              <span>15.2%</span>
+              <span>{{ (totalGrowthPercent$ | async) | number:'1.1-1' }}%</span>
             </div>
           </div>
           <div class="stat-content">
-            <h3 class="stat-value">R{{ (totalSavings$ | async) | number }}</h3>
+            <h3 class="stat-value">R{{ (totalGrowth$ | async) | number }}</h3>
             <p class="stat-label">Total Growth</p>
-            <div class="stat-comparison">All time performance</div>
+            <div class="stat-comparison">Portfolio value − contributions</div>
           </div>
           <div class="stat-decoration">
             <div class="decoration-line"></div>
@@ -159,15 +192,20 @@
       </div>
     </div>
 
-    <div class="distribution-grid">
-      <mat-card class="distribution-chart-card glass-card">
-        <div class="card-pattern"></div>
-        <mat-card-content>
-          <div class="chart-container">
-            <div class="pie-chart-visual">
+    <ng-container *ngIf="portfolioDistribution$ | async as distribution">
+      <div class="distribution-grid">
+
+        <!-- ── Chart card ─────────────────────────────────────────────── -->
+        <mat-card class="distribution-chart-card glass-card">
+          <div class="card-pattern"></div>
+          <mat-card-content>
+
+            <!-- REAL data -->
+            <div class="pie-chart-visual" *ngIf="distribution.length > 0; else previewChart">
               <div class="chart-wrapper">
                 <div class="pie-chart">
-                  <div class="chart-segment" *ngFor="let segment of portfolioDistribution$ | async"
+                  <div class="chart-segment"
+                       *ngFor="let segment of distribution"
                        [style.background]="segment.color"
                        [style.transform]="'rotate(' + segment.rotation + 'deg)'"
                        [style.opacity]="segment.opacity">
@@ -181,74 +219,118 @@
                 </div>
               </div>
               <div class="chart-legends">
-                <div class="legend-item" *ngFor="let item of portfolioDistribution$ | async">
+                <div class="legend-item" *ngFor="let item of distribution">
                   <div class="legend-marker">
                     <div class="legend-color" [style.background]="item.color"></div>
                   </div>
                   <div class="legend-info">
-                    <span class="legend-label">{{item.name}}</span>
-                    <span class="legend-percentage">{{item.percentage}}%</span>
+                    <span class="legend-label">{{ item.name }}</span>
+                    <span class="legend-percentage">{{ item.percentage | number:'1.0-1' }}%</span>
                   </div>
-                  <span class="legend-amount">R{{ getPortfolioAmount(item.percentage) | number }}</span>
+                  <span class="legend-amount">R{{ item.amount | number }}</span>
                 </div>
               </div>
             </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
 
-      <mat-card class="performance-highlights-card glass-card">
-        <div class="card-pattern"></div>
-        <mat-card-content>
-          <h3 class="highlights-title">Performance Highlights</h3>
-          <div class="highlights-list">
-            <div class="highlight-item positive">
-              <div class="highlight-icon">
-                <mat-icon>trending_up</mat-icon>
-              </div>
-              <div class="highlight-content">
-                <span class="highlight-title">Best Performer</span>
-                <span class="highlight-value">Mabogo Dinku Stokvel</span>
-                <span class="highlight-change">+18.3% returns</span>
-              </div>
-            </div>
+            <!-- PREVIEW — no real data yet -->
+            <ng-template #previewChart>
+              <div class="pie-chart-visual preview-mode">
+                <div class="chart-wrapper">
+                  <!-- Static demo segments -->
+                  <div class="pie-chart preview-chart">
+                    <div class="chart-segment" style="background:#3B82F6;transform:rotate(0deg)"></div>
+                    <div class="chart-segment" style="background:#10B981;transform:rotate(130deg)"></div>
+                    <div class="chart-segment" style="background:#F59E0B;transform:rotate(230deg)"></div>
+                    <div class="chart-segment" style="background:#8B5CF6;transform:rotate(300deg)"></div>
+                  </div>
+                  <div class="chart-center preview-center">
+                    <div class="center-content">
+                      <span class="chart-total">Your future</span>
+                      <span class="chart-amount preview-amount">portfolio</span>
+                    </div>
+                  </div>
+                  <!-- overlay blur -->
+                  <div class="preview-blur-overlay"></div>
+                </div>
 
-            <div class="highlight-item positive">
-              <div class="highlight-icon">
-                <mat-icon>group_add</mat-icon>
-              </div>
-              <div class="highlight-content">
-                <span class="highlight-title">Growing Fast</span>
-                <span class="highlight-value">Investment Club</span>
-                <span class="highlight-change">+5 new members</span>
-              </div>
-            </div>
+                <!-- Demo legends -->
+                <div class="chart-legends preview-legends">
+                  <div class="preview-legend-label">Example breakdown</div>
+                  <div class="legend-item preview-item" *ngFor="let demo of previewSegments">
+                    <div class="legend-marker">
+                      <div class="legend-color" [style.background]="demo.color"></div>
+                    </div>
+                    <div class="legend-info">
+                      <span class="legend-label preview-text">{{ demo.name }}</span>
+                      <span class="legend-percentage preview-text">{{ demo.pct }}%</span>
+                    </div>
+                    <span class="legend-amount preview-text">R{{ demo.amount | number }}</span>
+                  </div>
 
-            <div class="highlight-item upcoming">
-              <div class="highlight-icon">
-                <mat-icon>celebration</mat-icon>
+                  <div class="preview-cta">
+                    <mat-icon>info_outline</mat-icon>
+                    <span>Join or create a stokvel to see your real allocation here.</span>
+                  </div>
+                </div>
               </div>
-              <div class="highlight-content">
-                <span class="highlight-title">Next Payout</span>
-                <span class="highlight-value">Family Fund</span>
-                <span class="highlight-change">In 7 days</span>
-              </div>
-            </div>
+            </ng-template>
 
-            <div class="highlight-item milestone">
-              <div class="highlight-icon">
-                <mat-icon>military_tech</mat-icon>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- ── Performance Highlights card ───────────────────────────── -->
+        <mat-card class="performance-highlights-card glass-card">
+          <div class="card-pattern"></div>
+          <mat-card-content>
+            <h3 class="highlights-title">Performance Highlights</h3>
+
+            <ng-container *ngIf="userStokvels$ | async as stokvels">
+
+              <!-- Empty / preview -->
+              <ng-container *ngIf="stokvels.length === 0">
+                <div class="highlights-empty">
+                  <mat-icon>insights</mat-icon>
+                  <p>Once you join stokvels, highlights like these will appear:</p>
+                </div>
+                <div class="highlights-list preview-highlights">
+                  <div class="highlight-item positive preview-item" *ngFor="let demo of previewHighlights">
+                    <div class="highlight-icon"><mat-icon>savings</mat-icon></div>
+                    <div class="highlight-content">
+                      <span class="highlight-title preview-text">{{ demo.role }}</span>
+                      <span class="highlight-value preview-text">{{ demo.name }}</span>
+                      <span class="highlight-change preview-text">
+                        R{{ demo.monthly | number }}/mo · {{ demo.members }}/{{ demo.max }} members
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="preview-cta">
+                  <mat-icon>info_outline</mat-icon>
+                  <span>Your actual stokvels will replace this preview.</span>
+                </div>
+              </ng-container>
+
+              <!-- Real data -->
+              <div class="highlights-list" *ngIf="stokvels.length > 0">
+                <div class="highlight-item positive" *ngFor="let s of stokvels | slice:0:3">
+                  <div class="highlight-icon"><mat-icon>savings</mat-icon></div>
+                  <div class="highlight-content">
+                    <span class="highlight-title">{{ s.isOwner ? '⭐ Admin' : '👤 Member' }}</span>
+                    <span class="highlight-value">{{ s.name }}</span>
+                    <span class="highlight-change">
+                      R{{ s.monthlyContribution | number }}/mo
+                      · {{ s.totalMembers }}/{{ s.maxMembers }} members
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div class="highlight-content">
-                <span class="highlight-title">Milestone</span>
-                <span class="highlight-value">R125k Total</span>
-                <span class="highlight-change">Portfolio value</span>
-              </div>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
+
+            </ng-container>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </ng-container>
   </section>
 
   <!-- Quick Actions -->
@@ -380,16 +462,16 @@
 
           <div class="stokvel-details">
             <div class="detail-item">
-              <mat-icon>calendar_today</mat-icon>
-              <span>Next payout: {{ '2026-01-01' | date:'mediumDate' }}</span>
-            </div>
-            <div class="detail-item">
               <mat-icon>payments</mat-icon>
               <span>Monthly: R{{ stokvel.monthlyContribution | number }}</span>
             </div>
             <div class="detail-item">
-              <mat-icon>schedule</mat-icon>
-              <span>My payout: {{ '2026-01-02' | date:'mediumDate' }}</span>
+              <mat-icon>people</mat-icon>
+              <span>{{ stokvel.memberCount + stokvel.adminCount }}/{{ stokvel.maxMembers }} members</span>
+            </div>
+            <div class="detail-item">
+              <mat-icon>manage_accounts</mat-icon>
+              <span>Role: {{ stokvel.currentUserRole || (stokvel.isOwner ? 'ADMIN' : 'MEMBER') }}</span>
             </div>
           </div>
         </mat-card-content>
@@ -446,32 +528,41 @@
     <mat-card class="activity-card glass-card">
       <div class="card-pattern"></div>
       <mat-card-content>
-        <div class="activity-list">
-          <div class="activity-item" *ngFor="let activity of recentActivities$ | async">
-            <div class="activity-icon" [ngClass]="activity.type">
-              <mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
-            </div>
-            <div class="activity-details">
-              <div class="activity-description">
-                {{ activity.description }}
-              </div>
-              <div class="activity-meta">
-                <span class="activity-stokvel">{{ activity.stokvelName }}</span>
-                <span class="activity-date">{{ activity.date | date:'medium' }}</span>
-              </div>
-            </div>
-            <div class="activity-amount" *ngIf="activity.amount">
-              R{{ activity.amount | number }}
-            </div>
-          </div>
-        </div>
+        <ng-container *ngIf="recentActivities$ | async as activities">
 
-        <div class="no-activity" *ngIf="(recentActivities$ | async)?.length === 0">
-          <div class="no-activity-content">
-            <mat-icon>history</mat-icon>
-            <p>No recent activity to display</p>
+          <div class="activity-list" *ngIf="activities.length > 0">
+            <div class="activity-item" *ngFor="let activity of activities">
+              <div class="activity-icon"
+                   [ngClass]="{
+                     contribution: activity.type === 'contribution',
+                     payout:       activity.type === 'payout',
+                     invitation:   activity.type === 'invitation' || activity.type === 'member_joined',
+                     update:       activity.type === 'update' || activity.type === 'stokvel_created'
+                   }">
+                <mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
+              </div>
+              <div class="activity-details">
+                <div class="activity-description">{{ activity.description }}</div>
+                <div class="activity-meta">
+                  <span class="activity-stokvel">{{ activity.stokvelName }}</span>
+                  <span class="activity-date">{{ activity.date | date:'medium' }}</span>
+                </div>
+              </div>
+              <div class="activity-amount" *ngIf="activity.amount"
+                   [style.color]="activity.type === 'payout' ? '#10b981' : '#ef4444'">
+                {{ activity.type === 'payout' ? '+' : '-' }}R{{ activity.amount | number }}
+              </div>
+            </div>
           </div>
-        </div>
+
+          <div class="no-activity" *ngIf="activities.length === 0">
+            <div class="no-activity-content">
+              <mat-icon>history</mat-icon>
+              <p>No recent activity — make your first contribution to get started!</p>
+            </div>
+          </div>
+
+        </ng-container>
       </mat-card-content>
     </mat-card>
   </section>

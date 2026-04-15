@@ -1,15 +1,21 @@
+/**
+ * Simplified paginated response matching the backend PaginatedResponse<T> DTO.
+ * Legacy Spring Page<T> fields are kept as optional for backwards compatibility.
+ */
 export interface PaginatedResponse<T> {
   content: T[];
-  empty: boolean;
-  first: boolean;
-  last: boolean;
-  number: number;
-  numberOfElements: number;
-  pageable: any;
+  page: number;           // Current page index (0-based) - matches backend DTO
   size: number;
-  sort: any;
   totalElements: number;
   totalPages: number;
+  // Legacy Spring Page<T> fields (optional, retained for backward compatibility)
+  number?: number;        // Same as page, used by Spring Page<T>
+  numberOfElements?: number;
+  pageable?: any;
+  first?: boolean;
+  last?: boolean;
+  empty?: boolean;
+  sort?: any;
 }
 
 

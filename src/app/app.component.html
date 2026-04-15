@@ -1,7 +1,30 @@
-<app-toolbar></app-toolbar>
+<!-- ═══════════════════════════════════════════════════════════════════
+     NATIVE MOBILE LAYOUT  (Android / iOS via Capacitor)
+     ═══════════════════════════════════════════════════════════════════ -->
+<ng-container *ngIf="isNative; else webLayout">
+  <div class="native-shell">
+    <!-- Compact mobile header (logo + profile/login) -->
+    <app-mobile-header></app-mobile-header>
 
-<main class="main-content">
-  <router-outlet></router-outlet>
-</main>
+    <!-- Scrollable page content with safe-area padding -->
+    <main class="native-content">
+      <router-outlet></router-outlet>
+    </main>
 
-<app-footer></app-footer>
+    <!-- Bottom tab navigation -->
+    <app-mobile-nav></app-mobile-nav>
+  </div>
+</ng-container>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     WEB LAYOUT  (browser / PWA)
+     ═══════════════════════════════════════════════════════════════════ -->
+<ng-template #webLayout>
+  <app-toolbar></app-toolbar>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer></app-footer>
+</ng-template>

@@ -78,8 +78,8 @@
 
       mat-icon {
         font-size: 40px;
-        color: #c2185b;
-        background: rgba(194, 24, 91, 0.1);
+        color: #0d47a1;
+        background: rgba(13, 71, 161, 0.1);
         padding: 15px;
         border-radius: 50%;
       }
@@ -468,7 +468,7 @@
 
     mat-icon {
       font-size: 40px;
-      color: #9c27b0;
+      color: #1565c0;
       margin-bottom: 20px;
     }
 
@@ -495,7 +495,7 @@
     align-items: center;
     gap: 10px;
     padding: 12px 24px;
-    background: #9c27b0;
+    background: #1565c0;
     color: white;
     text-decoration: none;
     border-radius: 8px;
@@ -503,7 +503,7 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background: #7b1fa2;
+      background: #059669;
       transform: translateY(-2px);
     }
 

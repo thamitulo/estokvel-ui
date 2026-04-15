@@ -58,7 +58,7 @@
       display: inline-block;
 
       .cta-button {
-        background: linear-gradient(135deg, #a0144c, #c2185b);
+        background: linear-gradient(135deg, #092e6b, #0d47a1);
         color: white;
         padding: 16px 40px;
         font-size: 18px;
@@ -68,7 +68,7 @@
 
         &:hover {
           transform: translateY(-3px);
-          box-shadow: 0 10px 30px rgba(194, 24, 91, 0.4);
+          box-shadow: 0 10px 30px rgba(13, 71, 161, 0.4);
         }
 
         mat-icon {
@@ -136,7 +136,7 @@
     .mission-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, #a0144c, #c2185b);
+      background: linear-gradient(135deg, #092e6b, #0d47a1);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -202,14 +202,14 @@
     text-align: center;
 
     &:hover {
-      border-color: #c2185b;
+      border-color: #0d47a1;
       transform: translateY(-5px);
     }
 
     .benefit-icon {
       width: 70px;
       height: 70px;
-      background: rgba(194, 24, 91, 0.1);
+      background: rgba(13, 71, 161, 0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -218,7 +218,7 @@
 
       mat-icon {
         font-size: 32px;
-        color: #c2185b;
+        color: #0d47a1;
       }
     }
 
@@ -267,7 +267,7 @@
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #c2185b;
+    border-left: 5px solid #0d47a1;
     transition: all 0.3s ease;
 
     &:hover {
@@ -296,8 +296,8 @@
           font-weight: 600;
 
           &.department {
-            background: rgba(194, 24, 91, 0.1);
-            color: #c2185b;
+            background: rgba(13, 71, 161, 0.1);
+            color: #0d47a1;
           }
 
           &.location {
@@ -368,7 +368,7 @@
 
           mat-icon {
             font-size: 18px;
-            color: #c2185b;
+            color: #0d47a1;
           }
         }
       }
@@ -428,7 +428,7 @@
       top: 0;
       bottom: 0;
       width: 3px;
-      background: linear-gradient(to bottom, #c2185b, #a0144c);
+      background: linear-gradient(to bottom, #0d47a1, #092e6b);
 
       @media (max-width: 768px) {
         left: 30px;
@@ -450,7 +450,7 @@
       flex-shrink: 0;
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, #a0144c, #c2185b);
+      background: linear-gradient(135deg, #092e6b, #0d47a1);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -458,7 +458,7 @@
       color: white;
       font-weight: 700;
       font-size: 24px;
-      box-shadow: 0 5px 15px rgba(194, 24, 91, 0.3);
+      box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
 
       @media (max-width: 768px) {
         width: 50px;
@@ -577,7 +577,7 @@
 /* Final CTA */
 .final-cta {
   padding: 80px 0;
-  background: linear-gradient(135deg, #a0144c, #c2185b);
+  background: linear-gradient(135deg, #092e6b, #0d47a1);
   color: white;
   text-align: center;
 
@@ -613,7 +613,7 @@
 
     .cta-button {
       background: white;
-      color: #c2185b;
+      color: #0d47a1;
       padding: 15px 40px;
       font-size: 16px;
       font-weight: 600;

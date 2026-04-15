@@ -13,7 +13,7 @@ export interface ReferralHistory {
   friendCellphone: string;
   invitationDate: string;
   completedDate?: string;
-  status: 'PENDING' | 'COMPLETED' | 'FAILED' | 'EXPIRED';
+  status: 'PENDING' | 'COMPLETED' | 'FAILED' | 'EXPIRED' | 'CANCELLED';
   rewardAmount: number;
   stokvelName?: string;
   displayDate: string;
@@ -42,7 +42,7 @@ export interface ReferralResponse {
   email: string;
   cellphone: string;
   invitationDate: string;
-  status: 'PENDING' | 'COMPLETED' | 'FAILED' | 'EXPIRED';
+  status: 'PENDING' | 'COMPLETED' | 'FAILED' | 'EXPIRED' | 'CANCELLED';
   amount: number;
   referralCode: string;
   shareableLink: string;

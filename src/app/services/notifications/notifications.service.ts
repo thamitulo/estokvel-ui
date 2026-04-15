@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import {environment} from "../../environments/environment";
 import {Notification, NotificationResponse} from "../../models/notifications/notification.interface";
+
+export interface NotificationCountDTO {
+  unreadCount: number;
+  totalCount: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +30,13 @@ export class NotificationService {
   }
 
   getUnreadCount(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/unread-count`);
+    return this.http.get<NotificationCountDTO>(`${this.apiUrl}/unread-count`).pipe(
+      map(dto => dto.unreadCount ?? 0)
+    );
+  }
+
+  getUnreadCountFull(): Observable<NotificationCountDTO> {
+    return this.http.get<NotificationCountDTO>(`${this.apiUrl}/unread-count`);
   }
 
   getPendingJoinRequests(): Observable<Notification[]> {

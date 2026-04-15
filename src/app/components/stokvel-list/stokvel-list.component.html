@@ -1,49 +1,256 @@
-<div class="search-container">
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Search stokvels</mat-label>
-    <input matInput [formControl]="searchControl" placeholder="Type name or description" />
-  </mat-form-field>
-</div>
+<!-- Browse Stokvels Page -->
+<div class="browse-container">
 
-<div class="stokvel-grid">
-  <mat-card *ngFor="let stokvel of filteredStokvels" class="stokvel-card">
-    <mat-card-header>
-      <mat-card-title>{{ stokvel.name }}</mat-card-title>
-      <mat-card-subtitle>{{ stokvel.type }}</mat-card-subtitle>
-    </mat-card-header>
-
-    <mat-card-content>
-      <p>{{ stokvel.description }}</p>
-
-      <div class="progress-section">
-        <mat-progress-bar
-          [value]="progress(stokvel)"
-          [color]="progressColor(stokvel)">
-        </mat-progress-bar>
-
-        <div class="progress-label">
-          <ng-container *ngIf="progress(stokvel) < 100; else complete">
-            <strong>{{ progress(stokvel) }}%</strong> |
-            R{{ remainingAmount(stokvel) | number }} left
-          </ng-container>
-          <ng-template #complete>
-            <span class="badge">Goal Reached! 🎉</span>
-          </ng-template>
+  <!-- ── Hero Header ── -->
+  <section class="browse-hero">
+    <div class="hero-bg">
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+      <div class="hero-orb orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <mat-icon>explore</mat-icon>
+          <span>Discover Stokvels</span>
+        </div>
+        <h1>Find Your <span class="hero-highlight">Community</span></h1>
+        <p>Join a savings group that matches your goals and start building wealth together</p>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-num">{{ sourceStokvels.length }}</span>
+          <span class="stat-lbl">Active Stokvels</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-num">{{ totalMembers }}</span>
+          <span class="stat-lbl">Total Members</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-num">R{{ totalMonthly | number }}</span>
+          <span class="stat-lbl">Monthly Pool</span>
         </div>
       </div>
-    </mat-card-content>
+    </div>
+  </section>
 
-    <mat-card-actions>
-      <button mat-flat-button color="primary" (click)="joinStokvel(stokvel)">
-        Request to Join
+  <!-- ── Search + Filters ── -->
+  <section class="filters-section">
+    <div class="search-bar-wrap">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input class="search-input" [formControl]="searchControl"
+             placeholder="Search by name, type or description…" />
+      <button *ngIf="searchControl.value" mat-icon-button class="clear-btn"
+              (click)="searchControl.setValue('')">
+        <mat-icon>close</mat-icon>
       </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+    </div>
 
-<mat-paginator
-  [length]="filteredStokvels.length"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="[3]"
-  (page)="pageChange($event)">
-</mat-paginator>
+    <div class="filter-chips">
+      <button class="chip" [class.chip-active]="activeFilter === 'ALL'"
+              (click)="setFilter('ALL')">
+        <mat-icon>apps</mat-icon> All
+      </button>
+      <button class="chip" [class.chip-active]="activeFilter === 'INVESTMENT'"
+              (click)="setFilter('INVESTMENT')">
+        <mat-icon>trending_up</mat-icon> Investment
+      </button>
+      <button class="chip" [class.chip-active]="activeFilter === 'PROPERTY'"
+              (click)="setFilter('PROPERTY')">
+        <mat-icon>home</mat-icon> Property
+      </button>
+      <button class="chip" [class.chip-active]="activeFilter === 'FAMILY'"
+              (click)="setFilter('FAMILY')">
+        <mat-icon>diversity_3</mat-icon> Family
+      </button>
+      <button class="chip" [class.chip-active]="activeFilter === 'BURIAL'"
+              (click)="setFilter('BURIAL')">
+        <mat-icon>favorite</mat-icon> Burial
+      </button>
+      <button class="chip" [class.chip-active]="activeFilter === 'ROTATIONAL'"
+              (click)="setFilter('ROTATIONAL')">
+        <mat-icon>autorenew</mat-icon> Rotational
+      </button>
+    </div>
+
+    <div class="results-meta" *ngIf="!isLoading">
+      <span>{{ filteredStokvels.length }} stokvel{{ filteredStokvels.length !== 1 ? 's' : '' }} found</span>
+      <div class="sort-toggle">
+        <button mat-icon-button [class.active]="viewMode==='grid'" (click)="viewMode='grid'" matTooltip="Grid view">
+          <mat-icon>grid_view</mat-icon>
+        </button>
+        <button mat-icon-button [class.active]="viewMode==='list'" (click)="viewMode='list'" matTooltip="List view">
+          <mat-icon>view_list</mat-icon>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Loading Skeleton ── -->
+  <div class="stokvel-grid" *ngIf="isLoading">
+    <div class="skeleton-card" *ngFor="let i of [1,2,3,4,5,6]">
+      <div class="sk-banner"></div>
+      <div class="sk-body">
+        <div class="sk-line sk-title"></div>
+        <div class="sk-line sk-sub"></div>
+        <div class="sk-line sk-text"></div>
+        <div class="sk-line sk-short"></div>
+        <div class="sk-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Card Grid ── -->
+  <div class="stokvel-grid" [class.list-mode]="viewMode==='list'" *ngIf="!isLoading && pagedStokvels.length > 0">
+    <div class="stokvel-card" *ngFor="let stokvel of pagedStokvels; trackBy: trackById">
+
+      <!-- Coloured type banner -->
+      <div class="card-banner" [ngClass]="getTypeBannerClass(stokvel.type)">
+        <div class="banner-pattern"></div>
+        <div class="banner-icon">
+          <mat-icon>{{ getTypeIcon(stokvel.type) }}</mat-icon>
+        </div>
+        <div class="banner-badges">
+          <span class="badge-privacy" [class.public]="stokvel.privacy === 'PUBLIC'">
+            <mat-icon>{{ stokvel.privacy === 'PUBLIC' ? 'lock_open' : 'lock' }}</mat-icon>
+            {{ stokvel.privacy === 'PUBLIC' ? 'Public' : 'Private' }}
+          </span>
+          <span class="badge-status" [ngClass]="'status-' + stokvel?.status?.toLowerCase()">
+            {{ stokvel.status }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Card body -->
+      <div class="card-body">
+        <div class="card-type-label">{{ getTypeLabel(stokvel.type) }}</div>
+        <h3 class="card-title">{{ stokvel.name }}</h3>
+        <p class="card-desc">{{ stokvel.description }}</p>
+
+        <!-- Stats row -->
+        <div class="card-stats">
+          <div class="c-stat">
+            <mat-icon>group</mat-icon>
+            <div>
+              <span class="c-stat-val">{{ stokvel.totalMembers ?? (stokvel.memberCount + stokvel.adminCount) }}</span>
+              <span class="c-stat-lbl">/ {{ stokvel.maxMembers }} members</span>
+            </div>
+          </div>
+          <div class="c-stat">
+            <mat-icon>payments</mat-icon>
+            <div>
+              <span class="c-stat-val">R{{ stokvel.monthlyContribution | number }}</span>
+              <span class="c-stat-lbl">/ month</span>
+            </div>
+          </div>
+          <div class="c-stat">
+            <mat-icon>sync</mat-icon>
+            <div>
+              <span class="c-stat-val">{{ stokvel.payoutCycle | titlecase }}</span>
+              <span class="c-stat-lbl">payout</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="card-progress" *ngIf="stokvel.targetAmount">
+          <div class="prog-header">
+            <span class="prog-label">Towards target</span>
+            <span class="prog-pct">{{ progress(stokvel) | number:'1.0-0' }}%</span>
+          </div>
+          <div class="prog-track">
+            <div class="prog-fill" [style.width.%]="progress(stokvel)"
+                 [ngClass]="'prog-' + progressColor(stokvel)"></div>
+          </div>
+          <div class="prog-meta">
+            <span>R{{ getCollectedAmount(stokvel) | number }} raised</span>
+            <span class="prog-target">R{{ stokvel.targetAmount | number }} goal</span>
+          </div>
+        </div>
+
+        <!-- Seats bar -->
+        <div class="seats-bar">
+          <div class="seats-fill" [style.width.%]="getSeatsFillPercent(stokvel)"></div>
+        </div>
+        <div class="seats-label">
+          <span>{{ stokvel.maxMembers - (stokvel.totalMembers ?? (stokvel.memberCount + stokvel.adminCount)) }}
+            seat{{ stokvel.maxMembers - (stokvel.totalMembers ?? (stokvel.memberCount + stokvel.adminCount)) !== 1 ? 's' : '' }} available
+          </span>
+          <span class="goal-badge" *ngIf="progress(stokvel) >= 100">🎉 Goal Reached!</span>
+        </div>
+      </div>
+
+      <!-- Card actions -->
+      <div class="card-actions">
+        <!-- View Details — always visible -->
+        <button class="btn-details" (click)="viewDetail(stokvel)">
+          <mat-icon>visibility</mat-icon> View Details
+        </button>
+
+        <!-- ① ADMIN: manage the stokvel -->
+        <button class="btn-manage" *ngIf="isAdmin(stokvel)" (click)="manageStokvel(stokvel)">
+          <mat-icon>manage_accounts</mat-icon> Manage
+        </button>
+
+        <!-- ② REGULAR MEMBER (non-admin): leave + message admins -->
+        <ng-container *ngIf="!isAdmin(stokvel) && isMember(stokvel)">
+          <span class="chip-member">
+            <mat-icon>check_circle</mat-icon> Member
+          </span>
+          <button class="btn-message" (click)="messageAdmins(stokvel)"
+                  matTooltip="Send an email to this stokvel's admins">
+            <mat-icon>mail_outline</mat-icon> Message Admins
+          </button>
+          <button class="btn-leave" (click)="leaveStokvel(stokvel)"
+                  matTooltip="Request to leave this stokvel">
+            <mat-icon>exit_to_app</mat-icon> Leave
+          </button>
+        </ng-container>
+
+        <!-- ③ NON-MEMBER + PUBLIC + seats available: request to join -->
+        <button class="btn-join"
+                *ngIf="!isMember(stokvel) && isPublic(stokvel) && !isFull(stokvel)"
+                (click)="joinStokvel(stokvel)">
+          <mat-icon>person_add</mat-icon> Request to Join
+        </button>
+
+        <!-- ④ NON-MEMBER + PUBLIC + FULL -->
+        <span class="chip-full" *ngIf="!isMember(stokvel) && isPublic(stokvel) && isFull(stokvel)">
+          <mat-icon>block</mat-icon> Group Full
+        </span>
+
+        <!-- ⑤ NON-MEMBER + PRIVATE: invite only — no join option -->
+        <span class="chip-private" *ngIf="!isMember(stokvel) && !isPublic(stokvel)">
+          <mat-icon>lock</mat-icon> Private · Invite Only
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Empty State ── -->
+  <div class="empty-state" *ngIf="!isLoading && filteredStokvels.length === 0">
+    <div class="empty-icon">
+      <mat-icon>search_off</mat-icon>
+    </div>
+    <h3>No stokvels found</h3>
+    <p>Try adjusting your search or filter. New stokvels are added regularly.</p>
+    <button class="chip chip-active" (click)="searchControl.setValue(''); setFilter('ALL')">
+      <mat-icon>refresh</mat-icon> Clear filters
+    </button>
+  </div>
+
+  <!-- ── Paginator ── -->
+  <div class="paginator-wrap" *ngIf="!isLoading && filteredStokvels.length > 0">
+    <mat-paginator
+      [length]="filteredStokvels.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[6, 9, 12]"
+      [pageIndex]="pageIndex"
+      showFirstLastButtons
+      (page)="pageChange($event)">
+    </mat-paginator>
+  </div>
+
+</div>

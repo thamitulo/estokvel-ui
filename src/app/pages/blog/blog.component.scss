@@ -6,7 +6,7 @@
 
 /* Hero Section */
 .blog-hero {
-  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  background: linear-gradient(135deg, #092e6b 0%, #0d47a1 100%);
   color: white;
   padding: 80px 20px 60px;
   position: relative;
@@ -211,7 +211,7 @@
     font-weight: 500;
 
     &.active {
-      background: #c2185b;
+      background: #0d47a1;
       color: white;
     }
   }
@@ -236,7 +236,7 @@
   }
 
   &.featured {
-    border-left: 4px solid #c2185b;
+    border-left: 4px solid #0d47a1;
   }
 }
 
@@ -263,7 +263,7 @@
   text-transform: uppercase;
 
   &.welcome {
-    background: #c2185b;
+    background: #0d47a1;
     color: white;
   }
 
@@ -466,7 +466,7 @@ mat-card {
 
   .author-title {
     font-size: 14px;
-    color: #c2185b;
+    color: #0d47a1;
     font-weight: 600;
     margin: 0 0 12px;
   }
@@ -536,8 +536,8 @@ mat-card {
   }
 
   &.active {
-    background: rgba(194, 24, 91, 0.1);
-    color: #c2185b;
+    background: rgba(13, 71, 161, 0.1);
+    color: #0d47a1;
   }
 
   .category-name {
@@ -582,7 +582,7 @@ mat-card {
     background: #f8f9fa;
 
     h4 {
-      color: #c2185b;
+      color: #0d47a1;
     }
   }
 
@@ -615,7 +615,7 @@ mat-card {
 .newsletter-icon {
   width: 60px;
   height: 60px;
-  background: rgba(194, 24, 91, 0.1);
+  background: rgba(13, 71, 161, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -626,7 +626,7 @@ mat-card {
     font-size: 28px;
     height: 28px;
     width: 28px;
-    color: #c2185b;
+    color: #0d47a1;
   }
 }
 
@@ -704,12 +704,12 @@ mat-card {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 
     .series-number {
-      background: #c2185b;
+      background: #0d47a1;
       color: white;
     }
 
     mat-icon {
-      color: #c2185b;
+      color: #0d47a1;
     }
   }
 }

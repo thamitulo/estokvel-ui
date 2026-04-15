@@ -54,14 +54,47 @@ export class HomeComponent implements OnInit {
     'assets/hero/hero3.png',
   ];
 
+  userName$: Observable<string | null> = new Observable();
+  searchValue = '';
+
+  /** Floating particles for hero background */
+  particles = Array.from({ length: 20 }, () => ({
+    x: Math.random() * 100 + '%',
+    y: Math.random() * 100 + '%',
+    delay: (Math.random() * 6).toFixed(1) + 's',
+    duration: (4 + Math.random() * 6).toFixed(1) + 's',
+  }));
+
+  steps = [
+    { icon: 'person_add', title: 'Create Account',    desc: 'Sign up free in under 60 seconds. No paperwork.' },
+    { icon: 'group_add',  title: 'Form Your Group',   desc: 'Invite members or join an existing public stokvel.' },
+    { icon: 'payments',   title: 'Contribute',         desc: 'Set up recurring digital contributions easily.' },
+    { icon: 'celebration',title: 'Receive Payouts',   desc: 'Get your lump-sum payout on your scheduled rotation.' },
+  ];
+
+  stokvelTypes = [
+    { icon: 'trending_up', name: 'Investment Club',    desc: 'Pool resources to invest together.',           bannerClass: 'banner-investment' },
+    { icon: 'home',        name: 'Property Stokvel',   desc: 'Save collectively for real estate goals.',     bannerClass: 'banner-property' },
+    { icon: 'diversity_3', name: 'Family Fund',        desc: 'Family-centred financial support savings.',    bannerClass: 'banner-family' },
+    { icon: 'favorite',    name: 'Burial Society',     desc: 'Dignified cover for unexpected costs.',        bannerClass: 'banner-burial' },
+    { icon: 'autorenew',   name: 'Rotational Savings', desc: 'Classic stokvel: take turns receiving payouts.', bannerClass: 'banner-rotational' },
+    { icon: 'savings',     name: 'Contribution',       desc: 'Regular savings towards a shared goal.',       bannerClass: 'banner-contribution' },
+    { icon: 'agriculture', name: 'Livestock',          desc: 'Group buying power for livestock purchases.',  bannerClass: 'banner-livestock' },
+    { icon: 'celebration', name: 'Party / Events',     desc: 'Fund celebrations and community events.',      bannerClass: 'banner-party' },
+  ];
+
+  testimonials = [
+    { quote: 'eStokvel transformed how our family saves. Transparent, easy and no more chasing people for contributions!', name: 'Nomsa Dlamini', role: 'Family Fund Admin', initials: 'ND', color: 'linear-gradient(135deg,#0d47a1,#1565c0)' },
+    { quote: 'Our investment club has grown 18% this year. The dashboard makes it so easy to track everything in real time.', name: 'Sipho Mkhize', role: 'Investment Club Member', initials: 'SM', color: 'linear-gradient(135deg,#059669,#047857)' },
+    { quote: 'Setting up our burial society took minutes. The automated reminders alone are worth it.', name: 'Thandeka Mokoena', role: 'Group Secretary', initials: 'TM', color: 'linear-gradient(135deg,#d97706,#b45309)' },
+  ];
+
   typeImgClassMap: any = {
     'Savings': 'education-img',
     'Grocery': 'investment-img',
     'Property': 'property-img'
   };
 
-  userName$: Observable<string | null> = new Observable();
-  searchValue = '';
 
   constructor(
     private router: Router,
@@ -161,8 +194,43 @@ export class HomeComponent implements OnInit {
 
   learnMore() { console.log('Learn more'); }
 
+  getTypeBannerClass(type: string): string {
+    const map: Record<string, string> = {
+      INVESTMENT: 'banner-investment', PROPERTY: 'banner-property',
+      FAMILY: 'banner-family', BURIAL: 'banner-burial',
+      ROTATIONAL: 'banner-rotational', CONTRIBUTION: 'banner-contribution',
+      LIVESTOCK: 'banner-livestock', PARTY: 'banner-party',
+    };
+    return map[type?.toUpperCase()] ?? 'banner-default';
+  }
+
+  getTypeIcon(type: string): string {
+    const map: Record<string, string> = {
+      INVESTMENT: 'trending_up', PROPERTY: 'home', FAMILY: 'diversity_3',
+      BURIAL: 'favorite', ROTATIONAL: 'autorenew', CONTRIBUTION: 'savings',
+      LIVESTOCK: 'agriculture', PARTY: 'celebration',
+    };
+    return map[type?.toUpperCase()] ?? 'savings';
+  }
+
+  getTypeLabel(type: string): string {
+    const map: Record<string, string> = {
+      INVESTMENT: 'Investment Club', PROPERTY: 'Property Stokvel',
+      FAMILY: 'Family Fund', BURIAL: 'Burial Society',
+      ROTATIONAL: 'Rotational', CONTRIBUTION: 'Contribution',
+      LIVESTOCK: 'Livestock', PARTY: 'Party / Events',
+    };
+    return map[type?.toUpperCase()] ?? type;
+  }
+
   openCampaign(campaignId: any) {
-    this.snackBar.open(`Opening campaign ${campaignId} details...`, 'Close', { duration: 3000 });
+    if (campaignId?.id) {
+      this.router.navigate(['/stokvels', campaignId.id]);
+    }
+  }
+
+  login() {
+    this.authService.loginWithRedirect({ appState: { target: '/dashboard' } });
   }
 
   getCollectedAmount(stokvel: any): number { return stokvel.contributionAmount || 0; }

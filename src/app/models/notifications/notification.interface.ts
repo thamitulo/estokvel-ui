@@ -37,40 +37,23 @@ export interface Notification {
   actionUrl?: string;
   relatedEntityId?: number;
   relatedEntityType?: string;
-  senderId?: number;
+  senderId?: string;    // Auth0 user ID (string, not number)
   senderName?: string;
   stokvelId?: number;
   stokvelName?: string;
   isUnread: boolean;
 }
 
+/**
+ * Paginated notification response matching the backend PaginatedResponse<NotificationDTO> format.
+ * The backend now returns a simplified pagination structure after Phase 1 updates.
+ */
 export interface NotificationResponse {
   content: Notification[];
-  pageable: {
-    pageNumber: number;
-    pageSize: number;
-    sort: {
-      empty: boolean;
-      sorted: boolean;
-      unsorted: boolean;
-    };
-    offset: number;
-    paged: boolean;
-    unpaged: boolean;
-  };
-  last: boolean;
+  page: number;
+  size: number;
   totalElements: number;
   totalPages: number;
-  size: number;
-  number: number;
-  sort: {
-    empty: boolean;
-    sorted: boolean;
-    unsorted: boolean;
-  };
-  first: boolean;
-  numberOfElements: number;
-  empty: boolean;
 }
 
 export interface JoinRequestResponse {

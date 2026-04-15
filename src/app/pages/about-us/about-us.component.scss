@@ -6,7 +6,7 @@
 
 /* Hero Section - Matching Your Theme */
 .about-hero {
-  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  background: linear-gradient(135deg, #092e6b 0%, #0d47a1 100%);
   color: white;
   padding: 80px 20px 60px;
   position: relative;
@@ -157,7 +157,7 @@
 }
 
 .card-header {
-  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  background: linear-gradient(135deg, #092e6b 0%, #0d47a1 100%);
   color: white;
   padding: 30px;
   display: flex;
@@ -205,7 +205,7 @@ mat-card-content {
 }
 
 .highlight-text {
-  color: #c2185b;
+  color: #0d47a1;
   font-weight: 600;
 }
 
@@ -218,9 +218,9 @@ mat-card-content {
     gap: 12px;
     margin-bottom: 12px;
     padding: 12px;
-    background: rgba(194, 24, 91, 0.05);
+    background: rgba(13, 71, 161, 0.05);
     border-radius: 8px;
-    border-left: 4px solid #c2185b;
+    border-left: 4px solid #0d47a1;
 
     mat-icon {
       color: #4caf50;
@@ -276,13 +276,13 @@ mat-card-content {
   gap: 16px;
   margin-bottom: 20px;
   padding: 20px;
-  background: rgba(194, 24, 91, 0.05);
+  background: rgba(13, 71, 161, 0.05);
   border-radius: 8px;
 
   .logo-placeholder {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #a0144c, #c2185b);
+    background: linear-gradient(135deg, #092e6b, #0d47a1);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -319,7 +319,7 @@ mat-card-content {
 }
 
 .company-link {
-  color: #c2185b;
+  color: #0d47a1;
   text-decoration: none;
   font-weight: 600;
 
@@ -466,8 +466,8 @@ mat-card-content {
     }
 
     &:hover {
-      background: rgba(194, 24, 91, 0.05);
-      border-color: #c2185b;
+      background: rgba(13, 71, 161, 0.05);
+      border-color: #0d47a1;
       transform: translateX(5px);
     }
   }
@@ -475,7 +475,7 @@ mat-card-content {
   .doc-icon {
     width: 40px;
     height: 40px;
-    background: rgba(194, 24, 91, 0.1);
+    background: rgba(13, 71, 161, 0.1);
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -485,7 +485,7 @@ mat-card-content {
       font-size: 20px;
       height: 20px;
       width: 20px;
-      color: #c2185b;
+      color: #0d47a1;
     }
   }
 
@@ -557,7 +557,7 @@ mat-card-content {
 
 /* Trust Section */
 .trust-section {
-  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  background: linear-gradient(135deg, #092e6b 0%, #0d47a1 100%);
   color: white;
   padding: 60px 20px;
   border-radius: 10px;

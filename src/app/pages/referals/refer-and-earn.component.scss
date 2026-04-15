@@ -6,7 +6,7 @@
 
 /* Hero Section */
 .refer-hero {
-  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  background: linear-gradient(135deg, #092e6b 0%, #0d47a1 100%);
   color: white;
   padding: 80px 20px 60px;
   position: relative;
@@ -270,7 +270,7 @@
 
     &:first-child {
       background: white;
-      color: #c2185b;
+      color: #0d47a1;
     }
 
     &:last-child {
@@ -351,14 +351,14 @@ mat-card {
   gap: 16px;
   padding: 20px 30px;
   background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-  border: 2px dashed #c2185b;
+  border: 2px dashed #0d47a1;
   border-radius: 12px;
   margin-bottom: 24px;
 
   .code-text {
     font-size: 28px;
     font-weight: 700;
-    color: #c2185b;
+    color: #0d47a1;
     letter-spacing: 2px;
     font-family: 'Courier New', monospace;
 
@@ -368,23 +368,23 @@ mat-card {
   }
 
   .copy-btn {
-    color: #c2185b;
+    color: #0d47a1;
 
     &:hover {
-      background: rgba(194, 24, 91, 0.1);
+      background: rgba(13, 71, 161, 0.1);
     }
   }
 }
 
 .code-actions {
   .share-btn {
-    background: linear-gradient(135deg, #a0144c, #c2185b);
+    background: linear-gradient(135deg, #092e6b, #0d47a1);
     color: white;
     padding: 12px 24px;
     font-weight: 600;
 
     &:hover {
-      background: linear-gradient(135deg, #c2185b, #e91e63);
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
     }
 
     mat-icon {
@@ -426,7 +426,7 @@ mat-card {
 .step-number {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #a0144c, #c2185b);
+  background: linear-gradient(135deg, #092e6b, #0d47a1);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -567,7 +567,7 @@ mat-card {
       font-size: 64px;
       height: 64px;
       width: 64px;
-      color: #c2185b;
+      color: #0d47a1;
     }
   }
 
@@ -626,7 +626,7 @@ mat-card {
 
   .signup-action {
     .signup-button {
-      background: linear-gradient(135deg, #a0144c, #c2185b);
+      background: linear-gradient(135deg, #092e6b, #0d47a1);
       color: white;
       padding: 16px 40px;
       font-size: 18px;
@@ -637,7 +637,7 @@ mat-card {
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(194, 24, 91, 0.3);
+        box-shadow: 0 8px 25px rgba(13, 71, 161, 0.3);
       }
 
       mat-icon {
@@ -650,7 +650,7 @@ mat-card {
       color: #666;
 
       .login-link {
-        color: #c2185b;
+        color: #0d47a1;
         text-decoration: none;
         font-weight: 600;
         margin-left: 4px;
@@ -695,7 +695,7 @@ mat-card {
   padding: 20px;
   background: #f8f9fa;
   border-radius: 10px;
-  border-left: 4px solid #c2185b;
+  border-left: 4px solid #0d47a1;
 }
 
 .reward-icon {
@@ -708,13 +708,13 @@ mat-card {
   flex-shrink: 0;
 
   &.primary {
-    background: rgba(194, 24, 91, 0.1);
-    color: #c2185b;
+    background: rgba(13, 71, 161, 0.1);
+    color: #0d47a1;
   }
 
   &.accent {
     background: rgba(255, 64, 129, 0.1);
-    color: #ff4081;
+    color: #d97706;
   }
 
   &.success {
@@ -898,7 +898,7 @@ mat-panel-title {
 
 /* Final CTA Section */
 .final-cta-section {
-  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  background: linear-gradient(135deg, #092e6b 0%, #0d47a1 100%);
   color: white;
   border-radius: 16px;
   padding: 50px 40px;
@@ -947,7 +947,7 @@ mat-panel-title {
 
   .cta-primary {
     background: white;
-    color: #c2185b;
+    color: #0d47a1;
     padding: 14px 32px;
     font-size: 16px;
     font-weight: 600;

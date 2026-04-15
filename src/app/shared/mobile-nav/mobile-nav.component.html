@@ -1,0 +1,42 @@
+<nav class="mobile-bottom-nav" role="navigation" aria-label="Main navigation">
+  <ng-container *ngIf="isAuthenticated$ | async as isAuth; else unauthNav">
+    <button
+      *ngFor="let tab of tabs"
+      class="nav-tab"
+      [class.active]="isActive(tab.route)"
+      [attr.aria-label]="tab.label"
+      [attr.aria-current]="isActive(tab.route) ? 'page' : null"
+      matRipple
+      [matRippleCentered]="true"
+      [matRippleUnbounded]="true"
+      (click)="navigate(tab, true)"
+    >
+      <div class="tab-icon-wrap">
+        <mat-icon class="tab-icon">{{ isActive(tab.route) ? tab.activeIcon : tab.icon }}</mat-icon>
+        <span class="active-dot" *ngIf="isActive(tab.route)"></span>
+      </div>
+      <span class="tab-label">{{ tab.label }}</span>
+    </button>
+  </ng-container>
+
+  <ng-template #unauthNav>
+    <button
+      *ngFor="let tab of tabs"
+      class="nav-tab"
+      [class.active]="isActive(tab.route)"
+      [class.auth-required]="tab.requiresAuth"
+      [attr.aria-label]="tab.label"
+      matRipple
+      [matRippleCentered]="true"
+      [matRippleUnbounded]="true"
+      (click)="navigate(tab, false)"
+    >
+      <div class="tab-icon-wrap">
+        <mat-icon class="tab-icon">{{ isActive(tab.route) ? tab.activeIcon : tab.icon }}</mat-icon>
+        <span class="active-dot" *ngIf="isActive(tab.route)"></span>
+      </div>
+      <span class="tab-label">{{ tab.label }}</span>
+    </button>
+  </ng-template>
+</nav>
+

@@ -79,6 +79,8 @@ export interface StokvelResponse {
   adminMembers: StokvelMemberDto[];
   regularMembers: StokvelMemberDto[];
   isOwner?: boolean;
+  isMember?: boolean;
+  currentUserRole?: string; // 'ADMIN' | 'MEMBER' | null
 }
 
 export interface StokvelRuleDto {
@@ -100,5 +102,49 @@ export interface StokvelMemberDto {
   joinedDate: string;
   status: string;
   membershipStatus: string;
+  totalContributed?: number;
+  nextPayoutAmount?: number;
+  nextPayOutDate?: string;
+  memberNumber?: number;
+  stokvelId?: number;
+  stokvelName?: string;
 }
 
+export interface CreateStokvelRequest {
+  name: string;
+  description: string;
+  type: string;
+  typeName?: string;
+  privacy: 'public' | 'private';
+  monthlyContribution: number;
+  targetAmount?: number;
+  payoutCycle: string;
+  maxMembers: number;
+  rotationOrder?: string;
+  rules?: StokvelRuleDto[];
+}
+
+export interface JoinRequestDTO {
+  stokvelId: number;
+  stokvelName?: string;
+  userId?: string;
+  fullName: string;
+  userEmail?: string;
+  message?: string;
+  contributionAmount?: number;
+}
+
+export interface JoinRequestResponseDTO {
+  id: number;
+  stokvelId: number;
+  stokvelName: string;
+  userId: string;
+  fullName: string;
+  userEmail: string;
+  message?: string;
+  contributionAmount?: number;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  adminNotes?: string;
+  createdAt: string;
+  updatedAt: string;
+}

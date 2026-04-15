@@ -8,8 +8,8 @@
 /* Header Section */
 .policy-header {
   background: linear-gradient(135deg,
-    rgba(194, 24, 91, 0.95) 0%,
-    rgba(233, 30, 99, 0.85) 50%,
+    rgba(13, 71, 161, 0.95) 0%,
+    rgba(21, 101, 192, 0.85) 50%,
     rgba(156, 39, 176, 0.75) 100%);
   color: white;
   padding: 60px 40px 40px;
@@ -179,14 +179,14 @@
 
 .nav-link {
   padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, rgba(194, 24, 91, 0.1) 0%, rgba(233, 30, 99, 0.1) 100%);
-  color: #c2185b;
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.1) 0%, rgba(21, 101, 192, 0.1) 100%);
+  color: #0d47a1;
   text-decoration: none;
   border-radius: 10px;
   font-size: 0.875rem;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1.5px solid rgba(194, 24, 91, 0.2);
+  border: 1.5px solid rgba(13, 71, 161, 0.2);
   position: relative;
   overflow: hidden;
 
@@ -202,10 +202,10 @@
   }
 
   &:hover {
-    background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
+    background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
     color: white;
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(194, 24, 91, 0.3);
+    box-shadow: 0 8px 25px rgba(13, 71, 161, 0.3);
 
     &::before {
       left: 100%;
@@ -269,7 +269,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #c2185b, #e91e63, #9c27b0);
+    background: linear-gradient(90deg, #0d47a1, #1565c0, #1565c0);
     opacity: 0.7;
   }
 
@@ -288,13 +288,13 @@
   .section-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
+    background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 8px 25px rgba(194, 24, 91, 0.3);
+    box-shadow: 0 8px 25px rgba(13, 71, 161, 0.3);
 
     mat-icon {
       font-size: 32px;
@@ -421,9 +421,9 @@
 
 .definition-item {
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(194, 24, 91, 0.08) 0%, rgba(233, 30, 99, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.08) 0%, rgba(21, 101, 192, 0.05) 100%);
   border-radius: 14px;
-  border-left: 5px solid #c2185b;
+  border-left: 5px solid #0d47a1;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -435,14 +435,14 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #c2185b, #e91e63);
+    background: linear-gradient(90deg, #0d47a1, #1565c0);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(194, 24, 91, 0.15);
+    box-shadow: 0 12px 30px rgba(13, 71, 161, 0.15);
 
     &::before {
       opacity: 1;
@@ -452,7 +452,7 @@
   strong {
     display: block;
     margin-bottom: 1rem;
-    color: #c2185b;
+    color: #0d47a1;
     font-size: 1.125rem;
     font-weight: 700;
   }
@@ -475,18 +475,18 @@
     gap: 1rem;
     margin-bottom: 1.25rem;
     padding: 1.25rem 1.5rem;
-    background: linear-gradient(135deg, rgba(194, 24, 91, 0.12) 0%, rgba(233, 30, 99, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.12) 0%, rgba(21, 101, 192, 0.08) 100%);
     border-radius: 12px;
-    border-left: 4px solid #c2185b;
+    border-left: 4px solid #0d47a1;
     transition: all 0.3s ease;
 
     &:hover {
       transform: translateX(5px);
-      box-shadow: 0 6px 20px rgba(194, 24, 91, 0.15);
+      box-shadow: 0 6px 20px rgba(13, 71, 161, 0.15);
     }
 
     mat-icon {
-      color: #c2185b;
+      color: #0d47a1;
       font-size: 24px;
       height: 24px;
       width: 24px;
@@ -511,7 +511,7 @@
       padding-left: 0.5rem;
 
       &::marker {
-        color: #c2185b;
+        color: #0d47a1;
         font-weight: bold;
       }
 
@@ -587,21 +587,21 @@
   transition: all 0.3s ease;
 
   &.primary {
-    background: linear-gradient(135deg, rgba(194, 24, 91, 0.15) 0%, rgba(233, 30, 99, 0.1) 100%);
-    color: #c2185b;
-    --gradient-colors: #c2185b, #e91e63;
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.15) 0%, rgba(21, 101, 192, 0.1) 100%);
+    color: #0d47a1;
+    --gradient-colors: #0d47a1, #1565c0;
   }
 
   &.secondary {
     background: linear-gradient(135deg, rgba(156, 39, 176, 0.15) 0%, rgba(156, 39, 176, 0.1) 100%);
-    color: #9c27b0;
-    --gradient-colors: #9c27b0, #ba68c8;
+    color: #1565c0;
+    --gradient-colors: #1565c0, #ba68c8;
   }
 
   &.accent {
     background: linear-gradient(135deg, rgba(255, 64, 129, 0.15) 0%, rgba(255, 64, 129, 0.1) 100%);
-    color: #ff4081;
-    --gradient-colors: #ff4081, #f50057;
+    color: #d97706;
+    --gradient-colors: #d97706, #b45309;
   }
 
   &.success {
@@ -735,7 +735,7 @@
       position: relative;
 
       &::marker {
-        color: #c2185b;
+        color: #0d47a1;
       }
 
       strong {
@@ -889,7 +889,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #9c27b0, #ba68c8);
+    background: linear-gradient(90deg, #1565c0, #ba68c8);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -923,7 +923,7 @@
     font-size: 28px;
     height: 28px;
     width: 28px;
-    color: #9c27b0;
+    color: #1565c0;
   }
 }
 
@@ -948,9 +948,9 @@
 .rights-procedure {
   margin-top: 2.5rem;
   padding: 2.5rem;
-  background: linear-gradient(135deg, rgba(194, 24, 91, 0.08) 0%, rgba(233, 30, 99, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.08) 0%, rgba(21, 101, 192, 0.05) 100%);
   border-radius: 16px;
-  border-left: 5px solid #c2185b;
+  border-left: 5px solid #0d47a1;
 
   h4 {
     margin: 0 0 1.25rem;
@@ -1014,7 +1014,7 @@
 .step-number {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #c2185b, #e91e63);
+  background: linear-gradient(135deg, #0d47a1, #1565c0);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1023,7 +1023,7 @@
   font-weight: 800;
   flex-shrink: 0;
   font-size: 1.25rem;
-  box-shadow: 0 6px 20px rgba(194, 24, 91, 0.3);
+  box-shadow: 0 6px 20px rgba(13, 71, 161, 0.3);
 }
 
 .step-content {
@@ -1121,18 +1121,18 @@
   display: flex;
   gap: 1.25rem;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(194, 24, 91, 0.08) 0%, rgba(233, 30, 99, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.08) 0%, rgba(21, 101, 192, 0.05) 100%);
   border-radius: 14px;
-  border: 1.5px solid rgba(194, 24, 91, 0.2);
+  border: 1.5px solid rgba(13, 71, 161, 0.2);
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(194, 24, 91, 0.15);
+    box-shadow: 0 8px 25px rgba(13, 71, 161, 0.15);
   }
 
   mat-icon {
-    color: #c2185b;
+    color: #0d47a1;
     font-size: 28px;
     height: 28px;
     width: 28px;
@@ -1160,7 +1160,7 @@
 
 /* Acceptance Section */
 .acceptance-section {
-  background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
+  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
   color: white;
   padding: 4rem;
   border-radius: 20px;

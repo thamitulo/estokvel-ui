@@ -1,0 +1,233 @@
+<div class="manage-page" *ngIf="!isLoading && stokvel; else loadingTpl">
+
+  <!-- ── Header ── -->
+  <div class="manage-header">
+    <button class="back-btn" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon> Back to Stokvel
+    </button>
+    <div class="header-title">
+      <div class="header-icon">
+        <mat-icon>manage_accounts</mat-icon>
+      </div>
+      <div>
+        <h1>Manage: {{ stokvel.name }}</h1>
+        <p>{{ stokvel.totalMembers ?? (stokvel.memberCount + stokvel.adminCount) }} members &middot; {{ stokvel.privacy | titlecase }}</p>
+      </div>
+    </div>
+    <!-- Pending badge -->
+    <div class="pending-badge" *ngIf="pendingRequests.length > 0" (click)="activeTab = 1">
+      <mat-icon>notifications_active</mat-icon>
+      {{ pendingRequests.length }} pending request{{ pendingRequests.length !== 1 ? 's' : '' }}
+    </div>
+  </div>
+
+  <!-- ── Tabs ── -->
+  <mat-tab-group [(selectedIndex)]="activeTab" class="manage-tabs" animationDuration="200ms">
+
+    <!-- ─────────────── TAB 1: Members ─────────────── -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>people</mat-icon>&nbsp;Members
+        <span class="tab-count">{{ allMembers.length }}</span>
+      </ng-template>
+
+      <div class="tab-body">
+        <div class="section-note">
+          <mat-icon>info_outline</mat-icon>
+          Only admins can remove members. Removing the last admin is not allowed.
+        </div>
+
+        <div class="member-table">
+          <div class="mt-row mt-head">
+            <span>Member</span><span>Role</span><span>Status</span><span>Joined</span><span></span>
+          </div>
+          <div class="mt-row" *ngFor="let m of allMembers">
+            <div class="mt-cell member-cell">
+              <div class="avatar" [class.admin-av]="m.role === 'ADMIN'">
+                {{ getInitials(m.displayName || m.userName) }}
+              </div>
+              <div class="member-info">
+                <span class="m-name">{{ m.displayName || m.userName }}</span>
+                <span class="m-email">{{ m.userEmail ? (m.userEmail | slice:0:3) + '***@' + (m.userEmail.split('@')[1] || '') : '' }}</span>
+              </div>
+            </div>
+            <div class="mt-cell">
+              <span class="role-tag" [class.admin-tag]="m.role === 'ADMIN'">{{ m.role }}</span>
+            </div>
+            <div class="mt-cell">
+              <span class="status-tag" [ngClass]="'st-' + m.membershipStatus?.toLowerCase()">
+                {{ m.membershipStatus }}
+              </span>
+            </div>
+            <div class="mt-cell muted">{{ m.joinedDate | date:'MMM y' }}</div>
+            <div class="mt-cell action-cell">
+              <button class="btn-remove"
+                      [disabled]="removingMemberId === (m.id ?? -1)"
+                      (click)="removeMember(m)"
+                      matTooltip="Remove member">
+                <mat-icon>person_remove</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- ─────────────── TAB 2: Join Requests ─────────────── -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>how_to_reg</mat-icon>&nbsp;Join Requests
+        <span class="tab-count pending" *ngIf="pendingRequests.length">{{ pendingRequests.length }}</span>
+      </ng-template>
+
+      <div class="tab-body">
+
+        <div class="empty-state" *ngIf="pendingRequests.length === 0">
+          <mat-icon>check_circle_outline</mat-icon>
+          <p>No pending join requests</p>
+        </div>
+
+        <div class="request-list" *ngIf="pendingRequests.length > 0">
+          <div class="request-card" *ngFor="let req of pendingRequests">
+            <div class="req-avatar">{{ getInitials(req.fullName) }}</div>
+            <div class="req-info">
+              <span class="req-name">{{ req.fullName }}</span>
+              <span class="req-email">{{ req.userEmail }}</span>
+              <span class="req-msg" *ngIf="req.message">{{ req.message }}</span>
+              <span class="req-meta">
+                R{{ req.contributionAmount | number }} contribution &middot; {{ req.createdAt | date:'mediumDate' }}
+              </span>
+            </div>
+            <div class="req-actions">
+              <button class="btn-approve" (click)="approveRequest(req.id)">
+                <mat-icon>check</mat-icon> Approve
+              </button>
+              <button class="btn-reject" (click)="rejectRequest(req.id)">
+                <mat-icon>close</mat-icon> Reject
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- ─────────────── TAB 3: Invite Member ─────────────── -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>person_add</mat-icon>&nbsp;Invite
+      </ng-template>
+
+      <div class="tab-body">
+        <div class="form-card">
+          <h3>Invite a Member by Email</h3>
+          <p class="form-note">
+            Enter the email address of the person you'd like to add. They'll receive an invitation
+            and their membership will be set to <strong>Pending</strong> until they accept.
+          </p>
+
+          <form [formGroup]="inviteForm" (ngSubmit)="inviteMember()" class="invite-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email address</mat-label>
+              <input matInput formControlName="email" type="email" placeholder="e.g. jane@example.com">
+              <mat-icon matPrefix>email</mat-icon>
+              <mat-error *ngIf="inviteForm.get('email')?.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="inviteForm.get('email')?.hasError('email')">Enter a valid email</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Role</mat-label>
+              <mat-select formControlName="role">
+                <mat-option value="MEMBER">Member</mat-option>
+                <mat-option value="ADMIN">Admin</mat-option>
+              </mat-select>
+              <mat-icon matPrefix>manage_accounts</mat-icon>
+            </mat-form-field>
+
+            <button type="submit" class="btn-primary" [disabled]="inviteForm.invalid || inviteLoading">
+              <mat-spinner diameter="18" *ngIf="inviteLoading"></mat-spinner>
+              <mat-icon *ngIf="!inviteLoading">person_add</mat-icon>
+              {{ inviteLoading ? 'Sending…' : 'Send Invitation' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- ─────────────── TAB 4: Request Payment ─────────────── -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>payments</mat-icon>&nbsp;Request Payment
+        <span class="tab-count pending" *ngIf="outstandingCount > 0">{{ outstandingCount }}</span>
+      </ng-template>
+
+      <div class="tab-body">
+        <div class="form-card">
+          <h3>Send Payment Reminder</h3>
+          <p class="form-note">
+            Reminders are sent <strong>only to members with outstanding contributions</strong>.
+            Members who are up to date will not be emailed.
+          </p>
+
+          <!-- Outstanding members preview -->
+          <div class="outstanding-preview">
+            <div class="op-header">
+              <mat-icon>warning_amber</mat-icon>
+              <span *ngIf="outstandingLoading">Checking contributions…</span>
+              <span *ngIf="!outstandingLoading && outstandingCount === 0">
+                ✅ All members are up to date — no outstanding contributions
+              </span>
+              <span *ngIf="!outstandingLoading && outstandingCount > 0">
+                <strong>{{ outstandingCount }}</strong> member{{ outstandingCount !== 1 ? 's' : '' }} with outstanding contributions
+              </span>
+            </div>
+
+            <div class="op-list" *ngIf="!outstandingLoading && outstandingCount > 0">
+              <div class="op-row" *ngFor="let m of outstandingMembers | slice:0:20">
+                <div class="op-member" *ngIf="m.hasOutstanding">
+                  <div class="avatar-sm">{{ getInitials(m.name) }}</div>
+                  <div class="op-info">
+                    <span class="op-name">{{ m.name }}</span>
+                    <span class="op-sub">Contributed: R{{ m.contributed | number }} &middot; Expected more</span>
+                  </div>
+                  <span class="op-amount">R{{ m.outstanding | number }} owed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form [formGroup]="paymentForm" (ngSubmit)="requestPayment()" class="invite-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Monthly Contribution Amount (ZAR)</mat-label>
+              <input matInput type="number" formControlName="amount" min="1">
+              <span matTextPrefix>R&nbsp;</span>
+              <mat-hint>Used to calculate each member's outstanding balance</mat-hint>
+              <mat-error *ngIf="paymentForm.get('amount')?.hasError('required')">Amount is required</mat-error>
+              <mat-error *ngIf="paymentForm.get('amount')?.hasError('min')">Must be greater than R0</mat-error>
+            </mat-form-field>
+
+            <button type="submit" class="btn-primary btn-payment"
+                    [disabled]="paymentForm.invalid || paymentLoading || outstandingCount === 0">
+              <mat-spinner diameter="18" *ngIf="paymentLoading"></mat-spinner>
+              <mat-icon *ngIf="!paymentLoading">send</mat-icon>
+              {{ paymentLoading ? 'Sending…' : 'Send Reminder to ' + outstandingCount + ' Member' + (outstandingCount !== 1 ? 's' : '') }}
+            </button>
+          </form>
+
+          <div class="payment-info" *ngIf="outstandingCount > 0">
+            <mat-icon>info_outline</mat-icon>
+            <span>Each highlighted member will receive an email with their outstanding amount and a link to pay via dashboard.</span>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="manage-loading">
+    <mat-spinner diameter="48"></mat-spinner>
+    <p>Loading stokvel management…</p>
+  </div>
+</ng-template>
+

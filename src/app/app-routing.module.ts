@@ -132,6 +132,26 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'stokvels',
+    loadComponent: () =>
+      import('./components/stokvel-list/stokvel-list.component').then(m => m.StokvelListComponent),
+    title: 'Browse Stokvels - eStokvel'
+  },
+  {
+    path: 'stokvels/:id',
+    loadComponent: () =>
+      import('./components/stokvel-detail/stokvel-detail.component').then(m => m.StokvelDetailComponent),
+    canActivate: [AuthGuard],
+    title: 'Stokvel Details - eStokvel'
+  },
+  {
+    path: 'stokvels/:id/manage',
+    loadComponent: () =>
+      import('./components/stokvel-manage/stokvel-manage.component').then(m => m.StokvelManageComponent),
+    canActivate: [AuthGuard],
+    title: 'Manage Stokvel - eStokvel'
+  },
+  {
     path: 'refer-earn',
     loadComponent: () =>
       import('./pages/referals/refer-and-earn.component').then(m => m.ReferAndEarnComponent),

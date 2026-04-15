@@ -6,7 +6,7 @@
 
 /* Hero Section */
 .contact-hero {
-  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  background: linear-gradient(135deg, #092e6b 0%, #0d47a1 100%);
   color: white;
   padding: 80px 20px 60px;
   position: relative;
@@ -264,7 +264,7 @@ mat-card {
   background: #fafafa;
 
   &:hover {
-    border-color: #c2185b;
+    border-color: #0d47a1;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   }
@@ -757,7 +757,7 @@ mat-card {
   gap: 12px;
 
   mat-icon {
-    color: #c2185b;
+    color: #0d47a1;
     margin-top: 2px;
     flex-shrink: 0;
   }

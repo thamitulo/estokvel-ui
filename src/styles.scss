@@ -7,12 +7,12 @@
 @include mat.elevation-classes();
 @include mat.app-background();
 
-// Material 3 token-based theme configuration.
+// Material 3 token-based theme – Navy Blue / Teal (trustworthy financial palette)
 $app-theme: mat.define-theme((
   color: (
     theme-type: light,
-    primary: mat.$rose-palette,
-    tertiary: mat.$violet-palette,
+    primary: mat.$azure-palette,
+    tertiary: mat.$cyan-palette,
     use-system-variables: true,
   ),
   typography: (
@@ -34,86 +34,99 @@ $app-theme: mat.define-theme((
   @include mat.system-level-colors($app-theme);
   @include mat.system-level-typography($app-theme);
 
-  --bg: var(--mat-sys-surface-container-low, #f5f7fb);
-  --surface: var(--mat-sys-surface, #ffffff);
-  --surface-soft: var(--mat-sys-surface-container-lowest, #f9fafc);
-  --text: var(--mat-sys-on-surface, #111827);
-  --muted: var(--mat-sys-on-surface-variant, #6b7280);
-  --brand-500: var(--mat-sys-primary, #e91e63);
-  --brand-600: var(--mat-sys-primary, #c2185b);
-  --brand-700: #a0144c;
-  --violet-600: #7b1fa2;
-  --on-brand: #ffffff;
-  --focus-ring: rgba(194, 24, 91, 0.38);
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --shadow-sm: 0 6px 20px rgba(15, 23, 42, 0.08);
-  --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.12);
-  --shadow-lg: 0 20px 45px rgba(15, 23, 42, 0.16);
+  // ── Brand: Deep Navy Blue ──────────────────────────────────────────────
+  --brand-500: #1565c0;
+  --brand-600: #0d47a1;
+  --brand-700: #092e6b;
+  // ── Accent: Emerald Green (growth) ────────────────────────────────────
+  --green-500: #10b981;
+  --green-600: #059669;
+  --green-700: #047857;
+  // ── Gold (premium CTAs) ───────────────────────────────────────────────
+  --gold:      #d97706;
+  --gold-dark: #b45309;
+  // ── Surfaces ──────────────────────────────────────────────────────────
+  --bg:           #f0f5fb;
+  --surface:      #ffffff;
+  --surface-soft: #f4f8ff;
+  // ── Text ──────────────────────────────────────────────────────────────
+  --text:  #0f172a;
+  --muted: #64748b;
+  // ── Misc ──────────────────────────────────────────────────────────────
+  --on-brand:   #ffffff;
+  --focus-ring: rgba(21, 101, 192, 0.38);
+  --radius-sm:  10px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
+  --shadow-sm:  0 4px 16px rgba(13, 71, 161, 0.08);
+  --shadow-md:  0 10px 28px rgba(13, 71, 161, 0.14);
+  --shadow-lg:  0 20px 48px rgba(13, 71, 161, 0.18);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
+html, body { margin: 0; padding: 0; min-height: 100%; }
+
+// Native mobile: use dynamic viewport height and prevent over-scroll bounce
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at 0 0, #fff3f8 0%, transparent 42%), var(--bg);
+  background: radial-gradient(circle at 0 0, #e8f0fe 0%, transparent 42%), var(--bg);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  // Prevent iOS overscroll bounce on native shell
+  overscroll-behavior: none;
+  // Prevent tap callouts on mobile
+  -webkit-tap-highlight-color: transparent;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  letter-spacing: -0.02em;
+// ── Safe-area CSS variables (iOS / Android cutout support) ────────────────────
+:root {
+  --sat: env(safe-area-inset-top);
+  --sar: env(safe-area-inset-right);
+  --sab: env(safe-area-inset-bottom);
+  --sal: env(safe-area-inset-left);
+  --mobile-header-h: 56px;
+  --mobile-nav-h:    64px;
 }
 
-p {
-  margin: 0;
+// ── Touch targets: minimum 44×44 pt (Apple HIG) ──────────────────────────────
+button, [role="button"], a {
+  touch-action: manipulation;
 }
 
-a {
-  color: var(--brand-600);
+mat-icon {
+  user-select: none;
 }
+
+h1, h2, h3, h4, h5, h6 { margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: var(--brand-600); }
 
 .mat-mdc-card,
 .mat-mdc-dialog-container,
 .mat-mdc-menu-panel,
 .mat-mdc-select-panel,
-.mat-mdc-table {
-  color: var(--text);
-}
+.mat-mdc-table { color: var(--text); }
 
 .mat-mdc-form-field,
 .mat-mdc-input-element,
 .mat-mdc-select-value,
 .mat-mdc-option,
-.mat-mdc-option .mdc-list-item__primary-text {
-  color: var(--text) !important;
-}
+.mat-mdc-option .mdc-list-item__primary-text { color: var(--text) !important; }
 
 .mat-mdc-form-field .mat-mdc-form-field-hint,
 .mat-mdc-form-field .mat-mdc-form-field-error,
 .mat-mdc-form-field .mat-mdc-form-field-required-marker,
-.mat-mdc-form-field .mdc-floating-label {
-  color: var(--muted) !important;
-}
+.mat-mdc-form-field .mdc-floating-label { color: var(--muted) !important; }
 
+// ── Action buttons ────────────────────────────────────────────────────────────
 .action-btn {
   height: 48px;
   border-radius: 999px;
@@ -139,28 +152,15 @@ a {
     box-shadow: var(--shadow-md);
     filter: saturate(1.06);
   }
+  &:active { transform: translateY(0); }
 
-  &:active {
-    transform: translateY(0);
-  }
-
-  &.primary {
-    background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-500) 100%);
-  }
-
-  &.accent {
-    background: linear-gradient(135deg, #ff4081 0%, #f50057 100%);
-  }
-
-  &.secondary {
-    background: linear-gradient(135deg, var(--violet-600) 0%, #6a1b9a 100%);
-  }
+  &.primary  { background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-500) 100%); }
+  &.accent   { background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%); }
+  &.secondary{ background: linear-gradient(135deg, var(--green-700) 0%, var(--green-500) 100%); }
 }
 
 .action-btn .mdc-button__label,
-.action-btn .mat-icon {
-  color: var(--on-brand) !important;
-}
+.action-btn .mat-icon { color: var(--on-brand) !important; }
 
 .mat-mdc-raised-button.action-btn.primary,
 .mat-mdc-raised-button.action-btn.accent,
@@ -171,6 +171,7 @@ a {
   --mdc-protected-button-container-color: transparent;
 }
 
+// ── Focus rings ───────────────────────────────────────────────────────────────
 .action-btn:focus-visible,
 .mat-mdc-raised-button:focus-visible,
 .mat-mdc-unelevated-button:focus-visible,
@@ -182,65 +183,33 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-mat-card {
-  border-radius: var(--radius-md) !important;
-}
+// ── Material overrides ────────────────────────────────────────────────────────
+mat-card { border-radius: var(--radius-md) !important; }
 
 .mat-mdc-raised-button,
-.mat-mdc-unelevated-button {
-  border-radius: 999px !important;
-  font-weight: 700 !important;
-}
+.mat-mdc-unelevated-button { border-radius: 999px !important; font-weight: 700 !important; }
 
 .mat-mdc-raised-button.mat-unthemed:not(:disabled),
-.mat-mdc-unelevated-button.mat-unthemed:not(:disabled) {
-  color: var(--text);
-}
+.mat-mdc-unelevated-button.mat-unthemed:not(:disabled) { color: var(--text); }
 
-.mat-mdc-outlined-button {
-  border-radius: 999px !important;
-}
+.mat-mdc-outlined-button { border-radius: 999px !important; }
+.mat-mdc-form-field { width: 100%; }
+.mat-mdc-form-field-subscript-wrapper { margin-top: 2px; }
 
-.mat-mdc-form-field {
-  width: 100%;
-}
-
-.mat-mdc-form-field-subscript-wrapper {
-  margin-top: 2px;
-}
-
-/* Hide the entire "Items per page" block */
-.mat-mdc-paginator-page-size {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-/* Extra safety: hide label + value individually */
+/* Hide items-per-page block */
+.mat-mdc-paginator-page-size,
 .mat-mdc-paginator-page-size-label,
-.mat-mdc-paginator-page-size-value {
-  display: none !important;
-  visibility: hidden !important;
-}
+.mat-mdc-paginator-page-size-value { display: none !important; visibility: hidden !important; }
 
+// ── Snackbars ─────────────────────────────────────────────────────────────────
 .success-snackbar {
-  background: #4caf50 !important;
-  color: white !important;
-
-  .mat-simple-snackbar-action {
-    color: white !important;
-  }
+  background: #059669 !important; color: white !important;
+  .mat-simple-snackbar-action { color: white !important; }
 }
-
 .error-snackbar {
-  background: #f44336 !important;
-  color: white !important;
-
-  .mat-simple-snackbar-action {
-    color: white !important;
-  }
+  background: #dc2626 !important; color: white !important;
+  .mat-simple-snackbar-action { color: white !important; }
 }
 
 /* Custom backdrop for modal */
-.custom-modal-backdrop {
-  background: rgba(0, 0, 0, 0.6) !important;
-}
+.custom-modal-backdrop { background: rgba(0, 0, 0, 0.6) !important; }

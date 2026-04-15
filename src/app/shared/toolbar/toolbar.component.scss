@@ -1,6 +1,6 @@
-/* Top Bar Styles - Pink (Full Width) */
+/* Top Bar – Deep Navy (trust / authority) */
 .top-bar {
-  background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
+  background: linear-gradient(135deg, #092e6b 0%, #0d47a1 100%);
   color: white;
   padding: 8px 0;
   font-size: 14px;
@@ -26,7 +26,7 @@
 }
 
 .top-bar-links a {
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   transition: opacity 0.3s;
 
@@ -36,11 +36,11 @@
   }
 }
 
-/* Main Toolbar Styles - White (Full Width) */
+/* Main Toolbar – White with navy shadow */
 .main-toolbar {
   background-color: white !important;
-  color: #333 !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: #0f172a !important;
+  box-shadow: 0 2px 12px rgba(13, 71, 161, 0.1);
   position: fixed;
   top: 40px; /* Height of top bar */
   padding: 0 !important;
@@ -72,11 +72,12 @@
 
 .logo-text {
   font-size: 24px;
-  font-weight: bold;
-  background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
+  font-weight: 800;
+  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 50%, #1976d2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
+  letter-spacing: -0.5px;
 }
 
 .spacer {
@@ -93,14 +94,14 @@
 }
 
 .nav-button {
-  color: #333 !important;
+  color: #334155 !important;
   font-weight: 500;
   white-space: nowrap;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: rgba(194, 24, 91, 0.04);
-    color: #c2185b !important;
+    background-color: rgba(13, 71, 161, 0.05);
+    color: #0d47a1 !important;
   }
 }
 
@@ -148,21 +149,21 @@
 }
 
 .auth-button {
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
   transition: all 0.3s ease;
 
   &.login-btn {
-    border-color: #c2185b;
-    color: #c2185b;
+    border-color: #0d47a1;
+    color: #0d47a1;
 
     &:hover {
-      background-color: rgba(194, 24, 91, 0.04);
+      background-color: rgba(13, 71, 161, 0.05);
     }
   }
 
   &.signup-btn {
-    background: linear-gradient(135deg, #c2185b 0%, #e91e63 100%);
+    background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
     color: white;
 
     &:hover {
@@ -172,16 +173,16 @@
   }
 }
 
-/* Profile Menu Styles */
+/* Profile button */
 .profile-button {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #333 !important;
+  color: #334155 !important;
   white-space: nowrap;
 
   &:hover {
-    color: #c2185b !important;
+    color: #0d47a1 !important;
   }
 }
 
@@ -199,12 +200,13 @@
   align-items: center;
   padding: 12px 16px;
   gap: 12px;
+  background: linear-gradient(135deg, #f0f5fb 0%, #e8f0fe 100%);
 
   mat-icon {
     font-size: 40px;
     width: 40px;
     height: 40px;
-    color: #c2185b;
+    color: #0d47a1;
   }
 }
 
@@ -320,14 +322,14 @@ body {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #c2185b;
+  border: 2px solid #1565c0;
 }
 
 .fallback-avatar {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #c2185b;
+  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
   color: white;
   font-weight: bold;
   font-size: 18px;
@@ -335,88 +337,41 @@ body {
 }
 
 .desktop-menu button.active-link {
-  background-color: rgba(194, 24, 91, 0.1);
-  color: #c2185b;
+  background-color: rgba(13, 71, 161, 0.10);
+  color: #0d47a1;
   font-weight: 600;
 }
 
-/* Modern refresh overrides */
-.top-bar {
-  background: linear-gradient(135deg, #8a123f 0%, #c2185b 100%);
-  box-shadow: 0 8px 18px rgba(138, 18, 63, 0.26);
-}
-
-.top-bar-content {
-  max-width: 1280px;
-}
-
-.top-bar-links a {
-  font-weight: 500;
-}
-
+/* ─── Modern overrides (navy palette) ─────────────────────────────────────── */
 .main-toolbar {
-  background: rgba(255, 255, 255, 0.94) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(17, 24, 39, 0.07);
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+  background: rgba(255,255,255,.97) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(13,71,161,.10);
+  box-shadow: 0 4px 20px rgba(13,71,161,.08);
 }
 
-.toolbar-container,
-.fixed-menu-container {
-  max-width: 1280px;
+.toolbar-container, .fixed-menu-container { max-width: 1280px; }
+.logo-text { font-size: 1.6rem; letter-spacing: -0.03em; }
+.desktop-menu { gap: 4px; }
+.desktop-menu button, .nav-button { border-radius: 999px; padding: 0 14px; height: 38px; }
+.auth-button.login-btn { border-width: 1.5px; }
+.auth-button.signup-btn { box-shadow: 0 8px 18px rgba(13,71,161,.28); }
+.profile-button { border-radius: 999px; padding: 6px 10px; }
+.custom-profile-menu { border-radius: 14px; overflow: hidden; }
+.profile-avatar { border-color: #1565c0 !important; box-shadow: 0 4px 12px rgba(13,71,161,.2); }
+@media (max-width: 992px) { .toolbar-container { height: 60px; } .logo-text { font-size: 1.32rem; } }
+
+/* active nav link */
+.active-link {
+  color: #0d47a1 !important;
+  font-weight: 700 !important;
+  background: rgba(13,71,161,.10) !important;
 }
 
-.logo-text {
-  font-size: 1.6rem;
-  letter-spacing: -0.03em;
-}
+/* ── Undo the legacy pink override block ── */
+.profile-avatar { border-color: #1565c0 !important; box-shadow: 0 4px 12px rgba(13,71,161,.2) !important; }
+.fallback-avatar { background-color: #0d47a1 !important; }
+.desktop-menu button.active-link { background-color: rgba(13,71,161,.12) !important; color: #0d47a1 !important; }
 
-.desktop-menu {
-  gap: 4px;
-}
-
-.desktop-menu button,
-.nav-button {
-  border-radius: 999px;
-  padding: 0 14px;
-  height: 38px;
-}
-
-.desktop-menu button.active-link {
-  background-color: rgba(194, 24, 91, 0.12);
-}
-
-.auth-button.login-btn {
-  border-width: 1.5px;
-}
-
-.auth-button.signup-btn {
-  box-shadow: 0 8px 18px rgba(194, 24, 91, 0.25);
-}
-
-.profile-button {
-  border-radius: 999px;
-  padding: 6px 10px;
-}
-
-.custom-profile-menu {
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.profile-avatar {
-  border-color: #e91e63;
-  box-shadow: 0 4px 12px rgba(194, 24, 91, 0.2);
-}
-
-@media (max-width: 992px) {
-  .toolbar-container {
-    height: 60px;
-  }
-
-  .logo-text {
-    font-size: 1.32rem;
-  }
-}
 

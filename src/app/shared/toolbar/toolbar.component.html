@@ -70,11 +70,23 @@
 
           <mat-divider></mat-divider>
 
+          <button mat-menu-item routerLink="/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            <span>My Dashboard</span>
+          </button>
+          <button mat-menu-item routerLink="/create-stokvel">
+            <mat-icon>add_circle</mat-icon>
+            <span>Create Stokvel</span>
+          </button>
+          <button mat-menu-item routerLink="/stokvels">
+            <mat-icon>groups</mat-icon>
+            <span>Browse Stokvels</span>
+          </button>
           <button mat-menu-item>
             <mat-icon>settings</mat-icon>
             <span>Account Settings</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item routerLink="/stokvels">
             <mat-icon>history</mat-icon>
             <span>Transaction History</span>
           </button>

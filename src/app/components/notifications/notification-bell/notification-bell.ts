@@ -22,9 +22,12 @@ export class NotificationBellComponent implements OnInit, OnDestroy {
   unreadCount: number = 0;
   isLoading: boolean = false;
   isMenuOpen: boolean = false;
+  backendUnavailable: boolean = false;  // true when backend is unreachable
 
   private pollSubscription: Subscription | undefined;
   private refreshInterval = 30000;
+  private consecutiveFailures = 0;
+  private readonly maxConsecutiveFailures = 3; // pause polling after 3 failures
 
   constructor(private notificationService: NotificationService) {}
 
@@ -46,19 +49,41 @@ export class NotificationBellComponent implements OnInit, OnDestroy {
         this.notifications = notifications;
         this.unreadCount = notifications.filter(n => n.isUnread).length;
         this.isLoading = false;
+        this.consecutiveFailures = 0;
+        this.backendUnavailable = false;
       },
       error: (error) => {
-        console.error('Failed to load notifications:', error);
         this.isLoading = false;
+        this.consecutiveFailures++;
+
+        if (error.status === 0) {
+          // Network error (ERR_CONNECTION_REFUSED) — backend is down
+          this.backendUnavailable = true;
+          if (this.consecutiveFailures <= 1) {
+            // Only log once to avoid console spam
+            console.warn('Notification service unavailable: backend not reachable at localhost:8080');
+          }
+        } else if (error.status === 401) {
+          // Not authenticated yet — expected during page load before token is ready, suppress noise
+        } else {
+          console.error('Failed to load notifications:', error);
+        }
       }
     });
   }
 
   startPolling(): void {
     this.pollSubscription = interval(this.refreshInterval).subscribe(() => {
-      if (!this.isMenuOpen) {
-        this.loadNotifications();
+      // Pause polling if backend is unreachable (avoid flooding console/network)
+      if (this.isMenuOpen) return;
+      if (this.consecutiveFailures >= this.maxConsecutiveFailures) {
+        // After 3 failures, retry only every 5th interval (~2.5 min) to detect recovery
+        if (this.consecutiveFailures % 5 !== 0) {
+          this.consecutiveFailures++;
+          return;
+        }
       }
+      this.loadNotifications();
     });
   }
 

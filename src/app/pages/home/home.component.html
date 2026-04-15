@@ -1,395 +1,424 @@
-<!-- Hero Section -->
-<section class="hero-section">
-  <div class="hero-background"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Save together. Grow together.</h1>
-    <br/>
-    <p class="hero-subtitle">Reach your financial goals with a trusted community.</p>
-    <br/>
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-orbs">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+  </div>
+
+  <div class="hero-inner">
+    <!-- Left copy -->
+    <div class="hero-copy">
+      <div class="hero-eyebrow">
+        <mat-icon>verified_user</mat-icon>
+        <span>South Africa's Most Trusted Digital Stokvel</span>
+      </div>
+
+      <h1 class="hero-h1">
+        Save Together.<br/>
+        <span class="hero-h1-accent">Grow Together.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Bank-level security, complete transparency and a thriving community — all in one platform. Start your stokvel journey today.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn-hero-primary" (click)="login()">
+          <mat-icon>rocket_launch</mat-icon>
+          Get Started Free
+        </button>
+        <button class="btn-hero-ghost" routerLink="/stokvels">
+          <mat-icon>explore</mat-icon>
+          Browse Stokvels
+        </button>
+      </div>
+
+      <div class="hero-social-proof">
+        <div class="avatars">
+          <div class="av" style="background: linear-gradient(135deg,#0d47a1,#1565c0)">N</div>
+          <div class="av" style="background: linear-gradient(135deg,#059669,#047857)">S</div>
+          <div class="av" style="background: linear-gradient(135deg,#d97706,#b45309)">T</div>
+          <div class="av" style="background: linear-gradient(135deg,#1565c0,#00897b)">M</div>
+        </div>
+        <span>Joined by <strong>10,000+</strong> South Africans</span>
+      </div>
+    </div>
+
+    <!-- Right stats card -->
+    <div class="hero-stats-card">
+      <div class="hsc-header">
+        <mat-icon>show_chart</mat-icon>
+        <span>Community at a glance</span>
+      </div>
+      <div class="hsc-stats">
+        <div class="hsc-stat">
+          <div class="hsc-stat-top">
+            <span class="hsc-val">R 50M+</span>
+            <span class="hsc-lbl">Total Saved</span>
+          </div>
+          <div class="hsc-bar"><div class="hsc-fill" style="width:78%"></div></div>
+        </div>
+        <div class="hsc-stat">
+          <div class="hsc-stat-top">
+            <span class="hsc-val">2,400+</span>
+            <span class="hsc-lbl">Active Stokvels</span>
+          </div>
+          <div class="hsc-bar"><div class="hsc-fill" style="width:62%"></div></div>
+        </div>
+        <div class="hsc-stat">
+          <div class="hsc-stat-top">
+            <span class="hsc-val">98%</span>
+            <span class="hsc-lbl">On-time Payouts</span>
+          </div>
+          <div class="hsc-bar"><div class="hsc-fill" style="width:98%; background: linear-gradient(90deg,#059669,#10b981)"></div></div>
+        </div>
+      </div>
+      <div class="hsc-trust">
+        <mat-icon>lock</mat-icon>
+        <span>256-bit encrypted · POPIA compliant</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating stat pills -->
+  <div class="hero-pills">
+    <div class="pill"><mat-icon>security</mat-icon> Bank-level Security</div>
+    <div class="pill"><mat-icon>groups</mat-icon> 10,000+ Members</div>
+    <div class="pill"><mat-icon>account_balance_wallet</mat-icon> R50M+ Saved</div>
+    <div class="pill"><mat-icon>verified</mat-icon> POPIA Compliant</div>
   </div>
 </section>
 
-<!-- Action Buttons Section -->
-<div class="action-section-wrapper">
-  <div class="action-section mat-elevation-z8">
-    <div class="action-buttons">
-      <button mat-raised-button class="action-btn primary">Open a Free Account</button>
-      <button mat-raised-button class="action-btn accent" routerLink="/create-stokvel">Create a Stokvel</button>
-      <button mat-raised-button class="action-btn secondary">Join a Stokvel</button>
-    </div>
-  </div>
-</div>
 
-<!-- Features Section -->
+<!-- ═══════════════════════════════════════════════════════════════
+     FEATURE CARDS
+══════════════════════════════════════════════════════════════ -->
 <section class="features-section">
-  <div class="section-title">
-    <h2>Why Choose eStokvel?</h2>
-    <p>Modern, secure and transparent community savings platform</p>
+  <div class="section-header">
+    <div class="section-eyebrow">Why eStokvel?</div>
+    <h2>Built for trust. Designed for growth.</h2>
+    <p>Everything your savings group needs — from first contribution to final payout.</p>
   </div>
+
   <div class="features-grid">
-    <mat-card class="feature-card mat-elevation-z4">
-      <div class="feature-image-container">
-        <div class="feature-image security-image"></div>
-        <mat-icon class="feature-icon">security</mat-icon>
+    <div class="feat-card">
+      <div class="feat-icon-wrap navy">
+        <mat-icon>shield</mat-icon>
       </div>
-      <mat-card-content>
-        <h3>Safe & Secure</h3>
-        <p>Bank-level security with encrypted transactions. No cash handling risks or safekeeping worries.</p>
-        <ul class="feature-benefits">
-          <li>Encrypted digital payments</li>
-          <li>Secure fund storage</li>
-          <li>Audit trail for all activities</li>
-        </ul>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="feature-card mat-elevation-z4">
-      <div class="feature-image-container">
-        <div class="feature-image transparency-image"></div>
-        <mat-icon class="feature-icon">visibility</mat-icon>
-      </div>
-      <mat-card-content>
-        <h3>Complete Transparency</h3>
-        <p>Real-time tracking of contributions and payouts. Know exactly where every cent goes.</p>
-        <ul class="feature-benefits">
-          <li>Live contribution tracking</li>
-          <li>Transparent payout cycles</li>
-          <li>Member activity monitoring</li>
-        </ul>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="feature-card mat-elevation-z4">
-      <div class="feature-image-container">
-        <div class="feature-image convenience-image"></div>
-        <mat-icon class="feature-icon">schedule</mat-icon>
-      </div>
-      <mat-card-content>
-        <h3>Convenient & Flexible</h3>
-        <p>Manage your stokvel anytime, anywhere. No physical meetings or complicated paperwork.</p>
-        <ul class="feature-benefits">
-          <li>24/7 access from any device</li>
-          <li>Automated payment reminders</li>
-          <li>Digital constitution management</li>
-        </ul>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</section>
-
-<!-- How It Works Section -->
-<section class="how-it-works-section">
-  <div class="section-title">
-    <h2>How eStokvel Works</h2>
-    <p>Simple steps to start your digital stokvel journey</p>
-  </div>
-
-  <div class="steps-container">
-    <div class="step-card">
-      <div class="step-number">1</div>
-      <div class="step-image step-1-image"></div>
-      <h3>Create Account</h3>
-      <p>Sign up with your email, activate your account and set up secure login details.</p>
+      <h3>Bank-Level Security</h3>
+      <p>256-bit encryption protects every transaction. No cash, no risk. Your money stays safe.</p>
+      <ul class="feat-list">
+        <li><mat-icon>check_circle</mat-icon><span>Encrypted digital payments</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Secure fund storage</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Full audit trail</span></li>
+      </ul>
     </div>
 
-    <div class="step-card">
-      <div class="step-number">2</div>
-      <div class="step-image step-2-image"></div>
-      <h3>Join or Create</h3>
-      <p>Choose to join existing public stokvels or create your own private group.</p>
+    <div class="feat-card featured">
+      <div class="feat-icon-wrap teal">
+        <mat-icon>bar_chart</mat-icon>
+      </div>
+      <h3>Full Transparency</h3>
+      <p>Real-time dashboards show every rand, every member, every cycle. No secrets, no surprises.</p>
+      <ul class="feat-list">
+        <li><mat-icon>check_circle</mat-icon><span>Live contribution tracking</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Transparent payout cycles</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Member activity log</span></li>
+      </ul>
     </div>
 
-    <div class="step-card">
-      <div class="step-number">3</div>
-      <div class="step-image step-3-image"></div>
-      <h3>Start Saving</h3>
-      <p>Define contribution amounts, payout cycles, Make regular contributions through secure digital channels.</p>
-    </div>
-
-    <div class="step-card">
-      <div class="step-number">4</div>
-      <div class="step-image step-4-image"></div>
-      <h3>Receive Payouts</h3>
-      <p>Get your lump sum payout according to your stokvel's rotation schedule.</p>
+    <div class="feat-card">
+      <div class="feat-icon-wrap gold">
+        <mat-icon>bolt</mat-icon>
+      </div>
+      <h3>Effortless Management</h3>
+      <p>Manage your stokvel 24/7 from any device. Automated reminders replace manual follow-ups.</p>
+      <ul class="feat-list">
+        <li><mat-icon>check_circle</mat-icon><span>24/7 access anywhere</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Automated reminders</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Digital constitution</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- Stokvel Types Section -->
-<section class="stokvel-types-section">
-  <div class="section-title">
-    <h2>Choose Your Stokvel Type</h2>
-    <p>Various savings models to suit your financial goals</p>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HOW IT WORKS  (Timeline)
+══════════════════════════════════════════════════════════════ -->
+<section class="hiw-section">
+  <div class="section-header light">
+    <div class="section-eyebrow">Simple Process</div>
+    <h2>Up and running in minutes</h2>
+    <p>Four easy steps from sign-up to your first payout</p>
+  </div>
+
+  <div class="hiw-steps">
+    <div class="hiw-step" *ngFor="let step of steps; let i = index; let last = last">
+      <div class="hiw-icon-wrap">
+        <mat-icon>{{ step.icon }}</mat-icon>
+      </div>
+      <div class="hiw-num">0{{ i + 1 }}</div>
+      <h4>{{ step.title }}</h4>
+      <p>{{ step.desc }}</p>
+      <div class="hiw-connector" *ngIf="!last"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STOKVEL TYPES
+══════════════════════════════════════════════════════════════ -->
+<section class="types-section">
+  <div class="section-header">
+    <div class="section-eyebrow">Savings Models</div>
+    <h2>Choose your stokvel type</h2>
+    <p>Multiple structures to fit every financial goal</p>
   </div>
 
   <div class="types-grid">
-    <mat-card class="type-card mat-elevation-z2">
-      <div class="type-image contribution-image"></div>
-      <mat-card-content>
-        <mat-icon class="type-icon">rotate_right</mat-icon>
-        <h3>Contribution Stokvel</h3>
-        <p>Traditional rotational savings where members receive lump sums on a scheduled basis.</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="type-card mat-elevation-z2">
-      <div class="type-image investment-image"></div>
-      <mat-card-content>
-        <mat-icon class="type-icon">trending_up</mat-icon>
-        <h3>Investment Group</h3>
-        <p>Pool funds for investments and share returns. Perfect for long-term wealth building.</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="type-card mat-elevation-z2">
-      <div class="type-image property-image"></div>
-      <mat-card-content>
-        <mat-icon class="type-icon">home</mat-icon>
-        <h3>Property Stokvel</h3>
-        <p>Collectively invest in real estate properties for rental income or capital appreciation.</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="type-card mat-elevation-z2">
-      <div class="type-image livestock-image"></div>
-      <mat-card-content>
-        <mat-icon class="type-icon">pets</mat-icon>
-        <h3>Livestock Stokvel</h3>
-        <p>Invest in livestock farming for breeding, milk production, or meat sales.</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="type-card mat-elevation-z2">
-      <div class="type-image family-image"></div>
-      <mat-card-content>
-        <mat-icon class="type-icon">family_restroom</mat-icon>
-        <h3>Family Stokvel</h3>
-        <p>Family-oriented savings for major purchases, education, or property investments.</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="type-card mat-elevation-z2">
-      <div class="type-image party-image"></div>
-      <mat-card-content>
-        <mat-icon class="type-icon">celebration</mat-icon>
-        <h3>Party Stokvel</h3>
-        <p>Organize events and share profits. Perfect for community events and social gatherings.</p>
-      </mat-card-content>
-    </mat-card>
+    <div class="type-tile" *ngFor="let t of stokvelTypes"
+         [ngClass]="t.bannerClass"
+         routerLink="/stokvels">
+      <div class="tile-bg-pattern"></div>
+      <mat-icon>{{ t.icon }}</mat-icon>
+      <h4>{{ t.name }}</h4>
+      <p>{{ t.desc }}</p>
+      <div class="tile-arrow"><mat-icon>arrow_forward</mat-icon></div>
+    </div>
   </div>
 </section>
 
-<!-- Success Stories Section -->
-<section class="success-stories-section">
-  <div class="success-stories-container">
-    <div class="success-stories-row">
-      <div class="how-it-works-col">
-        <mat-card class="how-it-works-card mat-elevation-z4">
-          <div class="stokvel-explanation-image"></div>
-          <mat-card-content>
-            <h1 class="how-it-works-title">What is a Stokvel?</h1>
-            <div class="tagline">
-              <div class="tagline-word tagline-word--simple">Community.</div>
-              <div class="tagline-word tagline-word--transparent">Savings.</div>
-              <div class="tagline-word tagline-word--impactful">Growth.</div>
-            </div>
-            <div class="stokvel-explanation">
-              <p>A stokvel is a savings or investment society where members regularly contribute agreed amounts and
-                receive lump sum payouts.</p>
-              <p>With eStokvel, choose between private (invite-only) or public (anyone can join) stokvels. Minimum of 3
-                members required to start.</p>
-            </div>
-            <div class="key-benefits">
-              <h4>Key Benefits:</h4>
-              <ul>
-                <li>💰 Secure digital payments</li>
-                <li>👥 Trusted community members</li>
-                <li>📱 No physical meetings required</li>
-                <li>⚡ Real-time contribution tracking</li>
-                <li>📊 Transparent financial management</li>
-              </ul>
-            </div>
-            <div class="fundraising-process__button-container">
-              <button mat-raised-button color="primary" class="how-it-works-button">LEARN MORE</button>
-            </div>
-          </mat-card-content>
-        </mat-card>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     WHAT IS A STOKVEL  +  TRENDING STOKVELS
+══════════════════════════════════════════════════════════════ -->
+<section class="split-section">
+  <div class="split-inner">
+
+    <!-- Left: What is a stokvel -->
+    <div class="split-left">
+      <div class="section-eyebrow">Learn More</div>
+      <h2>What is a Stokvel?</h2>
+      <div class="split-tagline">
+        <span class="tag-navy">Community.</span>
+        <span class="tag-teal">Savings.</span>
+        <span class="tag-gold">Growth.</span>
       </div>
-      <div class="success-stories-col">
-        <div>
-          <mat-card class="success-stories-card mat-elevation-z4">
-            <mat-card-content>
-              <div class="card-title-public-pages-container">
-                <h3 class="card-title-public-pages-text">Trending Stokvels</h3>
-                <div class="fuelled-by-giving-text">
-                  Empowered by community contributions
-                </div>
-              </div>
+      <p class="split-body">
+        A stokvel is a savings or investment society where members regularly contribute agreed amounts and receive lump sum payouts in rotation.
+      </p>
+      <p class="split-body">
+        With eStokvel, choose between <strong>private (invite-only)</strong> or <strong>public (anyone can join)</strong> stokvels. Minimum of 3 members required to start.
+      </p>
 
-              <!-- Loading State -->
-              <div *ngIf="isLoading" class="loading-container">
-                <mat-spinner diameter="40"></mat-spinner>
-                <p>Loading trending stokvels...</p>
-              </div>
+      <ul class="split-benefits">
+        <li><mat-icon>payments</mat-icon><span>Secure digital payments</span></li>
+        <li><mat-icon>groups</mat-icon><span>Trusted community members</span></li>
+        <li><mat-icon>smartphone</mat-icon><span>No physical meetings required</span></li>
+        <li><mat-icon>bolt</mat-icon><span>Real-time contribution tracking</span></li>
+        <li><mat-icon>insert_chart</mat-icon><span>Transparent financial management</span></li>
+      </ul>
 
-              <!-- Content when loaded -->
-              <div *ngIf="!isLoading">
-                <div *ngIf="pagedStokvels.length === 0" class="no-stokvels">
-                  <mat-icon>search_off</mat-icon>
-                  <h4>No trending stokvels found</h4>
-                  <p>Be the first to create a stokvel!</p>
-                  <button mat-raised-button color="primary" (click)="createNewStokvel()">
-                    Create Stokvel
-                  </button>
-                </div>
+      <button class="btn-learn-more" routerLink="/stokvel-basics">
+        Learn More <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
 
-                <div *ngIf="pagedStokvels.length > 0" class="trending-stokvels-list">
-                  <mat-card class="stokvel-card glass-card"
-                            *ngFor="let stokvel of pagedStokvels; let last = last"
-                            (click)="openCampaign(stokvel)">
-                    <div class="card-pattern"></div>
+    <!-- Right: Trending Stokvels -->
+    <div class="split-right">
 
-                    <!-- Stokvel Header -->
-                    <div class="stokvel-header">
-                      <div class="stokvel-image-container">
-                        <div class="stokvel-image">
-                          <div class="image-overlay"></div>
-                          <div class="stokvel-type-badge">
-
-                          </div>
-                        </div>
-                        <div class="stokvel-status" [ngClass]="stokvel.status">
-                          {{ stokvel.status }}
-                        </div>
-                      </div>
-                      <div class="stokvel-info">
-                        <h3 class="stokvel-name">{{ stokvel.name }}</h3>
-                        <p class="stokvel-description">{{ stokvel.description }}</p>
-
-                        <div class="stokvel-meta">
-                          <div class="stokvel-members">
-                            <mat-icon>people</mat-icon>
-                            <span>  {{ stokvelMemberCount(stokvel) }} member(s)</span>
-                          </div>
-                          <div class="stokvel-duration">
-                            <mat-icon>calendar_today</mat-icon>
-                            <span>12 months</span>
-                          </div>
-                        </div>
-
-                        <!-- Performance Indicators -->
-                        <!--div class="performance-indicators">
-                          <div class="performance-item">
-                            <div class="performance-label">Reliability</div>
-                            <div class="performance-bar">
-                              <div class="performance-fill" [style.width.%]="{{ reliability }}"></div>
-                            </div>
-                            <div class="performance-value">{{ reliability }}</div>
-                          </div>
-
-                          <div class="performance-item">
-                            <div class="performance-label">Avg Contribution</div>
-                            <div class="performance-value">{{ averageContribution }}</div>
-                          </div>
-                        </div-->
-                      </div>
-                    </div>
-
-                    <mat-card-content>
-                      <!-- Key Metrics -->
-                      <div class="stokvel-metrics">
-                        <div class="metric-grid">
-                          <div class="metric-item">
-                            <div class="metric-icon">
-                              <mat-icon>payments</mat-icon>
-                            </div>
-                            <div class="metric-content">
-                              <div class="metric-value">
-                                R{{ stokvel.monthlyContribution || stokvel.targetAmount / 12 | number }}
-                              </div>
-                              <div class="metric-label">Monthly</div>
-                            </div>
-                          </div>
-
-                          <div class="metric-item">
-                            <div class="metric-icon">
-                              <mat-icon>rotate_right</mat-icon>
-                            </div>
-                            <div class="metric-content">
-                              <div class="metric-value">{{ stokvel.payoutCycle || 'Monthly' }}</div>
-                              <div class="metric-label">Payout Cycle</div>
-                            </div>
-                          </div>
-
-                          <div class="metric-item">
-                            <div class="metric-icon">
-                              <mat-icon>trending_up</mat-icon>
-                            </div>
-                            <div class="metric-content">
-                              <div class="metric-value" [ngClass]="'positive'">
-                                79%
-                              </div>
-                              <div class="metric-label">Growth</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Additional Details -->
-                      <div class="stokvel-details">
-                        <!--div class="detail-item">
-                          <mat-icon>calendar_today</mat-icon>
-                          <span>Next payout: Jan 03 2025 </span>
-                        </div-->
-                        <div class="detail-item">
-                          <mat-icon>event_available</mat-icon>
-                          <span>Established: {{ stokvel.createdAt | date:'MMM yyyy' }}</span>
-                        </div>
-                      </div>
-                    </mat-card-content>
-
-                    <mat-card-actions>
-                      <button mat-raised-button
-                              color="primary"
-                              class="join-btn"
-                              (click)="joinStokvel(stokvel); $event.stopPropagation();">
-                        <mat-icon>group_add</mat-icon>
-                        Request to Join
-                      </button>
-                      <button mat-button
-                              color="accent"
-                              class="details-btn"
-                              (click)="openCampaign(stokvel); $event.stopPropagation();">
-                        <mat-icon>visibility</mat-icon>
-                        View Details
-                      </button>
-                    </mat-card-actions>
-                  </mat-card>
-
-                  <mat-divider *ngIf="!last"></mat-divider>
-                </div>
-
-                <!-- Paginator - only show if we have stokvels -->
-                <mat-paginator *ngIf="totalStokvels > 0"
-                               [length]="totalStokvels"
-                               [pageSize]="pageSize"
-                               [pageSizeOptions]="[3, 6, 12, 24]"
-                               [pageIndex]="currentPage"
-                               (page)="onPageChange($event)">
-                </mat-paginator>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-
-        <!-- CTA Section -->
-        <section class="cta-section">
-          <div class="cta-background"></div>
-          <div class="cta-content">
-            <h2 class="cta-title">Ready to Start Your Savings Journey?</h2>
-            <p class="cta-subtitle">Join thousands of South Africans building wealth together through eStokvel</p>
-            <button mat-raised-button color="primary" class="btn-hero">Get Started Today</button>
+      <!-- Header -->
+      <div class="trending-header">
+        <div class="th-left">
+          <div class="th-icon"><mat-icon>trending_up</mat-icon></div>
+          <div>
+            <h3>Trending Stokvels</h3>
+            <p class="trending-sub">Active · Public · Open to join</p>
           </div>
-        </section>
+        </div>
+        <div class="th-right">
+          <span class="popia-badge" matTooltip="Personal information is protected under POPIA">
+            <mat-icon>shield</mat-icon> POPIA
+          </span>
+          <button class="btn-view-all" routerLink="/stokvels">
+            View All <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div *ngIf="isLoading" class="loading-state">
+        <mat-spinner diameter="32"></mat-spinner>
+        <span>Loading stokvels…</span>
+      </div>
+
+      <!-- Empty -->
+      <div *ngIf="!isLoading && pagedStokvels.length === 0" class="empty-state">
+        <div class="empty-icon-wrap"><mat-icon>savings</mat-icon></div>
+        <h4>No stokvels yet</h4>
+        <p>Be the first to create one!</p>
+        <button class="btn-create-first" (click)="createNewStokvel()">
+          <mat-icon>add_circle</mat-icon> Create Stokvel
+        </button>
+      </div>
+
+      <!-- Stokvel cards -->
+      <div *ngIf="!isLoading && pagedStokvels.length > 0" class="trending-list">
+        <div class="trending-card" *ngFor="let s of pagedStokvels" (click)="openCampaign(s)">
+
+          <!-- Coloured icon badge -->
+          <div class="tc-badge" [ngClass]="getTypeBannerClass(s.type)">
+            <mat-icon>{{ getTypeIcon(s.type) }}</mat-icon>
+            <span class="tc-badge-label">{{ getTypeLabel(s.type) }}</span>
+          </div>
+
+          <!-- Main info -->
+          <div class="tc-info">
+
+            <!-- Name + status -->
+            <div class="tc-name-row">
+              <span class="tc-name">{{ s.name }}</span>
+              <span class="tc-pill" [class.pill-active]="s.status?.toLowerCase() === 'active'">
+                {{ s.status }}
+              </span>
+            </div>
+
+            <!-- Privacy + organiser (POPIA-masked) -->
+            <div class="tc-meta">
+              <span class="tc-privacy" [class.privacy-public]="s.privacy === 'PUBLIC'">
+                <mat-icon>{{ s.privacy === 'PUBLIC' ? 'public' : 'lock' }}</mat-icon>
+                {{ s.privacy === 'PUBLIC' ? 'Open to all' : 'Invite only' }}
+              </span>
+              <span class="tc-dot">·</span>
+              <span class="tc-created-by">
+                <mat-icon>person</mat-icon> {{ s.createdBy }}
+              </span>
+            </div>
+
+            <!-- Description (2 lines) -->
+            <p class="tc-desc">{{ s.description }}</p>
+
+            <!-- Stats chips -->
+            <div class="tc-chips">
+              <span class="tc-chip">
+                <mat-icon>group</mat-icon>
+                {{ stokvelMemberCount(s) }}/{{ s.maxMembers }} members
+              </span>
+              <span class="tc-chip tc-chip-gold">
+                <mat-icon>payments</mat-icon>
+                R{{ s.monthlyContribution | number }}/mo
+              </span>
+              <span class="tc-chip">
+                <mat-icon>event_repeat</mat-icon>
+                {{ s.payoutCycle | titlecase }} payout
+              </span>
+            </div>
+
+            <!-- Seats availability bar -->
+            <div class="tc-seats">
+              <div class="tc-seats-track">
+                <div class="tc-seats-fill"
+                     [style.width.%]="(stokvelMemberCount(s) / s.maxMembers) * 100"
+                     [class.seats-full]="stokvelMemberCount(s) >= s.maxMembers">
+                </div>
+              </div>
+              <span class="tc-seats-label" [class.seats-full-label]="stokvelMemberCount(s) >= s.maxMembers">
+                {{ s.maxMembers - stokvelMemberCount(s) > 0
+                   ? (s.maxMembers - stokvelMemberCount(s)) + ' seat' + (s.maxMembers - stokvelMemberCount(s) !== 1 ? 's' : '') + ' available'
+                   : 'Group full' }}
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Actions column -->
+          <div class="tc-actions">
+            <button class="tc-btn-primary" (click)="joinStokvel(s); $event.stopPropagation();"
+                    matTooltip="Request to Join">
+              <mat-icon>group_add</mat-icon>
+            </button>
+            <button class="tc-btn-secondary" (click)="openCampaign(s); $event.stopPropagation();"
+                    matTooltip="View Details">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Paginator footer -->
+      <div class="trending-footer" *ngIf="!isLoading && totalStokvels > pageSize">
+        <mat-paginator
+          [length]="totalStokvels"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[3, 6]"
+          [pageIndex]="currentPage"
+          (page)="onPageChange($event)"
+          hidePageSize>
+        </mat-paginator>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════════════════════════ -->
+<section class="testimonials-section">
+  <div class="section-header">
+    <div class="section-eyebrow">Real Stories</div>
+    <h2>What our members say</h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testi-card" *ngFor="let t of testimonials">
+      <div class="testi-stars">
+        <mat-icon *ngFor="let s of [1,2,3,4,5]">star</mat-icon>
+      </div>
+      <div class="testi-quote">"{{ t.quote }}"</div>
+      <div class="testi-author">
+        <div class="testi-avatar" [style.background]="t.color">{{ t.initials }}</div>
+        <div>
+          <div class="testi-name">{{ t.name }}</div>
+          <div class="testi-role">{{ t.role }}</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════ -->
+<section class="cta-banner">
+  <div class="cta-bg"></div>
+  <div class="cta-orb cta-orb-a"></div>
+  <div class="cta-orb cta-orb-b"></div>
+  <div class="cta-content">
+    <div class="cta-eyebrow"><mat-icon>savings</mat-icon> Start Today — It's Free</div>
+    <h2>Ready to start your savings journey?</h2>
+    <p>Join thousands of South Africans building wealth together. Takes less than 2 minutes to set up.</p>
+    <div class="cta-actions">
+      <button class="btn-cta-primary" (click)="login()">
+        <mat-icon>rocket_launch</mat-icon> Open a Free Account
+      </button>
+      <button class="btn-cta-ghost" routerLink="/create-stokvel">
+        <mat-icon>add_circle</mat-icon> Create a Stokvel
+      </button>
+    </div>
+    <div class="cta-footnote">
+      <mat-icon>lock</mat-icon> No credit card required · POPIA compliant · Cancel anytime
+    </div>
+  </div>
+</section>
+

@@ -8,49 +8,32 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatTooltipModule} from "@angular/material/tooltip";
-import {MatExpansionModule} from "@angular/material/expansion";
-import {MatSelectModule} from "@angular/material/select";
-import {MatOptionModule} from "@angular/material/core";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatStepperModule} from "@angular/material/stepper";
-import {MatInputModule} from "@angular/material/input";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatRadioModule} from "@angular/material/radio";
-import {MatBadgeModule} from "@angular/material/badge";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   exports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatIconModule,
-    MatBadgeModule,
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTableModule,
-    MatMenuModule,
-    MatProgressBarModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatPaginatorModule,
-    MatRadioModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-    MatOptionModule,
-    MatDatepickerModule,
-    MatStepperModule,
-    MatProgressSpinnerModule
+    MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatBadgeModule,
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule,
+    MatListModule, MatTableModule, MatMenuModule, MatProgressBarModule, MatDialogModule,
+    MatSnackBarModule, MatPaginatorModule, MatRadioModule, MatTooltipModule,
+    MatExpansionModule, MatOptionModule, MatDatepickerModule, MatStepperModule,
+    MatProgressSpinnerModule, MatTabsModule, MatChipsModule
   ]
 })
 export class MaterialModule {}

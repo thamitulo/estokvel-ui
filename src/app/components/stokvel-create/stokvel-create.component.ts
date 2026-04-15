@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
 
 import {MaterialModule} from "../../material.module";
 import {StokvelUtils} from "../../utils/StokvelUtils";
-import {StokvelType} from "../../models/stokvel";
 import {StokvelService} from "../../services/stokvel/stokvel.service";
+import {StokvelTypeDto, SavingsTermDto} from "../../models";
 
 @Component({
   selector: 'app-stokvel-create',
@@ -29,7 +29,12 @@ export class StokvelCreateComponent implements OnInit {
   private formSubmitted = false;
 
   defaultRules = StokvelUtils.defaultRules();
-  stokvelTypes = StokvelType.values();
+
+  // API-driven types and terms
+  stokvelTypes: StokvelTypeDto[] = [];
+  savingsTerms: SavingsTermDto[] = [];
+  isLoadingTypes = false;
+  isLoadingTerms = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,13 +47,48 @@ export class StokvelCreateComponent implements OnInit {
     this.rulesForm = this.createRulesForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadStokvelTypes();
+    this.loadSavingsTerms();
+  }
+
+  private loadStokvelTypes(): void {
+    this.isLoadingTypes = true;
+    this.stokvelService.getStokvelTypes().subscribe({
+      next: (types) => {
+        this.stokvelTypes = types;
+        // Set default selection to first type
+        if (types.length > 0 && !this.basicInfoForm.get('type')?.value) {
+          this.basicInfoForm.patchValue({ type: types[0].id });
+        }
+        this.isLoadingTypes = false;
+      },
+      error: (err) => {
+        console.error('Failed to load stokvel types:', err);
+        this.isLoadingTypes = false;
+      }
+    });
+  }
+
+  private loadSavingsTerms(): void {
+    this.isLoadingTerms = true;
+    this.stokvelService.getSavingsTerms().subscribe({
+      next: (terms) => {
+        this.savingsTerms = terms;
+        this.isLoadingTerms = false;
+      },
+      error: (err) => {
+        console.error('Failed to load savings terms:', err);
+        this.isLoadingTerms = false;
+      }
+    });
+  }
 
   createBasicInfoForm(): FormGroup {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
-      type: [StokvelType.ROTATIONAL.name, Validators.required],
+      type: [null, Validators.required],
       privacy: ['private', Validators.required]
     });
   }
@@ -92,9 +132,6 @@ export class StokvelCreateComponent implements OnInit {
     rule.enabled = event.checked;
   }
 
-  selectStokvelType(type: string): void {
-    this.basicInfoForm.patchValue({ type });
-  }
 
   createStokvel(): void {
     if (this.formSubmitted) {
@@ -105,19 +142,18 @@ export class StokvelCreateComponent implements OnInit {
     this.isCreating = true;
 
     if (this.basicInfoForm.valid && this.financialForm.valid && this.rulesForm.valid) {
-      // Get the selected stokvel type as StokvelType instance
-      const selectedTypeName = this.basicInfoForm.get('type')?.value;
-      const selectedStokvelType = this.stokvelTypes.find(type => type.name === selectedTypeName);
+      // Get the selected stokvel type from loaded API types
+      const selectedTypeId = this.basicInfoForm.get('type')?.value;
+      const selectedStokvelType = this.stokvelTypes.find(type => type.id === selectedTypeId);
 
-      const typePayload = selectedStokvelType ? selectedStokvelType.name.toUpperCase() : null;
+      // Backend expects type as uppercase ID (e.g. "INVESTMENT", "ROTATIONAL")
+      const typePayload = selectedStokvelType ? selectedStokvelType.id.toUpperCase() : null;
 
       const stokvelData = {
         ...this.basicInfoForm.value,
         ...this.financialForm.value,
         type: typePayload,
-        typeName: selectedStokvelType
-          ? this.getStokvelTypeDisplayName(selectedStokvelType.name)
-          : '',
+        typeName: selectedStokvelType ? selectedStokvelType.name : '',
         rules: [
           ...this.defaultRules.filter(rule => rule.enabled),
           ...this.customRules.value

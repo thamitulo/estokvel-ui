@@ -1,0 +1,72 @@
+<header class="mobile-header">
+  <!-- Safe area top spacer for iOS notch / status bar -->
+  <div class="status-bar-spacer"></div>
+
+  <div class="header-row">
+    <!-- Logo -->
+    <button class="logo-btn" (click)="navigateTo('/home')">
+      <span class="logo-icon">₿</span>
+      <span class="logo-text">eStokvel</span>
+    </button>
+
+    <!-- Right actions -->
+    <div class="header-actions">
+      <!-- Authenticated user actions -->
+      <ng-container *ngIf="isAuthenticated$ | async; else loginBtn">
+        <app-notification-bell></app-notification-bell>
+
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="profileMenu"
+          class="profile-menu-btn"
+          aria-label="Profile menu"
+        >
+          <ng-container *ngIf="(user$ | async) as user">
+            <ng-container *ngIf="user.picture; else avatarIcon">
+              <img [src]="user.picture" [alt]="user.name" class="user-avatar" />
+            </ng-container>
+            <ng-template #avatarIcon>
+              <div class="avatar-initials">
+                {{ (user.name || user.nickname)?.charAt(0) | uppercase }}
+              </div>
+            </ng-template>
+          </ng-container>
+        </button>
+
+        <mat-menu #profileMenu="matMenu" class="mobile-profile-menu">
+          <ng-container *ngIf="(user$ | async) as user">
+            <div class="menu-profile-header">
+              <span class="menu-user-name">{{ user.name || user.nickname || 'User' }}</span>
+              <span class="menu-user-email">{{ user.email }}</span>
+            </div>
+            <mat-divider></mat-divider>
+          </ng-container>
+          <button mat-menu-item (click)="navigateTo('/dashboard')">
+            <mat-icon>dashboard</mat-icon> My Dashboard
+          </button>
+          <button mat-menu-item (click)="navigateTo('/create-stokvel')">
+            <mat-icon>add_circle</mat-icon> Create Stokvel
+          </button>
+          <button mat-menu-item (click)="navigateTo('/stokvels')">
+            <mat-icon>groups</mat-icon> Browse Stokvels
+          </button>
+          <button mat-menu-item (click)="navigateTo('/refer-earn')">
+            <mat-icon>card_giftcard</mat-icon> Refer &amp; Earn
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()" class="logout-btn">
+            <mat-icon color="warn">logout</mat-icon> Sign Out
+          </button>
+        </mat-menu>
+      </ng-container>
+
+      <!-- Unauthenticated -->
+      <ng-template #loginBtn>
+        <button mat-flat-button color="primary" class="login-btn" (click)="login()">
+          Sign In
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</header>
+

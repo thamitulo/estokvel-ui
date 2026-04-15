@@ -21,6 +21,7 @@ export class ToolbarComponent implements OnInit {
   menuItems = [
     { label: 'Home', route: '/home' },
     { label: 'Portfolio', route: '/dashboard' },
+    { label: 'Browse Stokvels', route: '/stokvels' },
     { label: 'Refer & Earn', route: '/refer-earn' },
     { label: 'About', route: '/about-us' },
     { label: 'Blog', route: '/blog' },

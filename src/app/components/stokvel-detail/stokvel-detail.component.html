@@ -1,0 +1,313 @@
+<div class="detail-page" *ngIf="stokvel$ | async as stokvel; else loadingTpl">
+
+  <!-- ── Hero Banner ── -->
+  <div class="detail-hero" [ngClass]="getBannerClass(stokvel.type)">
+    <div class="hero-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-nav">
+        <button class="back-btn" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Back</span>
+        </button>
+        <div class="hero-badges">
+          <span class="hbadge privacy">
+            <mat-icon>{{ stokvel?.privacy === 'PUBLIC' ? 'lock_open' : 'lock' }}</mat-icon>
+            {{ stokvel?.privacy | titlecase }}
+          </span>
+          <span class="hbadge status" [ngClass]="'st-' + stokvel?.status?.toLowerCase()">
+            {{ stokvel.status }}
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-main">
+        <div class="type-icon-wrap">
+          <mat-icon>{{ getTypeIcon(stokvel.type) }}</mat-icon>
+        </div>
+        <div class="hero-text">
+          <div class="type-pill">{{ getTypeLabel(stokvel.type) }}</div>
+          <h1>{{ stokvel.name }}</h1>
+          <p>{{ stokvel.description }}</p>
+        </div>
+        <div class="hero-actions">
+          <!-- ① ADMIN -->
+          <button class="btn-manage" *ngIf="isAdmin(stokvel)" (click)="manageStokvel(stokvel)">
+            <mat-icon>manage_accounts</mat-icon> Manage Stokvel
+          </button>
+
+          <!-- ② REGULAR MEMBER: member chip + leave + message admins -->
+          <ng-container *ngIf="!isAdmin(stokvel) && isMember(stokvel)">
+            <div class="member-tag">
+              <mat-icon>check_circle</mat-icon> You're a Member
+            </div>
+            <button class="btn-action btn-message" (click)="messageAdmins(stokvel)"
+                    matTooltip="Email the admins">
+              <mat-icon>mail_outline</mat-icon> Message Admins
+            </button>
+            <button class="btn-action btn-leave" (click)="leaveStokvel(stokvel)"
+                    matTooltip="Request to leave this stokvel">
+              <mat-icon>exit_to_app</mat-icon> Leave
+            </button>
+          </ng-container>
+
+          <!-- ③ NON-MEMBER + PUBLIC + seats available -->
+          <button class="btn-join"
+                  *ngIf="!isMember(stokvel) && isPublicStokvel(stokvel) && !isFull(stokvel)"
+                  (click)="openJoinModal(stokvel)">
+            <mat-icon>person_add</mat-icon> Request to Join
+          </button>
+
+          <!-- ④ NON-MEMBER + PUBLIC + FULL -->
+          <span class="hbadge badge-full"
+                *ngIf="!isMember(stokvel) && isPublicStokvel(stokvel) && isFull(stokvel)">
+            <mat-icon>block</mat-icon> Group Full
+          </span>
+
+          <!-- ⑤ NON-MEMBER + PRIVATE: no join, ever -->
+          <span class="hbadge badge-private"
+                *ngIf="!isMember(stokvel) && !isPublicStokvel(stokvel)">
+            <mat-icon>lock</mat-icon> Private · Invite Only
+          </span>
+        </div>
+      </div>
+
+      <!-- Stats ribbon -->
+      <div class="hero-ribbon">
+        <div class="ribbon-stat">
+          <mat-icon>group</mat-icon>
+          <div>
+            <span class="rv">{{ stokvel.memberCount }} / {{ stokvel.maxMembers }}</span>
+            <span class="rl">Members</span>
+          </div>
+        </div>
+        <div class="ribbon-divider"></div>
+        <div class="ribbon-stat">
+          <mat-icon>payments</mat-icon>
+          <div>
+            <span class="rv">R{{ stokvel.monthlyContribution | number }}</span>
+            <span class="rl">Monthly</span>
+          </div>
+        </div>
+        <div class="ribbon-divider"></div>
+        <div class="ribbon-stat">
+          <mat-icon>sync</mat-icon>
+          <div>
+            <span class="rv">{{ stokvel.payoutCycle | titlecase }}</span>
+            <span class="rl">Payout Cycle</span>
+          </div>
+        </div>
+        <div class="ribbon-divider" *ngIf="stokvel.targetAmount"></div>
+        <div class="ribbon-stat" *ngIf="stokvel.targetAmount">
+          <mat-icon>flag</mat-icon>
+          <div>
+            <span class="rv">R{{ stokvel.targetAmount | number }}</span>
+            <span class="rl">Target</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Body ── -->
+  <div class="detail-body">
+
+    <!-- LEFT COLUMN -->
+    <div class="col-main">
+
+      <!-- Progress card -->
+      <div class="detail-card" *ngIf="stokvel.targetAmount">
+        <div class="card-head">
+          <mat-icon>show_chart</mat-icon>
+          <h3>Savings Progress</h3>
+          <span class="pct-badge">{{ getProgress(stokvel) | number:'1.0-0' }}%</span>
+        </div>
+        <div class="prog-track">
+          <div class="prog-fill" [style.width.%]="getProgress(stokvel)"
+               [ngClass]="'pf-' + getProgressColor(stokvel)"></div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-col">
+            <span class="prog-lbl">Collected</span>
+            <span class="prog-val collected">R{{ getCollected(stokvel) | number }}</span>
+          </div>
+          <div class="prog-col right">
+            <span class="prog-lbl">Remaining</span>
+            <span class="prog-val remaining">R{{ getRemaining(stokvel) | number }}</span>
+          </div>
+        </div>
+        <div class="goal-reached" *ngIf="getProgress(stokvel) >= 100">
+          🎉 Savings goal reached!
+        </div>
+      </div>
+
+      <!-- Info grid card -->
+      <div class="detail-card">
+        <div class="card-head">
+          <mat-icon>info_outline</mat-icon>
+          <h3>About this Stokvel</h3>
+        </div>
+        <div class="info-grid">
+          <div class="ig-item">
+            <div class="ig-icon"><mat-icon>category</mat-icon></div>
+            <div>
+              <span class="ig-lbl">Type</span>
+              <span class="ig-val">{{ getTypeLabel(stokvel.type) }}</span>
+            </div>
+          </div>
+          <div class="ig-item">
+            <div class="ig-icon"><mat-icon>lock</mat-icon></div>
+            <div>
+              <span class="ig-lbl">Privacy</span>
+              <span class="ig-val">{{ stokvel.privacy | titlecase }}</span>
+            </div>
+          </div>
+          <div class="ig-item">
+            <div class="ig-icon"><mat-icon>autorenew</mat-icon></div>
+            <div>
+              <span class="ig-lbl">Rotation</span>
+              <span class="ig-val">{{ stokvel.rotationOrder | titlecase }}</span>
+            </div>
+          </div>
+          <div class="ig-item">
+            <div class="ig-icon"><mat-icon>admin_panel_settings</mat-icon></div>
+            <div>
+              <span class="ig-lbl">Admins</span>
+              <span class="ig-val">{{ stokvel.adminCount }}</span>
+            </div>
+          </div>
+          <div class="ig-item">
+            <div class="ig-icon"><mat-icon>calendar_today</mat-icon></div>
+            <div>
+              <span class="ig-lbl">Created</span>
+              <span class="ig-val">{{ stokvel.createdAt | date:'mediumDate' }}</span>
+            </div>
+          </div>
+          <div class="ig-item" *ngIf="stokvel.targetAmount">
+            <div class="ig-icon"><mat-icon>flag</mat-icon></div>
+            <div>
+              <span class="ig-lbl">Target</span>
+              <span class="ig-val">R{{ stokvel.targetAmount | number }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules card -->
+      <div class="detail-card" *ngIf="stokvel.rules?.length">
+        <div class="card-head">
+          <mat-icon>gavel</mat-icon>
+          <h3>Group Rules</h3>
+          <span class="count-tag">{{ stokvel.rules.length }}</span>
+        </div>
+        <div class="rules-list">
+          <div class="rule-row" *ngFor="let rule of stokvel.rules; let i = index">
+            <div class="rule-num">{{ i + 1 }}</div>
+            <div class="rule-body">
+              <strong>{{ rule.title }}</strong>
+              <p>{{ rule.description }}</p>
+            </div>
+            <span class="rule-tag default" *ngIf="rule.isDefault">Default</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col-side">
+
+      <!-- Membership gauge -->
+      <div class="detail-card gauge-card">
+        <div class="card-head">
+          <mat-icon>people</mat-icon>
+          <h3>Membership</h3>
+        </div>
+        <div class="gauge-ring">
+          <svg viewBox="0 0 100 100" class="ring-svg">
+            <circle cx="50" cy="50" r="40" class="ring-bg"/>
+            <circle cx="50" cy="50" r="40" class="ring-fill"
+              [style.stroke-dashoffset]="getGaugeDashOffset(stokvel)"
+              [ngClass]="'rc-' + getBannerClass(stokvel.type)"/>
+          </svg>
+          <div class="gauge-label">
+            <span class="gl-num">{{ stokvel.totalMembers ?? (stokvel.memberCount + stokvel.adminCount) }}</span>
+            <span class="gl-den">/ {{ stokvel.maxMembers }}</span>
+            <span class="gl-sub">members</span>
+          </div>
+        </div>
+        <div class="gauge-meta">
+          <div class="gm-item available">
+            <span class="gm-num">{{ stokvel.maxMembers - (stokvel.totalMembers ?? (stokvel.memberCount + stokvel.adminCount)) }}</span>
+            <span class="gm-lbl">Seats open</span>
+          </div>
+          <div class="gm-item admins">
+            <span class="gm-num">{{ stokvel.adminCount }}</span>
+            <span class="gm-lbl">Admins</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admins card -->
+      <div class="detail-card" *ngIf="stokvel.adminMembers?.length">
+        <div class="card-head">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <h3>Administrators</h3>
+          <span class="count-tag">{{ stokvel.adminMembers.length }}</span>
+        </div>
+        <div class="member-list">
+          <div class="member-row" *ngFor="let m of stokvel.adminMembers">
+            <div class="member-avatar admin-av">
+              {{ getInitials(m.displayName || m.userName) }}
+            </div>
+            <div class="member-info">
+              <span class="m-name">{{ m.displayName || m.userName }}</span>
+              <span class="m-email">{{ maskEmail(m.userEmail, stokvel) }}</span>
+            </div>
+            <span class="m-role-tag">Admin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regular members card -->
+      <div class="detail-card" *ngIf="stokvel.regularMembers?.length">
+        <div class="card-head">
+          <mat-icon>group</mat-icon>
+          <h3>Members</h3>
+          <span class="count-tag">{{ stokvel.regularMembers.length }}</span>
+        </div>
+        <div class="member-list">
+          <div class="member-row" *ngFor="let m of stokvel.regularMembers">
+            <div class="member-avatar">
+              {{ getInitials(m.displayName || m.userName) }}
+            </div>
+            <div class="member-info">
+              <span class="m-name">{{ m.displayName || m.userName }}</span>
+              <span class="m-meta">Joined {{ m.joinedDate | date:'MMM y' }}</span>
+            </div>
+            <span class="m-status" [ngClass]="'ms-' + m?.membershipStatus?.toLowerCase()">
+              {{ m.membershipStatus }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Loading skeleton -->
+<ng-template #loadingTpl>
+  <div class="skeleton-hero sk-pulse"></div>
+  <div class="skeleton-body">
+    <div class="sk-card sk-pulse" *ngFor="let i of [1,2,3]">
+      <div class="sk-line sk-h"></div>
+      <div class="sk-line sk-m"></div>
+      <div class="sk-line sk-s"></div>
+    </div>
+  </div>
+</ng-template>
+

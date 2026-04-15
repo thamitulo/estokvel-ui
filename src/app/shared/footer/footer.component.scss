@@ -1,6 +1,6 @@
 /* footer.component.scss */
 footer {
-  background: linear-gradient(135deg, #a0144c 0%, #c2185b 100%);
+  background: linear-gradient(160deg, #061d4a 0%, #0d47a1 50%, #1565c0 100%);
   color: white;
   padding: 60px 20px 20px;
 }
@@ -29,7 +29,7 @@ footer {
   bottom: 0;
   width: 40px;
   height: 2px;
-  background-color: #ff9800;
+  background: linear-gradient(90deg, #d97706, #f59e0b);
 }
 
 .footer-column ul {
@@ -98,6 +98,7 @@ footer {
 
     .contact-icon {
       font-size: 18px;
+      color: #f59e0b;
       width: 18px;
       height: 18px;
       color: #ff9800;
@@ -282,9 +283,9 @@ footer {
   }
 }
 
-/* Modern refresh overrides */
+/* Modern refresh overrides – navy palette */
 footer {
-  background: linear-gradient(160deg, #80123a 0%, #b91c5d 48%, #d81b60 100%);
+  background: linear-gradient(160deg, #061d4a 0%, #0a2e74 40%, #1565c0 100%);
   position: relative;
   overflow: hidden;
 }
@@ -293,7 +294,7 @@ footer::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 90% 15%, rgba(255, 255, 255, 0.2), transparent 42%);
+  background: radial-gradient(circle at 90% 15%, rgba(212, 175, 55, 0.12), transparent 42%);
   pointer-events: none;
 }
 

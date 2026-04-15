@@ -6,7 +6,7 @@
 
 /* Hero Section */
 .press-hero {
-  background: linear-gradient(135deg, rgba(160, 20, 76, 0.9), rgba(194, 24, 91, 0.9));
+  background: linear-gradient(135deg, rgba(6, 29, 74, 0.9), rgba(13, 71, 161, 0.9));
   background-size: cover;
   background-position: center;
   color: white;
@@ -135,8 +135,8 @@
     }
 
     .article-type {
-      background: rgba(194, 24, 91, 0.1);
-      color: #c2185b;
+      background: rgba(13, 71, 161, 0.1);
+      color: #0d47a1;
       padding: 6px 12px;
       border-radius: 20px;
       font-size: 14px;
@@ -213,11 +213,11 @@
       }
 
       .read-article-btn {
-        background: linear-gradient(135deg, #a0144c, #c2185b);
+        background: linear-gradient(135deg, #092e6b, #0d47a1);
         color: white;
 
         &:hover {
-          background: linear-gradient(135deg, #c2185b, #e91e63);
+          background: linear-gradient(135deg, #0d47a1, #1565c0);
         }
       }
     }
@@ -251,7 +251,7 @@
     .asset-icon {
       width: 70px;
       height: 70px;
-      background: rgba(194, 24, 91, 0.1);
+      background: rgba(13, 71, 161, 0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -260,7 +260,7 @@
 
       mat-icon {
         font-size: 32px;
-        color: #c2185b;
+        color: #0d47a1;
       }
     }
 
@@ -306,7 +306,7 @@
         .contact-icon {
           width: 60px;
           height: 60px;
-          background: linear-gradient(135deg, #a0144c, #c2185b);
+          background: linear-gradient(135deg, #092e6b, #0d47a1);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -348,7 +348,7 @@
           border-radius: 8px;
 
           mat-icon {
-            color: #c2185b;
+            color: #0d47a1;
             font-size: 24px;
           }
 
@@ -382,8 +382,8 @@
 /* Newsletter Section */
 .newsletter-section {
   .newsletter-card {
-    background: linear-gradient(135deg, rgba(160, 20, 76, 0.05), rgba(194, 24, 91, 0.05));
-    border: 2px solid rgba(194, 24, 91, 0.1);
+    background: linear-gradient(135deg, rgba(6, 29, 74, 0.05), rgba(13, 71, 161, 0.05));
+    border: 2px solid rgba(13, 71, 161, 0.1);
     border-radius: 12px;
 
     mat-card-content {

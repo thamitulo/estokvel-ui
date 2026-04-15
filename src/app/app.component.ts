@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
-import { BackendService } from './services/backend.service';
+import { Component, OnInit } from '@angular/core';
+import { MobilePlatformService } from './services/mobile-platform.service';
 
 @Component({
     selector: 'app-root',
@@ -8,11 +7,18 @@ import { BackendService } from './services/backend.service';
     styleUrls: ['./app.component.scss'],
     standalone: false
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'estokvel-ui';
 
-  data: any;
+  /** true when running inside a native Android/iOS app */
+  get isNative(): boolean {
+    return this.platformService.isNative;
+  }
 
-  constructor() {}
+  constructor(private platformService: MobilePlatformService) {}
 
+  async ngOnInit(): Promise<void> {
+    // Initialize native mobile plugins (StatusBar, SplashScreen, back-button, etc.)
+    await this.platformService.initializeApp();
+  }
 }

@@ -11,20 +11,21 @@
 
 .action-section {
   background: #fff;
-  border-radius: 1rem;
+  border-radius: 16px;
   padding: 1.5rem;
   width: 85%;
   max-width: 900px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(13, 71, 161, 0.14);
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-top: 4px solid #1565c0;
 }
 
 .action-section:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 12px 40px rgba(13, 71, 161, 0.18);
 }
 
 .action-buttons {
@@ -36,53 +37,53 @@
 
 .action-btn {
   height: 50px;
-  border-radius: 0.75rem;
+  border-radius: 999px;
   min-width: 180px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
   text-transform: uppercase;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   border: none;
   cursor: pointer;
   color: #fff;
+  letter-spacing: 0.04em;
 }
 
 .action-btn.purple {
-  background-color: #702878;
+  background: linear-gradient(135deg, #0d47a1, #1565c0);
+  box-shadow: 0 4px 14px rgba(13,71,161,.32);
 }
 
 .action-btn.purple:hover {
-  background-color: #5a2060;
+  background: linear-gradient(135deg, #092e6b, #0d47a1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(13,71,161,.40);
 }
 
 .action-btn.pink {
-  background-color: #bd3293;
+  background: linear-gradient(135deg, #b45309, #d97706);
+  box-shadow: 0 4px 14px rgba(180,83,9,.28);
 }
 
 .action-btn.pink:hover {
-  background-color: #a0277d;
+  background: linear-gradient(135deg, #92400e, #b45309);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(180,83,9,.38);
 }
 
 .action-btn.blue {
-  background-color: #65c6e0;
+  background: linear-gradient(135deg, #059669, #10b981);
+  box-shadow: 0 4px 14px rgba(5,150,105,.28);
 }
 
 .action-btn.blue:hover {
-  background-color: #4db2cd;
+  background: linear-gradient(135deg, #047857, #059669);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(5,150,105,.38);
 }
 
 @media (max-width: 768px) {
-  .action-section {
-    width: 95%;
-    padding: 1rem;
-  }
-
-  .action-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .action-btn {
-    width: 100%;
-  }
+  .action-section { width: 95%; padding: 1rem; }
+  .action-buttons { flex-direction: column; width: 100%; }
+  .action-btn { width: 100%; }
 }

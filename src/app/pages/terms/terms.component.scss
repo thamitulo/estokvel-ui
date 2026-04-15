@@ -6,7 +6,7 @@
 
 /* Hero Section */
 .terms-hero {
-  background: linear-gradient(135deg, rgba(160, 20, 76, 0.9), rgba(194, 24, 91, 0.9));
+  background: linear-gradient(135deg, rgba(6, 29, 74, 0.9), rgba(13, 71, 161, 0.9));
   background-size: cover;
   background-position: center;
   color: white;
@@ -87,8 +87,8 @@
 
           &:hover {
             background: #e9ecef;
-            border-left-color: #c2185b;
-            color: #c2185b;
+            border-left-color: #0d47a1;
+            color: #0d47a1;
             transform: translateX(5px);
           }
         }
@@ -133,7 +133,7 @@
         display: inline-block;
         width: 4px;
         height: 24px;
-        background: #c2185b;
+        background: #0d47a1;
         margin-right: 12px;
         border-radius: 2px;
       }
@@ -181,7 +181,7 @@
 
         &::before {
           content: '•';
-          color: #c2185b;
+          color: #0d47a1;
           font-weight: bold;
           display: inline-block;
           width: 1em;
@@ -200,7 +200,7 @@
 /* Notice Cards */
 .notice-card {
   background: #fff8f8;
-  border-left: 4px solid #c2185b;
+  border-left: 4px solid #0d47a1;
   padding: 20px;
   border-radius: 8px;
   margin: 20px 0;
@@ -219,7 +219,7 @@
   }
 
   mat-icon {
-    color: #c2185b;
+    color: #0d47a1;
     flex-shrink: 0;
     margin-top: 2px;
   }
@@ -244,7 +244,7 @@
 }
 
 .privacy-link {
-  color: #c2185b;
+  color: #0d47a1;
   text-decoration: none;
   font-weight: 600;
 
@@ -275,7 +275,7 @@
     }
 
     mat-icon {
-      color: #c2185b;
+      color: #0d47a1;
       font-size: 24px;
       margin-top: 2px;
     }
@@ -303,8 +303,8 @@
   border-top: 2px solid #e9ecef;
 
   .acceptance-card {
-    background: linear-gradient(135deg, rgba(160, 20, 76, 0.05), rgba(194, 24, 91, 0.05));
-    border: 2px solid rgba(194, 24, 91, 0.1);
+    background: linear-gradient(135deg, rgba(6, 29, 74, 0.05), rgba(13, 71, 161, 0.05));
+    border: 2px solid rgba(13, 71, 161, 0.1);
     border-radius: 12px;
 
     mat-card-content {
