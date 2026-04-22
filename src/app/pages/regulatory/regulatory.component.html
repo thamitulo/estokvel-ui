@@ -1,1 +1,76 @@
-<p>regulatory.component works!</p>
+<div class="reg-page">
+
+  <!-- Hero -->
+  <section class="reg-hero">
+    <div class="reg-hero-inner">
+      <div class="reg-eyebrow"><mat-icon>account_balance</mat-icon> Regulatory</div>
+      <h1>Regulatory Framework</h1>
+      <p>Understanding the legal and regulatory environment that governs stokvels and eStokvel in South Africa.</p>
+    </div>
+  </section>
+
+  <div class="reg-container">
+
+    <!-- Overview -->
+    <section class="reg-section">
+      <h2>Regulatory Overview</h2>
+      <p>Stokvels in South Africa are recognised and governed under several pieces of legislation. eStokvel operates within this framework and is committed to full regulatory compliance to protect its members.</p>
+      <div class="reg-notice">
+        <mat-icon>info</mat-icon>
+        <p>eStokvel is not a registered financial services provider. Stokvel groups are informal savings structures and do not fall under the National Credit Act (NCA) or the Financial Advisory and Intermediary Services (FAIS) Act.</p>
+      </div>
+    </section>
+
+    <!-- Key legislation -->
+    <section class="reg-section reg-section-alt">
+      <h2>Key Legislation</h2>
+      <div class="reg-leg-grid">
+        <div class="reg-leg-card">
+          <mat-icon>gavel</mat-icon>
+          <h3>Exemption Notice (1990)</h3>
+          <p>The Banks Act Exemption Notice of 1990 explicitly exempts stokvel schemes from the definition of "the business of a bank", allowing informal savings clubs to operate legally without a banking licence.</p>
+        </div>
+        <div class="reg-leg-card">
+          <mat-icon>shield</mat-icon>
+          <h3>POPIA (2013)</h3>
+          <p>The Protection of Personal Information Act governs how eStokvel collects, stores and processes member data. We are fully POPIA-compliant. <a routerLink="/popia">Learn more →</a></p>
+        </div>
+        <div class="reg-leg-card">
+          <mat-icon>policy</mat-icon>
+          <h3>Consumer Protection Act</h3>
+          <p>The Consumer Protection Act (No. 68 of 2008) protects consumers in transactions and ensures fair, transparent business practices. eStokvel's terms are designed to comply fully.</p>
+        </div>
+        <div class="reg-leg-card">
+          <mat-icon>account_balance_wallet</mat-icon>
+          <h3>Financial Intelligence Centre Act (FICA)</h3>
+          <p>FICA requires us to verify member identities (Know Your Customer — KYC) to prevent money laundering and financial crime. All members are required to complete identity verification.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- eStokvel's approach -->
+    <section class="reg-section">
+      <h2>Our Regulatory Approach</h2>
+      <ul class="reg-list">
+        <li><mat-icon>check_circle</mat-icon><span>All stokvel groups on eStokvel operate within the Banks Act Exemption Notice framework.</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Member identities are verified in compliance with FICA KYC requirements.</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Personal data is processed in accordance with POPIA.</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Platform terms and conditions comply with the Consumer Protection Act.</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>We maintain transparent records of all transactions and group activities.</span></li>
+        <li><mat-icon>check_circle</mat-icon><span>Suspicious activities are reported to the appropriate authorities as required by FICA.</span></li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section class="reg-section reg-section-alt">
+      <h2>Questions?</h2>
+      <p>If you have any questions about our regulatory compliance or need clarification on how eStokvel operates within the law, please reach out to our compliance team.</p>
+      <div class="reg-actions">
+        <button mat-flat-button color="primary" routerLink="/compliance"><mat-icon>verified</mat-icon> View Compliance</button>
+        <button mat-stroked-button routerLink="/contact"><mat-icon>mail</mat-icon> Contact Us</button>
+      </div>
+    </section>
+
+  </div>
+
+</div>

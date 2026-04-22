@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {StokvelJoinData} from "../../models";
+import {StokvelJoinData, JoinRequestDTO} from "../../models";
 import {StokvelService} from "../../services/stokvel/stokvel.service";
 import {MaterialModule} from "../../material.module";
 import {formatCurrency} from "../dashboard/common.util";
@@ -40,9 +40,9 @@ export class JoinStokvelModalComponent {
     if (this.joinForm.valid) {
       this.isLoading = true;
 
-      const joinRequest = {
+      const joinRequest: JoinRequestDTO = {
         stokvelId: this.data.stokvelId,
-        stokvelName: this.data.stokvelName, // From modal data
+        stokvelName: this.data.stokvelName,
         userId: this.data.currentUserId,
         fullName: this.data.userProfile?.name || 'User',
         userEmail: this.data.userProfile?.email || '',

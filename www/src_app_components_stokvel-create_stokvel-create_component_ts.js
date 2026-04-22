@@ -116,28 +116,48 @@ function StokvelCreateComponent_Conditional_95_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
   }
 }
-function StokvelCreateComponent_Conditional_140_Template(rf, ctx) {
+function StokvelCreateComponent_Conditional_120_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "mat-option", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, "Loading terms...");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+  }
+}
+function StokvelCreateComponent_For_122_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "mat-option", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const term_r3 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("value", term_r3.id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate3"](" ", term_r3.name, " (", term_r3.months, " months) \u2014 ", term_r3.description, " ");
+  }
+}
+function StokvelCreateComponent_Conditional_153_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "mat-error");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, "Minimum 3 members required");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
   }
 }
-function StokvelCreateComponent_Conditional_141_Template(rf, ctx) {
+function StokvelCreateComponent_Conditional_154_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 16)(1, "mat-form-field", 17)(2, "mat-label");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](3, "Rotation Order");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](4, "mat-select", 63)(5, "mat-option", 64);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](4, "mat-select", 64)(5, "mat-option", 65);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](6, "Alphabetical by Name");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](7, "mat-option", 65);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](7, "mat-option", 66);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](8, "Order of Joining");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "mat-option", 66);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "mat-option", 67);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](10, "Random");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](11, "mat-option", 67);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](11, "mat-option", 68);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](12, "Manual Selection");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](13, "mat-hint");
@@ -145,75 +165,75 @@ function StokvelCreateComponent_Conditional_141_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
   }
 }
-function StokvelCreateComponent_ng_template_152_Template(rf, ctx) {
+function StokvelCreateComponent_ng_template_165_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](0, "Rules & Agreement");
   }
 }
-function StokvelCreateComponent_For_164_Template(rf, ctx) {
+function StokvelCreateComponent_For_177_Template(rf, ctx) {
   if (rf & 1) {
-    const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "mat-card", 49)(1, "mat-card-content")(2, "div", 68)(3, "mat-checkbox", 69);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("change", function StokvelCreateComponent_For_164_Template_mat_checkbox_change_3_listener($event) {
-      const rule_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r3).$implicit;
-      const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r4.toggleRule(rule_r4, $event));
+    const _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "mat-card", 50)(1, "mat-card-content")(2, "div", 69)(3, "mat-checkbox", 70);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("change", function StokvelCreateComponent_For_177_Template_mat_checkbox_change_3_listener($event) {
+      const rule_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r4).$implicit;
+      const ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r5.toggleRule(rule_r5, $event));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "p", 70);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "p", 71);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
   }
   if (rf & 2) {
-    const rule_r4 = ctx.$implicit;
+    const rule_r5 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("checked", rule_r4.enabled);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("checked", rule_r5.enabled);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"](" ", rule_r4.title, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"](" ", rule_r5.title, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate"](rule_r4.description);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate"](rule_r5.description);
   }
 }
-function StokvelCreateComponent_For_172_Template(rf, ctx) {
+function StokvelCreateComponent_For_185_Template(rf, ctx) {
   if (rf & 1) {
-    const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 53)(1, "mat-form-field", 17)(2, "mat-label");
+    const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 54)(1, "mat-form-field", 17)(2, "mat-label");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](3, "Rule Description");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](4, "input", 71);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "button", 72);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function StokvelCreateComponent_For_172_Template_button_click_5_listener() {
-      const ɵ$index_339_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r6).$index;
-      const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r4.removeCustomRule(ɵ$index_339_r7));
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](4, "input", 72);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "button", 73);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function StokvelCreateComponent_For_185_Template_button_click_5_listener() {
+      const ɵ$index_363_r8 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r7).$index;
+      const ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r5.removeCustomRule(ɵ$index_363_r8));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](6, "mat-icon");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](7, "delete");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()();
   }
   if (rf & 2) {
-    const ɵ$index_339_r7 = ctx.$index;
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("formGroupName", ɵ$index_339_r7);
+    const ɵ$index_363_r8 = ctx.$index;
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("formGroupName", ɵ$index_363_r8);
   }
 }
-function StokvelCreateComponent_Conditional_197_Template(rf, ctx) {
+function StokvelCreateComponent_Conditional_210_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "mat-error");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, "You must accept the terms to continue");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
   }
 }
-function StokvelCreateComponent_Conditional_205_Template(rf, ctx) {
+function StokvelCreateComponent_Conditional_218_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "mat-icon");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, "check_circle");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
   }
 }
-function StokvelCreateComponent_Conditional_206_Template(rf, ctx) {
+function StokvelCreateComponent_Conditional_219_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](0, "mat-spinner", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](0, "mat-spinner", 63);
   }
 }
 class StokvelCreateComponent {
@@ -282,6 +302,7 @@ class StokvelCreateComponent {
     return this.fb.group({
       monthlyContribution: [500, [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.min(50)]],
       targetAmount: [null],
+      savingsTermId: [null],
       payoutCycle: ['monthly', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
       maxMembers: [10, [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.min(3), _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.max(50)]],
       rotationOrder: ['alphabetical']
@@ -323,12 +344,18 @@ class StokvelCreateComponent {
       // Backend expects type as uppercase ID (e.g. "INVESTMENT", "ROTATIONAL")
       const typePayload = selectedStokvelType ? selectedStokvelType.id.toUpperCase() : null;
       const stokvelData = {
-        ...this.basicInfoForm.value,
-        ...this.financialForm.value,
-        type: typePayload,
-        typeName: selectedStokvelType ? selectedStokvelType.name : '',
-        rules: [...this.defaultRules.filter(rule => rule.enabled), ...this.customRules.value],
-        status: 'active'
+        name: this.basicInfoForm.value.name,
+        description: this.basicInfoForm.value.description,
+        type: typePayload ?? '',
+        typeName: selectedStokvelType?.name ?? '',
+        privacy: this.basicInfoForm.value.privacy,
+        monthlyContribution: this.financialForm.value.monthlyContribution,
+        targetAmount: this.financialForm.value.targetAmount ?? undefined,
+        savingsTermId: this.financialForm.value.savingsTermId ?? undefined,
+        payoutCycle: this.financialForm.value.payoutCycle,
+        maxMembers: this.financialForm.value.maxMembers,
+        rotationOrder: this.financialForm.value.rotationOrder ?? undefined,
+        rules: [...this.defaultRules.filter(rule => rule.enabled), ...this.customRules.value]
       };
       // Call the actual service
       this.stokvelService.createStokvel(stokvelData).subscribe({
@@ -390,9 +417,9 @@ class StokvelCreateComponent {
   }, this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({
     type: StokvelCreateComponent,
     selectors: [["app-stokvel-create"]],
-    decls: 209,
-    vars: 21,
-    consts: [["stepper", ""], [1, "create-stokvel-container"], [1, "create-header-section"], [1, "create-header-background"], [1, "create-header-content"], [1, "create-header-title"], [1, "create-header-subtitle"], [1, "progress-section-wrapper"], [1, "progress-section", "mat-elevation-z8"], ["linear", ""], [3, "stepControl"], ["matStepLabel", ""], [1, "step-form", 3, "ngSubmit", "formGroup"], [1, "form-section"], [1, "form-section-title"], [1, "form-section-subtitle"], [1, "form-row"], ["appearance", "outline", 1, "form-field-full"], ["matInput", "", "formControlName", "name", "placeholder", "e.g., Family Savings Group 2024"], ["matSuffix", ""], ["matInput", "", "formControlName", "description", "rows", "3", "placeholder", "Describe the purpose and goals of your stokvel..."], ["appearance", "outline", 1, "form-field-half"], ["formControlName", "type"], ["disabled", ""], [3, "value"], ["formControlName", "privacy"], ["value", "private"], [1, "privacy-option"], ["value", "public"], [1, "step-actions"], ["mat-raised-button", "", "color", "primary", "matStepperNext", "", 3, "disabled"], [1, "step-form", 3, "formGroup"], [1, "financial-cards"], [1, "financial-card", "mat-elevation-z2"], [1, "financial-icon"], ["matInput", "", "type", "number", "formControlName", "monthlyContribution", "placeholder", "0.00", "min", "0"], ["matPrefix", ""], ["matInput", "", "type", "number", "formControlName", "targetAmount", "placeholder", "0.00", "min", "0"], ["formControlName", "payoutCycle"], ["value", "monthly"], ["value", "quarterly"], ["value", "biannual"], ["value", "annual"], ["value", "rotational"], ["matInput", "", "type", "number", "formControlName", "maxMembers", "min", "3", "max", "50"], ["mat-button", "", "matStepperPrevious", "", 1, "back-button"], [1, "rules-section"], [1, "rules-title"], [1, "rules-list"], [1, "rule-card", "mat-elevation-z1"], [1, "custom-rules"], [1, "rules-subtitle"], ["formArrayName", "customRules", 1, "custom-rules-list"], [1, "custom-rule-item", 3, "formGroupName"], ["mat-button", "", "color", "primary", 1, "add-rule-button", 3, "click"], [1, "agreement-card", "mat-elevation-z2"], [1, "agreement-title"], [1, "agreement-content"], [1, "agreement-terms"], ["formControlName", "agreeToTerms", "color", "primary"], ["mat-raised-button", "", "type", "submit", "color", "primary", 1, "create-button", 3, "click", "disabled"], [1, "button-content"], ["diameter", "20", "strokeWidth", "3"], ["formControlName", "rotationOrder"], ["value", "alphabetical"], ["value", "joining"], ["value", "random"], ["value", "manual"], [1, "rule-header"], [3, "change", "checked"], [1, "rule-description"], ["matInput", "", "formControlName", "description", "placeholder", "e.g., All members must attend monthly meetings"], ["mat-icon-button", "", "matSuffix", "", 3, "click"]],
+    decls: 222,
+    vars: 23,
+    consts: [["stepper", ""], [1, "create-stokvel-container"], [1, "create-header-section"], [1, "create-header-background"], [1, "create-header-content"], [1, "create-header-title"], [1, "create-header-subtitle"], [1, "progress-section-wrapper"], [1, "progress-section", "mat-elevation-z8"], ["linear", ""], [3, "stepControl"], ["matStepLabel", ""], [1, "step-form", 3, "ngSubmit", "formGroup"], [1, "form-section"], [1, "form-section-title"], [1, "form-section-subtitle"], [1, "form-row"], ["appearance", "outline", 1, "form-field-full"], ["matInput", "", "formControlName", "name", "placeholder", "e.g., Family Savings Group 2024"], ["matSuffix", ""], ["matInput", "", "formControlName", "description", "rows", "3", "placeholder", "Describe the purpose and goals of your stokvel..."], ["appearance", "outline", 1, "form-field-half"], ["formControlName", "type"], ["disabled", ""], [3, "value"], ["formControlName", "privacy"], ["value", "private"], [1, "privacy-option"], ["value", "public"], [1, "step-actions"], ["mat-raised-button", "", "color", "primary", "matStepperNext", "", 3, "disabled"], [1, "step-form", 3, "formGroup"], [1, "financial-cards"], [1, "financial-card", "mat-elevation-z2"], [1, "financial-icon"], ["matInput", "", "type", "number", "formControlName", "monthlyContribution", "placeholder", "0.00", "min", "0"], ["matPrefix", ""], ["matInput", "", "type", "number", "formControlName", "targetAmount", "placeholder", "0.00", "min", "0"], ["formControlName", "savingsTermId"], ["formControlName", "payoutCycle"], ["value", "monthly"], ["value", "quarterly"], ["value", "biannual"], ["value", "annual"], ["value", "rotational"], ["matInput", "", "type", "number", "formControlName", "maxMembers", "min", "3", "max", "50"], ["mat-button", "", "matStepperPrevious", "", 1, "back-button"], [1, "rules-section"], [1, "rules-title"], [1, "rules-list"], [1, "rule-card", "mat-elevation-z1"], [1, "custom-rules"], [1, "rules-subtitle"], ["formArrayName", "customRules", 1, "custom-rules-list"], [1, "custom-rule-item", 3, "formGroupName"], ["mat-button", "", "color", "primary", 1, "add-rule-button", 3, "click"], [1, "agreement-card", "mat-elevation-z2"], [1, "agreement-title"], [1, "agreement-content"], [1, "agreement-terms"], ["formControlName", "agreeToTerms", "color", "primary"], ["mat-raised-button", "", "type", "submit", "color", "primary", 1, "create-button", 3, "click", "disabled"], [1, "button-content"], ["diameter", "20", "strokeWidth", "3"], ["formControlName", "rotationOrder"], ["value", "alphabetical"], ["value", "joining"], ["value", "random"], ["value", "manual"], [1, "rule-header"], [3, "change", "checked"], [1, "rule-description"], ["matInput", "", "formControlName", "description", "placeholder", "e.g., All members must attend monthly meetings"], ["mat-icon-button", "", "matSuffix", "", 3, "click"]],
     template: function StokvelCreateComponent_Template(rf, ctx) {
       if (rf & 1) {
         const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
@@ -517,127 +544,142 @@ class StokvelCreateComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](112, "Leave empty for ongoing stokvel");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](113, "div", 16)(114, "mat-form-field", 21)(115, "mat-label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](116, "Payout Cycle");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](116, "Savings Term");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](117, "mat-select", 38)(118, "mat-option", 39);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](119, "Monthly");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](117, "mat-select", 38)(118, "mat-option", 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](119, "No fixed term (ongoing)");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](120, "mat-option", 40);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](121, "Quarterly");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](120, StokvelCreateComponent_Conditional_120_Template, 2, 0, "mat-option", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeaterCreate"](121, StokvelCreateComponent_For_122_Template, 2, 4, "mat-option", 24, _forTrack0);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](122, "mat-option", 41);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](123, "Every 6 Months");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](123, "mat-icon", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](124, "hourglass_empty");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](124, "mat-option", 42);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](125, "Annual");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](126, "mat-option", 43);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](127, "Rotational");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](125, "mat-hint");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](126, "Optional: set a fixed duration for the stokvel");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](128, "mat-icon", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](129, "calendar_today");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](127, "mat-form-field", 21)(128, "mat-label");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](129, "Payout Cycle");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](130, "mat-hint");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](131, "How often will payouts occur?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](130, "mat-select", 39)(131, "mat-option", 40);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](132, "Monthly");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](133, "mat-option", 41);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](134, "Quarterly");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](135, "mat-option", 42);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](136, "Every 6 Months");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](137, "mat-option", 43);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](138, "Annual");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](139, "mat-option", 44);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](140, "Rotational");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](132, "mat-form-field", 21)(133, "mat-label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](134, "Maximum Members");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](141, "mat-icon", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](142, "calendar_today");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](135, "input", 44);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](136, "mat-icon", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](137, "people");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](138, "mat-hint");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](139, "Minimum 3 members required");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](140, StokvelCreateComponent_Conditional_140_Template, 2, 0, "mat-error");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](143, "mat-hint");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](144, "How often will payouts occur?");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](141, StokvelCreateComponent_Conditional_141_Template, 15, 0, "div", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](145, "mat-form-field", 21)(146, "mat-label");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](147, "Maximum Members");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](142, "div", 29)(143, "button", 45)(144, "mat-icon");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](145, "arrow_back");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](148, "input", 45);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](149, "mat-icon", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](150, "people");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](146, " Back ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](151, "mat-hint");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](152, "Minimum 3 members required");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](147, "button", 30);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](148, " Continue to Rules ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](149, "mat-icon");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](150, "arrow_forward");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](153, StokvelCreateComponent_Conditional_153_Template, 2, 0, "mat-error");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](154, StokvelCreateComponent_Conditional_154_Template, 15, 0, "div", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](155, "div", 29)(156, "button", 46)(157, "mat-icon");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](158, "arrow_back");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](159, " Back ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](160, "button", 30);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](161, " Continue to Rules ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](162, "mat-icon");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](163, "arrow_forward");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](151, "mat-step", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](152, StokvelCreateComponent_ng_template_152_Template, 1, 0, "ng-template", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](153, "form", 31)(154, "div", 13)(155, "h2", 14);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](156, "Stokvel Rules");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](164, "mat-step", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](165, StokvelCreateComponent_ng_template_165_Template, 1, 0, "ng-template", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](166, "form", 31)(167, "div", 13)(168, "h2", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](169, "Stokvel Rules");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](157, "p", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](158, "Define the rules and terms for your stokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](170, "p", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](171, "Define the rules and terms for your stokvel");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](159, "div", 46)(160, "h3", 47);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](161, "Default Rules");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](172, "div", 47)(173, "h3", 48);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](174, "Default Rules");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](162, "div", 48);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeaterCreate"](163, StokvelCreateComponent_For_164_Template, 7, 3, "mat-card", 49, _forTrack0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](175, "div", 49);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeaterCreate"](176, StokvelCreateComponent_For_177_Template, 7, 3, "mat-card", 50, _forTrack0);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](165, "div", 50)(166, "h3", 47);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](167, "Custom Rules");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](178, "div", 51)(179, "h3", 48);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](180, "Custom Rules");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](168, "p", 51);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](169, "Add your own specific rules (optional)");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](181, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](182, "Add your own specific rules (optional)");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](170, "div", 52);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeaterCreate"](171, StokvelCreateComponent_For_172_Template, 8, 1, "div", 53, _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeaterTrackByIndex"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](183, "div", 53);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeaterCreate"](184, StokvelCreateComponent_For_185_Template, 8, 1, "div", 54, _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeaterTrackByIndex"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](173, "button", 54);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function StokvelCreateComponent_Template_button_click_173_listener() {
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](186, "button", 55);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function StokvelCreateComponent_Template_button_click_186_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r1);
           return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx.addCustomRule());
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](174, "mat-icon");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](175, "add");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](187, "mat-icon");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](188, "add");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](176, " Add Custom Rule ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](189, " Add Custom Rule ");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](177, "mat-card", 55)(178, "mat-card-content")(179, "h3", 56);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](180, "Stokvel Agreement");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](190, "mat-card", 56)(191, "mat-card-content")(192, "h3", 57);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](193, "Stokvel Agreement");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](181, "div", 57)(182, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](183, "By creating this stokvel, you agree to:");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](194, "div", 58)(195, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](196, "By creating this stokvel, you agree to:");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](184, "ul", 58)(185, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](186, "Act as the stokvel administrator");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](197, "ul", 59)(198, "li");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](199, "Act as the stokvel administrator");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](187, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](188, "Ensure transparent financial management");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](200, "li");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](201, "Ensure transparent financial management");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](189, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](190, "Communicate regularly with members");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](202, "li");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](203, "Communicate regularly with members");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](191, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](192, "Follow the established rules and payout schedules");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](204, "li");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](205, "Follow the established rules and payout schedules");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](193, "li");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](194, "Maintain accurate records of all transactions");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](206, "li");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](207, "Maintain accurate records of all transactions");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](195, "mat-checkbox", 59);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](196, " I accept the terms and responsibilities of being a stokvel administrator ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](208, "mat-checkbox", 60);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](209, " I accept the terms and responsibilities of being a stokvel administrator ");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](197, StokvelCreateComponent_Conditional_197_Template, 2, 0, "mat-error");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](210, StokvelCreateComponent_Conditional_210_Template, 2, 0, "mat-error");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](198, "div", 29)(199, "button", 45)(200, "mat-icon");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](201, "arrow_back");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](211, "div", 29)(212, "button", 46)(213, "mat-icon");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](214, "arrow_back");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](202, " Back ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](215, " Back ");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](203, "button", 60);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function StokvelCreateComponent_Template_button_click_203_listener() {
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](216, "button", 61);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function StokvelCreateComponent_Template_button_click_216_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r1);
           return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx.createStokvel());
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](204, "div", 61);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](205, StokvelCreateComponent_Conditional_205_Template, 2, 0, "mat-icon");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](206, StokvelCreateComponent_Conditional_206_Template, 1, 0, "mat-spinner", 62);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](207, "span");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](208);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](217, "div", 62);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](218, StokvelCreateComponent_Conditional_218_Template, 2, 0, "mat-icon");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditionalCreate"](219, StokvelCreateComponent_Conditional_219_Template, 1, 0, "mat-spinner", 63);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](220, "span");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](221);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()()()()()()()();
       }
       if (rf & 2) {
@@ -646,9 +688,9 @@ class StokvelCreateComponent {
         let tmp_7_0;
         let tmp_11_0;
         let tmp_12_0;
-        let tmp_13_0;
-        let tmp_14_0;
-        let tmp_20_0;
+        let tmp_16_0;
+        let tmp_17_0;
+        let tmp_23_0;
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](12);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("stepControl", ctx.basicInfoForm);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
@@ -673,10 +715,16 @@ class StokvelCreateComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](((tmp_11_0 = ctx.financialForm.get("monthlyContribution")) == null ? null : tmp_11_0.hasError("required")) ? 94 : -1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](((tmp_12_0 = ctx.financialForm.get("monthlyContribution")) == null ? null : tmp_12_0.hasError("min")) ? 95 : -1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](45);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](((tmp_13_0 = ctx.financialForm.get("maxMembers")) == null ? null : tmp_13_0.hasError("min")) ? 140 : -1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("value", null);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](ctx.isLoadingTerms ? 120 : -1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](((tmp_14_0 = ctx.financialForm.get("payoutCycle")) == null ? null : tmp_14_0.value) === "rotational" ? 141 : -1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeater"](ctx.savingsTerms);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](((tmp_16_0 = ctx.financialForm.get("maxMembers")) == null ? null : tmp_16_0.hasError("min")) ? 153 : -1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](((tmp_17_0 = ctx.financialForm.get("payoutCycle")) == null ? null : tmp_17_0.value) === "rotational" ? 154 : -1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](6);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("disabled", !ctx.financialForm.valid);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](4);
@@ -688,13 +736,13 @@ class StokvelCreateComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](8);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrepeater"](ctx.customRules.controls);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](((tmp_20_0 = ctx.rulesForm.get("agreeToTerms")) == null ? null : tmp_20_0.hasError("required")) && ((tmp_20_0 = ctx.rulesForm.get("agreeToTerms")) == null ? null : tmp_20_0.touched) ? 197 : -1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](((tmp_23_0 = ctx.rulesForm.get("agreeToTerms")) == null ? null : tmp_23_0.hasError("required")) && ((tmp_23_0 = ctx.rulesForm.get("agreeToTerms")) == null ? null : tmp_23_0.touched) ? 210 : -1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](6);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("disabled", !ctx.rulesForm.valid || ctx.isCreating);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](!ctx.isCreating ? 205 : -1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](!ctx.isCreating ? 218 : -1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](ctx.isCreating ? 206 : -1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵconditional"](ctx.isCreating ? 219 : -1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate"](ctx.isCreating ? "Creating Stokvel..." : "Create Stokvel");
       }

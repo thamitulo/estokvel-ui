@@ -291,6 +291,90 @@ _staticBlock();
 
 /***/ }),
 
+/***/ 6881:
+/*!*********************************************************!*\
+  !*** ./src/app/services/stokvel/transaction.service.ts ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TransactionService: () => (/* binding */ TransactionService)
+/* harmony export */ });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ 3855);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../environments/environment */ 6052);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 4205);
+var _staticBlock;
+
+
+
+
+class TransactionService {
+  constructor(http) {
+    this.http = http;
+    this.apiUrl = `${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.apiUrl}transactions`;
+  }
+  /**
+   * Record a contribution to a stokvel
+   */
+  contribute(request) {
+    return this.http.post(`${this.apiUrl}/contribute`, request);
+  }
+  /**
+   * Record a payout from a stokvel
+   */
+  payout(request) {
+    return this.http.post(`${this.apiUrl}/payout`, request);
+  }
+  /**
+   * Get recent transactions for current user
+   */
+  getRecentTransactions(limit = 10) {
+    const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpParams().set('limit', limit.toString());
+    return this.http.get(`${this.apiUrl}/recent`, {
+      params
+    });
+  }
+  /**
+   * Get account balance for current user
+   */
+  getBalance() {
+    return this.http.get(`${this.apiUrl}/balance`);
+  }
+  /**
+   * Get all transactions for a specific stokvel
+   */
+  getStokvelTransactions(stokvelId) {
+    return this.http.get(`${this.apiUrl}/stokvels/${stokvelId}`);
+  }
+  /**
+   * Deposit funds into user's wallet
+   */
+  depositToWallet(amount, reference) {
+    return this.http.post(`${this.apiUrl}/wallet/deposit`, {
+      amount,
+      reference: reference || `deposit-${Date.now()}`,
+      currency: 'ZAR'
+    });
+  }
+  /**
+   * Transfer funds from wallet to a stokvel
+   */
+  transferToStokvel(request) {
+    return this.http.post(`${this.apiUrl}/wallet/transfer`, request);
+  }
+  static #_ = _staticBlock = () => (this.ɵfac = function TransactionService_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || TransactionService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient));
+  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
+    token: TransactionService,
+    factory: TransactionService.ɵfac,
+    providedIn: 'root'
+  }));
+}
+_staticBlock();
+
+/***/ }),
+
 /***/ 9259:
 /*!***************************************!*\
   !*** ./src/app/utils/StokvelUtils.ts ***!

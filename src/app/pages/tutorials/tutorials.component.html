@@ -1,1 +1,66 @@
-<p>tutorials.component works!</p>
+<div class="tut-page">
+
+  <!-- Hero -->
+  <section class="tut-hero">
+    <div class="tut-hero-inner">
+      <div class="tut-eyebrow"><mat-icon>play_circle</mat-icon> Learning Centre</div>
+      <h1>Tutorials</h1>
+      <p>Step-by-step guides to help you get the most out of eStokvel — from account creation to advanced group management.</p>
+    </div>
+  </section>
+
+  <!-- Tutorials grid -->
+  <section class="tut-section">
+    <div class="tut-container">
+      <h2>All Tutorials</h2>
+      <div class="tut-grid">
+        <div class="tut-card" *ngFor="let t of tutorials">
+          <div class="tut-card-icon">
+            <mat-icon>{{ t.icon }}</mat-icon>
+          </div>
+          <div class="tut-card-body">
+            <div class="tut-meta">
+              <span class="tut-level" [class.level-beginner]="t.level === 'Beginner'" [class.level-intermediate]="t.level === 'Intermediate'">{{ t.level }}</span>
+              <span class="tut-duration"><mat-icon>schedule</mat-icon> {{ t.duration }}</span>
+            </div>
+            <h3>{{ t.title }}</h3>
+            <p>{{ t.desc }}</p>
+          </div>
+          <button mat-flat-button color="primary" class="tut-btn" routerLink="/stokvel-basics">
+            <mat-icon>play_arrow</mat-icon> Start
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section class="tut-resources">
+    <div class="tut-container">
+      <h2>Additional Resources</h2>
+      <div class="tut-res-grid">
+        <div class="tut-res-card" routerLink="/stokvel-basics">
+          <mat-icon>school</mat-icon>
+          <h4>Stokvel Basics</h4>
+          <p>Learn the fundamentals of stokvels and how they work.</p>
+        </div>
+        <div class="tut-res-card" routerLink="/glossary">
+          <mat-icon>menu_book</mat-icon>
+          <h4>Glossary</h4>
+          <p>Definitions of key stokvel and eStokvel terms.</p>
+        </div>
+        <div class="tut-res-card" routerLink="/faq">
+          <mat-icon>help_outline</mat-icon>
+          <h4>FAQ</h4>
+          <p>Answers to the most commonly asked questions.</p>
+        </div>
+        <div class="tut-res-card" routerLink="/contact">
+          <mat-icon>support_agent</mat-icon>
+          <h4>Support</h4>
+          <p>Need help? Our support team is ready to assist you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

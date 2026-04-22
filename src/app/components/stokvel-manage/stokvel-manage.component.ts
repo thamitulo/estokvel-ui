@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, of } from 'rxjs';
@@ -15,7 +15,7 @@ import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-stokvel-manage',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, MaterialModule],
   templateUrl: './stokvel-manage.component.html',
   styleUrls: ['./stokvel-manage.component.scss']
 })
@@ -23,6 +23,8 @@ export class StokvelManageComponent implements OnInit {
 
   stokvel: StokvelResponse | null = null;
   pendingRequests: any[] = [];
+  pendingProposals: any[] = [];   // admin removal proposals
+  currentUserAuth0Id = '';
   isLoading = true;
   activeTab = 0;
 
@@ -40,6 +42,12 @@ export class StokvelManageComponent implements OnInit {
 
   // Remove confirmation
   removingMemberId: number | null = null;
+
+  // Proposal state
+  proposalTargetMember: StokvelMemberDto | null = null;
+  proposalReason = '';
+  proposalLoading = false;
+  showProposalForm = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,25 +70,30 @@ export class StokvelManageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Get current user ID for proposal logic
+    this.userService.user$.subscribe(u => { if (u?.id) this.currentUserAuth0Id = u.id; });
+
     this.route.paramMap.pipe(
       switchMap(params => {
         const id = Number(params.get('id'));
         return forkJoin({
-          stokvel: this.stokvelService.getStokvelById(id).pipe(catchError(() => of(null))),
-          pending: this.stokvelService.getPendingJoinRequests(id).pipe(catchError(() => of([])))
+          stokvel:   this.stokvelService.getStokvelById(id).pipe(catchError(() => of(null))),
+          pending:   this.stokvelService.getPendingJoinRequests(id).pipe(catchError(() => of([]))),
+          proposals: this.stokvelService.getPendingRemovalProposals(id).pipe(catchError(() => of([])))
         });
       })
-    ).subscribe(({ stokvel, pending }) => {
+    ).subscribe(({ stokvel, pending, proposals }) => {
       this.stokvel = stokvel;
       this.pendingRequests = pending as any[];
+      this.pendingProposals = proposals as any[];
 
       if (!stokvel || (!stokvel.isOwner && stokvel.currentUserRole !== 'ADMIN')) {
         this.snack.open('Access denied – admins only', 'Close', { duration: 4000 });
-        this.router.navigate(['/stokvels', this.stokvel?.id ?? '']);
+        const redirectId = stokvel?.id ?? this.route.snapshot.paramMap.get('id');
+        this.router.navigate(redirectId ? ['/stokvels', redirectId] : ['/stokvels']);
         return;
       }
 
-      // Auto-fill amount with monthly contribution
       if (stokvel.monthlyContribution) {
         this.paymentForm.get('amount')!.setValue(stokvel.monthlyContribution);
       }
@@ -92,6 +105,25 @@ export class StokvelManageComponent implements OnInit {
   get allMembers(): StokvelMemberDto[] {
     if (!this.stokvel) return [];
     return [...(this.stokvel.adminMembers ?? []), ...(this.stokvel.regularMembers ?? [])];
+  }
+
+  get adminCount(): number {
+    return this.stokvel?.adminMembers?.length ?? 0;
+  }
+
+  /** True if this member is the ONLY admin */
+  isLastAdmin(member: StokvelMemberDto): boolean {
+    return member.role === 'ADMIN' && this.adminCount <= 1;
+  }
+
+  /** True if removing this admin requires a proposal (multiple admins) */
+  requiresProposal(member: StokvelMemberDto): boolean {
+    return member.role === 'ADMIN' && this.adminCount > 1;
+  }
+
+  /** True if current user already has a pending proposal targeting this member */
+  hasPendingProposalFor(member: StokvelMemberDto): boolean {
+    return this.pendingProposals.some(p => p.targetMemberId === member.id);
   }
 
   // ── Join Request actions ──────────────────────────────────────────────────
@@ -119,7 +151,7 @@ export class StokvelManageComponent implements OnInit {
       });
   }
 
-  // ── Invite member by email ───────────────────────────────────────────────
+  // ── Invite member ────────────────────────────────────────────────────────
   inviteMember(): void {
     if (this.inviteForm.invalid || !this.stokvel) return;
     this.inviteLoading = true;
@@ -142,17 +174,28 @@ export class StokvelManageComponent implements OnInit {
       });
   }
 
-  // ── Remove member ────────────────────────────────────────────────────────
+  // ── Remove REGULAR member (immediate) ────────────────────────────────────
   removeMember(member: StokvelMemberDto): void {
     if (!member.id || !this.stokvel) return;
-    const confirmed = window.confirm(`Remove ${member.displayName || member.userName} from "${this.stokvel.name}"?`);
+
+    if (this.isLastAdmin(member)) {
+      this.snack.open('❌ Cannot remove the only admin. Assign another admin first.', 'Close', { duration: 5000 });
+      return;
+    }
+    if (this.requiresProposal(member)) {
+      this.snack.open('Admin removal requires ratification — use "Propose Removal" below.', 'Close', { duration: 5000 });
+      return;
+    }
+
+    const name = member.displayName || member.userName;
+    const confirmed = window.confirm(`Remove ${name} from "${this.stokvel.name}"?\nThis action cannot be undone.`);
     if (!confirmed) return;
     this.removingMemberId = member.id;
 
     this.stokvelService.removeMember(this.stokvel.id, member.id).subscribe({
       next: () => {
         this.removingMemberId = null;
-        this.snack.open(`${member.displayName || member.userName} removed`, 'Close', { duration: 3000 });
+        this.snack.open(`${name} removed`, 'Close', { duration: 3000 });
         this.stokvelService.getStokvelById(this.stokvel!.id).subscribe(s => this.stokvel = s);
       },
       error: err => {
@@ -160,6 +203,86 @@ export class StokvelManageComponent implements OnInit {
         this.snack.open(err?.error?.message || 'Could not remove member', 'Close', { duration: 5000, panelClass: 'error-snackbar' });
       }
     });
+  }
+
+  // ── Propose removal of an ADMIN (requires ratification) ──────────────────
+  openProposalForm(member: StokvelMemberDto): void {
+    this.proposalTargetMember = member;
+    this.proposalReason = '';
+    this.showProposalForm = true;
+  }
+
+  cancelProposalForm(): void {
+    this.showProposalForm = false;
+    this.proposalTargetMember = null;
+  }
+
+  submitProposal(): void {
+    if (!this.proposalTargetMember?.id || !this.stokvel) return;
+    this.proposalLoading = true;
+
+    this.stokvelService.proposeAdminRemoval(
+      this.stokvel.id,
+      this.proposalTargetMember.id,
+      this.proposalReason
+    ).subscribe({
+      next: (p) => {
+        this.proposalLoading = false;
+        this.showProposalForm = false;
+        this.pendingProposals = [...this.pendingProposals, p];
+        this.snack.open(
+          `✅ Removal proposal submitted. Other admins have been notified to ratify.`,
+          'Close', { duration: 6000 }
+        );
+        this.proposalTargetMember = null;
+      },
+      error: err => {
+        this.proposalLoading = false;
+        this.snack.open(err?.error?.error || 'Failed to submit proposal', 'Close', { duration: 5000, panelClass: 'error-snackbar' });
+      }
+    });
+  }
+
+  // ── Ratify proposal (another admin approves the removal) ─────────────────
+  approveProposal(proposal: any): void {
+    if (!this.stokvel) return;
+    const notes = window.prompt('Optional: add a note (shown to the removed admin)', '') ?? '';
+    this.stokvelService.approveRemovalProposal(this.stokvel.id, proposal.id, notes).subscribe({
+      next: () => {
+        this.pendingProposals = this.pendingProposals.filter(p => p.id !== proposal.id);
+        this.snack.open(`✅ Admin removal approved and executed.`, 'Close', { duration: 4000 });
+        this.stokvelService.getStokvelById(this.stokvel!.id).subscribe(s => this.stokvel = s);
+      },
+      error: err => this.snack.open(err?.error?.error || 'Could not approve proposal', 'Close', { duration: 5000, panelClass: 'error-snackbar' })
+    });
+  }
+
+  rejectProposal(proposal: any): void {
+    if (!this.stokvel) return;
+    const notes = window.prompt('Optional: reason for rejecting', '') ?? '';
+    this.stokvelService.rejectRemovalProposal(this.stokvel.id, proposal.id, notes).subscribe({
+      next: () => {
+        this.pendingProposals = this.pendingProposals.filter(p => p.id !== proposal.id);
+        this.snack.open('Removal proposal rejected.', 'Close', { duration: 3000 });
+      },
+      error: err => this.snack.open(err?.error?.error || 'Could not reject proposal', 'Close', { duration: 5000, panelClass: 'error-snackbar' })
+    });
+  }
+
+  cancelProposal(proposal: any): void {
+    if (!this.stokvel) return;
+    this.stokvelService.cancelRemovalProposal(this.stokvel.id, proposal.id).subscribe({
+      next: () => {
+        this.pendingProposals = this.pendingProposals.filter(p => p.id !== proposal.id);
+        this.snack.open('Proposal cancelled.', 'Close', { duration: 3000 });
+      },
+      error: err => this.snack.open(err?.error?.error || 'Could not cancel', 'Close', { duration: 4000 })
+    });
+  }
+
+  /** Whether the current user is the proposer */
+  isProposer(proposal: any): boolean {
+    return proposal.proposedByAuth0Id === this.currentUserAuth0Id;
   }
 
   // ── Outstanding members ──────────────────────────────────────────────────

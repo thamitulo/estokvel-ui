@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, tap, filter, take, switchMap, catchError } from 'rxjs/operators';
 import { AuthService } from '@auth0/auth0-angular';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 export interface AppUser {
   id?: string;
@@ -19,7 +21,7 @@ export class UserService {
     map(user => user?.name || user?.email || null)
   );
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private http: HttpClient) {
     // Subscribe to Auth0 user$ and update local BehaviorSubject
     this.auth.user$.pipe(
       tap(auth0User => {
@@ -36,6 +38,20 @@ export class UserService {
         }
       })
     ).subscribe();
+
+    // Claim any pending email-based invitations once authenticated
+    this.auth.isAuthenticated$.pipe(
+      filter(isAuth => isAuth),
+      take(1),
+      switchMap(() =>
+        this.http.post(`${environment.apiUrl}stokvel-members/claim-invitations`, {})
+          .pipe(catchError(() => of(null)))
+      )
+    ).subscribe(result => {
+      if (result && (result as any).claimed > 0) {
+        console.info('Claimed', (result as any).claimed, 'pending stokvel invitation(s)');
+      }
+    });
   }
 
   setUser(user: AppUser | null) {

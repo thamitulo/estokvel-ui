@@ -1,0 +1,59 @@
+<div class="res-page">
+
+  <!-- Hero -->
+  <section class="res-hero">
+    <div class="res-hero-inner">
+      <div class="res-eyebrow"><mat-icon>library_books</mat-icon> Resources</div>
+      <h1>Resource Library</h1>
+      <p>Everything you need to make the most of eStokvel — guides, legal documents, tutorials and more.</p>
+    </div>
+  </section>
+
+  <!-- Featured -->
+  <section class="res-section">
+    <div class="res-container">
+      <h2>Featured Resources</h2>
+      <div class="res-featured-grid">
+        <div class="res-featured-card" *ngFor="let r of featured" [routerLink]="r.link">
+          <div class="res-feat-icon">
+            <mat-icon>{{ r.icon }}</mat-icon>
+          </div>
+          <div class="res-feat-tag">{{ r.tag }}</div>
+          <h3>{{ r.title }}</h3>
+          <p>{{ r.desc }}</p>
+          <div class="res-feat-cta">Read more <mat-icon>arrow_forward</mat-icon></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All resources grouped by category -->
+  <section class="res-section res-section-alt" *ngFor="let group of resources">
+    <div class="res-container">
+      <div class="res-group-header">
+        <mat-icon>{{ group.icon }}</mat-icon>
+        <h2>{{ group.category }}</h2>
+      </div>
+      <div class="res-items-grid">
+        <div class="res-item-card" *ngFor="let item of group.items" [routerLink]="item.link">
+          <div class="res-item-tag" [style.background]="tagColors[item.tag] + '18'" [style.color]="tagColors[item.tag]">{{ item.tag }}</div>
+          <h4>{{ item.title }}</h4>
+          <p>{{ item.desc }}</p>
+          <div class="res-item-arrow"><mat-icon>chevron_right</mat-icon></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Still looking? -->
+  <section class="res-cta">
+    <h2>Can't find what you're looking for?</h2>
+    <p>Our support team is here to help with any questions not covered in the resources above.</p>
+    <div class="res-cta-actions">
+      <button mat-flat-button color="primary" routerLink="/contact"><mat-icon>mail</mat-icon> Contact Us</button>
+      <button mat-stroked-button routerLink="/help-center"><mat-icon>help_outline</mat-icon> Help Center</button>
+    </div>
+  </section>
+
+</div>
+

@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import {MaterialModule} from "../../material.module";
 import {StokvelUtils} from "../../utils/StokvelUtils";
 import {StokvelService} from "../../services/stokvel/stokvel.service";
-import {StokvelTypeDto, SavingsTermDto} from "../../models";
+import {StokvelTypeDto, SavingsTermDto, CreateStokvelRequest} from "../../models";
 
 @Component({
   selector: 'app-stokvel-create',
@@ -97,6 +97,7 @@ export class StokvelCreateComponent implements OnInit {
     return this.fb.group({
       monthlyContribution: [500, [Validators.required, Validators.min(50)]],
       targetAmount: [null],
+      savingsTermId: [null],
       payoutCycle: ['monthly', Validators.required],
       maxMembers: [10, [Validators.required, Validators.min(3), Validators.max(50)]],
       rotationOrder: ['alphabetical']
@@ -149,16 +150,22 @@ export class StokvelCreateComponent implements OnInit {
       // Backend expects type as uppercase ID (e.g. "INVESTMENT", "ROTATIONAL")
       const typePayload = selectedStokvelType ? selectedStokvelType.id.toUpperCase() : null;
 
-      const stokvelData = {
-        ...this.basicInfoForm.value,
-        ...this.financialForm.value,
-        type: typePayload,
-        typeName: selectedStokvelType ? selectedStokvelType.name : '',
+      const stokvelData: CreateStokvelRequest = {
+        name: this.basicInfoForm.value.name,
+        description: this.basicInfoForm.value.description,
+        type: typePayload ?? '',
+        typeName: selectedStokvelType?.name ?? '',
+        privacy: this.basicInfoForm.value.privacy,
+        monthlyContribution: this.financialForm.value.monthlyContribution,
+        targetAmount: this.financialForm.value.targetAmount ?? undefined,
+        savingsTermId: this.financialForm.value.savingsTermId ?? undefined,
+        payoutCycle: this.financialForm.value.payoutCycle,
+        maxMembers: this.financialForm.value.maxMembers,
+        rotationOrder: this.financialForm.value.rotationOrder ?? undefined,
         rules: [
           ...this.defaultRules.filter(rule => rule.enabled),
           ...this.customRules.value
-        ],
-        status: 'active'
+        ]
       };
 
       // Call the actual service

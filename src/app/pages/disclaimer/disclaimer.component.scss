@@ -1,0 +1,48 @@
+$navy: #0d47a1; $teal: #00796b; $gold: #f59e0b;
+$bg: #f8fafc; $text: #1e293b; $muted: #64748b; $border: #e2e8f0;
+
+.disc-page { font-family: 'Inter', sans-serif; color: $text; }
+
+.disc-hero {
+  background: linear-gradient(135deg, #37474f, #455a64, #546e7a);
+  color: #fff; padding: 72px 24px 56px; text-align: center;
+  .disc-hero-inner { max-width: 680px; margin: 0 auto; }
+  .disc-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.15); border-radius: 20px; padding: 4px 14px; font-size: .82rem; font-weight: 600; margin-bottom: 16px; }
+  h1 { font-size: 2.6rem; font-weight: 800; margin: 0 0 12px; }
+  p  { opacity: .88; margin: 0 auto; max-width: 520px; }
+}
+
+.disc-container { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+.disc-warning {
+  display: flex; gap: 14px; background: #fff3cd; border: 1px solid #ffc107;
+  border-radius: 10px; padding: 16px 20px; margin: 36px 0;
+  mat-icon { color: #f59e0b; flex-shrink: 0; margin-top: 2px; }
+  p { margin: 0; font-size: .9rem; line-height: 1.6; color: #856404; }
+}
+
+.disc-section {
+  padding: 36px 0; border-bottom: 1px solid $border; &:last-child { border-bottom: none; }
+  h2 { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 700; color: $navy; margin: 0 0 16px; mat-icon { color: $navy; } }
+  p  { font-size: .95rem; line-height: 1.7; color: #475569; margin-bottom: 12px; }
+}
+
+.disc-info-box { display: flex; gap: 14px; background: #e3f2fd; border: 1px solid #90caf9; border-radius: 10px; padding: 16px 20px; margin-top: 16px;
+  mat-icon { color: $navy; flex-shrink: 0; }
+  p { margin: 0; font-size: .9rem; a { color: $teal; } }
+}
+
+.disc-list { list-style: none; padding: 0; margin: 12px 0;
+  li { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid $border; &:last-child { border-bottom: none; }
+    mat-icon { color: #dc2626; font-size: 1rem; width: 1rem; height: 1rem; }
+    span { font-size: .92rem; color: #475569; }
+  }
+}
+
+.disc-contact {
+  background: $bg; border: 1px solid $border; border-radius: 10px; padding: 20px 24px; margin: 16px 0;
+  p { margin: 4px 0; font-size: .92rem; color: #475569; }
+}
+
+.disc-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+

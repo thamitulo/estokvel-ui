@@ -315,11 +315,11 @@
                 <div class="highlight-item positive" *ngFor="let s of stokvels | slice:0:3">
                   <div class="highlight-icon"><mat-icon>savings</mat-icon></div>
                   <div class="highlight-content">
-                    <span class="highlight-title">{{ s.isOwner ? '⭐ Admin' : '👤 Member' }}</span>
+                    <span class="highlight-title">{{ (s.isOwner || s.currentUserRole === 'ADMIN') ? '⭐ Admin' : '👤 Member' }}</span>
                     <span class="highlight-value">{{ s.name }}</span>
                     <span class="highlight-change">
                       R{{ s.monthlyContribution | number }}/mo
-                      · {{ s.totalMembers }}/{{ s.maxMembers }} members
+                      · {{ s.totalMembers ?? (s.memberCount + s.adminCount) }}/{{ s.maxMembers }} members
                     </span>
                   </div>
                 </div>
@@ -398,6 +398,20 @@
           <mat-icon>arrow_forward</mat-icon>
         </div>
       </button>
+
+      <button class="action-card wallet-action" (click)="openWallet()">
+        <div class="action-icon">
+          <div class="icon-background"></div>
+          <mat-icon>account_balance_wallet</mat-icon>
+        </div>
+        <div class="action-content">
+          <h3>My Wallet</h3>
+          <p>Deposit &amp; transfer funds</p>
+        </div>
+        <div class="action-arrow">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+      </button>
     </div>
   </section>
 
@@ -433,7 +447,7 @@
             <p class="stokvel-type">{{ getStokvelTypeDisplayName(stokvel.typeName) }}</p>
             <div class="stokvel-members">
               <mat-icon>people</mat-icon>
-              <span>{{ stokvel.memberCount }} members</span>
+              <span>{{ stokvel.totalMembers ?? (stokvel.memberCount + stokvel.adminCount) }} members</span>
             </div>
             <!-- Ownership badge -->
             <div *ngIf="stokvel.isOwner" class="owner-badge">

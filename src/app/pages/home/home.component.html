@@ -27,10 +27,17 @@
       </p>
 
       <div class="hero-actions">
-        <button class="btn-hero-primary" (click)="login()">
-          <mat-icon>rocket_launch</mat-icon>
-          Get Started Free
-        </button>
+        @if (!(isAuthenticated$ | async)) {
+          <button class="btn-hero-primary" (click)="login()">
+            <mat-icon>rocket_launch</mat-icon>
+            Get Started Free
+          </button>
+        } @else {
+          <button class="btn-hero-primary" routerLink="/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            Go to Dashboard
+          </button>
+        }
         <button class="btn-hero-ghost" routerLink="/stokvels">
           <mat-icon>explore</mat-icon>
           Browse Stokvels

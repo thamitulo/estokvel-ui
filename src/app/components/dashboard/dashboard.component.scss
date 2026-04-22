@@ -816,6 +816,12 @@
     --gradient-end: #2e7d32;
     border-left: 4px solid #388e3c;
   }
+
+  &.wallet-action {
+    --gradient-start: #6366f1;
+    --gradient-end: #8b5cf6;
+    border-left: 4px solid #6366f1;
+  }
 }
 
 .action-icon {
@@ -848,6 +854,11 @@
     .success-action & {
       background: rgba(56, 142, 60, 0.1);
       color: #388e3c;
+    }
+
+    .wallet-action & {
+      background: rgba(99, 102, 241, 0.1);
+      color: #6366f1;
     }
   }
 

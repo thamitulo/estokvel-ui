@@ -118,6 +118,7 @@ export interface CreateStokvelRequest {
   privacy: 'public' | 'private';
   monthlyContribution: number;
   targetAmount?: number;
+  savingsTermId?: number;
   payoutCycle: string;
   maxMembers: number;
   rotationOrder?: string;

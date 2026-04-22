@@ -19,6 +19,10 @@
       <mat-icon>notifications_active</mat-icon>
       {{ pendingRequests.length }} pending request{{ pendingRequests.length !== 1 ? 's' : '' }}
     </div>
+    <div class="pending-badge proposal-badge" *ngIf="pendingProposals.length > 0" (click)="activeTab = 2">
+      <mat-icon>gavel</mat-icon>
+      {{ pendingProposals.length }} removal proposal{{ pendingProposals.length !== 1 ? 's' : '' }} awaiting ratification
+    </div>
   </div>
 
   <!-- ── Tabs ── -->
@@ -34,7 +38,12 @@
       <div class="tab-body">
         <div class="section-note">
           <mat-icon>info_outline</mat-icon>
-          Only admins can remove members. Removing the last admin is not allowed.
+          <span *ngIf="adminCount <= 1">
+            Only one admin exists — admin removal is blocked. Assign another admin first.
+          </span>
+          <span *ngIf="adminCount > 1">
+            Removing a <strong>regular member</strong> is immediate. Removing an <strong>admin</strong> requires ratification by another admin.
+          </span>
         </div>
 
         <div class="member-table">
@@ -61,7 +70,29 @@
             </div>
             <div class="mt-cell muted">{{ m.joinedDate | date:'MMM y' }}</div>
             <div class="mt-cell action-cell">
+              <!-- Last admin: block entirely -->
+              <button class="btn-remove" disabled
+                      *ngIf="isLastAdmin(m)"
+                      matTooltip="Cannot remove the only admin">
+                <mat-icon>block</mat-icon>
+              </button>
+
+              <!-- Admin with multiple admins: propose removal -->
+              <ng-container *ngIf="requiresProposal(m)">
+                <span *ngIf="hasPendingProposalFor(m)" class="proposal-pending-label" matTooltip="Removal proposal is pending ratification">
+                  <mat-icon>hourglass_top</mat-icon> Pending
+                </span>
+                <button class="btn-propose"
+                        *ngIf="!hasPendingProposalFor(m)"
+                        (click)="openProposalForm(m)"
+                        matTooltip="Propose removal (requires another admin to ratify)">
+                  <mat-icon>gavel</mat-icon> Propose Removal
+                </button>
+              </ng-container>
+
+              <!-- Regular member: remove immediately -->
               <button class="btn-remove"
+                      *ngIf="m.role !== 'ADMIN'"
                       [disabled]="removingMemberId === (m.id ?? -1)"
                       (click)="removeMember(m)"
                       matTooltip="Remove member">
@@ -70,6 +101,32 @@
             </div>
           </div>
         </div>
+
+        <!-- ── Inline Proposal Form (opens from Propose Removal button) ── -->
+        <div class="proposal-form-card" *ngIf="showProposalForm && proposalTargetMember">
+          <div class="proposal-form-header">
+            <mat-icon>gavel</mat-icon>
+            <h3>Propose Admin Removal: {{ proposalTargetMember.displayName || proposalTargetMember.userName }}</h3>
+          </div>
+          <p class="proposal-form-note">
+            This proposal will be sent to all other admins for ratification.
+            The removal will only be executed once <strong>another admin approves</strong> it.
+          </p>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Reason (optional)</mat-label>
+            <textarea matInput [(ngModel)]="proposalReason" rows="3"
+              placeholder="e.g. Inactive for 3 months, repeated non-compliance…"></textarea>
+          </mat-form-field>
+          <div class="proposal-form-actions">
+            <button class="btn-cancel-sm" (click)="cancelProposalForm()">Cancel</button>
+            <button class="btn-danger" [disabled]="proposalLoading" (click)="submitProposal()">
+              <mat-spinner diameter="16" *ngIf="proposalLoading"></mat-spinner>
+              <mat-icon *ngIf="!proposalLoading">send</mat-icon>
+              {{ proposalLoading ? 'Submitting…' : 'Submit Proposal' }}
+            </button>
+          </div>
+        </div>
+
       </div>
     </mat-tab>
 
@@ -111,7 +168,94 @@
       </div>
     </mat-tab>
 
-    <!-- ─────────────── TAB 3: Invite Member ─────────────── -->
+    <!-- ─────────────── TAB 3: Proposals ─────────────── -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>gavel</mat-icon>&nbsp;Proposals
+        <span class="tab-count pending" *ngIf="pendingProposals.length">{{ pendingProposals.length }}</span>
+      </ng-template>
+
+      <div class="tab-body">
+
+        <!-- Empty state -->
+        <div class="empty-state" *ngIf="pendingProposals.length === 0">
+          <mat-icon>gavel</mat-icon>
+          <p>No pending admin removal proposals</p>
+          <span class="empty-hint">
+            Proposals are created when an admin nominates another admin for removal.
+            A second admin must ratify before any removal takes effect.
+          </span>
+        </div>
+
+        <!-- Proposals list -->
+        <ng-container *ngIf="pendingProposals.length > 0">
+          <div class="proposals-header">
+            <h2 class="proposals-title"><mat-icon>gavel</mat-icon> Admin Removal Proposals</h2>
+            <p class="proposals-note">
+              Each proposal requires ratification by a <strong>different admin</strong> (not the proposer) before the removal is executed.
+            </p>
+          </div>
+
+          <div class="proposal-card" *ngFor="let p of pendingProposals">
+
+            <!-- Target info -->
+            <div class="proposal-info">
+              <div class="proposal-avatar">{{ getInitials(p.targetName) }}</div>
+              <div class="proposal-details">
+                <span class="proposal-target">{{ p.targetName }}</span>
+                <span class="proposal-sub">
+                  <mat-icon class="sub-icon">person</mat-icon> Proposed by <strong>{{ p.proposedByName }}</strong>
+                </span>
+                <span class="proposal-sub">
+                  <mat-icon class="sub-icon">schedule</mat-icon> {{ p.createdAt | date:'mediumDate' }}
+                </span>
+                <span class="proposal-reason" *ngIf="p.reason">
+                  <mat-icon class="sub-icon">notes</mat-icon> {{ p.reason }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Status chip -->
+            <div class="proposal-status">
+              <span class="status-chip pending-chip">
+                <mat-icon>hourglass_top</mat-icon> Awaiting Ratification
+              </span>
+            </div>
+
+            <!-- Actions -->
+            <div class="proposal-actions">
+              <!-- Proposer can only withdraw -->
+              <ng-container *ngIf="isProposer(p)">
+                <span class="proposal-yours">
+                  <mat-icon>star</mat-icon> You proposed this
+                </span>
+                <button class="btn-cancel-sm" (click)="cancelProposal(p)">
+                  <mat-icon>undo</mat-icon> Withdraw
+                </button>
+              </ng-container>
+
+              <!-- Other admins can approve or reject -->
+              <ng-container *ngIf="!isProposer(p)">
+                <div class="ratify-prompt">
+                  <mat-icon>info_outline</mat-icon>
+                  As a co-admin, you can ratify or reject this proposal.
+                </div>
+                <button class="btn-approve" (click)="approveProposal(p)">
+                  <mat-icon>check_circle</mat-icon> Approve &amp; Remove
+                </button>
+                <button class="btn-reject" (click)="rejectProposal(p)">
+                  <mat-icon>cancel</mat-icon> Reject
+                </button>
+              </ng-container>
+            </div>
+
+          </div>
+        </ng-container>
+
+      </div>
+    </mat-tab>
+
+    <!-- ─────────────── TAB 4: Invite Member ─���───────────── -->
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon>person_add</mat-icon>&nbsp;Invite
@@ -153,7 +297,7 @@
       </div>
     </mat-tab>
 
-    <!-- ─────────────── TAB 4: Request Payment ─────────────── -->
+    <!-- ─────────────── TAB 5: Request Payment ─────────────── -->
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon>payments</mat-icon>&nbsp;Request Payment

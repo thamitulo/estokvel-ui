@@ -954,23 +954,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   UserService: () => (/* binding */ UserService)
 /* harmony export */ });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 5797);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 271);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 8764);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 4205);
-/* harmony import */ var _auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @auth0/auth0-angular */ 7989);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 9452);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 1318);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 1567);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 271);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 6647);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 4334);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 8764);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../environments/environment */ 6052);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 4205);
+/* harmony import */ var _auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @auth0/auth0-angular */ 7989);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ 3855);
 var _staticBlock;
 
 
 
 
+
+
 class UserService {
-  constructor(auth) {
+  constructor(auth, http) {
     this.auth = auth;
+    this.http = http;
     this._userSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject(null);
     this.user$ = this._userSubject.asObservable();
-    this.userName$ = this.user$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.map)(user => user?.name || user?.email || null));
+    this.userName$ = this.user$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(user => user?.name || user?.email || null));
     // Subscribe to Auth0 user$ and update local BehaviorSubject
-    this.auth.user$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.tap)(auth0User => {
+    this.auth.user$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.tap)(auth0User => {
       if (auth0User) {
         const appUser = {
           id: auth0User.sub,
@@ -983,13 +993,19 @@ class UserService {
         this._userSubject.next(null);
       }
     })).subscribe();
+    // Claim any pending email-based invitations once authenticated
+    this.auth.isAuthenticated$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.filter)(isAuth => isAuth), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.take)(1), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.switchMap)(() => this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_8__.environment.apiUrl}stokvel-members/claim-invitations`, {}).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.catchError)(() => (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.of)(null))))).subscribe(result => {
+      if (result && result.claimed > 0) {
+        console.info('Claimed', result.claimed, 'pending stokvel invitation(s)');
+      }
+    });
   }
   setUser(user) {
     this._userSubject.next(user);
   }
   static #_ = _staticBlock = () => (this.ɵfac = function UserService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_4__.AuthService));
-  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
+    return new (__ngFactoryType__ || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_10__.AuthService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_11__.HttpClient));
+  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjectable"]({
     token: UserService,
     factory: UserService.ɵfac,
     providedIn: 'root'
@@ -1394,6 +1410,16 @@ const routes = [{
   canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
   title: 'Manage Stokvel - eStokvel'
 }, {
+  path: 'wallet',
+  loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_components_wallet_wallet_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/wallet/wallet.component */ 5425)).then(m => m.WalletComponent),
+  canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
+  title: 'My Wallet - eStokvel'
+}, {
+  path: 'profile',
+  loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_profile_profile_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/profile/profile.component */ 2683)).then(m => m.ProfileComponent),
+  canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
+  title: 'My Profile - eStokvel'
+}, {
   path: 'refer-earn',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_referals_refer-and-earn_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/referals/refer-and-earn.component */ 294)).then(m => m.ReferAndEarnComponent),
   title: 'Refer & Earn - eStokvel'
@@ -1404,6 +1430,26 @@ const routes = [{
 }, {
   path: 'faq',
   component: _shared_faq_faq_component__WEBPACK_IMPORTED_MODULE_1__.FaqComponent
+}, {
+  path: 'help-center',
+  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_help-center_help-center_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/help-center/help-center.component */ 103)).then(m => m.HelpCenterComponent),
+  title: 'Help Center - eStokvel'
+}, {
+  path: 'resources',
+  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_resources_resources_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/resources/resources.component */ 9815)).then(m => m.ResourcesComponent),
+  title: 'Resources - eStokvel'
+}, {
+  path: 'fsca',
+  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_fsca_fsca_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/fsca/fsca.component */ 6999)).then(m => m.FscaComponent),
+  title: 'FSCA - eStokvel'
+}, {
+  path: 'disclaimer',
+  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_disclaimer_disclaimer_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/disclaimer/disclaimer.component */ 9751)).then(m => m.DisclaimerComponent),
+  title: 'Disclaimer - eStokvel'
+}, {
+  path: 'notifications',
+  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_notifications_notifications_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/notifications/notifications.component */ 5603)).then(m => m.NotificationsPageComponent),
+  title: 'Notifications - eStokvel'
 }, {
   path: '**',
   redirectTo: 'home'
@@ -1791,7 +1837,7 @@ function ToolbarComponent_div_21_Template(rf, ctx) {
 function ToolbarComponent_ng_container_23_ng_container_9_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](1, "img", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](1, "img", 38);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerEnd"]();
   }
   if (rf & 2) {
@@ -1802,7 +1848,7 @@ function ToolbarComponent_ng_container_23_ng_container_9_Template(rf, ctx) {
 }
 function ToolbarComponent_ng_container_23_ng_template_10_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 37);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 39);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](2, "uppercase");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -1856,32 +1902,32 @@ function ToolbarComponent_ng_container_23_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](36, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](37, "Account Settings");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](38, "button", 32)(39, "mat-icon");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](38, "button", 34)(39, "mat-icon");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](40, "history");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](41, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](42, "Transaction History");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](43, "button", 33)(44, "mat-icon");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](45, "notifications");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](43, "button", 34)(44, "mat-icon");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](45, "account_balance_wallet");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](46, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](47, "Notifications");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](47, "My Wallet");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](48, "button", 33)(49, "mat-icon");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](48, "button", 35)(49, "mat-icon");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](50, "help_outline");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](51, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](52, "Support");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](53, "mat-divider");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](54, "button", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](54, "button", 36);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ToolbarComponent_ng_container_23_Template_button_click_54_listener() {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r5);
       const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"](ctx_r2.logout());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](55, "mat-icon", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](55, "mat-icon", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](56, "logout");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](57, "span");
@@ -1996,7 +2042,7 @@ class ToolbarComponent {
     standalone: false,
     decls: 25,
     vars: 7,
-    consts: [["profileMenu", "matMenu"], ["fallbackAvatar", ""], [1, "top-bar"], [1, "top-bar-content"], [1, "top-bar-text"], [1, "top-bar-links"], ["routerLink", "/faq"], ["routerLink", "contact-us"], ["color", "default", 1, "main-toolbar"], [1, "toolbar-container"], [1, "toolbar-left"], ["mat-icon-button", "", 1, "mobile-menu-button", 3, "click"], [1, "logo-text", 2, "cursor", "pointer", 3, "click"], [1, "desktop-menu"], ["mat-button", "", 3, "active-link", "click", 4, "ngFor", "ngForOf"], [1, "spacer"], [1, "toolbar-right"], ["class", "auth-buttons", 4, "ngIf"], [4, "ngIf"], ["mat-button", "", 3, "click"], [1, "auth-buttons"], ["mat-stroked-button", "", "color", "primary", 1, "auth-button", "login-btn", 3, "click"], ["mat-raised-button", "", "color", "primary", 1, "auth-button", "signup-btn", 3, "click"], ["mat-button", "", 1, "profile-button", 3, "matMenuTriggerFor"], [1, "custom-profile-menu"], [1, "profile-header"], [4, "ngIf", "ngIfElse"], [1, "profile-info"], [1, "greeting"], [1, "name"], ["mat-menu-item", "", "routerLink", "/dashboard"], ["mat-menu-item", "", "routerLink", "/create-stokvel"], ["mat-menu-item", "", "routerLink", "/stokvels"], ["mat-menu-item", ""], ["mat-menu-item", "", 1, "logout-item", 3, "click"], ["color", "warn"], [1, "profile-avatar", 3, "src", "alt"], [1, "profile-avatar", "fallback-avatar"]],
+    consts: [["profileMenu", "matMenu"], ["fallbackAvatar", ""], [1, "top-bar"], [1, "top-bar-content"], [1, "top-bar-text"], [1, "top-bar-links"], ["routerLink", "/faq"], ["routerLink", "contact-us"], ["color", "default", 1, "main-toolbar"], [1, "toolbar-container"], [1, "toolbar-left"], ["mat-icon-button", "", 1, "mobile-menu-button", 3, "click"], [1, "logo-text", 2, "cursor", "pointer", 3, "click"], [1, "desktop-menu"], ["mat-button", "", 3, "active-link", "click", 4, "ngFor", "ngForOf"], [1, "spacer"], [1, "toolbar-right"], ["class", "auth-buttons", 4, "ngIf"], [4, "ngIf"], ["mat-button", "", 3, "click"], [1, "auth-buttons"], ["mat-stroked-button", "", "color", "primary", 1, "auth-button", "login-btn", 3, "click"], ["mat-raised-button", "", "color", "primary", 1, "auth-button", "signup-btn", 3, "click"], ["mat-button", "", 1, "profile-button", 3, "matMenuTriggerFor"], [1, "custom-profile-menu"], [1, "profile-header"], [4, "ngIf", "ngIfElse"], [1, "profile-info"], [1, "greeting"], [1, "name"], ["mat-menu-item", "", "routerLink", "/dashboard"], ["mat-menu-item", "", "routerLink", "/create-stokvel"], ["mat-menu-item", "", "routerLink", "/stokvels"], ["mat-menu-item", "", "routerLink", "/profile"], ["mat-menu-item", "", "routerLink", "/wallet"], ["mat-menu-item", "", "routerLink", "/contact-us"], ["mat-menu-item", "", 1, "logout-item", 3, "click"], ["color", "warn"], [1, "profile-avatar", 3, "src", "alt"], [1, "profile-avatar", "fallback-avatar"]],
     template: function ToolbarComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 2)(1, "div", 3)(2, "div", 4);
@@ -2173,6 +2219,29 @@ class StokvelService {
   }
   removeMember(stokvelId, memberId) {
     return this.http.delete(`${this.apiUrl}/${stokvelId}/members/${memberId}`);
+  }
+  // ── Admin Removal Proposals ──────────────────────────────────────────────
+  proposeAdminRemoval(stokvelId, targetMemberId, reason) {
+    return this.http.post(`${this.apiUrl}/${stokvelId}/removal-proposals`, {
+      targetMemberId,
+      reason
+    });
+  }
+  getPendingRemovalProposals(stokvelId) {
+    return this.http.get(`${this.apiUrl}/${stokvelId}/removal-proposals/pending`);
+  }
+  approveRemovalProposal(stokvelId, proposalId, notes) {
+    return this.http.put(`${this.apiUrl}/${stokvelId}/removal-proposals/${proposalId}/approve`, {
+      notes
+    });
+  }
+  rejectRemovalProposal(stokvelId, proposalId, notes) {
+    return this.http.put(`${this.apiUrl}/${stokvelId}/removal-proposals/${proposalId}/reject`, {
+      notes
+    });
+  }
+  cancelRemovalProposal(stokvelId, proposalId) {
+    return this.http.delete(`${this.apiUrl}/${stokvelId}/removal-proposals/${proposalId}`);
   }
   leaveStokvel(stokvelId) {
     return this.http.post(`${this.apiUrl}/${stokvelId}/leave`, {});
@@ -2613,10 +2682,10 @@ class MobileNavComponent {
       activeIcon: 'groups',
       route: '/stokvels'
     }, {
-      label: 'Create',
-      icon: 'add_circle_outline',
-      activeIcon: 'add_circle',
-      route: '/create-stokvel',
+      label: 'Wallet',
+      icon: 'account_balance_wallet',
+      activeIcon: 'account_balance_wallet',
+      route: '/wallet',
       requiresAuth: true
     }, {
       label: 'Dashboard',

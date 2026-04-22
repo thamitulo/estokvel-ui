@@ -148,6 +148,23 @@
 
               <div class="form-row">
                 <mat-form-field appearance="outline" class="form-field-half">
+                  <mat-label>Savings Term</mat-label>
+                  <mat-select formControlName="savingsTermId">
+                    <mat-option [value]="null">No fixed term (ongoing)</mat-option>
+                    @if (isLoadingTerms) {
+                      <mat-option disabled>Loading terms...</mat-option>
+                    }
+                    @for (term of savingsTerms; track term.id) {
+                      <mat-option [value]="term.id">
+                        {{ term.name }} ({{ term.months }} months) — {{ term.description }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                  <mat-icon matSuffix>hourglass_empty</mat-icon>
+                  <mat-hint>Optional: set a fixed duration for the stokvel</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field-half">
                   <mat-label>Payout Cycle</mat-label>
                   <mat-select formControlName="payoutCycle">
                     <mat-option value="monthly">Monthly</mat-option>

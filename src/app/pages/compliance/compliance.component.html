@@ -1,1 +1,93 @@
-<p>compliance.component works!</p>
+<div class="comp-page">
+
+  <!-- Hero -->
+  <section class="comp-hero">
+    <div class="comp-hero-inner">
+      <div class="comp-eyebrow"><mat-icon>verified</mat-icon> Compliance</div>
+      <h1>Compliance Centre</h1>
+      <p>eStokvel's commitment to operating ethically, transparently and in full compliance with South African law.</p>
+    </div>
+  </section>
+
+  <div class="comp-container">
+
+    <!-- Compliance pillars -->
+    <section class="comp-section">
+      <h2>Our Compliance Pillars</h2>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-card-icon navy"><mat-icon>shield</mat-icon></div>
+          <h3>Data Privacy (POPIA)</h3>
+          <p>We are fully compliant with the Protection of Personal Information Act. Member data is collected, stored and processed with strict privacy safeguards.</p>
+          <a routerLink="/popia" class="comp-link">View POPIA details <mat-icon>arrow_forward</mat-icon></a>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-icon teal"><mat-icon>fingerprint</mat-icon></div>
+          <h3>KYC & Identity Verification</h3>
+          <p>All members are required to verify their identity in accordance with FICA (Financial Intelligence Centre Act) to prevent fraud and money laundering.</p>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-icon gold"><mat-icon>account_balance</mat-icon></div>
+          <h3>Regulatory Compliance</h3>
+          <p>eStokvel operates under the Banks Act Exemption Notice, which legally recognises informal savings clubs in South Africa.</p>
+          <a routerLink="/regulatory" class="comp-link">Regulatory framework <mat-icon>arrow_forward</mat-icon></a>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-icon navy"><mat-icon>receipt_long</mat-icon></div>
+          <h3>Transaction Monitoring</h3>
+          <p>All transactions are monitored for unusual activity. Suspicious transactions are reported as required under FICA reporting obligations.</p>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-icon teal"><mat-icon>gavel</mat-icon></div>
+          <h3>Legal Terms</h3>
+          <p>Our Terms of Service and Privacy Policy are regularly reviewed by legal counsel to ensure they remain compliant with current South African legislation.</p>
+          <a routerLink="/terms" class="comp-link">View Terms <mat-icon>arrow_forward</mat-icon></a>
+        </div>
+        <div class="comp-card">
+          <div class="comp-card-icon gold"><mat-icon>support_agent</mat-icon></div>
+          <h3>Member Protection</h3>
+          <p>Our platform includes dispute resolution mechanisms and member protection features aligned with the Consumer Protection Act.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance status -->
+    <section class="comp-section comp-section-alt">
+      <h2>Compliance Status</h2>
+      <div class="comp-status-list">
+        <div class="comp-status-item">
+          <mat-icon class="status-ok">check_circle</mat-icon>
+          <div><strong>POPIA Compliant</strong><span>Last reviewed: January 2026</span></div>
+        </div>
+        <div class="comp-status-item">
+          <mat-icon class="status-ok">check_circle</mat-icon>
+          <div><strong>FICA KYC Processes Active</strong><span>Identity verification enabled for all users</span></div>
+        </div>
+        <div class="comp-status-item">
+          <mat-icon class="status-ok">check_circle</mat-icon>
+          <div><strong>Banks Act Exemption Notice</strong><span>Operating within stokvel exemption framework</span></div>
+        </div>
+        <div class="comp-status-item">
+          <mat-icon class="status-ok">check_circle</mat-icon>
+          <div><strong>Consumer Protection Act</strong><span>Terms and policies reviewed Q4 2025</span></div>
+        </div>
+        <div class="comp-status-item">
+          <mat-icon class="status-ok">check_circle</mat-icon>
+          <div><strong>256-bit Encryption</strong><span>All data in transit and at rest is encrypted</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Report a concern -->
+    <section class="comp-section">
+      <h2>Report a Compliance Concern</h2>
+      <p>If you have a compliance concern or wish to report a potential breach, please contact our compliance team. All reports are treated with strict confidentiality.</p>
+      <div class="comp-actions">
+        <button mat-flat-button color="primary" routerLink="/contact"><mat-icon>mail</mat-icon> Contact Compliance Team</button>
+        <button mat-stroked-button routerLink="/regulatory"><mat-icon>account_balance</mat-icon> Regulatory Framework</button>
+      </div>
+    </section>
+
+  </div>
+
+</div>

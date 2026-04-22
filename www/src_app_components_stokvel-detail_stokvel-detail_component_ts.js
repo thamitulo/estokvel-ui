@@ -596,7 +596,7 @@ function StokvelDetailComponent_div_0_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("ngIf", !ctx_r1.isMember(stokvel_r4) && !ctx_r1.isPublicStokvel(stokvel_r4));
     _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate2"]("", stokvel_r4.memberCount, " / ", stokvel_r4.maxMembers);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate2"]("", stokvel_r4.totalMembers ?? stokvel_r4.memberCount + stokvel_r4.adminCount, " / ", stokvel_r4.maxMembers);
     _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](9);
     _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate1"]("R", _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵpipeBind1"](54, 39, stokvel_r4.monthlyContribution));
     _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](10);
@@ -670,12 +670,21 @@ class StokvelDetailComponent {
   ngOnInit() {
     this.stokvel$ = this.route.paramMap.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.switchMap)(params => {
       const id = Number(params.get('id'));
-      return this.stokvelService.getStokvelById(id).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.catchError)(() => this.stokvelService.getPublicStokvelById(id).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.catchError)(() => {
-        this.snackBar.open('Could not load stokvel details', 'Close', {
-          duration: 4000
-        });
-        return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
-      }))));
+      return this.stokvelService.getStokvelById(id).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.catchError)(err => {
+        if (err?.status === 403) {
+          this.snackBar.open('This is a private stokvel — you need an invitation to view it.', 'Close', {
+            duration: 5000
+          });
+          this.router.navigate(['/stokvels']);
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
+        }
+        return this.stokvelService.getPublicStokvelById(id).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.catchError)(() => {
+          this.snackBar.open('Could not load stokvel details', 'Close', {
+            duration: 4000
+          });
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(null);
+        }));
+      }));
     }));
   }
   // ── Membership helpers ──────────────────────────────────────────────────

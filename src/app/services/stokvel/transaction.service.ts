@@ -24,6 +24,10 @@ export interface Transaction {
   processedAt?: string;
   balanceAfterTransaction?: number;
   reasonCode?: string;
+  /** Smart deposit fields */
+  routedToStokvel?: boolean;
+  linkedStokvelName?: string;
+  routingMessage?: string;
 }
 
 @Injectable({
@@ -68,6 +72,24 @@ export class TransactionService {
    */
   getStokvelTransactions(stokvelId: number): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(`${this.apiUrl}/stokvels/${stokvelId}`);
+  }
+
+  /**
+   * Deposit funds into user's wallet
+   */
+  depositToWallet(amount: number, reference?: string): Observable<Transaction> {
+    return this.http.post<Transaction>(`${this.apiUrl}/wallet/deposit`, {
+      amount,
+      reference: reference || `deposit-${Date.now()}`,
+      currency: 'ZAR'
+    });
+  }
+
+  /**
+   * Transfer funds from wallet to a stokvel
+   */
+  transferToStokvel(request: TransactionRequest): Observable<Transaction> {
+    return this.http.post<Transaction>(`${this.apiUrl}/wallet/transfer`, request);
   }
 }
 

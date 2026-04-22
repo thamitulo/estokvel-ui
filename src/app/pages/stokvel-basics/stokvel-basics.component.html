@@ -1,1 +1,123 @@
-<p>stokvel-basics.component works!</p>
+<div class="sb-page">
+
+  <!-- Hero -->
+  <section class="sb-hero">
+    <div class="sb-hero-inner">
+      <div class="sb-eyebrow"><mat-icon>school</mat-icon> Learning Centre</div>
+      <h1>Stokvel Basics</h1>
+      <p>Everything you need to know about stokvels — South Africa's most beloved savings tradition, now digitised.</p>
+      <div class="sb-hero-actions">
+        <button mat-flat-button color="primary" routerLink="/create-stokvel">Start a Stokvel</button>
+        <button mat-stroked-button routerLink="/stokvels">Browse Stokvels</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is a Stokvel -->
+  <section class="sb-section">
+    <div class="sb-container">
+      <h2>What is a Stokvel?</h2>
+      <p class="sb-lead">
+        A stokvel is a type of informal savings club or credit association where a group of people agree to contribute fixed amounts at regular intervals. The pooled funds are then given to one member at a time in rotation.
+      </p>
+      <p>
+        Stokvels have been part of South African culture for generations, rooted in the concept of <em>ubuntu</em>. eStokvel brings this powerful tradition into the digital age with transparency, security and convenience.
+      </p>
+      <div class="sb-stat-row">
+        <div class="sb-stat"><span class="sb-stat-num">R50B+</span><span class="sb-stat-lbl">Circulated annually in SA</span></div>
+        <div class="sb-stat"><span class="sb-stat-num">11M+</span><span class="sb-stat-lbl">South Africans participate</span></div>
+        <div class="sb-stat"><span class="sb-stat-num">800K+</span><span class="sb-stat-lbl">Active stokvel groups</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Types -->
+  <section class="sb-section sb-section-alt">
+    <div class="sb-container">
+      <h2>Types of Stokvels</h2>
+      <div class="sb-types-grid">
+        <div class="sb-type-card">
+          <mat-icon>sync_alt</mat-icon>
+          <h3>Rotating Stokvel</h3>
+          <p>Each member receives the full pot in rotation. Simple, fair and time-tested.</p>
+        </div>
+        <div class="sb-type-card">
+          <mat-icon>shopping_cart</mat-icon>
+          <h3>Grocery Stokvel</h3>
+          <p>Members save throughout the year and make a big grocery purchase together, usually around December.</p>
+        </div>
+        <div class="sb-type-card">
+          <mat-icon>trending_up</mat-icon>
+          <h3>Investment Club</h3>
+          <p>Members pool funds and invest together in shares, property or other assets for long-term growth.</p>
+        </div>
+        <div class="sb-type-card">
+          <mat-icon>favorite</mat-icon>
+          <h3>Burial Society</h3>
+          <p>Members contribute monthly to a fund that covers funeral expenses for members and their families.</p>
+        </div>
+        <div class="sb-type-card">
+          <mat-icon>celebration</mat-icon>
+          <h3>Social Stokvel</h3>
+          <p>Combines savings with social events — members take turns hosting gatherings funded by the pot.</p>
+        </div>
+        <div class="sb-type-card">
+          <mat-icon>savings</mat-icon>
+          <h3>General Savings</h3>
+          <p>A flexible structure where everyone saves towards a shared goal, paid out at cycle end.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="sb-section">
+    <div class="sb-container">
+      <h2>How eStokvel Works</h2>
+      <div class="sb-steps">
+        <div class="sb-step">
+          <div class="sb-step-num">1</div>
+          <div class="sb-step-body"><h4>Create or Join</h4><p>Sign up, then either create your own stokvel or browse and join an existing public group.</p></div>
+        </div>
+        <div class="sb-step">
+          <div class="sb-step-num">2</div>
+          <div class="sb-step-body"><h4>Agree on Rules</h4><p>Set the contribution amount, frequency, members and payout cycle. A digital constitution is generated automatically.</p></div>
+        </div>
+        <div class="sb-step">
+          <div class="sb-step-num">3</div>
+          <div class="sb-step-body"><h4>Contribute Monthly</h4><p>Secure digital payments with automated reminders ensure nobody misses a contribution.</p></div>
+        </div>
+        <div class="sb-step">
+          <div class="sb-step-num">4</div>
+          <div class="sb-step-body"><h4>Receive Payouts</h4><p>Funds are distributed to members according to the agreed schedule — transparently and on time.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sb-section sb-section-alt">
+    <div class="sb-container">
+      <h2>Frequently Asked Questions</h2>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let faq of faqs">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ faq.q }}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{ faq.a }}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sb-cta">
+    <h2>Ready to get started?</h2>
+    <p>Join thousands of South Africans saving smarter with eStokvel.</p>
+    <div class="sb-cta-actions">
+      <button mat-flat-button color="primary" routerLink="/create-stokvel"><mat-icon>add_circle</mat-icon> Create a Stokvel</button>
+      <button mat-stroked-button routerLink="/stokvels"><mat-icon>explore</mat-icon> Browse Stokvels</button>
+    </div>
+  </section>
+
+</div>

@@ -140,7 +140,6 @@ class JoinStokvelModalComponent {
       const joinRequest = {
         stokvelId: this.data.stokvelId,
         stokvelName: this.data.stokvelName,
-        // From modal data
         userId: this.data.currentUserId,
         fullName: this.data.userProfile?.name || 'User',
         userEmail: this.data.userProfile?.email || '',

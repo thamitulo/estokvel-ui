@@ -152,18 +152,62 @@ const routes: Routes = [
     title: 'Manage Stokvel - eStokvel'
   },
   {
+    path: 'wallet',
+    loadComponent: () =>
+      import('./components/wallet/wallet.component').then(m => m.WalletComponent),
+    canActivate: [AuthGuard],
+    title: 'My Wallet - eStokvel'
+  },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./pages/profile/profile.component').then(m => m.ProfileComponent),
+    canActivate: [AuthGuard],
+    title: 'My Profile - eStokvel'
+  },
+  {
     path: 'refer-earn',
     loadComponent: () =>
       import('./pages/referals/refer-and-earn.component').then(m => m.ReferAndEarnComponent),
     title: 'Refer & Earn - eStokvel'
   },
-  {
-    path: 'blog',
+  { path: 'blog',
     loadComponent: () =>
       import('./pages/blog/blog.component').then(m => m.BlogComponent),
     title: 'Blog - eStokvel'
   },
   { path: 'faq', component: FaqComponent },
+
+  {
+    path: 'help-center',
+    loadComponent: () =>
+      import('./pages/help-center/help-center.component').then(m => m.HelpCenterComponent),
+    title: 'Help Center - eStokvel'
+  },
+  {
+    path: 'resources',
+    loadComponent: () =>
+      import('./pages/resources/resources.component').then(m => m.ResourcesComponent),
+    title: 'Resources - eStokvel'
+  },
+  {
+    path: 'fsca',
+    loadComponent: () =>
+      import('./pages/fsca/fsca.component').then(m => m.FscaComponent),
+    title: 'FSCA - eStokvel'
+  },
+  {
+    path: 'disclaimer',
+    loadComponent: () =>
+      import('./pages/disclaimer/disclaimer.component').then(m => m.DisclaimerComponent),
+    title: 'Disclaimer - eStokvel'
+  },
+  {
+    path: 'notifications',
+    loadComponent: () =>
+      import('./pages/notifications/notifications.component').then(m => m.NotificationsPageComponent),
+    title: 'Notifications - eStokvel'
+  },
 
   { path: '**', redirectTo: 'home' }
 ];

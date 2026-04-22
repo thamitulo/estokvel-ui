@@ -1,0 +1,47 @@
+$navy: #0d47a1; $teal: #00796b; $gold: #f59e0b;
+$bg: #f8fafc; $text: #1e293b; $muted: #64748b; $border: #e2e8f0;
+
+.reg-page { font-family: 'Inter', sans-serif; color: $text; }
+
+.reg-hero {
+  background: linear-gradient(135deg, #1a237e, $navy, #283593);
+  color: #fff; padding: 72px 24px 56px; text-align: center;
+  .reg-hero-inner { max-width: 720px; margin: 0 auto; }
+  .reg-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.15); border-radius: 20px; padding: 4px 14px; font-size: .82rem; font-weight: 600; margin-bottom: 16px; }
+  h1 { font-size: 2.6rem; font-weight: 800; margin: 0 0 12px; }
+  p  { opacity: .88; font-size: 1rem; margin: 0 auto; max-width: 560px; }
+}
+
+.reg-container { max-width: 900px; margin: 0 auto; }
+
+.reg-section { padding: 56px 24px; border-bottom: 1px solid $border; &:last-child { border-bottom: none; } }
+.reg-section-alt { background: $bg; }
+
+h2 { font-size: 1.6rem; font-weight: 700; color: $navy; margin: 0 0 16px; }
+p  { font-size: .95rem; line-height: 1.7; color: #475569; margin-bottom: 12px; }
+
+.reg-notice {
+  display: flex; gap: 14px; background: #e3f2fd; border: 1px solid #90caf9;
+  border-radius: 10px; padding: 16px 20px; margin-top: 20px;
+  mat-icon { color: $navy; flex-shrink: 0; }
+  p { margin: 0; font-size: .9rem; }
+}
+
+.reg-leg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 24px; }
+.reg-leg-card {
+  background: #fff; border: 1px solid $border; border-radius: 12px; padding: 24px;
+  mat-icon { color: $navy; font-size: 2rem; width: 2rem; height: 2rem; margin-bottom: 12px; display: block; }
+  h3 { font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
+  p  { font-size: .88rem; margin: 0; a { color: $teal; } }
+}
+
+.reg-list {
+  list-style: none; padding: 0; margin: 0;
+  li { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid $border; &:last-child { border-bottom: none; }
+    mat-icon { color: $teal; flex-shrink: 0; }
+    span { font-size: .95rem; line-height: 1.6; color: #475569; }
+  }
+}
+
+.reg-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+

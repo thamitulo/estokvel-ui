@@ -38,14 +38,19 @@ export class StokvelDetailComponent implements OnInit {
       switchMap(params => {
         const id = Number(params.get('id'));
         return this.stokvelService.getStokvelById(id).pipe(
-          catchError(() =>
-            this.stokvelService.getPublicStokvelById(id).pipe(
+          catchError((err) => {
+            if (err?.status === 403) {
+              this.snackBar.open('This is a private stokvel — you need an invitation to view it.', 'Close', { duration: 5000 });
+              this.router.navigate(['/stokvels']);
+              return of(null);
+            }
+            return this.stokvelService.getPublicStokvelById(id).pipe(
               catchError(() => {
                 this.snackBar.open('Could not load stokvel details', 'Close', { duration: 4000 });
                 return of(null);
               })
-            )
-          )
+            );
+          })
         );
       })
     );

@@ -1,1 +1,41 @@
-<p>glossary.component works!</p>
+<div class="gl-page">
+
+  <!-- Hero -->
+  <section class="gl-hero">
+    <div class="gl-hero-inner">
+      <div class="gl-eyebrow"><mat-icon>menu_book</mat-icon> Reference</div>
+      <h1>Glossary</h1>
+      <p>Key terms and definitions to help you navigate the world of stokvels and eStokvel.</p>
+    </div>
+  </section>
+
+  <!-- Alphabet nav -->
+  <div class="gl-alpha-nav">
+    <ng-container *ngFor="let l of alphabet">
+      <a class="gl-alpha-link" [class.active]="hasTerms(l)" [attr.href]="hasTerms(l) ? '#letter-' + l : null">{{ l }}</a>
+    </ng-container>
+  </div>
+
+  <!-- Terms -->
+  <section class="gl-section">
+    <div class="gl-container">
+      <ng-container *ngFor="let l of alphabet">
+        <div *ngIf="hasTerms(l)" class="gl-letter-group" [id]="'letter-' + l">
+          <div class="gl-letter-heading">{{ l }}</div>
+          <div class="gl-term-card" *ngFor="let t of getTermsByLetter(l)">
+            <h3>{{ t.term }}</h3>
+            <p>{{ t.def }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="gl-cta">
+    <p>Still have questions?</p>
+    <button mat-flat-button color="primary" routerLink="/contact"><mat-icon>mail</mat-icon> Contact Us</button>
+    <button mat-stroked-button routerLink="/stokvel-basics"><mat-icon>school</mat-icon> Stokvel Basics</button>
+  </section>
+
+</div>

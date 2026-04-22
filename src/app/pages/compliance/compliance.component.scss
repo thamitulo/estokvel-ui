@@ -1,0 +1,50 @@
+$navy: #0d47a1; $teal: #00796b; $gold: #f59e0b;
+$bg: #f8fafc; $text: #1e293b; $muted: #64748b; $border: #e2e8f0;
+
+.comp-page { font-family: 'Inter', sans-serif; color: $text; }
+
+.comp-hero {
+  background: linear-gradient(135deg, $teal 0%, $navy 100%);
+  color: #fff; padding: 72px 24px 56px; text-align: center;
+  .comp-hero-inner { max-width: 720px; margin: 0 auto; }
+  .comp-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.15); border-radius: 20px; padding: 4px 14px; font-size: .82rem; font-weight: 600; margin-bottom: 16px; }
+  h1 { font-size: 2.6rem; font-weight: 800; margin: 0 0 12px; }
+  p  { opacity: .88; margin: 0 auto; max-width: 560px; }
+}
+
+.comp-container { max-width: 1000px; margin: 0 auto; }
+
+.comp-section { padding: 56px 24px; border-bottom: 1px solid $border; &:last-child { border-bottom: none; } }
+.comp-section-alt { background: $bg; }
+
+h2 { font-size: 1.6rem; font-weight: 700; color: $navy; margin: 0 0 24px; }
+p  { font-size: .95rem; line-height: 1.7; color: #475569; margin-bottom: 12px; }
+
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.comp-card {
+  background: #fff; border: 1px solid $border; border-radius: 12px; padding: 24px;
+  display: flex; flex-direction: column;
+  .comp-card-icon {
+    width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    mat-icon { color: #fff; }
+    &.navy { background: $navy; }
+    &.teal { background: $teal; }
+    &.gold { background: $gold; }
+  }
+  h3 { font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
+  p  { font-size: .88rem; flex: 1; }
+  .comp-link { display: inline-flex; align-items: center; gap: 4px; font-size: .85rem; font-weight: 600; color: $teal; text-decoration: none; margin-top: 12px; mat-icon { font-size: 1rem; width: 1rem; height: 1rem; } }
+}
+
+.comp-status-list { display: flex; flex-direction: column; gap: 12px; }
+.comp-status-item {
+  display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid $border; border-radius: 10px; padding: 16px 20px;
+  .status-ok { color: #16a34a; flex-shrink: 0; }
+  div { display: flex; flex-direction: column; gap: 2px;
+    strong { font-size: .95rem; }
+    span { font-size: .82rem; color: $muted; }
+  }
+}
+
+.comp-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+

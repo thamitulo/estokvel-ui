@@ -1,0 +1,367 @@
+<section class="wallet-container">
+  <!-- Header -->
+  <div class="wallet-header">
+    <div class="wallet-hero">
+      <div class="hero-bg">
+        <div class="floating-shape s1"></div>
+        <div class="floating-shape s2"></div>
+        <div class="floating-shape s3"></div>
+      </div>
+      <div class="wallet-hero-content">
+        <div class="hero-text">
+          <h1 class="wallet-title">
+            <mat-icon>account_balance_wallet</mat-icon>
+            My Wallet
+          </h1>
+          <p class="wallet-subtitle">Manage your funds and contribute to stokvels</p>
+        </div>
+        <div class="wallet-balance-card">
+          <span class="balance-label">Available Balance</span>
+          <h2 class="balance-amount">R{{ (balance$ | async) | number:'1.2-2' }}</h2>
+          <div class="balance-actions">
+            <button mat-raised-button color="primary" (click)="setTab('deposit')">
+              <mat-icon>add</mat-icon> Deposit
+            </button>
+            <button mat-raised-button color="accent" (click)="setTab('transfer')">
+              <mat-icon>send</mat-icon> Transfer to Stokvel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="wallet-tabs">
+    <button class="wallet-tab" [class.active]="activeTab === 'overview'" (click)="setTab('overview')">
+      <mat-icon>dashboard</mat-icon> Overview
+    </button>
+    <button class="wallet-tab" [class.active]="activeTab === 'deposit'" (click)="setTab('deposit')">
+      <mat-icon>add_circle</mat-icon> Deposit Funds
+    </button>
+    <button class="wallet-tab" [class.active]="activeTab === 'transfer'" (click)="setTab('transfer')">
+      <mat-icon>swap_horiz</mat-icon> Transfer to Stokvel
+    </button>
+    <button class="wallet-tab" [class.active]="activeTab === 'history'" (click)="setTab('history')">
+      <mat-icon>history</mat-icon> Transaction History
+    </button>
+  </div>
+
+  <!-- TAB: Overview -->
+  <div class="wallet-content" *ngIf="activeTab === 'overview'">
+    <div class="overview-grid">
+      <!-- Quick stats -->
+      <mat-card class="stat-card glass-card">
+        <mat-card-content>
+          <div class="stat-icon-wrap green"><mat-icon>account_balance_wallet</mat-icon></div>
+          <h3>Available Balance</h3>
+          <p class="stat-val">R{{ (balance$ | async) | number:'1.2-2' }}</p>
+          <p class="stat-sub">Funds available for transfer</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card glass-card">
+        <mat-card-content>
+          <div class="stat-icon-wrap blue"><mat-icon>groups</mat-icon></div>
+          <h3>My Stokvels</h3>
+          <p class="stat-val">{{ (userStokvels$ | async)?.length || 0 }}</p>
+          <p class="stat-sub">Active memberships</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card glass-card action-card" (click)="setTab('deposit')">
+        <mat-card-content>
+          <div class="stat-icon-wrap purple"><mat-icon>add_circle_outline</mat-icon></div>
+          <h3>Add Funds</h3>
+          <p class="stat-sub">Deposit money into your wallet to make contributions</p>
+          <button mat-stroked-button color="primary" class="mt-8">Deposit Now</button>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card glass-card action-card" (click)="setTab('transfer')">
+        <mat-card-content>
+          <div class="stat-icon-wrap orange"><mat-icon>send</mat-icon></div>
+          <h3>Contribute to Stokvel</h3>
+          <p class="stat-sub">Transfer from your wallet directly to a stokvel account</p>
+          <button mat-stroked-button color="accent" class="mt-8">Transfer Now</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Recent transactions -->
+    <mat-card class="recent-tx-card glass-card">
+      <mat-card-header>
+        <mat-card-title>Recent Transactions</mat-card-title>
+        <button mat-button color="primary" (click)="setTab('history')">View All</button>
+      </mat-card-header>
+      <mat-card-content>
+        <ng-container *ngIf="transactions$ | async as txs">
+          <div class="tx-list" *ngIf="txs.length > 0; else noTx">
+            <div class="tx-item" *ngFor="let tx of txs | slice:0:5">
+              <div class="tx-icon" [style.color]="getTransactionColor(tx.type)">
+                <mat-icon>{{ getTransactionIcon(tx.type) }}</mat-icon>
+              </div>
+              <div class="tx-details">
+                <div class="tx-desc">{{ tx.description || tx.reference }}</div>
+                <div class="tx-date">{{ tx.createdAt | date:'mediumDate' }}</div>
+              </div>
+              <div class="tx-amount" [style.color]="getTransactionColor(tx.type)">
+                {{ tx.type === 'CREDIT' ? '+' : '-' }}R{{ tx.amount | number:'1.2-2' }}
+              </div>
+              <div class="tx-status" [style.color]="getStatusColor(tx.status)">
+                <mat-chip [style.background]="getStatusColor(tx.status) + '22'">{{ tx.status }}</mat-chip>
+              </div>
+            </div>
+          </div>
+          <ng-template #noTx>
+            <div class="no-tx">
+              <mat-icon>history</mat-icon>
+              <p>No transactions yet. Deposit funds or contribute to a stokvel to get started.</p>
+            </div>
+          </ng-template>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- TAB: Deposit -->
+  <div class="wallet-content" *ngIf="activeTab === 'deposit'">
+    <mat-card class="form-card glass-card">
+      <mat-card-header>
+        <div class="form-header-icon green"><mat-icon>add_circle</mat-icon></div>
+        <mat-card-title>Deposit Funds</mat-card-title>
+        <mat-card-subtitle>Add money directly to a stokvel or your wallet</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+        <!-- Routing result banner (shown after submission) -->
+        <div *ngIf="lastDepositResult" class="routing-result"
+             [class.routed-stokvel]="lastDepositResult.routedToStokvel"
+             [class.routed-wallet]="!lastDepositResult.routedToStokvel">
+          <mat-icon>{{ lastDepositResult.routedToStokvel ? 'check_circle' : 'account_balance_wallet' }}</mat-icon>
+          <div>
+            <strong>{{ lastDepositResult.routedToStokvel ? 'Contribution recorded' : 'Credited to your wallet' }}</strong>
+            <p>{{ lastDepositResult.routingMessage }}</p>
+          </div>
+        </div>
+
+        <form [formGroup]="depositForm" (ngSubmit)="deposit()" class="wallet-form">
+
+          <!-- Stokvel destination selector -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Destination</mat-label>
+            <mat-select formControlName="stokvelId">
+              <!-- Wallet-only option -->
+              <mat-option [value]="null">
+                <div class="stokvel-option">
+                  <mat-icon class="option-icon wallet-icon">account_balance_wallet</mat-icon>
+                  <div class="option-text">
+                    <span class="option-name">My Wallet</span>
+                    <span class="option-meta">Funds held in your personal wallet</span>
+                  </div>
+                </div>
+              </mat-option>
+
+              <!-- Stokvel options -->
+              <mat-option *ngFor="let s of stokvels" [value]="s.id">
+                <div class="stokvel-option">
+                  <mat-icon class="option-icon stokvel-icon">groups</mat-icon>
+                  <div class="option-text">
+                    <span class="option-name">{{ s.name }}</span>
+                    <span class="option-meta">
+                      R{{ s.monthlyContribution | number }}/mo
+                      &bull; {{ s.isOwner ? '⭐ Admin' : '👤 Member' }}
+                    </span>
+                  </div>
+                </div>
+              </mat-option>
+            </mat-select>
+            <mat-icon matPrefix>route</mat-icon>
+          </mat-form-field>
+
+          <!-- Selected stokvel info chip -->
+          <div class="stokvel-info-chip" *ngIf="selectedDepositStokvel as s">
+            <mat-icon>info_outline</mat-icon>
+            <span>
+              Monthly contribution: <strong>R{{ s.monthlyContribution | number }}</strong>
+              &bull; {{ (s.memberCount ?? 0) + (s.adminCount ?? 0) }}/{{ s.maxMembers }} members
+            </span>
+          </div>
+
+          <!-- Wallet info chip when no stokvel chosen -->
+          <div class="wallet-info-chip" *ngIf="!selectedDepositStokvel">
+            <mat-icon>info_outline</mat-icon>
+            <span>Funds will be held in your personal wallet. You can transfer to a stokvel anytime.</span>
+          </div>
+
+          <!-- Amount -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Amount (ZAR)</mat-label>
+            <input matInput type="number" formControlName="amount" min="1" placeholder="e.g. 1500">
+            <span matTextPrefix>R&nbsp;</span>
+            <mat-icon matSuffix>payments</mat-icon>
+            <mat-error *ngIf="depositForm.get('amount')?.hasError('required')">Amount is required</mat-error>
+            <mat-error *ngIf="depositForm.get('amount')?.hasError('min')">Amount must be greater than R0</mat-error>
+          </mat-form-field>
+
+          <div class="form-actions">
+            <button mat-button type="button" (click)="setTab('overview')" [disabled]="depositSubmitting">Cancel</button>
+            <button mat-raised-button color="primary" type="submit"
+                    [disabled]="depositForm.invalid || depositSubmitting">
+              <mat-spinner diameter="18" *ngIf="depositSubmitting"></mat-spinner>
+              <mat-icon *ngIf="!depositSubmitting">{{ selectedDepositStokvel ? 'savings' : 'add_circle' }}</mat-icon>
+              {{ depositSubmitting ? 'Processing…' : (selectedDepositStokvel ? 'Contribute to Stokvel' : 'Deposit to Wallet') }}
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- TAB: Transfer -->
+  <div class="wallet-content" *ngIf="activeTab === 'transfer'">
+    <mat-card class="form-card glass-card">
+      <mat-card-header>
+        <div class="form-header-icon orange"><mat-icon>send</mat-icon></div>
+        <mat-card-title>Transfer to Stokvel</mat-card-title>
+        <mat-card-subtitle>Move funds from your wallet to a stokvel account</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="balance-display">
+          <mat-icon>account_balance_wallet</mat-icon>
+          <span>Available: <strong>R{{ (balance$ | async) | number:'1.2-2' }}</strong></span>
+          <span class="balance-warn" *ngIf="(balance$ | async) === 0">
+            ⚠️ Your wallet is empty. Please deposit funds first.
+          </span>
+        </div>
+
+        <ng-container *ngIf="userStokvels$ | async as stokvels">
+          <div class="no-stokvels-warn" *ngIf="stokvels.length === 0">
+            <mat-icon>warning</mat-icon>
+            <span>You are not a member of any stokvels yet.
+              <a routerLink="/stokvels">Browse stokvels</a> to join one first.
+            </span>
+          </div>
+
+          <form [formGroup]="transferForm" (ngSubmit)="transfer()" class="wallet-form" *ngIf="stokvels.length > 0">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Select Stokvel</mat-label>
+              <mat-select formControlName="stokvelId">
+                <mat-option *ngFor="let s of stokvels" [value]="s.id">
+                  <div class="stokvel-option">
+                    <mat-icon class="option-icon stokvel-icon">groups</mat-icon>
+                    <div class="option-text">
+                      <span class="option-name">{{ s.name }}</span>
+                      <span class="option-meta">R{{ s.monthlyContribution | number }}/mo &bull; {{ s.isOwner ? '⭐ Admin' : '👤 Member' }}</span>
+                    </div>
+                  </div>
+                </mat-option>
+              </mat-select>
+              <mat-icon matPrefix>groups</mat-icon>
+              <mat-error *ngIf="transferForm.get('stokvelId')?.hasError('required')">Please select a stokvel</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Amount (ZAR)</mat-label>
+              <input matInput type="number" formControlName="amount" min="1" placeholder="e.g. 1500">
+              <span matTextPrefix>R&nbsp;</span>
+              <mat-icon matSuffix>payments</mat-icon>
+              <mat-error *ngIf="transferForm.get('amount')?.hasError('required')">Amount is required</mat-error>
+              <mat-error *ngIf="transferForm.get('amount')?.hasError('min')">Amount must be greater than R0</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Description (optional)</mat-label>
+              <input matInput formControlName="description" placeholder="e.g. April contribution">
+              <mat-icon matPrefix>notes</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Reference (optional)</mat-label>
+              <input matInput formControlName="reference" placeholder="e.g. ref-001">
+              <mat-icon matPrefix>receipt</mat-icon>
+            </mat-form-field>
+
+            <div class="form-actions">
+              <button mat-button type="button" (click)="setTab('overview')" [disabled]="transferSubmitting">Cancel</button>
+              <button mat-raised-button color="accent" type="submit"
+                      [disabled]="transferForm.invalid || transferSubmitting">
+                <mat-spinner diameter="18" *ngIf="transferSubmitting"></mat-spinner>
+                <mat-icon *ngIf="!transferSubmitting">send</mat-icon>
+                {{ transferSubmitting ? 'Processing…' : 'Transfer Funds' }}
+              </button>
+            </div>
+          </form>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- TAB: History -->
+  <div class="wallet-content" *ngIf="activeTab === 'history'">
+    <mat-card class="history-card glass-card">
+      <mat-card-header>
+        <mat-card-title>Transaction History</mat-card-title>
+        <mat-card-subtitle>Your last 20 wallet transactions</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <ng-container *ngIf="transactions$ | async as txs">
+          <div class="tx-table-wrap" *ngIf="txs.length > 0; else emptyHistory">
+            <table mat-table [dataSource]="txs" class="tx-table">
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef>Type</th>
+                <td mat-cell *matCellDef="let tx">
+                  <mat-icon [style.color]="getTransactionColor(tx.type)">{{ getTransactionIcon(tx.type) }}</mat-icon>
+                  {{ tx.type }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let tx">{{ tx.description || tx.reference }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef>Amount</th>
+                <td mat-cell *matCellDef="let tx" [style.color]="getTransactionColor(tx.type)">
+                  {{ tx.type === 'CREDIT' ? '+' : '-' }}R{{ tx.amount | number:'1.2-2' }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="balance">
+                <th mat-header-cell *matHeaderCellDef>Balance After</th>
+                <td mat-cell *matCellDef="let tx">
+                  {{ tx.balanceAfterTransaction != null ? 'R' + (tx.balanceAfterTransaction | number:'1.2-2') : '—' }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let tx">
+                  <span class="status-chip" [style.color]="getStatusColor(tx.status)">{{ tx.status }}</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let tx">{{ tx.createdAt | date:'medium' }}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="['type','description','amount','balance','status','date']"></tr>
+              <tr mat-row *matRowDef="let row; columns: ['type','description','amount','balance','status','date'];"></tr>
+            </table>
+          </div>
+
+          <ng-template #emptyHistory>
+            <div class="no-tx">
+              <mat-icon>history</mat-icon>
+              <p>No transactions found. Start by depositing funds into your wallet.</p>
+              <button mat-raised-button color="primary" (click)="setTab('deposit')">Deposit Funds</button>
+            </div>
+          </ng-template>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+

@@ -28,7 +28,7 @@ export class MobileNavComponent implements OnInit {
   tabs: NavTab[] = [
     { label: 'Home', icon: 'home_outline', activeIcon: 'home', route: '/home' },
     { label: 'Stokvels', icon: 'groups_outline', activeIcon: 'groups', route: '/stokvels' },
-    { label: 'Create', icon: 'add_circle_outline', activeIcon: 'add_circle', route: '/create-stokvel', requiresAuth: true },
+    { label: 'Wallet', icon: 'account_balance_wallet', activeIcon: 'account_balance_wallet', route: '/wallet', requiresAuth: true },
     { label: 'Dashboard', icon: 'dashboard_outline', activeIcon: 'dashboard', route: '/dashboard', requiresAuth: true },
     { label: 'Profile', icon: 'person_outline', activeIcon: 'person', route: '/profile', requiresAuth: true },
   ];

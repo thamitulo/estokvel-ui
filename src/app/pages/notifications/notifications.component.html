@@ -1,0 +1,60 @@
+<div class="notif-page">
+
+  <!-- Header -->
+  <div class="notif-header">
+    <div class="notif-header-inner">
+      <div class="notif-title-row">
+        <h1>Notifications</h1>
+        <span class="notif-badge" *ngIf="unreadCount > 0">{{ unreadCount }} unread</span>
+      </div>
+      <div class="notif-header-actions">
+        <div class="notif-filter-tabs">
+          <button class="filter-tab" [class.active]="activeFilter === 'all'" (click)="setFilter('all')">All</button>
+          <button class="filter-tab" [class.active]="activeFilter === 'unread'" (click)="setFilter('unread')">
+            Unread <span *ngIf="unreadCount > 0" class="tab-count">{{ unreadCount }}</span>
+          </button>
+        </div>
+        <button mat-stroked-button class="mark-all-btn" (click)="markAllRead()" [disabled]="unreadCount === 0">
+          <mat-icon>done_all</mat-icon> Mark all read
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifications list -->
+  <div class="notif-container">
+
+    <div *ngIf="displayedNotifications.length === 0" class="notif-empty">
+      <mat-icon>notifications_none</mat-icon>
+      <h3>All caught up!</h3>
+      <p>You have no {{ activeFilter === 'unread' ? 'unread ' : '' }}notifications.</p>
+      <button mat-stroked-button (click)="setFilter('all')">View all notifications</button>
+    </div>
+
+    <div class="notif-list" *ngIf="displayedNotifications.length > 0">
+      <div class="notif-item" *ngFor="let n of displayedNotifications"
+           [class.unread]="!n.read" (click)="markRead(n)">
+        <div class="notif-icon-wrap" [ngClass]="n.iconClass">
+          <mat-icon>{{ n.icon }}</mat-icon>
+        </div>
+        <div class="notif-body">
+          <div class="notif-item-title">
+            {{ n.title }}
+            <span class="notif-unread-dot" *ngIf="!n.read"></span>
+          </div>
+          <p class="notif-msg">{{ n.message }}</p>
+          <span class="notif-time"><mat-icon>schedule</mat-icon> {{ n.time }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer CTA -->
+  <div class="notif-footer">
+    <button mat-stroked-button routerLink="/dashboard"><mat-icon>dashboard</mat-icon> Go to Dashboard</button>
+    <button mat-stroked-button routerLink="/profile"><mat-icon>notifications_active</mat-icon> Notification Preferences</button>
+  </div>
+
+</div>
+

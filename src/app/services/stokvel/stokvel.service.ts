@@ -3,7 +3,7 @@ import {HttpBackend, HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {environment} from "../../environments/environment";
 import {map, shareReplay, tap} from "rxjs/operators";
-import {PaginatedResponse, SavingsTermDto, StokvelResponse, StokvelTypeDto} from "../../models";
+import {CreateStokvelRequest, JoinRequestDTO, PaginatedResponse, SavingsTermDto, StokvelResponse, StokvelTypeDto} from "../../models";
 import {CacheService} from "../cache/cache.service";
 
 @Injectable({
@@ -29,8 +29,8 @@ export class StokvelService {
     return this.http.get<SavingsTermDto[]>(`${environment.apiUrl}public/savings-terms`);
   }
 
-  createStokvel(stokvelData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, stokvelData).pipe(
+  createStokvel(stokvelData: CreateStokvelRequest): Observable<StokvelResponse> {
+    return this.http.post<StokvelResponse>(`${this.apiUrl}`, stokvelData).pipe(
       tap(() => {
         this.clearAllStokvelCache();
       })
@@ -113,8 +113,8 @@ export class StokvelService {
     );
   }
 
-  joinStokvel(payload: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/join-request`, payload);
+  joinStokvel(payload: JoinRequestDTO): Observable<JoinRequestDTO> {
+    return this.http.post<JoinRequestDTO>(`${this.apiUrl}/join-request`, payload);
   }
 
   getStokvelById(id: number): Observable<StokvelResponse> {
@@ -149,6 +149,27 @@ export class StokvelService {
 
   removeMember(stokvelId: number, memberId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${stokvelId}/members/${memberId}`);
+  }
+
+  // ── Admin Removal Proposals ──────────────────────────────────────────────
+  proposeAdminRemoval(stokvelId: number, targetMemberId: number, reason: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${stokvelId}/removal-proposals`, { targetMemberId, reason });
+  }
+
+  getPendingRemovalProposals(stokvelId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${stokvelId}/removal-proposals/pending`);
+  }
+
+  approveRemovalProposal(stokvelId: number, proposalId: number, notes: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${stokvelId}/removal-proposals/${proposalId}/approve`, { notes });
+  }
+
+  rejectRemovalProposal(stokvelId: number, proposalId: number, notes: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${stokvelId}/removal-proposals/${proposalId}/reject`, { notes });
+  }
+
+  cancelRemovalProposal(stokvelId: number, proposalId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${stokvelId}/removal-proposals/${proposalId}`);
   }
 
   leaveStokvel(stokvelId: number): Observable<void> {

@@ -186,6 +186,7 @@ export class DashboardComponent implements OnInit {
   createNewStokvel(): void { this.router.navigate(['/create-stokvel']); }
   joinStokvel(): void { this.router.navigate(['/stokvels']); }
   viewReports(): void { this.router.navigate(['/analytics']); }
+  openWallet(): void { this.router.navigate(['/wallet']); }
   viewStokvelDetails(stokvel: StokvelResponse): void { this.router.navigate(['/stokvels', stokvel.id]); }
   viewAllActivity(): void { this.router.navigate(['/activity']); }
   viewAllStokvels(): void { this.router.navigate(['/stokvels']); }

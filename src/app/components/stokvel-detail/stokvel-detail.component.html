@@ -78,10 +78,10 @@
 
       <!-- Stats ribbon -->
       <div class="hero-ribbon">
-        <div class="ribbon-stat">
+          <div class="ribbon-stat">
           <mat-icon>group</mat-icon>
           <div>
-            <span class="rv">{{ stokvel.memberCount }} / {{ stokvel.maxMembers }}</span>
+            <span class="rv">{{ stokvel.totalMembers ?? (stokvel.memberCount + stokvel.adminCount) }} / {{ stokvel.maxMembers }}</span>
             <span class="rl">Members</span>
           </div>
         </div>
