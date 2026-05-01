@@ -243,13 +243,30 @@ export class StokvelManageComponent implements OnInit {
     });
   }
 
-  // ── Ratify proposal (another admin approves the removal) ─────────────────
+  // Ratify proposal (another admin approves the removal)
+  proposalApproveId: number | null = null;
+  proposalApproveNote = '';
+  proposalRejectId: number | null = null;
+  proposalRejectNote = '';
+
+  openApproveForm(proposal: any): void {
+    this.proposalApproveId = proposal.id;
+    this.proposalApproveNote = '';
+    this.proposalRejectId = null;
+  }
+
+  openRejectForm(proposal: any): void {
+    this.proposalRejectId = proposal.id;
+    this.proposalRejectNote = '';
+    this.proposalApproveId = null;
+  }
+
   approveProposal(proposal: any): void {
     if (!this.stokvel) return;
-    const notes = window.prompt('Optional: add a note (shown to the removed admin)', '') ?? '';
-    this.stokvelService.approveRemovalProposal(this.stokvel.id, proposal.id, notes).subscribe({
+    this.stokvelService.approveRemovalProposal(this.stokvel.id, proposal.id, this.proposalApproveNote).subscribe({
       next: () => {
         this.pendingProposals = this.pendingProposals.filter(p => p.id !== proposal.id);
+        this.proposalApproveId = null;
         this.snack.open(`✅ Admin removal approved and executed.`, 'Close', { duration: 4000 });
         this.stokvelService.getStokvelById(this.stokvel!.id).subscribe(s => this.stokvel = s);
       },
@@ -259,10 +276,10 @@ export class StokvelManageComponent implements OnInit {
 
   rejectProposal(proposal: any): void {
     if (!this.stokvel) return;
-    const notes = window.prompt('Optional: reason for rejecting', '') ?? '';
-    this.stokvelService.rejectRemovalProposal(this.stokvel.id, proposal.id, notes).subscribe({
+    this.stokvelService.rejectRemovalProposal(this.stokvel.id, proposal.id, this.proposalRejectNote).subscribe({
       next: () => {
         this.pendingProposals = this.pendingProposals.filter(p => p.id !== proposal.id);
+        this.proposalRejectId = null;
         this.snack.open('Removal proposal rejected.', 'Close', { duration: 3000 });
       },
       error: err => this.snack.open(err?.error?.error || 'Could not reject proposal', 'Close', { duration: 5000, panelClass: 'error-snackbar' })

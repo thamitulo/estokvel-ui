@@ -24,27 +24,48 @@
   <!-- Notifications list -->
   <div class="notif-container">
 
-    <div *ngIf="displayedNotifications.length === 0" class="notif-empty">
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="notif-loading">
+      <mat-spinner diameter="36"></mat-spinner>
+      <p>Loading notifications…</p>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="!isLoading && error" class="notif-error">
+      <mat-icon>wifi_off</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-stroked-button (click)="loadNotifications()">
+        <mat-icon>refresh</mat-icon> Retry
+      </button>
+    </div>
+
+    <!-- Empty -->
+    <div *ngIf="!isLoading && !error && displayedNotifications.length === 0" class="notif-empty">
       <mat-icon>notifications_none</mat-icon>
       <h3>All caught up!</h3>
       <p>You have no {{ activeFilter === 'unread' ? 'unread ' : '' }}notifications.</p>
       <button mat-stroked-button (click)="setFilter('all')">View all notifications</button>
     </div>
 
-    <div class="notif-list" *ngIf="displayedNotifications.length > 0">
+    <!-- List -->
+    <div class="notif-list" *ngIf="!isLoading && !error && displayedNotifications.length > 0">
       <div class="notif-item" *ngFor="let n of displayedNotifications"
-           [class.unread]="!n.read" (click)="markRead(n)">
-        <div class="notif-icon-wrap" [ngClass]="n.iconClass">
-          <mat-icon>{{ n.icon }}</mat-icon>
+           [class.unread]="n.isUnread || n.status === 'UNREAD'" (click)="markRead(n)">
+        <div class="notif-icon-wrap" [ngClass]="getIconClass(n.type)">
+          <mat-icon>{{ getNotificationIcon(n.type) }}</mat-icon>
         </div>
         <div class="notif-body">
           <div class="notif-item-title">
             {{ n.title }}
-            <span class="notif-unread-dot" *ngIf="!n.read"></span>
+            <span class="notif-unread-dot" *ngIf="n.isUnread || n.status === 'UNREAD'"></span>
           </div>
           <p class="notif-msg">{{ n.message }}</p>
-          <span class="notif-time"><mat-icon>schedule</mat-icon> {{ n.time }}</span>
+          <span class="notif-time"><mat-icon>schedule</mat-icon> {{ formatTime(n.createdAt) }}</span>
         </div>
+        <button class="notif-delete-btn" (click)="deleteNotification(n); $event.stopPropagation();"
+                title="Dismiss notification">
+          <mat-icon>close</mat-icon>
+        </button>
       </div>
     </div>
 
@@ -53,7 +74,7 @@
   <!-- Footer CTA -->
   <div class="notif-footer">
     <button mat-stroked-button routerLink="/dashboard"><mat-icon>dashboard</mat-icon> Go to Dashboard</button>
-    <button mat-stroked-button routerLink="/profile"><mat-icon>notifications_active</mat-icon> Notification Preferences</button>
+    <button mat-stroked-button routerLink="/profile"><mat-icon>tune</mat-icon> Notification Preferences</button>
   </div>
 
 </div>

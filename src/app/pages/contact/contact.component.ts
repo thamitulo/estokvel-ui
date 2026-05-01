@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,7 +34,8 @@ export class ContactComponent {
 
   constructor(
     private fb: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.contactForm = this.createContactForm();
   }
@@ -117,10 +118,7 @@ export class ContactComponent {
 
   // Open help center
   openHelpCenter(): void {
-    this.snackBar.open('Opening Help Center...', 'Close', {
-      duration: 3000
-    });
-    // In a real app, this would navigate to the help center
+    this.router.navigate(['/help-center']);
   }
 
   // Submit contact form

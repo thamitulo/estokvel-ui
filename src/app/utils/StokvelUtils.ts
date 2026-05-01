@@ -3,7 +3,10 @@ import {Stokvel, StokvelResponse, StokvelType} from "../models/stokvel";
 export class StokvelUtils {
 
   static getCollectedAmount(stokvel: StokvelResponse): number {
-    return stokvel.monthlyContribution;
+    // Use backend-calculated collectedAmount when available, otherwise estimate from members × monthly contribution
+    if (stokvel.collectedAmount != null) return stokvel.collectedAmount;
+    const memberCount = stokvel.totalMembers ?? ((stokvel.memberCount ?? 0) + (stokvel.adminCount ?? 0));
+    return (stokvel.monthlyContribution ?? 0) * memberCount;
   }
 
   static getProgress(stokvel: StokvelResponse): number {

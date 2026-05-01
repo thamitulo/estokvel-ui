@@ -299,7 +299,7 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
       duration: 5000,
       panelClass: ['info-snackbar']
     }).onAction().subscribe(() => {
-      this.router.navigate(['/auth/login']);
+      this.authService.loginWithRedirect({ appState: { target: '/refer-earn' } });
     });
   }
 

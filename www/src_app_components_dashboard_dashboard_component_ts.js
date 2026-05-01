@@ -943,7 +943,7 @@ class DashboardComponent {
     this.router.navigate(['/stokvels']);
   }
   viewReports() {
-    this.router.navigate(['/analytics']);
+    this.router.navigate(['/wallet']);
   }
   openWallet() {
     this.router.navigate(['/wallet']);
@@ -952,7 +952,7 @@ class DashboardComponent {
     this.router.navigate(['/stokvels', stokvel.id]);
   }
   viewAllActivity() {
-    this.router.navigate(['/activity']);
+    this.router.navigate(['/notifications']);
   }
   viewAllStokvels() {
     this.router.navigate(['/stokvels']);

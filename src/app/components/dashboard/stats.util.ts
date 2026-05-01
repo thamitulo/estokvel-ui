@@ -40,6 +40,10 @@ export function percentageIncreaseForJoinedStokvels(memberships: any[]): number 
 
 
 export function stokvelMemberCount(stokvel: StokvelResponse): number {
+  if (!stokvel.members) {
+    // Fallback: use server-computed counts when nested members list is not loaded
+    return stokvel.totalMembers ?? ((stokvel.memberCount ?? 0) + (stokvel.adminCount ?? 0));
+  }
   return stokvel.members.filter(
     member => member.membershipStatus === 'ACTIVE'
   ).length;

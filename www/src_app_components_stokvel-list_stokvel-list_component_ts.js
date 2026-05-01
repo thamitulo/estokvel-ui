@@ -616,6 +616,10 @@ class StokvelListComponent {
     this.stokvelService.leaveStokvel(stokvel.id).subscribe({
       next: () => {
         this.joinedStokvelIds.delete(stokvel.id);
+        this.adminStokvelIds.delete(stokvel.id);
+        // Remove from local lists so the UI reflects immediately
+        this.sourceStokvels = this.sourceStokvels.filter(s => s.id !== stokvel.id);
+        this.applyFilters(this.searchControl.value ?? '');
         this.snack.open(`You have left "${stokvel.name}"`, 'Close', {
           duration: 4000
         });

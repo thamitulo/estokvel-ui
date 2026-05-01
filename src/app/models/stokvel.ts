@@ -58,6 +58,7 @@ export interface StokvelResponse {
   // financials
   monthlyContribution: number;
   targetAmount: number;
+  collectedAmount?: number;   // total amount collected so far (sum of all contributions)
 
   // size + membership
   maxMembers: number;

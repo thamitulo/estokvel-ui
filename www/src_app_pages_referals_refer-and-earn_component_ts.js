@@ -715,7 +715,11 @@ class ReferAndEarnComponent {
       duration: 5000,
       panelClass: ['info-snackbar']
     }).onAction().subscribe(() => {
-      this.router.navigate(['/auth/login']);
+      this.authService.loginWithRedirect({
+        appState: {
+          target: '/refer-earn'
+        }
+      });
     });
   }
   // Reload data

@@ -51,6 +51,8 @@ $bg: #f8fafc; $text: #1e293b; $muted: #64748b; $border: #e2e8f0;
     &:hover { background: #dbeafe; }
     .notif-item-title { color: $navy; }
   }
+  /* Update notif-item to accommodate delete button */
+  display: flex; align-items: flex-start; gap: 14px;
 }
 
 .notif-icon-wrap {
@@ -84,3 +86,26 @@ $bg: #f8fafc; $text: #1e293b; $muted: #64748b; $border: #e2e8f0;
   padding: 28px 24px; border-top: 1px solid $border;
 }
 
+/* ── Loading / Error ── */
+.notif-loading {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 64px 16px; gap: 16px; color: $muted;
+  p { font-size: 14px; margin: 0; }
+}
+
+.notif-error {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 64px 16px; gap: 12px; color: $muted; text-align: center;
+  mat-icon { font-size: 48px; width: 48px; height: 48px; color: #cbd5e1; }
+  p { font-size: 14px; max-width: 320px; }
+}
+
+/* ── Delete button ── */
+.notif-delete-btn {
+  flex-shrink: 0; align-self: flex-start; margin-top: 2px;
+  background: none; border: none; cursor: pointer;
+  color: #94a3b8; padding: 4px; border-radius: 6px; transition: all .2s;
+  display: flex; align-items: center; justify-content: center;
+  mat-icon { font-size: 16px; width: 16px; height: 16px; }
+  &:hover { background: #fee2e2; color: #b91c1c; }
+}

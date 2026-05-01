@@ -361,17 +361,16 @@ class StokvelCreateComponent {
       this.stokvelService.createStokvel(stokvelData).subscribe({
         next: response => {
           console.log('Stokvel created successfully:', response);
-          // Reset states
           this.isCreating = false;
           this.formSubmitted = false;
-          this.snackBar.open('Stokvel created successfully!', 'Close', {
-            duration: 5000,
+          this.snackBar.open('Stokvel created successfully!', 'View Stokvel', {
+            duration: 6000,
             panelClass: ['success-snackbar']
+          }).onAction().subscribe(() => {
+            this.router.navigate(['/stokvels', response.id]);
           });
-          // Navigate to dashboard or stokvel details
-          this.router.navigate(['/dashboard']);
-          // Alternatively, navigate to the newly created stokvel:
-          // this.router.navigate(['/stokvel', response.id]);
+          // Navigate to the newly created stokvel detail page
+          this.router.navigate(['/stokvels', response.id]);
         },
         error: error => {
           console.error('Error creating stokvel:', error);

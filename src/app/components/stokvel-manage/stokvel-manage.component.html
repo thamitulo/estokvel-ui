@@ -240,12 +240,52 @@
                   <mat-icon>info_outline</mat-icon>
                   As a co-admin, you can ratify or reject this proposal.
                 </div>
-                <button class="btn-approve" (click)="approveProposal(p)">
-                  <mat-icon>check_circle</mat-icon> Approve &amp; Remove
-                </button>
-                <button class="btn-reject" (click)="rejectProposal(p)">
-                  <mat-icon>cancel</mat-icon> Reject
-                </button>
+
+                <!-- Approve inline form -->
+                <ng-container *ngIf="proposalApproveId === p.id; else showApproveBtn">
+                  <div class="inline-note-form">
+                    <mat-form-field appearance="outline" class="note-field">
+                      <mat-label>Optional note (shown to removed admin)</mat-label>
+                      <textarea matInput [(ngModel)]="proposalApproveNote" rows="2"></textarea>
+                    </mat-form-field>
+                    <div class="inline-note-actions">
+                      <button class="btn-approve" (click)="approveProposal(p)">
+                        <mat-icon>check_circle</mat-icon> Confirm Removal
+                      </button>
+                      <button class="btn-cancel-sm" (click)="proposalApproveId = null">
+                        <mat-icon>close</mat-icon> Cancel
+                      </button>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #showApproveBtn>
+                  <button class="btn-approve" (click)="openApproveForm(p)">
+                    <mat-icon>check_circle</mat-icon> Approve &amp; Remove
+                  </button>
+                </ng-template>
+
+                <!-- Reject inline form -->
+                <ng-container *ngIf="proposalRejectId === p.id; else showRejectBtn">
+                  <div class="inline-note-form">
+                    <mat-form-field appearance="outline" class="note-field">
+                      <mat-label>Optional reason for rejection</mat-label>
+                      <textarea matInput [(ngModel)]="proposalRejectNote" rows="2"></textarea>
+                    </mat-form-field>
+                    <div class="inline-note-actions">
+                      <button class="btn-reject" (click)="rejectProposal(p)">
+                        <mat-icon>cancel</mat-icon> Confirm Rejection
+                      </button>
+                      <button class="btn-cancel-sm" (click)="proposalRejectId = null">
+                        <mat-icon>close</mat-icon> Cancel
+                      </button>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #showRejectBtn>
+                  <button class="btn-reject" (click)="openRejectForm(p)">
+                    <mat-icon>cancel</mat-icon> Reject
+                  </button>
+                </ng-template>
               </ng-container>
             </div>
 

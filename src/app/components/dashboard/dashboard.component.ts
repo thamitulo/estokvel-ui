@@ -185,10 +185,10 @@ export class DashboardComponent implements OnInit {
   // ── Navigation actions ───────────────────────────────────────────────────
   createNewStokvel(): void { this.router.navigate(['/create-stokvel']); }
   joinStokvel(): void { this.router.navigate(['/stokvels']); }
-  viewReports(): void { this.router.navigate(['/analytics']); }
+  viewReports(): void { this.router.navigate(['/wallet']); }
   openWallet(): void { this.router.navigate(['/wallet']); }
   viewStokvelDetails(stokvel: StokvelResponse): void { this.router.navigate(['/stokvels', stokvel.id]); }
-  viewAllActivity(): void { this.router.navigate(['/activity']); }
+  viewAllActivity(): void { this.router.navigate(['/notifications']); }
   viewAllStokvels(): void { this.router.navigate(['/stokvels']); }
 
   protected readonly StokvelType = StokvelType;

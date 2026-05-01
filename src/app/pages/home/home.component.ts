@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
-import {Observable, map, last} from 'rxjs';
+import {Observable, map, last, take, switchMap} from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -157,7 +157,7 @@ export class HomeComponent implements OnInit {
   startStokvel() { console.log('Navigate to start stokvel'); }
 
   joinStokvel(stokvel: StokvelResponse): void {
-    this.isAuthenticated$.subscribe(isAuthenticated => {
+    this.isAuthenticated$.pipe(take(1)).subscribe(isAuthenticated => {
       if (!isAuthenticated) {
         this.authService.loginWithRedirect({
           appState: { target: '/home' }
@@ -165,7 +165,7 @@ export class HomeComponent implements OnInit {
         return;
       }
 
-      this.currentUser$.subscribe(user => {
+      this.currentUser$.pipe(take(1)).subscribe(user => {
         if (!user?.id) {
           console.error('User ID not available');
           return;
@@ -185,7 +185,7 @@ export class HomeComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
-            console.log('Join request submitted successfully');
+            this.snackBar.open('Join request submitted!', 'Close', { duration: 3000 });
           }
         });
       });
