@@ -64,6 +64,30 @@ export class DashboardService {
     );
   }
 
+  /** Get portfolio total value */
+  getPortfolioValue(): Observable<{ totalValue: number; change: number; changePercent: number }> {
+    return this.http.get<{ totalValue: number; change: number; changePercent: number }>(
+      `${environment.apiUrl}dashboard/portfolio-value`
+    );
+  }
+
+  /** Get portfolio distribution by stokvel type */
+  getPortfolioDistribution(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}dashboard/portfolio-distribution`);
+  }
+
+  /** Get recent dashboard activities */
+  getRecentActivities(limit: number = 10): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}dashboard/recent-activities`, {
+      params: { limit: limit.toString() }
+    });
+  }
+
+  /** Get detailed info for user's stokvels */
+  getMyStokvelsDetailed(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}dashboard/my-stokvels-detailed`);
+  }
+
   private mapSummaryToData(summary: any, user: any): DashboardData {
     return {
       user,

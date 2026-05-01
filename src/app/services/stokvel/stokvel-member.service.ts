@@ -45,4 +45,11 @@ export class StokvelMemberService {
       `${this.apiUrl}/user/next-payout`
     );
   }
+
+  /**
+   * Claim pending invitations for the authenticated user (called after login)
+   */
+  claimInvitations(): Observable<{ claimed: number }> {
+    return this.http.post<{ claimed: number }>(`${this.apiUrl}/claim-invitations`, {});
+  }
 }

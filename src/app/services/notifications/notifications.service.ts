@@ -58,4 +58,16 @@ export class NotificationService {
   deleteNotification(notificationId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${notificationId}`);
   }
+
+  markMultipleAsRead(ids: number[]): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}/read-multiple`, { ids });
+  }
+
+  deleteAllReadNotifications(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/read`);
+  }
+
+  getNotificationById(id: number): Observable<Notification> {
+    return this.http.get<Notification>(`${this.apiUrl}/${id}`);
+  }
 }

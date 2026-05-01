@@ -149,6 +149,29 @@ export class ReferralService {
     );
   }
 
+  // ── Admin endpoints ──────────────────────────────────────────────────────
+
+  /**
+   * Admin: get all referrals in the system
+   */
+  getAdminAllReferrals(page: number = 0, size: number = 20): Observable<PaginatedResponse<ReferralResponse>> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    return this.http.get<PaginatedResponse<ReferralResponse>>(`${this.apiUrl}/admin/all`, { params }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Admin: expire old referrals that have passed their expiry date
+   */
+  expireOldReferrals(): Observable<{ message: string; expirationDays: number }> {
+    return this.http.post<{ message: string; expirationDays: number }>(`${this.apiUrl}/admin/expire-old`, {}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   /**
    * Get shareable link for a referral code
    */

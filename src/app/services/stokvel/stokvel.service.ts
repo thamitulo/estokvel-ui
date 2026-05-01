@@ -180,6 +180,50 @@ export class StokvelService {
     return this.http.get<number[]>(`${this.apiUrl}/admin/stokvel-ids`);
   }
 
+  // ── Member management ────────────────────────────────────────────────────
+
+  /** Get all members (admins + regulars) for a stokvel */
+  getStokvelMembers(stokvelId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${stokvelId}/members`);
+  }
+
+  /** Get only admin members for a stokvel */
+  getStokvelAdmins(stokvelId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${stokvelId}/admins`);
+  }
+
+  /** Add a member to a stokvel by email (admin only) */
+  addMemberByEmail(stokvelId: number, userEmail: string, role: string = 'MEMBER'): Observable<StokvelResponse> {
+    const params = new HttpParams().set('userEmail', userEmail).set('role', role);
+    return this.http.post<StokvelResponse>(`${this.apiUrl}/${stokvelId}/members`, null, { params });
+  }
+
+  /** Update a member's role within a stokvel (admin only) */
+  updateMemberRole(stokvelId: number, memberId: number, newRole: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${stokvelId}/members/${memberId}/role`, { newRole });
+  }
+
+  /** Get members with outstanding contributions for a stokvel (admin only) */
+  getOutstandingMembers(stokvelId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${stokvelId}/members/outstanding`);
+  }
+
+  /** Send payment reminder emails to members with outstanding contributions (admin only) */
+  requestPayment(stokvelId: number, amount?: number): Observable<{ message: string; remindersCount: number }> {
+    const body = amount != null ? { amount } : {};
+    return this.http.post<{ message: string; remindersCount: number }>(`${this.apiUrl}/${stokvelId}/request-payment`, body);
+  }
+
+  /** Get the authenticated user's total contributions across all stokvels */
+  getUserContributions(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/user/contributions`);
+  }
+
+  /** Get the authenticated user's next payout info */
+  getUserNextPayout(): Observable<{ amount: number; daysUntilPayout: number }> {
+    return this.http.get<{ amount: number; daysUntilPayout: number }>(`${this.apiUrl}/user/next-payout`);
+  }
+
   // Dashboard endpoints
   getDashboardSummary(): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}dashboard/summary`);
