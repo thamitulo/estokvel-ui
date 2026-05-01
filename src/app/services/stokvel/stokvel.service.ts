@@ -3,7 +3,15 @@ import {HttpBackend, HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {environment} from "../../environments/environment";
 import {map, shareReplay, tap} from "rxjs/operators";
-import {CreateStokvelRequest, JoinRequestDTO, PaginatedResponse, SavingsTermDto, StokvelResponse, StokvelTypeDto} from "../../models";
+import {
+  CreateStokvelRequest,
+  JoinRequestDTO,
+  PaginatedResponse,
+  RotationQueueDto,
+  SavingsTermDto,
+  StokvelResponse,
+  StokvelTypeDto
+} from "../../models";
 import {CacheService} from "../cache/cache.service";
 
 @Injectable({
@@ -240,5 +248,36 @@ export class StokvelService {
 
   getMyStokvelsDetailed(): Observable<StokvelResponse[]> {
     return this.http.get<StokvelResponse[]>(`${environment.apiUrl}dashboard/my-stokvels-detailed`);
+  }
+
+  // ── Rotation (ROTATIONAL stokvels) ───────────────────────────────────────
+
+  /** Get the full payout-rotation queue for a rotational stokvel. */
+  getRotationQueue(stokvelId: number): Observable<RotationQueueDto> {
+    return this.http.get<RotationQueueDto>(`${this.apiUrl}/${stokvelId}/rotation`);
+  }
+
+  /** Admin: manually advance the rotation to the next slot. */
+  advanceRotation(stokvelId: number): Observable<{ message: string; currentSlot: number; totalSlots: number }> {
+    return this.http.post<{ message: string; currentSlot: number; totalSlots: number }>(
+      `${this.apiUrl}/${stokvelId}/rotation/advance`, {}
+    );
+  }
+
+  /** Admin: re-shuffle and reset the entire rotation queue. */
+  resetRotation(stokvelId: number): Observable<RotationQueueDto> {
+    return this.http.post<RotationQueueDto>(`${this.apiUrl}/${stokvelId}/rotation/reset`, {});
+  }
+
+  /** Get the current authenticated user's position in the rotation queue. */
+  getMyRotationPosition(stokvelId: number): Observable<{
+    position: number;
+    scheduledPayoutDate: string;
+    payoutAmount: number;
+    isCurrent: boolean;
+    hasReceived: boolean;
+    totalSlots: number;
+  }> {
+    return this.http.get<any>(`${this.apiUrl}/${stokvelId}/rotation/my-position`);
   }
 }

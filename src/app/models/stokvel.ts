@@ -82,6 +82,36 @@ export interface StokvelResponse {
   isOwner?: boolean;
   isMember?: boolean;
   currentUserRole?: string; // 'ADMIN' | 'MEMBER' | null
+
+  // ── Rotational stokvel metadata ──────────────────────────────────────────
+  rotationStartedAt?: string;     // ISO date when rotation was initialised
+  currentRotationSlot?: number;   // which slot (1-based) is currently active
+  totalRotationSlots?: number;    // total number of slots in the current rotation
+}
+
+// ── Rotation queue DTOs ──────────────────────────────────────────────────────
+
+export interface RotationSlotDto {
+  position: number;
+  memberId: number;
+  memberName: string;
+  memberEmail: string;
+  userAuth0Id: string;
+  scheduledPayoutDate: string;  // ISO date
+  payoutAmount: number;
+  isCurrent: boolean;
+  hasReceived: boolean;
+}
+
+export interface RotationQueueDto {
+  stokvelId: number;
+  stokvelName: string;
+  payoutCycle: string;
+  rotationActive: boolean;
+  rotationStartedAt: string;  // ISO date
+  currentSlot: number;
+  totalSlots: number;
+  queue: RotationSlotDto[];
 }
 
 export interface StokvelRuleDto {
