@@ -1,5 +1,8 @@
 <div class="detail-page" *ngIf="stokvel$ | async as stokvel; else loadingTpl">
 
+  <!-- KYC banner – shown to authenticated users who haven't verified -->
+  <app-kyc-banner *ngIf="isMember(stokvel) || isAdmin(stokvel)"></app-kyc-banner>
+
   <!-- ── Hero Banner ── -->
   <div class="detail-hero" [ngClass]="getBannerClass(stokvel.type)">
     <div class="hero-orbs">
@@ -57,20 +60,20 @@
 
           <!-- ③ NON-MEMBER + PUBLIC + seats available -->
           <button class="btn-join"
-                  *ngIf="!isMember(stokvel) && isPublicStokvel(stokvel) && !isFull(stokvel)"
+                  *ngIf="!isMember(stokvel) && !isAdmin(stokvel) && isPublicStokvel(stokvel) && !isFull(stokvel)"
                   (click)="openJoinModal(stokvel)">
             <mat-icon>person_add</mat-icon> Request to Join
           </button>
 
           <!-- ④ NON-MEMBER + PUBLIC + FULL -->
           <span class="hbadge badge-full"
-                *ngIf="!isMember(stokvel) && isPublicStokvel(stokvel) && isFull(stokvel)">
+                *ngIf="!isMember(stokvel) && !isAdmin(stokvel) && isPublicStokvel(stokvel) && isFull(stokvel)">
             <mat-icon>block</mat-icon> Group Full
           </span>
 
-          <!-- ⑤ NON-MEMBER + PRIVATE: no join, ever -->
+          <!-- ⑤ NON-MEMBER + PRIVATE: invite only (authenticated users only see this) -->
           <span class="hbadge badge-private"
-                *ngIf="!isMember(stokvel) && !isPublicStokvel(stokvel)">
+                *ngIf="!isMember(stokvel) && !isAdmin(stokvel) && !isPublicStokvel(stokvel)">
             <mat-icon>lock</mat-icon> Private · Invite Only
           </span>
         </div>
@@ -214,6 +217,19 @@
             <span class="rule-tag default" *ngIf="rule.isDefault">Default</span>
           </div>
         </div>
+      </div>
+
+      <!-- ── Rotation Queue (ROTATIONAL stokvels only) ── -->
+      <div class="detail-card" *ngIf="isRotational(stokvel) && (isMember(stokvel) || isAdmin(stokvel))">
+        <div class="card-head">
+          <mat-icon>autorenew</mat-icon>
+          <h3>Rotation Queue</h3>
+          <span class="count-tag" *ngIf="stokvel.totalRotationSlots">{{ stokvel.totalRotationSlots }} slots</span>
+        </div>
+        <app-rotation-queue
+          [stokvelId]="stokvel.id"
+          [isAdmin]="isAdmin(stokvel)">
+        </app-rotation-queue>
       </div>
     </div>
 

@@ -11,11 +11,13 @@ import { TransactionService, Transaction } from '../../services/stokvel/transact
 import { StokvelResponse } from '../../models/stokvel';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Auth0ManagementService } from '../../services/auth0-management/auth0-management.service';
+import { KycBannerComponent } from '../../components/kyc-banner/kyc-banner.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, MaterialModule, KycBannerComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
@@ -27,12 +29,19 @@ export class ProfileComponent implements OnInit {
 
   activeTab = 0;
 
+  // Phone editing
+  phoneForm: FormGroup;
+  phoneEditing = false;
+  phoneSaving = false;
+
   constructor(
     private userService: UserService,
     private stokvelService: StokvelService,
     private txService: TransactionService,
+    private auth0Mgmt: Auth0ManagementService,
     private router: Router,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private fb: FormBuilder
   ) {
     this.user$ = this.userService.user$;
 
@@ -48,9 +57,49 @@ export class ProfileComponent implements OnInit {
       map((res: any) => (res as any).balance ?? 0),
       catchError(() => of(0))
     );
+
+    this.phoneForm = this.fb.group({
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\+?[0-9]{9,15}$/)]]
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Pre-fill phone form if we already have a number cached
+    this.user$.pipe(
+      catchError(() => of(null))
+    ).subscribe(user => {
+      if (user?.phoneNumber) {
+        this.phoneForm.patchValue({ phoneNumber: user.phoneNumber });
+      }
+    });
+  }
+
+  startPhoneEdit(): void {
+    this.phoneEditing = true;
+  }
+
+  cancelPhoneEdit(): void {
+    this.phoneEditing = false;
+  }
+
+  savePhone(): void {
+    if (this.phoneForm.invalid) return;
+    this.phoneSaving = true;
+    const phone = this.phoneForm.value.phoneNumber;
+
+    this.auth0Mgmt.updatePhoneNumber(phone).subscribe({
+      next: (profile) => {
+        this.phoneSaving = false;
+        this.phoneEditing = false;
+        this.userService.updateCachedPhone(profile.phoneNumber ?? phone);
+        this.snack.open('✅ Phone number updated', 'Close', { duration: 4000 });
+      },
+      error: (err) => {
+        this.phoneSaving = false;
+        this.snack.open(err?.error?.message || 'Could not update phone number', 'Close', { duration: 5000 });
+      }
+    });
+  }
 
   getInitials(name?: string): string {
     if (!name) return '?';

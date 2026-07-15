@@ -2,10 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FaqComponent } from './shared/faq/faq.component';
 import { AuthGuard } from "@auth0/auth0-angular";
+import { AdminGuard } from './guards/admin.guard';
 import {StokvelCreateComponent} from "./components/stokvel-create/stokvel-create.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  {
+    path: 'kyc',
+    loadComponent: () =>
+      import('./pages/kyc/kyc.component').then(m => m.KycComponent),
+    canActivate: [AuthGuard],
+    title: 'Identity Verification - eStokvel'
+  },
 
   {
     path: 'home',
@@ -19,6 +28,14 @@ const routes: Routes = [
       import('./pages/about-us/about-us.component').then(m => m.AboutUsComponent),
     title: 'About Us - eStokvel'
   },
+
+  {
+    path: 'pricing',
+    loadComponent: () =>
+      import('./pages/pricing/pricing.component').then(m => m.PricingComponent),
+    title: 'Pricing - eStokvel'
+  },
+
   {
     path: 'contact-us',
     loadComponent: () =>
@@ -207,6 +224,41 @@ const routes: Routes = [
     loadComponent: () =>
       import('./pages/notifications/notifications.component').then(m => m.NotificationsPageComponent),
     title: 'Notifications - eStokvel'
+  },
+
+  // ── Super-Admin Backoffice ────────────────────────────────────────────────
+  {
+    path: 'admin/login',
+    loadComponent: () =>
+      import('./pages/admin/admin-login/admin-login.component').then(m => m.AdminLoginComponent),
+    title: 'Admin Login - eStokvel'
+  },
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./pages/admin/admin-layout/admin-layout.component').then(m => m.AdminLayoutComponent),
+    canActivate: [AdminGuard],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./pages/admin/admin-dashboard/admin-dashboard.component').then(m => m.AdminDashboardComponent),
+        title: 'Dashboard - Admin'
+      },
+      {
+        path: 'stokvels',
+        loadComponent: () =>
+          import('./pages/admin/admin-stokvels/admin-stokvels.component').then(m => m.AdminStokvelsComponent),
+        title: 'Stokvels - Admin'
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./pages/admin/admin-users/admin-users.component').then(m => m.AdminUsersComponent),
+        title: 'Users - Admin'
+      }
+    ]
   },
 
   { path: '**', redirectTo: 'home' }

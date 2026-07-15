@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable, from, switchMap } from 'rxjs';
+import {
+  HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse
+} from '@angular/common/http';
+import { Observable, from, switchMap, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { AuthService } from '@auth0/auth0-angular';
-import {environment} from "./environments/environment";
+import { environment } from './environments/environment';
 
 @Injectable()
 export class AuthHttpInterceptor implements HttpInterceptor {
@@ -11,7 +14,6 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     '/assets/',
     '.json',
     'auth0.com'
-    // other URLs that don't need authentication
   ];
 
   constructor(private auth: AuthService) {}
@@ -21,26 +23,23 @@ export class AuthHttpInterceptor implements HttpInterceptor {
       return next.handle(req);
     }
 
+    // ── Auth3: No fallback – if no token, immediately reject the request ──
     return from(this.auth.getAccessTokenSilently()).pipe(
-      switchMap(token => {
-        if (token) {
-          const authReq = req.clone({
-            setHeaders: {
-              Authorization: `Bearer ${token}`
-            }
-          });
-
-          if (!environment.production) {
-            console.log(`Authenticated request to: ${req.url}`);
-          }
-
-          return next.handle(authReq);
-        } else {
-          if (!environment.production) {
-            console.warn(`No auth token for: ${req.url}`);
-          }
-          return next.handle(req);
+      catchError(tokenErr => {
+        if (!environment.production) {
+          console.warn('Could not acquire access token:', tokenErr);
         }
+        // Propagate as 401 so calling code can react appropriately
+        return throwError(() => new HttpErrorResponse({ status: 401, statusText: 'Unauthorized – no access token' }));
+      }),
+      switchMap(token => {
+        const authReq = req.clone({
+          setHeaders: { Authorization: `Bearer ${token}` }
+        });
+        if (!environment.production) {
+          console.log(`Authenticated request to: ${req.url}`);
+        }
+        return next.handle(authReq);
       })
     );
   }

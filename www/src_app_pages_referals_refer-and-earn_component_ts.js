@@ -976,6 +976,22 @@ class ReferralService {
   validateReferralCode(code) {
     return this.http.get(`${this.apiUrl}/validate/${code}`).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.catchError)(this.handleError));
   }
+  // ── Admin endpoints ──────────────────────────────────────────────────────
+  /**
+   * Admin: get all referrals in the system
+   */
+  getAdminAllReferrals(page = 0, size = 20) {
+    const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpParams().set('page', page.toString()).set('size', size.toString());
+    return this.http.get(`${this.apiUrl}/admin/all`, {
+      params
+    }).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.catchError)(this.handleError));
+  }
+  /**
+   * Admin: expire old referrals that have passed their expiry date
+   */
+  expireOldReferrals() {
+    return this.http.post(`${this.apiUrl}/admin/expire-old`, {}).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.catchError)(this.handleError));
+  }
   /**
    * Get shareable link for a referral code
    */

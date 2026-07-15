@@ -1,0 +1,117 @@
+<div class="admin-page">
+
+  <div class="page-header">
+    <h1><mat-icon>account_balance</mat-icon> All Stokvels</h1>
+    <span class="total-badge">{{ totalElements }} total</span>
+  </div>
+
+  <!-- Search bar -->
+  <div class="search-bar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by name…</mat-label>
+      <input matInput [(ngModel)]="search" (input)="onSearch()" placeholder="e.g. Kasi Savers">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="loading-state" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div class="stokvels-table" *ngIf="!loading">
+    <!-- Header -->
+    <div class="st-head">
+      <span>Name</span>
+      <span>Type</span>
+      <span>Privacy</span>
+      <span>Status</span>
+      <span>Members</span>
+      <span>Monthly</span>
+      <span>Admins</span>
+      <span>Created</span>
+      <span></span>
+    </div>
+
+    <!-- Rows -->
+    <ng-container *ngFor="let s of stokvels">
+      <div class="st-row" (click)="toggleExpand(s.id)" [class.expanded]="expandedId === s.id">
+        <span class="s-name">{{ s.name }}</span>
+        <span><span class="type-chip" [class]="s.type?.toLowerCase()">{{ s.type }}</span></span>
+        <span class="muted">{{ s.privacy | titlecase }}</span>
+        <span><span class="status-chip" [class]="statusClass(s.status)">{{ s.status }}</span></span>
+        <span>
+          <strong>{{ s.activeMemberCount }}</strong>
+          <span class="muted"> / {{ s.maxMembers }}</span>
+          <span *ngIf="s.pendingMemberCount > 0" class="pending-badge">&nbsp;+{{ s.pendingMemberCount }} pending</span>
+        </span>
+        <span>{{ contributionStr(s.monthlyContribution) }}</span>
+        <span class="muted admins-cell">{{ adminNames(s) }}</span>
+        <span class="muted">{{ s.createdAt | date:'dd MMM yy' }}</span>
+        <mat-icon class="expand-icon">{{ expandedId === s.id ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </div>
+
+      <!-- Expanded detail panel -->
+      <div class="st-detail" *ngIf="expandedId === s.id">
+
+        <div class="detail-grid">
+          <div class="detail-section">
+            <h4>Overview</h4>
+            <div class="detail-row"><span>Description</span><span>{{ s.description || '—' }}</span></div>
+            <div class="detail-row"><span>Payout Cycle</span><span>{{ s.payoutCycle }}</span></div>
+            <div class="detail-row"><span>KYC Required</span>
+              <span [class.yes]="s.kycRequired" [class.no]="!s.kycRequired">
+                {{ s.kycRequired ? 'Yes (' + s.minimumKycLevel + ')' : 'No' }}
+              </span>
+            </div>
+            <div class="detail-row"><span>Total Contributions</span><span>{{ contributionStr(s.totalContributions) }}</span></div>
+            <div class="detail-row" *ngIf="s.rotationStartedAt">
+              <span>Rotation Started</span><span>{{ s.rotationStartedAt | date }}</span>
+            </div>
+            <div class="detail-row" *ngIf="s.currentRotationSlot">
+              <span>Current Slot</span><span>#{{ s.currentRotationSlot }}</span>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h4>Creator</h4>
+            <div class="detail-row"><span>Name</span><span>{{ s.createdByName }}</span></div>
+            <div class="detail-row"><span>Email</span><span>{{ s.createdByEmail }}</span></div>
+            <div class="detail-row"><span>Auth0 ID</span><span class="mono">{{ s.createdByAuth0Id }}</span></div>
+          </div>
+
+          <div class="detail-section">
+            <h4>Admins ({{ s.admins?.length ?? 0 }})</h4>
+            <div class="admin-chip" *ngFor="let a of s.admins">
+              <div class="admin-av">{{ (a.name || a.email)[0]?.toUpperCase() }}</div>
+              <div>
+                <div class="admin-name">{{ a.name || '—' }}</div>
+                <div class="admin-email">{{ a.email }}</div>
+                <div class="admin-joined">Joined {{ a.joinedAt | date:'dd MMM yy' }}</div>
+              </div>
+            </div>
+            <div *ngIf="!s.admins?.length" class="muted">No admins</div>
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+
+    <div class="empty-state" *ngIf="!stokvels.length">
+      <mat-icon>account_balance</mat-icon>
+      <p>No stokvels found</p>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button mat-icon-button [disabled]="page === 0" (click)="prevPage()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+    <button mat-icon-button [disabled]="page >= totalPages - 1" (click)="nextPage()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+</div>
+

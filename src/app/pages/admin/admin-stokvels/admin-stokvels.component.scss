@@ -1,0 +1,127 @@
+@import '../admin-dashboard/admin-dashboard.component';
+
+.search-bar { margin-bottom: 16px; }
+.search-field { width: 320px; }
+.total-badge {
+  background: #e8f5e9; color: #2e7d32;
+  font-size: 12px; font-weight: 700;
+  padding: 4px 12px; border-radius: 12px;
+}
+
+// Table
+.stokvels-table {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.st-head, .st-row {
+  display: grid;
+  grid-template-columns: 2fr 90px 80px 80px 120px 90px 1fr 90px 36px;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.st-head {
+  background: #f5f5f5;
+  font-weight: 700; font-size: 12px;
+  color: #555; text-transform: uppercase; letter-spacing: .4px;
+}
+
+.st-row {
+  border-top: 1px solid #f0f0f0;
+  cursor: pointer; transition: background .1s;
+  &:hover { background: #fafafa; }
+  &.expanded { background: #f0f7ff; }
+}
+
+.s-name { font-weight: 600; color: #1a1a2e; }
+.muted { color: #888; font-size: 12px; }
+.admins-cell { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.type-chip {
+  font-size: 11px; font-weight: 700;
+  padding: 2px 10px; border-radius: 10px;
+  &.rotational { background: #e3f2fd; color: #1565c0; }
+  &.savings    { background: #e8f5e9; color: #2e7d32; }
+  &.investment { background: #fff3e0; color: #e65100; }
+}
+
+.status-chip {
+  font-size: 11px; font-weight: 700;
+  padding: 2px 10px; border-radius: 10px;
+  &.status-active   { background: #e8f5e9; color: #2e7d32; }
+  &.status-inactive { background: #ffebee; color: #c62828; }
+}
+
+.pending-badge {
+  font-size: 11px; color: #f57c00; font-weight: 600;
+}
+
+.expand-icon { color: #ccc; font-size: 20px; height: 20px; width: 20px; }
+
+// Detail panel
+.st-detail {
+  border-top: 2px solid #e3f2fd;
+  background: #f8fbff;
+  padding: 24px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.detail-section {
+  h4 { font-size: 13px; font-weight: 700; color: #1a1a2e; margin: 0 0 12px;
+       text-transform: uppercase; letter-spacing: .4px; }
+}
+
+.detail-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 6px 0; font-size: 13px;
+  border-bottom: 1px solid #eef0f2;
+  gap: 8px;
+
+  span:first-child { color: #777; flex-shrink: 0; }
+  span:last-child  { color: #1a1a2e; font-weight: 500; text-align: right; }
+
+  .yes { color: #2e7d32; }
+  .no  { color: #888; }
+  .mono { font-family: monospace; font-size: 11px; }
+}
+
+.admin-chip {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid #eef0f2;
+
+  .admin-av {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: #1a1a2e; color: #4ade80;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+
+  .admin-name  { font-weight: 600; font-size: 13px; }
+  .admin-email { font-size: 12px; color: #777; }
+  .admin-joined{ font-size: 11px; color: #aaa; }
+}
+
+// Pagination
+.pagination {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  padding: 16px 0;
+  font-size: 14px; color: #555;
+}
+
+.empty-state {
+  text-align: center; padding: 48px;
+  mat-icon { font-size: 40px; height: 40px; width: 40px; color: #ccc; }
+  p { color: #aaa; margin-top: 8px; }
+}
+

@@ -267,30 +267,6 @@ class ClipboardModule {
 
 /***/ }),
 
-/***/ 6121:
-/*!***********************************!*\
-  !*** ./src/app/models/stokvel.ts ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   StokvelType: () => (/* binding */ StokvelType)
-/* harmony export */ });
-var _staticBlock;
-class StokvelType {
-  constructor(name) {
-    this.name = name;
-  }
-  static values() {
-    return [StokvelType.INVESTMENT, StokvelType.PROPERTY, StokvelType.FAMILY, StokvelType.BURIAL, StokvelType.ROTATIONAL];
-  }
-  static #_ = _staticBlock = () => (this.INVESTMENT = new StokvelType('investment'), this.PROPERTY = new StokvelType('property'), this.FAMILY = new StokvelType('family'), this.BURIAL = new StokvelType('burial'), this.ROTATIONAL = new StokvelType('rotational'));
-}
-_staticBlock();
-
-/***/ }),
-
 /***/ 6881:
 /*!*********************************************************!*\
   !*** ./src/app/services/stokvel/transaction.service.ts ***!

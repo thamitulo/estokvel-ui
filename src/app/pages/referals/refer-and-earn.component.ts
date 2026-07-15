@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { MaterialModule } from "../../material.module";
 import {ReferralService} from "../../services/referrals/referral.service";
 import {AuthService} from "@auth0/auth0-angular";
+import { SubscriptionService } from '../../services/subscription/subscription.service';
 
 @Component({
   selector: 'app-refer-earn',
@@ -27,6 +28,9 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
   referredCount: number = 0;
   totalEarnings: number = 0;
   pendingReferrals: number = 0;
+
+  /** Referral credit balance usable against platform fees */
+  referralCreditBalance: number = 0;
 
   // Referral code (for logged in users)
   referralCode: string = 'ESTOKVEL50';
@@ -52,7 +56,8 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private referralService: ReferralService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private subscriptionService: SubscriptionService
   ) {}
 
   ngOnInit(): void {
@@ -117,6 +122,13 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       }
     });
+
+    // Load credit balance from subscription service
+    const creditSub = this.subscriptionService.load().subscribe({
+      next: sub => { this.referralCreditBalance = sub.referralCreditBalance ?? 0; },
+      error: () => { /* silently ignore */ }
+    });
+    this.subscriptions.add(creditSub);
 
     // Load recent history
     const historySub = this.referralService.getRecentHistory(5).subscribe({

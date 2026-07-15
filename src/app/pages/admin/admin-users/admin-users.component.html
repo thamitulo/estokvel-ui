@@ -1,0 +1,170 @@
+<div class="admin-page">
+
+  <div class="page-header">
+    <h1><mat-icon>people</mat-icon> All Users</h1>
+    <span class="total-badge">{{ totalElements }} users</span>
+  </div>
+
+  <div class="search-bar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by name or email…</mat-label>
+      <input matInput [(ngModel)]="search" (input)="onSearch()">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="loading-state" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div class="users-table" *ngIf="!loading">
+    <div class="ut-head">
+      <span>User</span>
+      <span>Email</span>
+      <span>KYC</span>
+      <span>Tier</span>
+      <span>Stokvels</span>
+      <span>Contributed</span>
+      <span>Last Login</span>
+      <span>Logins</span>
+      <span>Credit</span>
+      <span></span>
+    </div>
+
+    <div class="ut-row" *ngFor="let u of users">
+      <div class="user-cell">
+        <div class="user-av">{{ initials(u.fullName || u.email) }}</div>
+        <div>
+          <div class="user-name">{{ u.fullName || '—' }}</div>
+          <div class="user-id">{{ u.auth0Id | slice:0:20 }}…</div>
+        </div>
+      </div>
+      <span class="muted email-col">{{ u.email }}</span>
+      <span><span class="kyc-badge" [class]="kycClass(u.kycStatus)">{{ u.kycStatus }}</span></span>
+      <span><span class="tier-badge" [class]="tierClass(u.subscriptionTier)">{{ u.subscriptionTier }}</span></span>
+      <span>
+        <strong>{{ u.activeStokvels }}</strong>
+        <span class="muted"> active / {{ u.totalMemberships }}</span>
+      </span>
+      <span>{{ money(u.totalContributed) }}</span>
+      <span class="last-login" [class.recent]="u.loginCount > 0">{{ lastLogin(u) }}</span>
+      <span>{{ u.loginCount ?? 0 }}</span>
+      <span class="credit-col" [class.has-credit]="u.referralCreditBalance > 0">
+        {{ money(u.referralCreditBalance) }}
+      </span>
+      <button class="mirror-btn" (click)="openMirror(u)" matTooltip="Mirror this user's session">
+        <mat-icon>manage_search</mat-icon>
+      </button>
+    </div>
+
+    <div class="empty-state" *ngIf="!users.length">
+      <mat-icon>people_outline</mat-icon>
+      <p>No users found</p>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button mat-icon-button [disabled]="page === 0" (click)="prevPage()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+    <button mat-icon-button [disabled]="page >= totalPages - 1" (click)="nextPage()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+</div>
+
+<!-- ── Mirror / User Detail Drawer ── -->
+<div class="mirror-overlay" *ngIf="mirrorUser || mirrorLoading" (click)="closeMirror()"></div>
+
+<div class="mirror-drawer" [class.open]="mirrorUser || mirrorLoading">
+
+  <div class="mirror-loading" *ngIf="mirrorLoading">
+    <mat-spinner diameter="36"></mat-spinner>
+    <p>Loading user session…</p>
+  </div>
+
+  <ng-container *ngIf="mirrorUser">
+    <div class="mirror-header">
+      <div class="mirror-av">{{ initials(mirrorUser.fullName || mirrorUser.email) }}</div>
+      <div class="mirror-title">
+        <h2>{{ mirrorUser.fullName || mirrorUser.email }}</h2>
+        <span class="mirror-sub">{{ mirrorUser.email }}</span>
+      </div>
+      <button mat-icon-button (click)="closeMirror()" class="close-btn">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <!-- Identity -->
+    <div class="mirror-section">
+      <h3><mat-icon>badge</mat-icon> Identity</h3>
+      <div class="mirror-row"><span>Auth0 ID</span><code>{{ mirrorUser.auth0Id }}</code></div>
+      <div class="mirror-row"><span>Email Verified</span>
+        <span [class.yes]="mirrorUser.emailVerified">{{ mirrorUser.emailVerified ? '✓ Yes' : '✗ No' }}</span>
+      </div>
+      <div class="mirror-row"><span>KYC Status</span>
+        <span class="kyc-badge" [class]="kycClass(mirrorUser.kycStatus)">{{ mirrorUser.kycStatus }}</span>
+      </div>
+      <div class="mirror-row"><span>Phone</span><span>{{ mirrorUser.phoneNumber || '—' }}</span></div>
+    </div>
+
+    <!-- Session -->
+    <div class="mirror-section">
+      <h3><mat-icon>history</mat-icon> Session & Activity</h3>
+      <div class="mirror-row"><span>Last Login</span><span>{{ lastLogin(mirrorUser) }}</span></div>
+      <div class="mirror-row"><span>Total Logins</span><span>{{ mirrorUser.loginCount }}</span></div>
+      <div class="mirror-row"><span>Last IP</span><code>{{ mirrorUser.lastLoginAt || '—' }}</code></div>
+    </div>
+
+    <!-- Subscription -->
+    <div class="mirror-section">
+      <h3><mat-icon>star</mat-icon> Subscription</h3>
+      <div class="mirror-row"><span>Tier</span>
+        <span class="tier-badge" [class]="tierClass(mirrorUser.subscriptionTier)">{{ mirrorUser.subscriptionTier }}</span>
+      </div>
+      <div class="mirror-row"><span>Referral Credits</span>
+        <span [class.has-credit]="mirrorUser.referralCreditBalance > 0">
+          {{ money(mirrorUser.referralCreditBalance) }}
+        </span>
+      </div>
+      <div class="mirror-row"><span>Referrals Sent</span><span>{{ mirrorUser.referralsSent }}</span></div>
+      <div class="mirror-row"><span>Referrals Converted</span><span>{{ mirrorUser.referralsConverted }}</span></div>
+    </div>
+
+    <!-- Financials -->
+    <div class="mirror-section">
+      <h3><mat-icon>savings</mat-icon> Financial Summary</h3>
+      <div class="mirror-row"><span>Total Contributed</span><strong>{{ money(mirrorUser.totalContributed) }}</strong></div>
+      <div class="mirror-row"><span>Active Stokvels</span><span>{{ mirrorUser.activeStokvels }}</span></div>
+      <div class="mirror-row"><span>All Memberships</span><span>{{ mirrorUser.totalMemberships }}</span></div>
+    </div>
+
+    <!-- Stokvel list -->
+    <div class="mirror-section">
+      <h3><mat-icon>account_balance</mat-icon> Stokvel Memberships</h3>
+
+      <div class="empty-state sm" *ngIf="!mirrorUser.stokvels?.length">No memberships</div>
+
+      <div class="stokvel-row" *ngFor="let s of mirrorUser.stokvels">
+        <div class="sr-top">
+          <span class="sr-name">{{ s.stokvelName }}</span>
+          <span class="role-chip" [class.admin]="s.role === 'ADMIN'">{{ s.role }}</span>
+          <span class="status-chip" [class.status-active]="s.membershipStatus === 'ACTIVE'"
+                [class.status-inactive]="s.membershipStatus !== 'ACTIVE'">
+            {{ s.membershipStatus }}
+          </span>
+        </div>
+        <div class="sr-details">
+          <span>Contributed: <strong>{{ money(s.totalContributed ?? 0) }}</strong></span>
+          <span *ngIf="s.memberNumber">Slot: <strong>#{{ s.memberNumber }}</strong></span>
+          <span *ngIf="s.nextPayOutDate">Next Payout: <strong>{{ s.nextPayOutDate | date:'dd MMM yyyy' }}</strong></span>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+</div>
+

@@ -1,0 +1,66 @@
+<div class="kyc-page">
+  <div class="kyc-card">
+    <div class="kyc-icon"><mat-icon>verified_user</mat-icon></div>
+    <h1>Identity Verification (KYC)</h1>
+    <p class="kyc-subtitle">
+      To comply with FICA and protect all members, we require identity verification before you can
+      join or create stokvels and make financial contributions.
+    </p>
+
+    <!-- Status: pending or rejected -->
+    <ng-container *ngIf="status$ | async as status">
+      <div class="status-banner pending" *ngIf="status.kycStatus === 'PENDING'">
+        <mat-icon>hourglass_top</mat-icon>
+        <span>Your KYC is under review. We'll notify you by email once the review is complete.</span>
+      </div>
+    </ng-container>
+
+    <form [formGroup]="kycForm" (ngSubmit)="submit()" class="kyc-form">
+
+      <mat-form-field appearance="outline">
+        <mat-label>ID Type</mat-label>
+        <mat-select formControlName="idType">
+          <mat-option value="RSA_ID">South African ID</mat-option>
+          <mat-option value="PASSPORT">Passport</mat-option>
+        </mat-select>
+        <mat-icon matPrefix>badge</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>ID / Passport Number</mat-label>
+        <input matInput formControlName="idNumber" placeholder="e.g. 9001015800086">
+        <mat-icon matPrefix>fingerprint</mat-icon>
+        <mat-error *ngIf="kycForm.get('idNumber')?.hasError('required')">ID number is required</mat-error>
+        <mat-error *ngIf="kycForm.get('idNumber')?.hasError('minlength')">Too short</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput type="date" formControlName="dateOfBirth">
+        <mat-icon matPrefix>cake</mat-icon>
+        <mat-error *ngIf="kycForm.get('dateOfBirth')?.hasError('required')">Date of birth is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile Number</mat-label>
+        <input matInput formControlName="phoneNumber" placeholder="+27 82 000 0000">
+        <mat-icon matPrefix>phone</mat-icon>
+        <mat-hint>International format, e.g. +27821234567</mat-hint>
+        <mat-error *ngIf="kycForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+        <mat-error *ngIf="kycForm.get('phoneNumber')?.hasError('pattern')">Invalid phone format</mat-error>
+      </mat-form-field>
+
+      <div class="kyc-disclaimer">
+        <mat-icon>lock_outline</mat-icon>
+        <span>Your information is encrypted and used solely for FICA compliance. We never share it with third parties.</span>
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="kycForm.invalid || submitting">
+        <mat-spinner diameter="18" *ngIf="submitting"></mat-spinner>
+        <mat-icon *ngIf="!submitting">send</mat-icon>
+        {{ submitting ? 'Submitting…' : 'Submit for Verification' }}
+      </button>
+    </form>
+  </div>
+</div>
+

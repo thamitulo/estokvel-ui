@@ -11,11 +11,14 @@ import { StokvelService } from '../../services/stokvel/stokvel.service';
 import { UserService } from '../../services/user/user-service.service';
 import { StokvelResponse, StokvelMemberDto } from '../../models/stokvel';
 import { environment } from '../../environments/environment';
+import { RotationQueueComponent } from '../rotation-queue/rotation-queue.component';
+import { KycBannerComponent } from '../kyc-banner/kyc-banner.component';
+import { ChurnDefenceService } from '../../services/churn-defence/churn-defence.service';
 
 @Component({
   selector: 'app-stokvel-manage',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, MaterialModule, RotationQueueComponent, KycBannerComponent],
   templateUrl: './stokvel-manage.component.html',
   styleUrls: ['./stokvel-manage.component.scss']
 })
@@ -56,7 +59,8 @@ export class StokvelManageComponent implements OnInit {
     private userService: UserService,
     private http: HttpClient,
     private fb: FormBuilder,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private churnDefence: ChurnDefenceService
   ) {
     this.inviteForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -109,6 +113,10 @@ export class StokvelManageComponent implements OnInit {
 
   get adminCount(): number {
     return this.stokvel?.adminMembers?.length ?? 0;
+  }
+
+  get isRotational(): boolean {
+    return this.stokvel?.type?.toUpperCase() === 'ROTATIONAL';
   }
 
   /** True if this member is the ONLY admin */
@@ -174,7 +182,7 @@ export class StokvelManageComponent implements OnInit {
       });
   }
 
-  // ── Remove REGULAR member (immediate) ────────────────────────────────────
+  // ── Remove REGULAR member (immediate, with churn defence) ────────────────
   removeMember(member: StokvelMemberDto): void {
     if (!member.id || !this.stokvel) return;
 
@@ -187,21 +195,34 @@ export class StokvelManageComponent implements OnInit {
       return;
     }
 
-    const name = member.displayName || member.userName;
-    const confirmed = window.confirm(`Remove ${name} from "${this.stokvel.name}"?\nThis action cannot be undone.`);
-    if (!confirmed) return;
-    this.removingMemberId = member.id;
+    const name = member.displayName || member.userName || 'this member';
+    const isRotational = this.stokvel.type?.toLowerCase() === 'rotational';
 
-    this.stokvelService.removeMember(this.stokvel.id, member.id).subscribe({
-      next: () => {
-        this.removingMemberId = null;
-        this.snack.open(`${name} removed`, 'Close', { duration: 3000 });
-        this.stokvelService.getStokvelById(this.stokvel!.id).subscribe(s => this.stokvel = s);
-      },
-      error: err => {
-        this.removingMemberId = null;
-        this.snack.open(err?.error?.message || 'Could not remove member', 'Close', { duration: 5000, panelClass: 'error-snackbar' });
-      }
+    // Build churn defence data (slot info if rotational)
+    this.churnDefence.confirmRemoval({
+      stokvelName: this.stokvel.name,
+      memberName: name,
+      rotationSlot: isRotational && member.memberNumber ? member.memberNumber : undefined,
+      scheduledPayoutDate: isRotational && member.nextPayOutDate ? member.nextPayOutDate : undefined,
+      scheduledPayoutAmount: isRotational && member.nextPayoutAmount ? member.nextPayoutAmount : undefined,
+      currentSlot: this.stokvel.currentRotationSlot ?? undefined,
+      totalSlots: this.allMembers.filter(m => m.membershipStatus === 'ACTIVE').length,
+      totalContributed: member.totalContributed
+    }).subscribe(confirmed => {
+      if (!confirmed) return;
+      this.removingMemberId = member.id!;
+
+      this.stokvelService.removeMember(this.stokvel!.id, member.id!).subscribe({
+        next: () => {
+          this.removingMemberId = null;
+          this.snack.open(`${name} removed`, 'Close', { duration: 3000 });
+          this.stokvelService.getStokvelById(this.stokvel!.id).subscribe(s => this.stokvel = s);
+        },
+        error: err => {
+          this.removingMemberId = null;
+          this.snack.open(err?.error?.message || 'Could not remove member', 'Close', { duration: 5000, panelClass: 'error-snackbar' });
+        }
+      });
     });
   }
 

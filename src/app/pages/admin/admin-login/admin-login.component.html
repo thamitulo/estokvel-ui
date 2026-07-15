@@ -1,0 +1,51 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <div class="login-header">
+      <div class="login-logo">
+        <mat-icon>shield</mat-icon>
+      </div>
+      <h1>Backoffice</h1>
+      <p>eStokvel Super-Admin Portal</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" autocomplete="username" placeholder="superadmin">
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password"
+               [type]="hidePassword ? 'password' : 'text'"
+               autocomplete="current-password">
+        <mat-icon matPrefix>lock</mat-icon>
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="error-box" *ngIf="error">
+        <mat-icon>error_outline</mat-icon>
+        {{ error }}
+      </div>
+
+      <button mat-flat-button class="submit-btn"
+              type="submit"
+              [disabled]="form.invalid || loading">
+        <mat-spinner diameter="20" *ngIf="loading"></mat-spinner>
+        <mat-icon *ngIf="!loading">login</mat-icon>
+        {{ loading ? 'Signing in…' : 'Sign In' }}
+      </button>
+    </form>
+
+    <p class="login-hint">
+      <mat-icon>info_outline</mat-icon>
+      This portal is restricted to authorised personnel only. All access is logged.
+    </p>
+  </div>
+</div>
+

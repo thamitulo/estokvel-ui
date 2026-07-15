@@ -1,5 +1,8 @@
 <div class="manage-page" *ngIf="!isLoading && stokvel; else loadingTpl">
 
+  <!-- KYC Banner -->
+  <app-kyc-banner></app-kyc-banner>
+
   <!-- ── Header ── -->
   <div class="manage-header">
     <button class="back-btn" (click)="goBack()">
@@ -402,6 +405,19 @@
             <span>Each highlighted member will receive an email with their outstanding amount and a link to pay via dashboard.</span>
           </div>
         </div>
+      </div>
+    </mat-tab>
+
+    <!-- ─────────────── TAB 6: Rotation Queue (ROTATIONAL only) ─────────────── -->
+    <mat-tab *ngIf="isRotational">
+      <ng-template mat-tab-label>
+        <mat-icon>autorenew</mat-icon>&nbsp;Rotation Queue
+      </ng-template>
+      <div class="tab-body">
+        <app-rotation-queue
+          [stokvelId]="stokvel.id"
+          [isAdmin]="true">
+        </app-rotation-queue>
       </div>
     </mat-tab>
 

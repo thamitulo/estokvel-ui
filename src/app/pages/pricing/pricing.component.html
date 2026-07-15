@@ -1,0 +1,164 @@
+<div class="pricing-page">
+
+  <!-- ── Hero ── -->
+  <section class="pricing-hero">
+    <div class="hero-pill">Transparent Pricing</div>
+    <h1>Pay only for what you use</h1>
+    <p class="hero-sub">
+      Start free. Upgrade when your stokvel grows. No hidden charges — just a small
+      transaction fee on contributions that keeps the platform running.
+    </p>
+
+    <!-- Current plan pill for logged-in users -->
+    <div class="current-plan-chip" *ngIf="isAuthenticated && subscription">
+      <mat-icon>verified</mat-icon>
+      You're on the <strong>{{ currentTier }}</strong> plan
+      <span class="credit-badge" *ngIf="creditBalance > 0">
+        &nbsp;· R{{ creditBalance | number:'1.2-2' }} referral credit
+      </span>
+    </div>
+  </section>
+
+  <!-- ── Loading ── -->
+  <div class="pricing-loading" *ngIf="isLoading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Loading your plan…</p>
+  </div>
+
+  <!-- ── Tier cards ── -->
+  <section class="tier-grid" *ngIf="!isLoading">
+    <div class="tier-card"
+         *ngFor="let tier of tiers"
+         [class.tier-popular]="tier.code === 'PRO'"
+         [class.tier-current]="tier.current">
+
+      <!-- Popular badge -->
+      <div class="popular-badge" *ngIf="tier.code === 'PRO'">Most Popular</div>
+      <div class="current-badge" *ngIf="tier.current">
+        <mat-icon>check_circle</mat-icon> Current Plan
+      </div>
+
+      <!-- Tier header -->
+      <div class="tier-header">
+        <div class="tier-icon">
+          <mat-icon>{{ tier.code === 'FREE' ? 'savings' : tier.code === 'PRO' ? 'star' : 'business' }}</mat-icon>
+        </div>
+        <h2 class="tier-name">{{ tier.name }}</h2>
+        <div class="tier-price">
+          <span class="price-amount" *ngIf="tier.monthlyAmountZar === 0">Free</span>
+          <ng-container *ngIf="tier.monthlyAmountZar > 0">
+            <span class="price-currency">R</span>
+            <span class="price-amount">{{ tier.monthlyAmountZar }}</span>
+            <span class="price-period">/mo</span>
+          </ng-container>
+        </div>
+        <div class="tier-fee">
+          <mat-icon class="fee-icon">percent</mat-icon>
+          {{ feeLabel(tier) }}
+        </div>
+      </div>
+
+      <!-- Limits -->
+      <div class="tier-limits">
+        <div class="limit-row">
+          <mat-icon>groups</mat-icon>
+          <span>{{ memberLabel(tier.maxMembersPerStokvel) }} members per stokvel</span>
+        </div>
+        <div class="limit-row">
+          <mat-icon>account_balance</mat-icon>
+          <span>{{ stokvelLabel(tier.maxStokvels) }} stokvel{{ tier.maxStokvels !== 1 ? 's' : '' }}</span>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <ul class="tier-features">
+        <li *ngFor="let f of tier.features">
+          <mat-icon class="check-icon">check</mat-icon>
+          {{ f }}
+        </li>
+      </ul>
+
+      <!-- CTA -->
+      <button class="tier-cta"
+              [class.cta-primary]="tier.code === 'PRO'"
+              [class.cta-current]="tier.current"
+              [disabled]="tier.current || upgradeLoading === tier.code"
+              (click)="selectTier(tier)">
+        <mat-spinner diameter="18" *ngIf="upgradeLoading === tier.code"></mat-spinner>
+        <ng-container *ngIf="upgradeLoading !== tier.code">
+          <span *ngIf="tier.current">Current Plan</span>
+          <span *ngIf="!tier.current && tier.monthlyAmountZar === 0">Switch to Free</span>
+          <span *ngIf="!tier.current && tier.monthlyAmountZar > 0">Get {{ tier.name }}</span>
+        </ng-container>
+      </button>
+    </div>
+  </section>
+
+  <!-- ── Fee explainer ── -->
+  <section class="fee-explainer">
+    <h2>How the transaction fee works</h2>
+    <div class="explainer-grid">
+      <div class="explainer-card">
+        <mat-icon>calculate</mat-icon>
+        <h3>Per contribution</h3>
+        <p>
+          The fee is charged each time a member contributes to a stokvel.
+          A R1 000 contribution on the Free plan incurs a R15 fee
+          (3%, capped at R15). On Pro it's R15. On Business, R10.
+        </p>
+      </div>
+      <div class="explainer-card">
+        <mat-icon>redeem</mat-icon>
+        <h3>Referral credits offset fees</h3>
+        <p>
+          Every successful referral earns you <strong>R50 credit</strong>.
+          Your friend gets <strong>R25 credit</strong> on signup.
+          Credits are automatically applied before cash fees are charged —
+          so active referrers often pay nothing.
+        </p>
+      </div>
+      <div class="explainer-card">
+        <mat-icon>security</mat-icon>
+        <h3>No payout fees</h3>
+        <p>
+          We only charge on contributions — never on payouts.
+          When it's your turn to receive the pool, 100% of the
+          accumulated contributions land in your account.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="pricing-faq">
+    <h2>Common Questions</h2>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Can I switch tiers at any time?</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Yes. Upgrades take effect immediately. Downgrades take effect at your next billing cycle. Switching to Free is always instant.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>What happens to my referral credits if I cancel?</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Credits never expire and carry over regardless of your tier. Even on the Free plan, your credits will offset the 3% fee.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Is VAT included?</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>All prices shown are VAT-inclusive. eStokvel is registered with SARS and issues valid tax invoices on request.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>What payment methods do you accept?</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>We currently support EFT (instant EFT via Stitch) and major debit/credit cards. SnapScan and PayShap coming soon.</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </section>
+
+</div>
+

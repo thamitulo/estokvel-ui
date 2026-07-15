@@ -1,0 +1,126 @@
+<div class="admin-page">
+
+  <div class="page-header">
+    <h1><mat-icon>dashboard</mat-icon> Platform Dashboard</h1>
+    <span class="timestamp">Live · {{ (loading ? 'Loading…' : 'Last refreshed now') }}</span>
+  </div>
+
+  <div class="loading-state" *ngIf="loading">
+    <mat-spinner diameter="48"></mat-spinner><p>Loading platform stats…</p>
+  </div>
+
+  <ng-container *ngIf="!loading && stats">
+
+    <!-- ── KPI Row ── -->
+    <div class="kpi-grid">
+
+      <div class="kpi-card">
+        <div class="kpi-icon green"><mat-icon>account_balance</mat-icon></div>
+        <div class="kpi-val">{{ fmt(stats.totalStokvels) }}</div>
+        <div class="kpi-label">Total Stokvels</div>
+        <div class="kpi-sub">{{ fmt(stats.activeStokvels) }} active · {{ fmt(stats.stokvelsCreatedThisMonth) }} new this month</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon blue"><mat-icon>people</mat-icon></div>
+        <div class="kpi-val">{{ fmt(stats.totalUsers) }}</div>
+        <div class="kpi-label">Unique Users</div>
+        <div class="kpi-sub">{{ fmt(stats.activeUsers) }} active · {{ fmt(stats.totalMemberships) }} total memberships</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon orange"><mat-icon>savings</mat-icon></div>
+        <div class="kpi-val">{{ money(stats.totalContributionsAllTime) }}</div>
+        <div class="kpi-label">Contributions (All Time)</div>
+        <div class="kpi-sub">{{ money(stats.totalContributionsThisMonth) }} this month</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon purple"><mat-icon>autorenew</mat-icon></div>
+        <div class="kpi-val">{{ fmt(stats.rotationalStokvels) }}</div>
+        <div class="kpi-label">Rotational Stokvels</div>
+        <div class="kpi-sub">{{ fmt(stats.totalReferrals) }} referrals · {{ fmt(stats.completedReferrals) }} converted</div>
+      </div>
+
+    </div>
+
+    <!-- ── Revenue Row ── -->
+    <div class="section-title">
+      <mat-icon>monetization_on</mat-icon> Revenue & Subscriptions
+    </div>
+
+    <div class="revenue-grid">
+
+      <div class="rev-card">
+        <div class="rev-label">Platform Fees Collected</div>
+        <div class="rev-val">{{ money(stats.totalFeesCollected) }}</div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-label">Referral Rewards Paid</div>
+        <div class="rev-val">{{ money(stats.totalReferralRewardsPaid) }}</div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-label">Pro Subscribers</div>
+        <div class="rev-val">{{ fmt(stats.proSubscribers) }}
+          <span class="rev-badge pro">PRO</span>
+        </div>
+        <div class="rev-progress">
+          <div class="rev-bar" [style.width.%]="tierPercent('PRO')"></div>
+        </div>
+        <div class="rev-pct">{{ tierPercent('PRO') }}% of users</div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-label">Business Subscribers</div>
+        <div class="rev-val">{{ fmt(stats.businessSubscribers) }}
+          <span class="rev-badge biz">BIZ</span>
+        </div>
+        <div class="rev-progress">
+          <div class="rev-bar biz-bar" [style.width.%]="tierPercent('BUSINESS')"></div>
+        </div>
+        <div class="rev-pct">{{ tierPercent('BUSINESS') }}% of users</div>
+      </div>
+
+    </div>
+
+    <!-- ── Top Stokvels ── -->
+    <div class="section-title">
+      <mat-icon>leaderboard</mat-icon> Top Stokvels by Members
+    </div>
+
+    <div class="top-table">
+      <div class="tt-head">
+        <span>#</span>
+        <span>Name</span>
+        <span>Type</span>
+        <span>Members</span>
+        <span>Contributions</span>
+        <span>Created By</span>
+        <span></span>
+      </div>
+      <div class="tt-row" *ngFor="let s of stats.topStokvels; let i = index">
+        <span class="rank">{{ i + 1 }}</span>
+        <span class="sname">{{ s.name }}</span>
+        <span><span class="type-chip" [class]="s.type?.toLowerCase()">{{ s.type }}</span></span>
+        <span>{{ fmt(s.memberCount) }}</span>
+        <span>{{ money(s.totalContributions) }}</span>
+        <span class="muted">{{ s.createdByName }}</span>
+        <span>
+          <a class="view-link" [routerLink]="['/admin/stokvels', s.id]">
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </span>
+      </div>
+      <div class="tt-empty" *ngIf="!stats.topStokvels?.length">No stokvels yet</div>
+    </div>
+
+  </ng-container>
+
+  <div class="error-state" *ngIf="!loading && error">
+    <mat-icon>error_outline</mat-icon> {{ error }}
+  </div>
+
+</div>
+

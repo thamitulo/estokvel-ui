@@ -1,0 +1,125 @@
+<div class="rq-wrap">
+
+  <!-- Loading -->
+  <div class="rq-loading" *ngIf="loading">
+    <mat-spinner diameter="32"></mat-spinner>
+    <span>Loading rotation queue…</span>
+  </div>
+
+  <!-- No rotation data -->
+  <div class="rq-empty" *ngIf="!loading && !queue">
+    <mat-icon>autorenew</mat-icon>
+    <p>Rotation queue not yet initialised. Activate the rotation from the admin panel.</p>
+  </div>
+
+  <!-- Rotation not active -->
+  <div class="rq-inactive" *ngIf="!loading && queue && !queue.rotationActive">
+    <mat-icon>pause_circle</mat-icon>
+    <p>Rotation is not yet active for this stokvel.</p>
+    <div class="rq-admin-actions" *ngIf="isAdmin">
+      <button class="btn-reset" (click)="reset()" [disabled]="resetting">
+        <mat-spinner diameter="16" *ngIf="resetting"></mat-spinner>
+        <mat-icon *ngIf="!resetting">shuffle</mat-icon>
+        {{ resetting ? 'Initialising…' : 'Initialise Rotation' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Active rotation -->
+  <ng-container *ngIf="!loading && queue && queue.rotationActive">
+
+    <!-- My position banner -->
+    <div class="my-position-banner" *ngIf="myPosition">
+      <ng-container *ngIf="myPosition.isCurrent">
+        <mat-icon>stars</mat-icon>
+        <strong>🎉 It's your turn!</strong> You are the current payout recipient.
+      </ng-container>
+      <ng-container *ngIf="!myPosition.isCurrent && !myPosition.hasReceived">
+        <mat-icon>event</mat-icon>
+        <span>
+          Your payout is at position <strong>{{ myPosition.position }}</strong> of {{ myPosition.totalSlots }}.
+          Estimated date: <strong>{{ myPosition.scheduledPayoutDate | date:'mediumDate' }}</strong> ·
+          Amount: <strong>R{{ myPosition.payoutAmount | number }}</strong>
+        </span>
+      </ng-container>
+      <ng-container *ngIf="myPosition.hasReceived">
+        <mat-icon>check_circle</mat-icon>
+        <span>You have already received your payout this cycle.</span>
+      </ng-container>
+    </div>
+
+    <!-- Summary ribbon -->
+    <div class="rq-summary">
+      <div class="rqs-stat">
+        <mat-icon>looks_one</mat-icon>
+        <div>
+          <span class="stat-val">{{ queue.currentSlot }}</span>
+          <span class="stat-lbl">Current Slot</span>
+        </div>
+      </div>
+      <div class="rqs-stat">
+        <mat-icon>format_list_numbered</mat-icon>
+        <div>
+          <span class="stat-val">{{ queue.totalSlots }}</span>
+          <span class="stat-lbl">Total Slots</span>
+        </div>
+      </div>
+      <div class="rqs-stat">
+        <mat-icon>autorenew</mat-icon>
+        <div>
+          <span class="stat-val">{{ queue.payoutCycle | titlecase }}</span>
+          <span class="stat-lbl">Payout Cycle</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin controls -->
+    <div class="rq-admin-actions" *ngIf="isAdmin">
+      <button class="btn-advance" (click)="advance()" [disabled]="advancing">
+        <mat-spinner diameter="16" *ngIf="advancing"></mat-spinner>
+        <mat-icon *ngIf="!advancing">skip_next</mat-icon>
+        {{ advancing ? 'Advancing…' : 'Advance Rotation' }}
+      </button>
+      <button class="btn-reset" (click)="reset()" [disabled]="resetting">
+        <mat-spinner diameter="16" *ngIf="resetting"></mat-spinner>
+        <mat-icon *ngIf="!resetting">shuffle</mat-icon>
+        {{ resetting ? 'Resetting…' : 'Re-shuffle & Reset' }}
+      </button>
+    </div>
+
+    <!-- Queue table -->
+    <div class="rq-table">
+      <div class="rq-head">
+        <span>#</span>
+        <span>Member</span>
+        <span>Payout Date</span>
+        <span>Amount</span>
+        <span>Status</span>
+      </div>
+      <div class="rq-row"
+           *ngFor="let slot of queue.queue; trackBy: trackByPosition"
+           [class.current-slot]="slot.isCurrent"
+           [class.received-slot]="slot.hasReceived">
+        <span class="slot-pos">
+          <mat-icon class="current-icon" *ngIf="slot.isCurrent">star</mat-icon>
+          <span *ngIf="!slot.isCurrent">{{ slot.position }}</span>
+        </span>
+        <div class="slot-member">
+          <div class="slot-avatar" [class.current-av]="slot.isCurrent">
+            {{ (slot.memberName || '?').charAt(0).toUpperCase() }}
+          </div>
+          <span class="slot-name">{{ slot.memberName }}</span>
+        </div>
+        <span class="slot-date">{{ slot.scheduledPayoutDate | date:'mediumDate' }}</span>
+        <span class="slot-amount">R{{ slot.payoutAmount | number }}</span>
+        <span class="slot-status">
+          <span class="badge-current" *ngIf="slot.isCurrent">Current</span>
+          <span class="badge-received" *ngIf="slot.hasReceived">Received</span>
+          <span class="badge-pending" *ngIf="!slot.isCurrent && !slot.hasReceived">Pending</span>
+        </span>
+      </div>
+    </div>
+
+  </ng-container>
+</div>
+

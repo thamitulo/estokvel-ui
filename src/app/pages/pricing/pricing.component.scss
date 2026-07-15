@@ -1,0 +1,286 @@
+@use 'sass:color';
+
+$brand: #2e7d32;
+$brand-light: #e8f5e9;
+$pro: #1565c0;
+$pro-light: #e3f2fd;
+$biz: #4a148c;
+$biz-light: #f3e5f5;
+
+.pricing-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+/* ── Hero ── */
+.pricing-hero {
+  text-align: center;
+  padding: 64px 0 48px;
+
+  .hero-pill {
+    display: inline-block;
+    background: $brand-light;
+    color: $brand;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 0 0 16px;
+    color: #1a1a1a;
+  }
+
+  .hero-sub {
+    color: #555;
+    font-size: 1.1rem;
+    max-width: 560px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+
+  .current-plan-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: $brand-light;
+    color: $brand;
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 600;
+
+    mat-icon { font-size: 18px; height: 18px; width: 18px; }
+
+    .credit-badge { color: #f57c00; }
+  }
+}
+
+.pricing-loading {
+  text-align: center;
+  padding: 60px;
+  p { color: #777; margin-top: 16px; }
+}
+
+/* ── Tier grid ── */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+.tier-card {
+  position: relative;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .2s, transform .2s;
+
+  &:hover { box-shadow: 0 8px 32px rgba(0,0,0,.12); transform: translateY(-2px); }
+
+  &.tier-popular {
+    border-color: $pro;
+    box-shadow: 0 4px 24px rgba(21,101,192,.18);
+  }
+
+  &.tier-current {
+    border-color: $brand;
+    background: $brand-light;
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $pro;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .current-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: $brand;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    mat-icon { font-size: 16px; height: 16px; width: 16px; }
+  }
+}
+
+.tier-header {
+  text-align: center;
+  margin-bottom: 20px;
+
+  .tier-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: $brand-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+
+    mat-icon { color: $brand; font-size: 26px; }
+  }
+
+  .tier-popular & .tier-icon { background: $pro-light; mat-icon { color: $pro; } }
+
+  .tier-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+
+  .tier-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+    margin-bottom: 8px;
+
+    .price-currency { font-size: 1.2rem; font-weight: 600; color: #444; }
+    .price-amount { font-size: 2.4rem; font-weight: 800; color: #1a1a1a; }
+    .price-period { font-size: .9rem; color: #777; }
+  }
+
+  .tier-fee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 13px;
+    color: #555;
+    background: #f5f5f5;
+    padding: 4px 12px;
+    border-radius: 12px;
+
+    .fee-icon { font-size: 16px; height: 16px; width: 16px; }
+  }
+}
+
+.tier-limits {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+  margin-bottom: 16px;
+
+  .limit-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #555;
+    padding: 4px 0;
+    mat-icon { font-size: 18px; height: 18px; width: 18px; color: #888; }
+  }
+}
+
+.tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  flex: 1;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 14px;
+    color: #444;
+    padding: 5px 0;
+
+    .check-icon { font-size: 17px; height: 17px; width: 17px; color: $brand; flex-shrink: 0; margin-top: 1px; }
+  }
+}
+
+.tier-cta {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 8px;
+  border: 2px solid $brand;
+  background: transparent;
+  color: $brand;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover:not(:disabled) { background: $brand; color: #fff; }
+  &:disabled { opacity: .5; cursor: default; }
+
+  &.cta-primary {
+    background: $pro;
+    border-color: $pro;
+    color: #fff;
+    &:hover:not(:disabled) { background: color.adjust($pro, $lightness: -8%); }
+  }
+
+  &.cta-current {
+    border-color: $brand;
+    background: $brand;
+    color: #fff;
+    cursor: default;
+  }
+}
+
+/* ── Fee explainer ── */
+.fee-explainer {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 48px 40px;
+  margin-bottom: 48px;
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin: 0 0 32px; text-align: center; }
+
+  .explainer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .explainer-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+
+    mat-icon { font-size: 32px; height: 32px; width: 32px; color: $brand; margin-bottom: 12px; }
+    h3 { font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
+    p { font-size: 14px; color: #555; line-height: 1.6; margin: 0; }
+  }
+}
+
+/* ── FAQ ── */
+.pricing-faq {
+  h2 { font-size: 1.6rem; font-weight: 700; margin: 0 0 24px; }
+  p { margin: 0; font-size: 14px; color: #555; line-height: 1.6; }
+}
+
+@media (max-width: 600px) {
+  .pricing-hero h1 { font-size: 1.7rem; }
+  .fee-explainer { padding: 32px 20px; }
+}
+

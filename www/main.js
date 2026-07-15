@@ -618,6 +618,17 @@ class NotificationService {
   deleteNotification(notificationId) {
     return this.http.delete(`${this.apiUrl}/${notificationId}`);
   }
+  markMultipleAsRead(ids) {
+    return this.http.patch(`${this.apiUrl}/read-multiple`, {
+      ids
+    });
+  }
+  deleteAllReadNotifications() {
+    return this.http.delete(`${this.apiUrl}/read`);
+  }
+  getNotificationById(id) {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
   static #_ = _staticBlock = () => (this.ɵfac = function NotificationService_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || NotificationService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient));
   }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
@@ -979,16 +990,27 @@ class UserService {
     this._userSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject(null);
     this.user$ = this._userSubject.asObservable();
     this.userName$ = this.user$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(user => user?.name || user?.email || null));
-    // Subscribe to Auth0 user$ and update local BehaviorSubject
+    // Subscribe to Auth0 user$ and update local BehaviorSubject.
+    // Merge with backend profile to get phone_number.
     this.auth.user$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.tap)(auth0User => {
       if (auth0User) {
         const appUser = {
           id: auth0User.sub,
           name: auth0User.name,
           email: auth0User.email,
-          picture: auth0User.picture
+          picture: auth0User.picture,
+          phoneNumber: auth0User['phone_number'] ?? undefined
         };
         this._userSubject.next(appUser);
+        // Enrich with backend user profile (includes phone_number from Auth0 mgmt)
+        this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_8__.environment.apiUrl}users/me`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.catchError)(() => (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.of)(null))).subscribe(profile => {
+          if (profile) {
+            this._userSubject.next({
+              ...this._userSubject.value,
+              phoneNumber: profile.phoneNumber
+            });
+          }
+        });
       } else {
         this._userSubject.next(null);
       }
@@ -1002,6 +1024,14 @@ class UserService {
   }
   setUser(user) {
     this._userSubject.next(user);
+  }
+  /** Update the cached phone number after a successful Management API call. */
+  updateCachedPhone(phoneNumber) {
+    const current = this._userSubject.value;
+    if (current) this._userSubject.next({
+      ...current,
+      phoneNumber
+    });
   }
   static #_ = _staticBlock = () => (this.ɵfac = function UserService_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_10__.AuthService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_11__.HttpClient));
@@ -1299,6 +1329,17 @@ _staticBlock();
 
 /***/ }),
 
+/***/ 3979:
+/*!******************************************!*\
+  !*** ./src/app/models/activity.model.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
+
+/***/ }),
+
 /***/ 4114:
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -1324,6 +1365,11 @@ const routes = [{
   path: '',
   redirectTo: 'home',
   pathMatch: 'full'
+}, {
+  path: 'kyc',
+  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_kyc_kyc_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/kyc/kyc.component */ 479)).then(m => m.KycComponent),
+  canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
+  title: 'Identity Verification - eStokvel'
 }, {
   path: 'home',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_stokvel-join_join-stokvel-modal_ts"), __webpack_require__.e("src_app_pages_home_home_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/home/home.component */ 5047)).then(m => m.HomeComponent)
@@ -1401,12 +1447,12 @@ const routes = [{
   title: 'Browse Stokvels - eStokvel'
 }, {
   path: 'stokvels/:id',
-  loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_stokvel-join_join-stokvel-modal_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_components_stokvel-detail_stokvel-detail_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/stokvel-detail/stokvel-detail.component */ 8707)).then(m => m.StokvelDetailComponent),
+  loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_stokvel-join_join-stokvel-modal_ts"), __webpack_require__.e("default-src_app_components_kyc-banner_kyc-banner_component_ts-src_app_components_rotation-que-12181a"), __webpack_require__.e("common"), __webpack_require__.e("src_app_components_stokvel-detail_stokvel-detail_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/stokvel-detail/stokvel-detail.component */ 8707)).then(m => m.StokvelDetailComponent),
   canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
   title: 'Stokvel Details - eStokvel'
 }, {
   path: 'stokvels/:id/manage',
-  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_components_stokvel-manage_stokvel-manage_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./components/stokvel-manage/stokvel-manage.component */ 2235)).then(m => m.StokvelManageComponent),
+  loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_kyc-banner_kyc-banner_component_ts-src_app_components_rotation-que-12181a"), __webpack_require__.e("src_app_components_stokvel-manage_stokvel-manage_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/stokvel-manage/stokvel-manage.component */ 2235)).then(m => m.StokvelManageComponent),
   canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
   title: 'Manage Stokvel - eStokvel'
 }, {
@@ -1665,6 +1711,28 @@ const restoreAuth = (0,_ngrx_store__WEBPACK_IMPORTED_MODULE_0__.createAction)('[
 
 /***/ }),
 
+/***/ 5401:
+/*!***********************************************!*\
+  !*** ./src/app/models/shared/shared.model.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
+
+/***/ }),
+
+/***/ 6022:
+/*!*****************************************************!*\
+  !*** ./src/app/models/static/stokvel-type.model.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
+
+/***/ }),
+
 /***/ 6052:
 /*!*********************************************!*\
   !*** ./src/app/environments/environment.ts ***!
@@ -1688,6 +1756,67 @@ const environment = {
 
 /***/ }),
 
+/***/ 6121:
+/*!***********************************!*\
+  !*** ./src/app/models/stokvel.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StokvelType: () => (/* binding */ StokvelType),
+/* harmony export */   normalizeStokvelMember: () => (/* binding */ normalizeStokvelMember)
+/* harmony export */ });
+var _staticBlock;
+class StokvelType {
+  constructor(name) {
+    this.name = name;
+  }
+  static values() {
+    return [StokvelType.INVESTMENT, StokvelType.PROPERTY, StokvelType.FAMILY, StokvelType.BURIAL, StokvelType.ROTATIONAL];
+  }
+  static #_ = _staticBlock = () => (this.INVESTMENT = new StokvelType('investment'), this.PROPERTY = new StokvelType('property'), this.FAMILY = new StokvelType('family'), this.BURIAL = new StokvelType('burial'), this.ROTATIONAL = new StokvelType('rotational'));
+}
+/**
+ * Normalise a raw member object from the backend regardless of whether it uses
+ * the flat DTO shape or the nested { user: { auth0Id, email, name } } shape.
+ */
+_staticBlock();
+function normalizeStokvelMember(raw) {
+  if (!raw) return raw;
+  // Nested-shape: { user: { auth0Id, email, name } }
+  if (raw.user && typeof raw.user === 'object') {
+    return {
+      id: raw.id,
+      userAuth0Id: raw.user.auth0Id ?? raw.user.sub ?? raw.userAuth0Id ?? '',
+      userEmail: raw.user.email ?? raw.userEmail ?? '',
+      userName: raw.user.name ?? raw.userName ?? '',
+      displayName: raw.user.name ?? raw.displayName ?? raw.userName ?? '',
+      role: raw.role ?? 'MEMBER',
+      joinedAt: raw.joinedAt ?? raw.joinedDate ?? '',
+      joinedDate: raw.joinedDate ?? raw.joinedAt ?? '',
+      status: raw.status ?? '',
+      membershipStatus: raw.membershipStatus ?? raw.status ?? '',
+      totalContributed: raw.totalContributed,
+      nextPayoutAmount: raw.nextPayoutAmount,
+      nextPayOutDate: raw.nextPayOutDate,
+      memberNumber: raw.memberNumber,
+      stokvelId: raw.stokvelId,
+      stokvelName: raw.stokvelName
+    };
+  }
+  // Flat shape: ensure joinedDate always has a value
+  return {
+    ...raw,
+    joinedDate: raw.joinedDate ?? raw.joinedAt ?? '',
+    joinedAt: raw.joinedAt ?? raw.joinedDate ?? '',
+    displayName: raw.displayName ?? raw.userName ?? '',
+    membershipStatus: raw.membershipStatus ?? raw.status ?? ''
+  };
+}
+
+/***/ }),
+
 /***/ 6747:
 /*!*************************************!*\
   !*** ./src/app/auth.interceptor.ts ***!
@@ -1698,12 +1827,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AuthHttpInterceptor: () => (/* binding */ AuthHttpInterceptor)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 5429);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 6647);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./environments/environment */ 6052);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 4205);
-/* harmony import */ var _auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @auth0/auth0-angular */ 7989);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ 3855);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 5429);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 7919);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 6647);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 1318);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./environments/environment */ 6052);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 4205);
+/* harmony import */ var _auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @auth0/auth0-angular */ 7989);
 var _staticBlock;
+
+
 
 
 
@@ -1711,42 +1845,43 @@ var _staticBlock;
 class AuthHttpInterceptor {
   constructor(auth) {
     this.auth = auth;
-    this.excludedUrls = ['/assets/', '.json', 'auth0.com'
-    // other URLs that don't need authentication
-    ];
+    this.excludedUrls = ['/assets/', '.json', 'auth0.com'];
   }
   intercept(req, next) {
     if (this.isExcludedUrl(req.url) || !this.requiresAuth(req.url)) {
       return next.handle(req);
     }
-    return (0,rxjs__WEBPACK_IMPORTED_MODULE_0__.from)(this.auth.getAccessTokenSilently()).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.switchMap)(token => {
-      if (token) {
-        const authReq = req.clone({
-          setHeaders: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        if (!_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.production) {
-          console.log(`Authenticated request to: ${req.url}`);
-        }
-        return next.handle(authReq);
-      } else {
-        if (!_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.production) {
-          console.warn(`No auth token for: ${req.url}`);
-        }
-        return next.handle(req);
+    // ── Auth3: No fallback – if no token, immediately reject the request ──
+    return (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.from)(this.auth.getAccessTokenSilently()).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.catchError)(tokenErr => {
+      if (!_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.production) {
+        console.warn('Could not acquire access token:', tokenErr);
       }
+      // Propagate as 401 so calling code can react appropriately
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.throwError)(() => new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpErrorResponse({
+        status: 401,
+        statusText: 'Unauthorized – no access token'
+      }));
+    }), (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.switchMap)(token => {
+      const authReq = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      if (!_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.production) {
+        console.log(`Authenticated request to: ${req.url}`);
+      }
+      return next.handle(authReq);
     }));
   }
   requiresAuth(url) {
-    return url.includes(_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.apiUrl) || url.startsWith('/api/');
+    return url.includes(_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.apiUrl) || url.startsWith('/api/');
   }
   isExcludedUrl(url) {
     return this.excludedUrls.some(excluded => url.includes(excluded));
   }
   static #_ = _staticBlock = () => (this.ɵfac = function AuthHttpInterceptor_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || AuthHttpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_4__.AuthService));
-  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
+    return new (__ngFactoryType__ || AuthHttpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_7__.AuthService));
+  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjectable"]({
     token: AuthHttpInterceptor,
     factory: AuthHttpInterceptor.ɵfac
   }));
@@ -2109,9 +2244,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../environments/environment */ 6052);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 271);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 8764);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 4205);
-/* harmony import */ var _cache_cache_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../cache/cache.service */ 869);
+/* harmony import */ var _models__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../models */ 8665);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 4205);
+/* harmony import */ var _cache_cache_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../cache/cache.service */ 869);
 var _staticBlock;
+
 
 
 
@@ -2195,11 +2332,21 @@ class StokvelService {
     return this.http.post(`${this.apiUrl}/join-request`, payload);
   }
   getStokvelById(id) {
-    return this.http.get(`${this.apiUrl}/${id}`);
+    return this.http.get(`${this.apiUrl}/${id}`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(s => this.normalizeStokvelResponse(s)));
   }
   /** Fetches a PUBLIC stokvel detail without requiring authentication */
   getPublicStokvelById(id) {
-    return this.httpWithoutInterceptor.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.apiUrl}public/stokvels/${id}`);
+    return this.httpWithoutInterceptor.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.apiUrl}public/stokvels/${id}`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(s => this.normalizeStokvelResponse(s)));
+  }
+  normalizeStokvelResponse(s) {
+    if (!s) return s;
+    const norm = arr => (arr ?? []).map(_models__WEBPACK_IMPORTED_MODULE_4__.normalizeStokvelMember);
+    return {
+      ...s,
+      members: norm(s.members),
+      adminMembers: norm(s.adminMembers),
+      regularMembers: norm(s.regularMembers)
+    };
   }
   /** Returns IDs of stokvels the current user is a member of (any role) */
   getJoinedStokvelIds() {
@@ -2249,6 +2396,47 @@ class StokvelService {
   getAdminStokvelIds() {
     return this.http.get(`${this.apiUrl}/admin/stokvel-ids`);
   }
+  // ── Member management ────────────────────────────────────────────────────
+  /** Get all members (admins + regulars) for a stokvel */
+  getStokvelMembers(stokvelId) {
+    return this.http.get(`${this.apiUrl}/${stokvelId}/members`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(list => (list ?? []).map(_models__WEBPACK_IMPORTED_MODULE_4__.normalizeStokvelMember)));
+  }
+  /** Get only admin members for a stokvel */
+  getStokvelAdmins(stokvelId) {
+    return this.http.get(`${this.apiUrl}/${stokvelId}/admins`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(list => (list ?? []).map(_models__WEBPACK_IMPORTED_MODULE_4__.normalizeStokvelMember)));
+  }
+  /** Add a member to a stokvel by email (admin only) */
+  addMemberByEmail(stokvelId, userEmail, role = 'MEMBER') {
+    const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpParams().set('userEmail', userEmail).set('role', role);
+    return this.http.post(`${this.apiUrl}/${stokvelId}/members`, null, {
+      params
+    });
+  }
+  /** Update a member's role within a stokvel (admin only) */
+  updateMemberRole(stokvelId, memberId, newRole) {
+    return this.http.put(`${this.apiUrl}/${stokvelId}/members/${memberId}/role`, {
+      newRole
+    });
+  }
+  /** Get members with outstanding contributions for a stokvel (admin only) */
+  getOutstandingMembers(stokvelId) {
+    return this.http.get(`${this.apiUrl}/${stokvelId}/members/outstanding`);
+  }
+  /** Send payment reminder emails to members with outstanding contributions (admin only) */
+  requestPayment(stokvelId, amount) {
+    const body = amount != null ? {
+      amount
+    } : {};
+    return this.http.post(`${this.apiUrl}/${stokvelId}/request-payment`, body);
+  }
+  /** Get the authenticated user's total contributions across all stokvels */
+  getUserContributions() {
+    return this.http.get(`${this.apiUrl}/user/contributions`);
+  }
+  /** Get the authenticated user's next payout info */
+  getUserNextPayout() {
+    return this.http.get(`${this.apiUrl}/user/next-payout`);
+  }
   // Dashboard endpoints
   getDashboardSummary() {
     return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.apiUrl}dashboard/summary`);
@@ -2265,9 +2453,26 @@ class StokvelService {
   getMyStokvelsDetailed() {
     return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.apiUrl}dashboard/my-stokvels-detailed`);
   }
+  // ── Rotation (ROTATIONAL stokvels) ───────────────────────────────────────
+  /** Get the full payout-rotation queue for a rotational stokvel. */
+  getRotationQueue(stokvelId) {
+    return this.http.get(`${this.apiUrl}/${stokvelId}/rotation`);
+  }
+  /** Admin: manually advance the rotation to the next slot. */
+  advanceRotation(stokvelId) {
+    return this.http.post(`${this.apiUrl}/${stokvelId}/rotation/advance`, {});
+  }
+  /** Admin: re-shuffle and reset the entire rotation queue. */
+  resetRotation(stokvelId) {
+    return this.http.post(`${this.apiUrl}/${stokvelId}/rotation/reset`, {});
+  }
+  /** Get the current authenticated user's position in the rotation queue. */
+  getMyRotationPosition(stokvelId) {
+    return this.http.get(`${this.apiUrl}/${stokvelId}/rotation/my-position`);
+  }
   static #_ = _staticBlock = () => (this.ɵfac = function StokvelService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || StokvelService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_cache_cache_service__WEBPACK_IMPORTED_MODULE_5__.CacheService));
-  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+    return new (__ngFactoryType__ || StokvelService)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_cache_cache_service__WEBPACK_IMPORTED_MODULE_6__.CacheService));
+  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineInjectable"]({
     token: StokvelService,
     factory: StokvelService.ɵfac,
     providedIn: 'root'
@@ -2534,6 +2739,30 @@ class MobileHeaderComponent {
   }));
 }
 _staticBlock();
+
+/***/ }),
+
+/***/ 8665:
+/*!*********************************!*\
+  !*** ./src/app/models/index.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   StokvelType: () => (/* reexport safe */ _stokvel__WEBPACK_IMPORTED_MODULE_1__.StokvelType),
+/* harmony export */   normalizeStokvelMember: () => (/* reexport safe */ _stokvel__WEBPACK_IMPORTED_MODULE_1__.normalizeStokvelMember)
+/* harmony export */ });
+/* harmony import */ var _shared_shared_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shared/shared.model */ 5401);
+/* harmony import */ var _stokvel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stokvel */ 6121);
+/* harmony import */ var _static_stokvel_type_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./static/stokvel-type.model */ 6022);
+/* harmony import */ var _static_savings_term_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./static/savings-term.model */ 9777);
+/* harmony import */ var _activity_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./activity.model */ 3979);
+
+
+
+
+
 
 /***/ }),
 
@@ -2836,6 +3065,17 @@ _staticBlock();
     exports: [_angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__.MatFormFieldModule, _angular_material_input__WEBPACK_IMPORTED_MODULE_20__.MatInputModule, _angular_material_select__WEBPACK_IMPORTED_MODULE_15__.MatSelectModule, _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__.MatIconModule, _angular_material_badge__WEBPACK_IMPORTED_MODULE_23__.MatBadgeModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_1__.MatButtonModule, _angular_material_card__WEBPACK_IMPORTED_MODULE_5__.MatCardModule, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__.MatCheckboxModule, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_0__.MatToolbarModule, _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_3__.MatSidenavModule, _angular_material_list__WEBPACK_IMPORTED_MODULE_4__.MatListModule, _angular_material_table__WEBPACK_IMPORTED_MODULE_6__.MatTableModule, _angular_material_menu__WEBPACK_IMPORTED_MODULE_7__.MatMenuModule, _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_9__.MatProgressBarModule, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_10__.MatDialogModule, _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_11__.MatSnackBarModule, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_12__.MatPaginatorModule, _angular_material_radio__WEBPACK_IMPORTED_MODULE_22__.MatRadioModule, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_13__.MatTooltipModule, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_14__.MatExpansionModule, _angular_material_core__WEBPACK_IMPORTED_MODULE_16__.MatOptionModule, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_17__.MatDatepickerModule, _angular_material_stepper__WEBPACK_IMPORTED_MODULE_19__.MatStepperModule, _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_21__.MatProgressSpinnerModule, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_24__.MatTabsModule, _angular_material_chips__WEBPACK_IMPORTED_MODULE_25__.MatChipsModule]
   });
 })();
+
+/***/ }),
+
+/***/ 9777:
+/*!*****************************************************!*\
+  !*** ./src/app/models/static/savings-term.model.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+
 
 /***/ })
 

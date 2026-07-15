@@ -45,6 +45,26 @@ class DashboardService {
       return this.http.get(this.summaryUrl).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.map)(summary => this.mapSummaryToData(summary, user)));
     }));
   }
+  /** Get portfolio total value */
+  getPortfolioValue() {
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.apiUrl}dashboard/portfolio-value`);
+  }
+  /** Get portfolio distribution by stokvel type */
+  getPortfolioDistribution() {
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.apiUrl}dashboard/portfolio-distribution`);
+  }
+  /** Get recent dashboard activities */
+  getRecentActivities(limit = 10) {
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.apiUrl}dashboard/recent-activities`, {
+      params: {
+        limit: limit.toString()
+      }
+    });
+  }
+  /** Get detailed info for user's stokvels */
+  getMyStokvelsDetailed() {
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.apiUrl}dashboard/my-stokvels-detailed`);
+  }
   mapSummaryToData(summary, user) {
     return {
       user,

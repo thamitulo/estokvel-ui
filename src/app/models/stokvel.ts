@@ -141,6 +141,45 @@ export interface StokvelMemberDto {
   stokvelName?: string;
 }
 
+/**
+ * Normalise a raw member object from the backend regardless of whether it uses
+ * the flat DTO shape or the nested { user: { auth0Id, email, name } } shape.
+ */
+export function normalizeStokvelMember(raw: any): StokvelMemberDto {
+  if (!raw) return raw;
+
+  // Nested-shape: { user: { auth0Id, email, name } }
+  if (raw.user && typeof raw.user === 'object') {
+    return {
+      id:               raw.id,
+      userAuth0Id:      raw.user.auth0Id  ?? raw.user.sub  ?? raw.userAuth0Id ?? '',
+      userEmail:        raw.user.email    ?? raw.userEmail  ?? '',
+      userName:         raw.user.name     ?? raw.userName   ?? '',
+      displayName:      raw.user.name     ?? raw.displayName ?? raw.userName ?? '',
+      role:             raw.role          ?? 'MEMBER',
+      joinedAt:         raw.joinedAt      ?? raw.joinedDate  ?? '',
+      joinedDate:       raw.joinedDate    ?? raw.joinedAt    ?? '',
+      status:           raw.status        ?? '',
+      membershipStatus: raw.membershipStatus ?? raw.status ?? '',
+      totalContributed: raw.totalContributed,
+      nextPayoutAmount: raw.nextPayoutAmount,
+      nextPayOutDate:   raw.nextPayOutDate,
+      memberNumber:     raw.memberNumber,
+      stokvelId:        raw.stokvelId,
+      stokvelName:      raw.stokvelName,
+    };
+  }
+
+  // Flat shape: ensure joinedDate always has a value
+  return {
+    ...raw,
+    joinedDate:       raw.joinedDate      ?? raw.joinedAt      ?? '',
+    joinedAt:         raw.joinedAt        ?? raw.joinedDate     ?? '',
+    displayName:      raw.displayName     ?? raw.userName       ?? '',
+    membershipStatus: raw.membershipStatus ?? raw.status        ?? '',
+  } as StokvelMemberDto;
+}
+
 export interface CreateStokvelRequest {
   name: string;
   description: string;

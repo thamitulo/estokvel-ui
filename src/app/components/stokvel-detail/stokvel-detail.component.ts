@@ -11,11 +11,13 @@ import { UserService } from '../../services/user/user-service.service';
 import { StokvelResponse } from '../../models/stokvel';
 import { StokvelUtils } from '../../utils/StokvelUtils';
 import { JoinStokvelModalComponent } from '../stokvel-join/join-stokvel-modal';
+import { KycBannerComponent } from '../kyc-banner/kyc-banner.component';
+import { RotationQueueComponent } from '../rotation-queue/rotation-queue.component';
 
 @Component({
   selector: 'app-stokvel-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, MaterialModule],
+  imports: [CommonModule, RouterModule, MaterialModule, KycBannerComponent, RotationQueueComponent],
   templateUrl: './stokvel-detail.component.html',
   styleUrls: ['./stokvel-detail.component.scss']
 })
@@ -37,19 +39,18 @@ export class StokvelDetailComponent implements OnInit {
     this.stokvel$ = this.route.paramMap.pipe(
       switchMap(params => {
         const id = Number(params.get('id'));
+        // ── Auth3 / fallback removed: 401/403 → navigate away, no public fallback ──
         return this.stokvelService.getStokvelById(id).pipe(
           catchError((err) => {
             if (err?.status === 403) {
               this.snackBar.open('This is a private stokvel — you need an invitation to view it.', 'Close', { duration: 5000 });
-              this.router.navigate(['/stokvels']);
-              return of(null);
+            } else if (err?.status === 401) {
+              this.snackBar.open('Please log in to view stokvel details.', 'Close', { duration: 5000 });
+            } else {
+              this.snackBar.open('Could not load stokvel details.', 'Close', { duration: 4000 });
             }
-            return this.stokvelService.getPublicStokvelById(id).pipe(
-              catchError(() => {
-                this.snackBar.open('Could not load stokvel details', 'Close', { duration: 4000 });
-                return of(null);
-              })
-            );
+            this.router.navigate(['/stokvels']);
+            return of(null);
           })
         );
       })
@@ -60,6 +61,7 @@ export class StokvelDetailComponent implements OnInit {
   isAdmin(s: StokvelResponse): boolean         { return s.currentUserRole === 'ADMIN' || s.isOwner === true; }
   isMember(s: StokvelResponse): boolean        { return s.isMember === true; }
   isPublicStokvel(s: StokvelResponse): boolean { return s.privacy?.toUpperCase() === 'PUBLIC'; }
+  isRotational(s: StokvelResponse): boolean    { return s.type?.toUpperCase() === 'ROTATIONAL'; }
   isFull(s: StokvelResponse): boolean {
     const total = s.totalMembers ?? (s.memberCount + s.adminCount);
     return total >= s.maxMembers;

@@ -10,6 +10,7 @@ export interface AppUser {
   name?: string;
   email?: string;
   picture?: string;
+  phoneNumber?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -22,7 +23,8 @@ export class UserService {
   );
 
   constructor(private auth: AuthService, private http: HttpClient) {
-    // Subscribe to Auth0 user$ and update local BehaviorSubject
+    // Subscribe to Auth0 user$ and update local BehaviorSubject.
+    // Merge with backend profile to get phone_number.
     this.auth.user$.pipe(
       tap(auth0User => {
         if (auth0User) {
@@ -30,9 +32,18 @@ export class UserService {
             id: auth0User.sub,
             name: auth0User.name,
             email: auth0User.email,
-            picture: auth0User.picture
+            picture: auth0User.picture,
+            phoneNumber: (auth0User as any)['phone_number'] ?? undefined
           };
           this._userSubject.next(appUser);
+          // Enrich with backend user profile (includes phone_number from Auth0 mgmt)
+          this.http.get<any>(`${environment.apiUrl}users/me`)
+            .pipe(catchError(() => of(null)))
+            .subscribe(profile => {
+              if (profile) {
+                this._userSubject.next({ ...this._userSubject.value, phoneNumber: profile.phoneNumber });
+              }
+            });
         } else {
           this._userSubject.next(null);
         }
@@ -56,5 +67,11 @@ export class UserService {
 
   setUser(user: AppUser | null) {
     this._userSubject.next(user);
+  }
+
+  /** Update the cached phone number after a successful Management API call. */
+  updateCachedPhone(phoneNumber: string): void {
+    const current = this._userSubject.value;
+    if (current) this._userSubject.next({ ...current, phoneNumber });
   }
 }

@@ -9,8 +9,10 @@ import {
   PaginatedResponse,
   RotationQueueDto,
   SavingsTermDto,
+  StokvelMemberDto,
   StokvelResponse,
-  StokvelTypeDto
+  StokvelTypeDto,
+  normalizeStokvelMember
 } from "../../models";
 import {CacheService} from "../cache/cache.service";
 
@@ -126,14 +128,27 @@ export class StokvelService {
   }
 
   getStokvelById(id: number): Observable<StokvelResponse> {
-    return this.http.get<StokvelResponse>(`${this.apiUrl}/${id}`);
+    return this.http.get<StokvelResponse>(`${this.apiUrl}/${id}`).pipe(
+      map(s => this.normalizeStokvelResponse(s))
+    );
   }
 
   /** Fetches a PUBLIC stokvel detail without requiring authentication */
   getPublicStokvelById(id: number): Observable<StokvelResponse> {
     return this.httpWithoutInterceptor.get<StokvelResponse>(
       `${environment.apiUrl}public/stokvels/${id}`
-    );
+    ).pipe(map(s => this.normalizeStokvelResponse(s)));
+  }
+
+  private normalizeStokvelResponse(s: StokvelResponse): StokvelResponse {
+    if (!s) return s;
+    const norm = (arr: any[] | undefined) => (arr ?? []).map(normalizeStokvelMember);
+    return {
+      ...s,
+      members:        norm(s.members),
+      adminMembers:   norm(s.adminMembers),
+      regularMembers: norm(s.regularMembers),
+    };
   }
 
   /** Returns IDs of stokvels the current user is a member of (any role) */
@@ -191,13 +206,17 @@ export class StokvelService {
   // ── Member management ────────────────────────────────────────────────────
 
   /** Get all members (admins + regulars) for a stokvel */
-  getStokvelMembers(stokvelId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${stokvelId}/members`);
+  getStokvelMembers(stokvelId: number): Observable<StokvelMemberDto[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${stokvelId}/members`).pipe(
+      map(list => (list ?? []).map(normalizeStokvelMember))
+    );
   }
 
   /** Get only admin members for a stokvel */
-  getStokvelAdmins(stokvelId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${stokvelId}/admins`);
+  getStokvelAdmins(stokvelId: number): Observable<StokvelMemberDto[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${stokvelId}/admins`).pipe(
+      map(list => (list ?? []).map(normalizeStokvelMember))
+    );
   }
 
   /** Add a member to a stokvel by email (admin only) */
