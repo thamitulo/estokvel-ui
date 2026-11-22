@@ -85,42 +85,42 @@ export class CommonService {
   getReferralHistory(): Referral[] {
     return [
       {
-        friendName: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
+        friendName: 'Lerato Mokoena',
+        email: 'lerato.mokoena@example.co.za',
         date: new Date('2024-01-15'),
         status: 'completed',
         amount: 50,
-        cellphone: '0788778174'
+        cellphone: '+27 82 123 4567'
       },
       {
-        friendName: 'Mike Thompson',
-        email: 'mike.t@email.com',
+        friendName: 'Sipho Ndlovu',
+        email: 'sipho.ndlovu@example.co.za',
         date: new Date('2024-01-12'),
         status: 'completed',
         amount: 50,
-        cellphone: '0788778174'
+        cellphone: '+27 73 245 6789'
       },
       {
-        friendName: 'Lisa Brown',
-        email: 'lisa.b@email.com',
+        friendName: 'Naledi Khumalo',
+        email: 'naledi.khumalo@example.co.za',
         date: new Date('2024-01-10'),
         status: 'pending',
-        cellphone: '0788778174'
+        cellphone: '+27 61 987 6543'
       },
       {
-        friendName: 'David Wilson',
-        email: 'david.w@email.com',
+        friendName: 'Thabo Motau',
+        email: 'thabo.motau@example.co.za',
         date: new Date('2024-01-08'),
         status: 'completed',
         amount: 50,
-        cellphone: '0788778174'
+        cellphone: '+27 83 456 7890'
       },
       {
-        friendName: 'Emma Davis',
-        email: 'emma.d@email.com',
+        friendName: 'Zanele Dlamini',
+        email: 'zanele.dlamini@example.co.za',
         date: new Date('2024-01-05'),
         status: 'pending',
-        cellphone: '0788778174'
+        cellphone: '+27 72 334 5566'
       }
     ];
   }

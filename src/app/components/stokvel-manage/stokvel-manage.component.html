@@ -315,7 +315,7 @@
           <form [formGroup]="inviteForm" (ngSubmit)="inviteMember()" class="invite-form">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Email address</mat-label>
-              <input matInput formControlName="email" type="email" placeholder="e.g. jane@example.com">
+              <input matInput formControlName="email" type="email" placeholder="e.g. thabo.motau@example.co.za">
               <mat-icon matPrefix>email</mat-icon>
               <mat-error *ngIf="inviteForm.get('email')?.hasError('required')">Email is required</mat-error>
               <mat-error *ngIf="inviteForm.get('email')?.hasError('email')">Enter a valid email</mat-error>
