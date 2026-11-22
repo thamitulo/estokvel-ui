@@ -1,0 +1,58 @@
+name: Deploy UI to AWS
+
+# Builds the web app (`ng build --configuration production,aws`), uploads it to eStokvel's S3 bucket
+# and refreshes CloudFront (bluetank-infra: apps/estokvel). /api/* on the same address goes to the API.
+#
+# One-time setup: apply bluetank-infra, then set the `estokvel_github_variables["estokvel-ui"]` output
+# as variables of this repo's `prod` environment (Settings -> Environments -> prod), restricted to `main`:
+#   AWS_DEPLOY_ROLE_ARN, UI_BUCKET, CLOUDFRONT_DISTRIBUTION_ID
+# and add the CloudFront address to the Auth0 application's callback, logout and web-origin URLs.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write # OIDC: assume the AWS deploy role without stored keys
+  contents: read
+
+concurrency:
+  group: deploy-estokvel-ui
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: af-south-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+      - run: npx ng build --configuration production,aws
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload to S3
+        run: |
+          out=www
+          # index.html and the service-worker files must never be cached; everything else for a day.
+          aws s3 sync "$out" "s3://${{ vars.UI_BUCKET }}" --delete \
+            --exclude index.html --exclude 'ngsw*' --exclude '*.webmanifest' \
+            --cache-control 'public,max-age=86400'
+          aws s3 sync "$out" "s3://${{ vars.UI_BUCKET }}" \
+            --exclude '*' --include index.html --include 'ngsw*' --include '*.webmanifest' \
+            --cache-control 'no-cache'
+
+      - name: Refresh CloudFront
+        run: aws cloudfront create-invalidation --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" --paths '/*'
