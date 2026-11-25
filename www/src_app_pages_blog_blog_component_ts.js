@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_blog_blog_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_blog_blog_component_ts"],{
 
 /***/ 4453:
 /*!**********************************************!*\
@@ -249,7 +249,7 @@ function BlogComponent_div_99_div_7_Template(rf, ctx) {
 function BlogComponent_div_99_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 74)(1, "div", 75)(2, "h2");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](3, "Welcome to eStokvel Series");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](3, "Welcome to iKage Series");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](4, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](5, "Start your journey with our comprehensive guide series");
@@ -270,8 +270,8 @@ class BlogComponent {
     // Blog posts data
     this.allPosts = [{
       id: '1',
-      title: 'Welcome to eStokvel: A Personal Message from Thami Tulo',
-      excerpt: 'Join me on this exciting journey as we revolutionize traditional stokvels for the digital age. Discover why I created eStokvel and our vision for the future.',
+      title: 'Welcome to iKage: A Personal Message from Thami Tulo',
+      excerpt: 'Join me on this exciting journey as we revolutionize traditional stokvels for the digital age. Discover why I created iKage and our vision for the future.',
       content: 'Full blog post content here...',
       date: new Date('2024-01-15'),
       readTime: '5 min read',
@@ -308,8 +308,8 @@ class BlogComponent {
       featured: false
     }, {
       id: '4',
-      title: 'Understanding eStokvel: Platform Features & Benefits',
-      excerpt: 'A comprehensive guide to all the features eStokvel offers to make stokvel management easier, more secure, and more efficient.',
+      title: 'Understanding iKage: Platform Features & Benefits',
+      excerpt: 'A comprehensive guide to all the features iKage offers to make stokvel management easier, more secure, and more efficient.',
       content: 'Full blog post content here...',
       date: new Date('2024-01-08'),
       readTime: '8 min read',
@@ -321,7 +321,7 @@ class BlogComponent {
     }, {
       id: '5',
       title: 'Building Trust in Digital Financial Platforms',
-      excerpt: 'How eStokvel ensures security, transparency, and trust - the three pillars that make traditional stokvels successful.',
+      excerpt: 'How iKage ensures security, transparency, and trust - the three pillars that make traditional stokvels successful.',
       content: 'Full blog post content here...',
       date: new Date('2024-01-05'),
       readTime: '5 min read',
@@ -346,7 +346,7 @@ class BlogComponent {
     // Welcome series posts
     this.welcomeSeries = [{
       id: '1',
-      title: 'Welcome to eStokvel: A Personal Message',
+      title: 'Welcome to iKage: A Personal Message',
       excerpt: 'Join me on this exciting journey as we revolutionize traditional stokvels',
       content: '',
       date: new Date('2024-01-15'),
@@ -371,7 +371,7 @@ class BlogComponent {
     }, {
       id: '3',
       title: 'Understanding Platform Features',
-      excerpt: 'Master all the tools and features eStokvel offers for your stokvel',
+      excerpt: 'Master all the tools and features iKage offers for your stokvel',
       content: '',
       date: new Date('2024-01-13'),
       readTime: '7 min',
@@ -478,7 +478,7 @@ class BlogComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](14, "Blog");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](15, "h1", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](16, "eStokvel Blog");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](16, "iKage Blog");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](17, "p", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](18, "Insights, stories, and updates from our journey to revolutionize stokvels in South Africa");
@@ -487,7 +487,7 @@ class BlogComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](21, "star");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](22, "span");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](23, "Featured: Welcome to eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](23, "Featured: Welcome to iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](24, "div", 15)(25, "div", 16)(26, "div", 17)(27, "div", 18)(28, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](29, "Latest Posts");
@@ -522,7 +522,7 @@ class BlogComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](48, "Thami Tulo");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](49, "p", 30);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](50, "Founder & CEO, eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](50, "Founder & CEO, iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](51, "p", 31);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](52, " Passionate about transforming traditional stokvels through technology. Building community-driven financial solutions for South Africans. ");

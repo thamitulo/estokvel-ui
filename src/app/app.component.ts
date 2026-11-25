@@ -8,7 +8,7 @@ import { MobilePlatformService } from './services/mobile-platform.service';
     standalone: false
 })
 export class AppComponent implements OnInit {
-  title = 'estokvel-ui';
+  title = 'ikage-ui';
 
   /** true when running inside a native Android/iOS app */
   get isNative(): boolean {

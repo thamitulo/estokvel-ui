@@ -11,8 +11,8 @@ export class FaqComponent implements AfterViewInit {
 
   faqs = [
     {
-      question: 'What is estokvel?',
-      answer: `estokvel is an online community that allows people to create & join 
+      question: 'What is ikage?',
+      answer: `ikage is an online community that allows people to create & join 
                stokvels online. Contributions are collected monthly and distributed 
                according to the payment order.`,
       isOpen: false

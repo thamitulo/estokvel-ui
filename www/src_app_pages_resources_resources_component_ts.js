@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_resources_resources_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_resources_resources_component_ts"],{
 
 /***/ 9815:
 /*!********************************************************!*\
@@ -123,13 +123,13 @@ class ResourcesComponent {
     }, {
       icon: 'play_circle',
       title: 'Getting Started Tutorial',
-      desc: 'Step-by-step video walkthrough of creating your eStokvel account, setting up your first stokvel and inviting members.',
+      desc: 'Step-by-step video walkthrough of creating your iKage account, setting up your first stokvel and inviting members.',
       tag: 'Tutorial',
       link: '/tutorials'
     }, {
       icon: 'menu_book',
       title: 'Stokvel Glossary',
-      desc: 'Definitions of all key terms you\'ll encounter when using eStokvel — from "contribution" to "payout cycle".',
+      desc: 'Definitions of all key terms you\'ll encounter when using iKage — from "contribution" to "payout cycle".',
       tag: 'Reference',
       link: '/glossary'
     }];
@@ -138,12 +138,12 @@ class ResourcesComponent {
       icon: 'gavel',
       items: [{
         title: 'POPIA Overview',
-        desc: 'How eStokvel protects your personal data under the Protection of Personal Information Act.',
+        desc: 'How iKage protects your personal data under the Protection of Personal Information Act.',
         link: '/popia',
         tag: 'Legal'
       }, {
         title: 'Regulatory Framework',
-        desc: 'The South African laws that govern stokvel operations and how eStokvel complies.',
+        desc: 'The South African laws that govern stokvel operations and how iKage complies.',
         link: '/regulatory',
         tag: 'Legal'
       }, {
@@ -153,7 +153,7 @@ class ResourcesComponent {
         tag: 'Compliance'
       }, {
         title: 'Terms of Service',
-        desc: 'The complete terms governing your use of the eStokvel platform.',
+        desc: 'The complete terms governing your use of the iKage platform.',
         link: '/terms',
         tag: 'Legal'
       }, {
@@ -168,7 +168,7 @@ class ResourcesComponent {
         tag: 'Regulatory'
       }, {
         title: 'Disclaimer',
-        desc: 'Important disclaimers about the use of eStokvel services.',
+        desc: 'Important disclaimers about the use of iKage services.',
         link: '/disclaimer',
         tag: 'Legal'
       }]
@@ -182,17 +182,17 @@ class ResourcesComponent {
         tag: 'Guide'
       }, {
         title: 'Tutorials',
-        desc: 'Step-by-step guides to using every feature of the eStokvel platform.',
+        desc: 'Step-by-step guides to using every feature of the iKage platform.',
         link: '/tutorials',
         tag: 'Tutorial'
       }, {
         title: 'Glossary',
-        desc: 'Key terms and definitions for the eStokvel platform.',
+        desc: 'Key terms and definitions for the iKage platform.',
         link: '/glossary',
         tag: 'Reference'
       }, {
         title: 'FAQs',
-        desc: 'Answers to the most commonly asked questions about eStokvel.',
+        desc: 'Answers to the most commonly asked questions about iKage.',
         link: '/faq',
         tag: 'FAQ'
       }, {
@@ -205,7 +205,7 @@ class ResourcesComponent {
       category: 'Company',
       icon: 'business',
       items: [{
-        title: 'About eStokvel',
+        title: 'About iKage',
         desc: 'Our story, mission and the team behind South Africa\'s leading digital stokvel platform.',
         link: '/about-us',
         tag: 'Company'
@@ -221,7 +221,7 @@ class ResourcesComponent {
         tag: 'Media'
       }, {
         title: 'Blog',
-        desc: 'Articles, tips and stories from the eStokvel community.',
+        desc: 'Articles, tips and stories from the iKage community.',
         link: '/blog',
         tag: 'Blog'
       }, {
@@ -265,7 +265,7 @@ class ResourcesComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](8, "Resource Library");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](10, "Everything you need to make the most of eStokvel \u2014 guides, legal documents, tutorials and more.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](10, "Everything you need to make the most of iKage \u2014 guides, legal documents, tutorials and more.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](11, "section", 4)(12, "div", 5)(13, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](14, "Featured Resources");

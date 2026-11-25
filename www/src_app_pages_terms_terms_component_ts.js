@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_terms_terms_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_terms_terms_component_ts"],{
 
 /***/ 9599:
 /*!************************************************!*\
@@ -94,7 +94,7 @@ class TermsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](41, "1. Acceptance of Terms");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](42, "div", 24)(43, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](44, "By accessing and using the eStokvel platform, website, mobile application, or any related services (collectively, the \"Services\"), you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions (\"Terms\").");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](44, "By accessing and using the iKage platform, website, mobile application, or any related services (collectively, the \"Services\"), you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions (\"Terms\").");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](45, "div", 25)(46, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](47, "warning");
@@ -102,7 +102,7 @@ class TermsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](48, "p")(49, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](50, "Important:");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](51, " If you do not agree to these Terms, you must not access or use our Services. These Terms constitute a legally binding agreement between you and Bluetank (Pty) Ltd, trading as eStokvel.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](51, " If you do not agree to these Terms, you must not access or use our Services. These Terms constitute a legally binding agreement between you and Bluetank (Pty) Ltd, trading as iKage.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](52, "section", 26)(53, "div", 23)(54, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](55, "2. Account Terms");
@@ -165,7 +165,7 @@ class TermsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](100, "3.1 Platform Services");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](101, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](102, "eStokvel provides a digital platform that enables users to:");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](102, "iKage provides a digital platform that enables users to:");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](103, "ul")(104, "li");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](105, "Create and manage stokvel groups digitally");
@@ -191,7 +191,7 @@ class TermsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](119, "p")(120, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](121, "Note:");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](122, " eStokvel is not a bank, financial institution, or registered credit provider. We partner with authorized financial service providers to facilitate certain transactions.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](122, " iKage is not a bank, financial institution, or registered credit provider. We partner with authorized financial service providers to facilitate certain transactions.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](123, "h3");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](124, "3.3 Service Limitations");
@@ -328,7 +328,7 @@ class TermsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](229, "Designs, layouts, and user interfaces");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](230, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](231, "are owned by or licensed to eStokvel and are protected by copyright, trademark, and other intellectual property laws.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](231, "are owned by or licensed to iKage and are protected by copyright, trademark, and other intellectual property laws.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](232, "h3");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](233, "6.2 License to Use");
@@ -611,7 +611,7 @@ class TermsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](454, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](455, "Blue Tank Technologies (Pty) Ltd");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](456, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](457, " Trading as eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](457, " Trading as iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](458, "br");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](459, " Registration Number: 2023/123456/07");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](460, "br");
@@ -624,7 +624,7 @@ class TermsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](467, "Email Address");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](468, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](469, "legal@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](469, "legal@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](470, "div", 41)(471, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](472, "phone");

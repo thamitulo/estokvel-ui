@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_tutorials_tutorials_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_tutorials_tutorials_component_ts"],{
 
 /***/ 911:
 /*!********************************************************!*\
@@ -74,7 +74,7 @@ class TutorialsComponent {
     this.tutorials = [{
       icon: 'person_add',
       title: 'Getting Started',
-      desc: 'Create your eStokvel account, complete your profile and verify your identity.',
+      desc: 'Create your iKage account, complete your profile and verify your identity.',
       duration: '5 min',
       level: 'Beginner'
     }, {
@@ -92,7 +92,7 @@ class TutorialsComponent {
     }, {
       icon: 'payments',
       title: 'Making Contributions',
-      desc: 'How to make monthly contributions using your linked payment method or eStokvel wallet.',
+      desc: 'How to make monthly contributions using your linked payment method or iKage wallet.',
       duration: '5 min',
       level: 'Beginner'
     }, {
@@ -104,7 +104,7 @@ class TutorialsComponent {
     }, {
       icon: 'account_balance_wallet',
       title: 'Using the Wallet',
-      desc: 'Deposit, withdraw and transfer funds using the eStokvel in-app wallet.',
+      desc: 'Deposit, withdraw and transfer funds using the iKage in-app wallet.',
       duration: '7 min',
       level: 'Intermediate'
     }, {
@@ -140,7 +140,7 @@ class TutorialsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](8, "Tutorials");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](10, "Step-by-step guides to help you get the most out of eStokvel \u2014 from account creation to advanced group management.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](10, "Step-by-step guides to help you get the most out of iKage \u2014 from account creation to advanced group management.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](11, "section", 4)(12, "div", 5)(13, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](14, "All Tutorials");
@@ -167,7 +167,7 @@ class TutorialsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](33, "Glossary");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](34, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](35, "Definitions of key stokvel and eStokvel terms.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](35, "Definitions of key stokvel and iKage terms.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](36, "div", 12)(37, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](38, "help_outline");

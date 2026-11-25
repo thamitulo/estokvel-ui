@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
   ];
 
   testimonials = [
-    { quote: 'eStokvel transformed how our family saves. Transparent, easy and no more chasing people for contributions!', name: 'Nomsa Dlamini', role: 'Family Fund Admin', initials: 'ND', color: 'linear-gradient(135deg,#0d47a1,#1565c0)' },
+    { quote: 'iKage transformed how our family saves. Transparent, easy and no more chasing people for contributions!', name: 'Nomsa Dlamini', role: 'Family Fund Admin', initials: 'ND', color: 'linear-gradient(135deg,#0d47a1,#1565c0)' },
     { quote: 'Our investment club has grown 18% this year. The dashboard makes it so easy to track everything in real time.', name: 'Sipho Mkhize', role: 'Investment Club Member', initials: 'SM', color: 'linear-gradient(135deg,#059669,#047857)' },
     { quote: 'Setting up our burial society took minutes. The automated reminders alone are worth it.', name: 'Thandeka Mokoena', role: 'Group Secretary', initials: 'TM', color: 'linear-gradient(135deg,#d97706,#b45309)' },
   ];

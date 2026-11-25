@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_careers_careers_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_careers_careers_component_ts"],{
 
 /***/ 4711:
 /*!****************************************************!*\
@@ -388,7 +388,7 @@ class CareersComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](59, "Join a team that's already helped over 50,000 users manage R500+ million in stokvel funds, creating real financial impact across communities.");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]()()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](60, "section", 16)(61, "div", 9)(62, "div", 10)(63, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](64, "Why Join eStokvel?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](64, "Why Join iKage?");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](65, "p", 11);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](66, "We offer more than just a job - we offer a career with purpose");
@@ -598,7 +598,7 @@ class CareersComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](224, "Offer extended within 48 hours, followed by smooth onboarding");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]()()()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](225, "section", 49)(226, "div", 9)(227, "div", 10)(228, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](229, "Life at eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](229, "Life at iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](230, "p", 11);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](231, "See what makes our culture special");

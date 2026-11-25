@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "estokvel-ui": {
+    "ikage-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -95,10 +95,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "estokvel-ui:build:production"
+              "buildTarget": "ikage-ui:build:production"
             },
             "development": {
-              "buildTarget": "estokvel-ui:build:development"
+              "buildTarget": "ikage-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -106,7 +106,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "estokvel-ui:build"
+            "buildTarget": "ikage-ui:build"
           }
         },
         "test": {

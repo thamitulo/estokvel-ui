@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_popia_popia_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_popia_popia_component_ts"],{
 
 /***/ 6219:
 /*!************************************************!*\
@@ -45,7 +45,7 @@ class PopiaComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](8, "POPIA Compliance");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "eStokvel is fully committed to protecting your personal information in accordance with the Protection of Personal Information Act (POPIA) No. 4 of 2013.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "iKage is fully committed to protecting your personal information in accordance with the Protection of Personal Information Act (POPIA) No. 4 of 2013.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "div", 4)(12, "section", 5)(13, "div", 6)(14, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](15, "menu_book");
@@ -181,12 +181,12 @@ class PopiaComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](124, "div", 11)(125, "p")(126, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](127, "Company:");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](128, " Bluetank (Pty) Ltd (trading as eStokvel)");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](128, " Bluetank (Pty) Ltd (trading as iKage)");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](129, "p")(130, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](131, "Email:");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](132, " privacy@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](132, " privacy@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](133, "p")(134, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](135, "Address:");

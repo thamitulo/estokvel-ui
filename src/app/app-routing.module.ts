@@ -13,7 +13,7 @@ const routes: Routes = [
     loadComponent: () =>
       import('./pages/kyc/kyc.component').then(m => m.KycComponent),
     canActivate: [AuthGuard],
-    title: 'Identity Verification - eStokvel'
+    title: 'Identity Verification - iKage'
   },
 
   {
@@ -26,112 +26,112 @@ const routes: Routes = [
     path: 'about-us',
     loadComponent: () =>
       import('./pages/about-us/about-us.component').then(m => m.AboutUsComponent),
-    title: 'About Us - eStokvel'
+    title: 'About Us - iKage'
   },
 
   {
     path: 'pricing',
     loadComponent: () =>
       import('./pages/pricing/pricing.component').then(m => m.PricingComponent),
-    title: 'Pricing - eStokvel'
+    title: 'Pricing - iKage'
   },
 
   {
     path: 'contact-us',
     loadComponent: () =>
       import('./pages/contact/contact.component').then(m => m.ContactComponent),
-    title: 'Contact Us - eStokvel'
+    title: 'Contact Us - iKage'
   },
 
   {
     path: 'careers',
     loadComponent: () =>
       import('./pages/careers/careers.component').then(m => m.CareersComponent),
-    title: 'CareersComponent - eStokvel'
+    title: 'CareersComponent - iKage'
   },
 
   {
     path: 'press',
     loadComponent: () =>
       import('./pages/press/press.component').then(m => m.PressComponent),
-    title: 'PressComponent - eStokvel'
+    title: 'PressComponent - iKage'
   },
 
   {
     path: 'legal',
     loadComponent: () =>
       import('./pages/legal/legal.component').then(m => m.LegalComponent),
-    title: 'LegalComponent - eStokvel'
+    title: 'LegalComponent - iKage'
   },
 
   {
     path: 'privacy-policy',
     loadComponent: () =>
       import('./pages/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent),
-    title: 'Privacy Policy - eStokvel'
+    title: 'Privacy Policy - iKage'
   },
 
   {
     path: 'contact',
     loadComponent: () =>
       import('./pages/contact/contact.component').then(m => m.ContactComponent),
-    title: 'Contact Us - eStokvel'
+    title: 'Contact Us - iKage'
   },
 
   {
     path: 'security',
     loadComponent: () =>
       import('./pages/security/security.component').then(m => m.SecurityComponent),
-    title: 'Security - eStokvel'
+    title: 'Security - iKage'
   },
 
   {
     path: 'terms',
     loadComponent: () =>
       import('./pages/terms/terms.component').then(m => m.TermsComponent),
-    title: 'Terms of Service - eStokvel'
+    title: 'Terms of Service - iKage'
   },
 
   {
     path: 'stokvel-basics',
     loadComponent: () =>
       import('./pages/stokvel-basics/stokvel-basics.component').then(m => m.StokvelBasicsComponent),
-    title: 'Stokvel Basics - eStokvel'
+    title: 'Stokvel Basics - iKage'
   },
 
   {
     path: 'tutorials',
     loadComponent: () =>
       import('./pages/tutorials/tutorials.component').then(m => m.TutorialsComponent),
-    title: 'Tutorials - eStokvel'
+    title: 'Tutorials - iKage'
   },
 
   {
     path: 'glossary',
     loadComponent: () =>
       import('./pages/glossary/glossary.component').then(m => m.GlossaryComponent),
-    title: 'Glossary - eStokvel'
+    title: 'Glossary - iKage'
   },
 
   {
     path: 'regulatory',
     loadComponent: () =>
       import('./pages/regulatory/regulatory.component').then(m => m.RegulatoryComponent),
-    title: 'Regulatory - eStokvel'
+    title: 'Regulatory - iKage'
   },
 
   {
     path: 'compliance',
     loadComponent: () =>
       import('./pages/compliance/compliance.component').then(m => m.ComplianceComponent),
-    title: 'Compliance - eStokvel'
+    title: 'Compliance - iKage'
   },
 
   {
     path: 'popia',
     loadComponent: () =>
       import('./pages/popia/popia.component').then(m => m.PopiaComponent),
-    title: 'POPIA - eStokvel'
+    title: 'POPIA - iKage'
   },
 
   {
@@ -152,46 +152,46 @@ const routes: Routes = [
     path: 'stokvels',
     loadComponent: () =>
       import('./components/stokvel-list/stokvel-list.component').then(m => m.StokvelListComponent),
-    title: 'Browse Stokvels - eStokvel'
+    title: 'Browse Stokvels - iKage'
   },
   {
     path: 'stokvels/:id',
     loadComponent: () =>
       import('./components/stokvel-detail/stokvel-detail.component').then(m => m.StokvelDetailComponent),
     canActivate: [AuthGuard],
-    title: 'Stokvel Details - eStokvel'
+    title: 'Stokvel Details - iKage'
   },
   {
     path: 'stokvels/:id/manage',
     loadComponent: () =>
       import('./components/stokvel-manage/stokvel-manage.component').then(m => m.StokvelManageComponent),
     canActivate: [AuthGuard],
-    title: 'Manage Stokvel - eStokvel'
+    title: 'Manage Stokvel - iKage'
   },
   {
     path: 'wallet',
     loadComponent: () =>
       import('./components/wallet/wallet.component').then(m => m.WalletComponent),
     canActivate: [AuthGuard],
-    title: 'My Wallet - eStokvel'
+    title: 'My Wallet - iKage'
   },
   {
     path: 'profile',
     loadComponent: () =>
       import('./pages/profile/profile.component').then(m => m.ProfileComponent),
     canActivate: [AuthGuard],
-    title: 'My Profile - eStokvel'
+    title: 'My Profile - iKage'
   },
   {
     path: 'refer-earn',
     loadComponent: () =>
       import('./pages/referals/refer-and-earn.component').then(m => m.ReferAndEarnComponent),
-    title: 'Refer & Earn - eStokvel'
+    title: 'Refer & Earn - iKage'
   },
   { path: 'blog',
     loadComponent: () =>
       import('./pages/blog/blog.component').then(m => m.BlogComponent),
-    title: 'Blog - eStokvel'
+    title: 'Blog - iKage'
   },
   { path: 'faq', component: FaqComponent },
 
@@ -199,31 +199,31 @@ const routes: Routes = [
     path: 'help-center',
     loadComponent: () =>
       import('./pages/help-center/help-center.component').then(m => m.HelpCenterComponent),
-    title: 'Help Center - eStokvel'
+    title: 'Help Center - iKage'
   },
   {
     path: 'resources',
     loadComponent: () =>
       import('./pages/resources/resources.component').then(m => m.ResourcesComponent),
-    title: 'Resources - eStokvel'
+    title: 'Resources - iKage'
   },
   {
     path: 'fsca',
     loadComponent: () =>
       import('./pages/fsca/fsca.component').then(m => m.FscaComponent),
-    title: 'FSCA - eStokvel'
+    title: 'FSCA - iKage'
   },
   {
     path: 'disclaimer',
     loadComponent: () =>
       import('./pages/disclaimer/disclaimer.component').then(m => m.DisclaimerComponent),
-    title: 'Disclaimer - eStokvel'
+    title: 'Disclaimer - iKage'
   },
   {
     path: 'notifications',
     loadComponent: () =>
       import('./pages/notifications/notifications.component').then(m => m.NotificationsPageComponent),
-    title: 'Notifications - eStokvel'
+    title: 'Notifications - iKage'
   },
 
   // ── Super-Admin Backoffice ────────────────────────────────────────────────
@@ -231,7 +231,7 @@ const routes: Routes = [
     path: 'admin/login',
     loadComponent: () =>
       import('./pages/admin/admin-login/admin-login.component').then(m => m.AdminLoginComponent),
-    title: 'Admin Login - eStokvel'
+    title: 'Admin Login - iKage'
   },
   {
     path: 'admin',

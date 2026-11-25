@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_contact_contact_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_contact_contact_component_ts"],{
 
 /***/ 2951:
 /*!****************************************************!*\
@@ -148,7 +148,7 @@ function ContactComponent_mat_card_215_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](6, "support_agent");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](7, "div", 87)(8, "h4");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](9, "eStokvel Support");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](9, "iKage Support");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](10, "p", 78);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](11, "span", 79);
@@ -164,7 +164,7 @@ function ContactComponent_mat_card_215_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](15, "close");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](16, "div", 89)(17, "div", 90)(18, "div", 91)(19, "p");
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](20, "Hello! \uD83D\uDC4B Welcome to eStokvel support. How can we help you today?");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](20, "Hello! \uD83D\uDC4B Welcome to iKage support. How can we help you today?");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](21, "span", 92);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](22, "10:30 AM");
@@ -252,7 +252,7 @@ class ContactComponent {
     this.chatMessage = '';
     this.isSubmitting = false;
     this.whatsappNumber = '0788778174';
-    this.supportEmail = 'support@estokvel.co.za';
+    this.supportEmail = 'support@ikage.co.za';
     this.supportPhone = '0788778174';
     this.emergencyPhone = '0788778174';
     this.contactForm = this.createContactForm();
@@ -269,7 +269,7 @@ class ContactComponent {
     });
   }
   openWhatsAppChat() {
-    const message = `Hello eStokvel support! I need assistance with:`;
+    const message = `Hello iKage support! I need assistance with:`;
     const url = `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
     this.snackBar.open('Opening WhatsApp...', 'Close', {
@@ -308,8 +308,8 @@ class ContactComponent {
   }
   // Open email client
   openEmail() {
-    const subject = 'eStokvel Support Request';
-    const body = `Hello eStokvel team,\n\nI would like to get help with:\n\n`;
+    const subject = 'iKage Support Request';
+    const body = `Hello iKage team,\n\nI would like to get help with:\n\n`;
     const url = `mailto:${this.supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(url, '_blank');
   }
@@ -376,7 +376,7 @@ class ContactComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](16, "Get in Touch");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](17, "p", 13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](18, "We're here to help you with any questions about eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](18, "We're here to help you with any questions about iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](19, "div", 14)(20, "div", 15)(21, "div", 16)(22, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](23, "support_agent");
@@ -460,7 +460,7 @@ class ContactComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](93, "div", 34)(94, "span", 35)(95, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](96, "email");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](97, " support@estokvel.co.za ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](97, " support@ikage.co.za ");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](98, "div", 31)(99, "button", 36)(100, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](101, "email");
@@ -675,10 +675,10 @@ class ContactComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](283, "We use bank-level encryption and comply with POPIA regulations to keep your data safe and secure.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](284, "mat-expansion-panel")(285, "mat-expansion-panel-header")(286, "mat-panel-title");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](287, "Can I use eStokvel outside South Africa?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](287, "Can I use iKage outside South Africa?");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](288, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](289, "Currently, eStokvel is only available for South African residents with valid SA ID numbers.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](289, "Currently, iKage is only available for South African residents with valid SA ID numbers.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()()()()();
       }
       if (rf & 2) {

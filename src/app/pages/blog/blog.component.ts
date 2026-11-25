@@ -45,8 +45,8 @@ export class BlogComponent {
   allPosts: BlogPost[] = [
     {
       id: '1',
-      title: 'Welcome to eStokvel: A Personal Message from Thami Tulo',
-      excerpt: 'Join me on this exciting journey as we revolutionize traditional stokvels for the digital age. Discover why I created eStokvel and our vision for the future.',
+      title: 'Welcome to iKage: A Personal Message from Thami Tulo',
+      excerpt: 'Join me on this exciting journey as we revolutionize traditional stokvels for the digital age. Discover why I created iKage and our vision for the future.',
       content: 'Full blog post content here...',
       date: new Date('2024-01-15'),
       readTime: '5 min read',
@@ -86,8 +86,8 @@ export class BlogComponent {
     },
     {
       id: '4',
-      title: 'Understanding eStokvel: Platform Features & Benefits',
-      excerpt: 'A comprehensive guide to all the features eStokvel offers to make stokvel management easier, more secure, and more efficient.',
+      title: 'Understanding iKage: Platform Features & Benefits',
+      excerpt: 'A comprehensive guide to all the features iKage offers to make stokvel management easier, more secure, and more efficient.',
       content: 'Full blog post content here...',
       date: new Date('2024-01-08'),
       readTime: '8 min read',
@@ -100,7 +100,7 @@ export class BlogComponent {
     {
       id: '5',
       title: 'Building Trust in Digital Financial Platforms',
-      excerpt: 'How eStokvel ensures security, transparency, and trust - the three pillars that make traditional stokvels successful.',
+      excerpt: 'How iKage ensures security, transparency, and trust - the three pillars that make traditional stokvels successful.',
       content: 'Full blog post content here...',
       date: new Date('2024-01-05'),
       readTime: '5 min read',
@@ -129,7 +129,7 @@ export class BlogComponent {
   welcomeSeries: BlogPost[] = [
     {
       id: '1',
-      title: 'Welcome to eStokvel: A Personal Message',
+      title: 'Welcome to iKage: A Personal Message',
       excerpt: 'Join me on this exciting journey as we revolutionize traditional stokvels',
       content: '',
       date: new Date('2024-01-15'),
@@ -156,7 +156,7 @@ export class BlogComponent {
     {
       id: '3',
       title: 'Understanding Platform Features',
-      excerpt: 'Master all the tools and features eStokvel offers for your stokvel',
+      excerpt: 'Master all the tools and features iKage offers for your stokvel',
       content: '',
       date: new Date('2024-01-13'),
       readTime: '7 min',

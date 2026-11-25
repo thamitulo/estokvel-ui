@@ -16,14 +16,14 @@ export class BlogService {
     return of([
       {
         id: '1',
-        title: 'Welcome to eStokvel: Revolutionizing Traditional Savings',
-        excerpt: 'Join me, Thami Tulo, on this exciting journey as we transform traditional stokvels for the digital age. Discover the inspiration behind eStokvel and our vision for financial empowerment.',
+        title: 'Welcome to iKage: Revolutionizing Traditional Savings',
+        excerpt: 'Join me, Thami Tulo, on this exciting journey as we transform traditional stokvels for the digital age. Discover the inspiration behind iKage and our vision for financial empowerment.',
         content: `
           <h2>The Beginning of a Dream</h2>
           <p>Growing up in Soweto, I witnessed firsthand the power of stokvels in our community. My grandmother was part of a stokvel that helped put me through school, and I saw how these community savings groups transformed lives.</p>
 
           <h2>The Digital Transformation</h2>
-          <p>While traditional stokvels are powerful, they face challenges: manual record-keeping, missed meetings, and security concerns. eStokvel was born to solve these problems while preserving the community spirit that makes stokvels special.</p>
+          <p>While traditional stokvels are powerful, they face challenges: manual record-keeping, missed meetings, and security concerns. iKage was born to solve these problems while preserving the community spirit that makes stokvels special.</p>
 
           <h2>Our Mission</h2>
           <p>We're not just building an app; we're building a movement to democratize financial services and make community savings accessible, secure, and efficient for every South African.</p>
@@ -54,8 +54,8 @@ export class BlogService {
       },
       {
         id: '3',
-        title: 'Understanding eStokvel: Complete Platform Feature Guide',
-        excerpt: 'A comprehensive walkthrough of all eStokvel features designed to make stokvel management seamless and secure.',
+        title: 'Understanding iKage: Complete Platform Feature Guide',
+        excerpt: 'A comprehensive walkthrough of all iKage features designed to make stokvel management seamless and secure.',
         content: 'Full platform feature guide...',
         date: new Date('2024-01-10'),
         readTime: '8 min read',

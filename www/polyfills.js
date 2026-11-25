@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["polyfills"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["polyfills"],{
 
 /***/ 4124:
 /*!***********************************************!*\
@@ -11,7 +11,7 @@
 
 /**
  * @license Angular v<unknown>
- * (c) 2010-2024 Google LLC. https://angular.io/
+ * (c) 2010-2025 Google LLC. https://angular.io/
  * License: MIT
  */
 const global = globalThis;
@@ -22,7 +22,6 @@ function __symbol__(name) {
   return symbolPrefix + name;
 }
 function initZone() {
-  var _staticBlock;
   const performance = global['performance'];
   function mark(name) {
     performance && performance['mark'] && performance['mark'](name);
@@ -32,8 +31,7 @@ function initZone() {
   }
   mark('Zone');
   class ZoneImpl {
-    // tslint:disable-next-line:require-internal-with-underscore
-
+    static __symbol__ = __symbol__;
     static assertZonePatched() {
       if (global['Promise'] !== patches['ZoneAwarePromise']) {
         throw new Error('Zone.js has detected that ZoneAwarePromise `(window|global).Promise` ' + 'has been overwritten.\n' + 'Most likely cause is that a Promise polyfill has been loaded ' + 'after Zone.js (Polyfilling Promise api is not necessary when zone.js is loaded. ' + 'If you must load one, do so before loading zone.js.)');
@@ -52,7 +50,6 @@ function initZone() {
     static get currentTask() {
       return _currentTask;
     }
-    // tslint:disable-next-line:require-internal-with-underscore
     static __load_patch(name, fn, ignoreDuplicate = false) {
       if (patches.hasOwnProperty(name)) {
         // `checkDuplicate` option is defined from global variable
@@ -75,6 +72,10 @@ function initZone() {
     get name() {
       return this._name;
     }
+    _parent;
+    _name;
+    _properties;
+    _zoneDelegate;
     constructor(parent, zoneSpec) {
       this._parent = parent;
       this._name = zoneSpec ? zoneSpec.name || 'unnamed' : '<root>';
@@ -266,9 +267,7 @@ function initZone() {
         zoneDelegates[i]._updateTaskCount(task.type, count);
       }
     }
-    static #_ = _staticBlock = () => this.__symbol__ = __symbol__;
   }
-  _staticBlock();
   const DELEGATE_ZS = {
     name: '',
     onHasTask: (delegate, _, target, hasTaskState) => delegate.hasTask(target, hasTaskState),
@@ -280,12 +279,39 @@ function initZone() {
     get zone() {
       return this._zone;
     }
+    _zone;
+    _taskCounts = {
+      'microTask': 0,
+      'macroTask': 0,
+      'eventTask': 0
+    };
+    _parentDelegate;
+    _forkDlgt;
+    _forkZS;
+    _forkCurrZone;
+    _interceptDlgt;
+    _interceptZS;
+    _interceptCurrZone;
+    _invokeDlgt;
+    _invokeZS;
+    _invokeCurrZone;
+    _handleErrorDlgt;
+    _handleErrorZS;
+    _handleErrorCurrZone;
+    _scheduleTaskDlgt;
+    _scheduleTaskZS;
+    _scheduleTaskCurrZone;
+    _invokeTaskDlgt;
+    _invokeTaskZS;
+    _invokeTaskCurrZone;
+    _cancelTaskDlgt;
+    _cancelTaskZS;
+    _cancelTaskCurrZone;
+    _hasTaskDlgt;
+    _hasTaskDlgtOwner;
+    _hasTaskZS;
+    _hasTaskCurrZone;
     constructor(zone, parentDelegate, zoneSpec) {
-      this._taskCounts = {
-        'microTask': 0,
-        'macroTask': 0,
-        'eventTask': 0
-      };
       this._zone = zone;
       this._parentDelegate = parentDelegate;
       this._forkZS = zoneSpec && (zoneSpec && zoneSpec.onFork ? zoneSpec : parentDelegate._forkZS);
@@ -394,7 +420,6 @@ function initZone() {
         this.handleError(targetZone, err);
       }
     }
-    // tslint:disable-next-line:require-internal-with-underscore
     _updateTaskCount(type, count) {
       const counts = this._taskCounts;
       const prev = counts[type];
@@ -414,14 +439,18 @@ function initZone() {
     }
   }
   class ZoneTask {
+    type;
+    source;
+    invoke;
+    callback;
+    data;
+    scheduleFn;
+    cancelFn;
+    _zone = null;
+    runCount = 0;
+    _zoneDelegates = null;
+    _state = 'notScheduled';
     constructor(type, source, callback, options, scheduleFn, cancelFn) {
-      // tslint:disable-next-line:require-internal-with-underscore
-      this._zone = null;
-      this.runCount = 0;
-      // tslint:disable-next-line:require-internal-with-underscore
-      this._zoneDelegates = null;
-      // tslint:disable-next-line:require-internal-with-underscore
-      this._state = 'notScheduled';
       this.type = type;
       this.source = source;
       this.data = options;
@@ -465,7 +494,6 @@ function initZone() {
     cancelScheduleRequest() {
       this._transitionTo(notScheduled, scheduling);
     }
-    // tslint:disable-next-line:require-internal-with-underscore
     _transitionTo(toState, fromState1, fromState2) {
       if (this._state === fromState1 || this._state === fromState2) {
         this._state = toState;
@@ -633,6 +661,7 @@ function loadZone() {
  * @fileoverview
  * @suppress {undefinedVars,globalThis,missingRequire}
  */
+/// <reference types="node"/>
 // issue #989, to reduce bundle size, use short name
 /** Object.getOwnPropertyDescriptor */
 const ObjectGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
@@ -802,8 +831,10 @@ function patchProperty(obj, prop, prototype) {
     eventNameSymbol = zoneSymbolEventNames$1[eventName] = zoneSymbol('ON_PROPERTY' + eventName);
   }
   desc.set = function (newValue) {
-    // in some of windows's onproperty callback, this is undefined
-    // so we need to check it
+    // In some versions of Windows, the `this` context may be undefined
+    // in on-property callbacks.
+    // To handle this edge case, we check if `this` is falsy and
+    // fallback to `_global` if needed.
     let target = this;
     if (!target && obj === _global) {
       target = _global;
@@ -815,9 +846,10 @@ function patchProperty(obj, prop, prototype) {
     if (typeof previousValue === 'function') {
       target.removeEventListener(eventName, wrapFn);
     }
-    // issue #978, when onload handler was added before loading zone.js
-    // we should remove it with originalDescSet
-    originalDescSet && originalDescSet.call(target, null);
+    // https://github.com/angular/zone.js/issues/978
+    // If an inline handler (like `onload`) was defined before zone.js was loaded,
+    // call the original descriptor's setter to clean it up.
+    originalDescSet?.call(target, null);
     target[eventNameSymbol] = newValue;
     if (typeof newValue === 'function') {
       target.addEventListener(eventName, wrapFn, false);
@@ -995,15 +1027,6 @@ function attachOriginToPatched(patched, original) {
 }
 let isDetectedIEOrEdge = false;
 let ieOrEdge = false;
-function isIE() {
-  try {
-    const ua = internalWindow.navigator.userAgent;
-    if (ua.indexOf('MSIE ') !== -1 || ua.indexOf('Trident/') !== -1) {
-      return true;
-    }
-  } catch (error) {}
-  return false;
-}
 function isIEOrEdge() {
   if (isDetectedIEOrEdge) {
     return ieOrEdge;
@@ -1028,27 +1051,6 @@ function isNumber(value) {
  * @fileoverview
  * @suppress {missingRequire}
  */
-// Note that passive event listeners are now supported by most modern browsers,
-// including Chrome, Firefox, Safari, and Edge. There's a pending change that
-// would remove support for legacy browsers by zone.js. Removing `passiveSupported`
-// from the codebase will reduce the final code size for existing apps that still use zone.js.
-let passiveSupported = false;
-if (typeof window !== 'undefined') {
-  try {
-    const options = Object.defineProperty({}, 'passive', {
-      get: function () {
-        passiveSupported = true;
-      }
-    });
-    // Note: We pass the `options` object as the event handler too. This is not compatible with the
-    // signature of `addEventListener` or `removeEventListener` but enables us to remove the handler
-    // without an actual handler.
-    window.addEventListener('test', options, options);
-    window.removeEventListener('test', options, options);
-  } catch (err) {
-    passiveSupported = false;
-  }
-}
 // an identifier to tell ZoneTask do not create a new invoke closure
 const OPTIMIZED_ZONE_EVENT_TASK_DATA = {
   useG: true
@@ -1214,13 +1216,7 @@ function patchEventTarget(_global, api, apis, patchOptions) {
      * to handle all possible input from the user.
      */
     function buildEventListenerOptions(options, passive) {
-      if (!passiveSupported && typeof options === 'object' && options) {
-        // doesn't support passive but user want to pass an object as options.
-        // this will not work on some old browser, so we just pass a boolean
-        // as useCapture parameter
-        return !!options.capture;
-      }
-      if (!passiveSupported || !passive) {
+      if (!passive) {
         return options;
       }
       if (typeof options === 'boolean') {
@@ -1312,7 +1308,7 @@ function patchEventTarget(_global, api, apis, patchOptions) {
       const typeOfDelegate = typeof delegate;
       return typeOfDelegate === 'function' && task.callback === delegate || typeOfDelegate === 'object' && task.originalDelegate === delegate;
     };
-    const compare = patchOptions && patchOptions.diff ? patchOptions.diff : compareTaskCallbackVsDelegate;
+    const compare = patchOptions?.diff || compareTaskCallbackVsDelegate;
     const unpatchedEvents = Zone[zoneSymbol('UNPATCHED_EVENTS')];
     const passiveEvents = _global[zoneSymbol('PASSIVE_EVENTS')];
     function copyEventListenerOptions(options) {
@@ -1354,20 +1350,22 @@ function patchEventTarget(_global, api, apis, patchOptions) {
           // don't patch uncaughtException of nodejs to prevent endless loop
           return nativeListener.apply(this, arguments);
         }
-        // don't create the bind delegate function for handleEvent
-        // case here to improve addEventListener performance
-        // we will create the bind delegate when invoke
-        let isHandleEvent = false;
+        // To improve `addEventListener` performance, we will create the callback
+        // for the task later when the task is invoked.
+        let isEventListenerObject = false;
         if (typeof delegate !== 'function') {
+          // This checks whether the provided listener argument is an object with
+          // a `handleEvent` method (since we can call `addEventListener` with a
+          // function `event => ...` or with an object `{ handleEvent: event => ... }`).
           if (!delegate.handleEvent) {
             return nativeListener.apply(this, arguments);
           }
-          isHandleEvent = true;
+          isEventListenerObject = true;
         }
         if (validateHandler && !validateHandler(nativeListener, delegate, target, arguments)) {
           return;
         }
-        const passive = passiveSupported && !!passiveEvents && passiveEvents.indexOf(eventName) !== -1;
+        const passive = !!passiveEvents && passiveEvents.indexOf(eventName) !== -1;
         const options = copyEventListenerOptions(buildEventListenerOptions(arguments[2], passive));
         const signal = options?.signal;
         if (signal?.aborted) {
@@ -1480,15 +1478,16 @@ function patchEventTarget(_global, api, apis, patchOptions) {
         if (once) {
           taskData.options.once = true;
         }
-        if (!(!passiveSupported && typeof task.options === 'boolean')) {
-          // if not support passive, and we pass an option object
-          // to addEventListener, we should save the options to task
+        if (typeof task.options !== 'boolean') {
+          // We should save the options on the task (if it's an object) because
+          // we'll be using `task.options` later when removing the event listener
+          // and passing it back to `removeEventListener`.
           task.options = options;
         }
         task.target = target;
         task.capture = capture;
         task.eventName = eventName;
-        if (isHandleEvent) {
+        if (isEventListenerObject) {
           // save original delegate for compare to check duplicate
           task.originalDelegate = delegate;
         }
@@ -1911,7 +1910,7 @@ function filterProperties(target, onProperties, ignoreProperties) {
     return onProperties;
   }
   const tip = ignoreProperties.filter(ip => ip.target === target);
-  if (!tip || tip.length === 0) {
+  if (tip.length === 0) {
     return onProperties;
   }
   const targetIgnoreProperties = tip[0].ignoreProperties;
@@ -1947,18 +1946,17 @@ function propertyDescriptorPatch(api, _global) {
   if (isBrowser) {
     const internalWindow = window;
     patchTargets = patchTargets.concat(['Document', 'SVGElement', 'Element', 'HTMLElement', 'HTMLBodyElement', 'HTMLMediaElement', 'HTMLFrameSetElement', 'HTMLFrameElement', 'HTMLIFrameElement', 'HTMLMarqueeElement', 'Worker']);
-    const ignoreErrorProperties = isIE() ? [{
-      target: internalWindow,
-      ignoreProperties: ['error']
-    }] : [];
-    // in IE/Edge, onProp not exist in window object, but in WindowPrototype
-    // so we need to pass WindowPrototype to check onProp exist or not
+    const ignoreErrorProperties = [];
+    // In older browsers like IE or Edge, event handler properties (e.g., `onclick`)
+    // may not be defined directly on the `window` object but on its prototype (`WindowPrototype`).
+    // To ensure complete coverage, we use the prototype when checking
+    // for and patching these properties.
     patchFilteredProperties(internalWindow, getOnEventNames(internalWindow), ignoreProperties ? ignoreProperties.concat(ignoreErrorProperties) : ignoreProperties, ObjectGetPrototypeOf(internalWindow));
   }
   patchTargets = patchTargets.concat(['XMLHttpRequest', 'XMLHttpRequestEventTarget', 'IDBIndex', 'IDBRequest', 'IDBOpenDBRequest', 'IDBDatabase', 'IDBTransaction', 'IDBCursor', 'WebSocket']);
   for (let i = 0; i < patchTargets.length; i++) {
     const target = _global[patchTargets[i]];
-    target && target.prototype && patchFilteredProperties(target.prototype, getOnEventNames(target.prototype), ignoreProperties);
+    target?.prototype && patchFilteredProperties(target.prototype, getOnEventNames(target.prototype), ignoreProperties);
   }
 }
 
@@ -2264,7 +2262,7 @@ function patchPromise(Zone) {
       } catch (err) {}
     }
     function isThenable(value) {
-      return value && value.then;
+      return value && typeof value.then === 'function';
     }
     function forwardResolution(value) {
       return value;

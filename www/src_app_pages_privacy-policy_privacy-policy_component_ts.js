@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_privacy-policy_privacy-policy_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_privacy-policy_privacy-policy_component_ts"],{
 
 /***/ 8855:
 /*!******************************************************************!*\
@@ -98,7 +98,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](59, " 1 January 2024");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](60, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](61, " eStokvel (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy and ensuring that your personal information is collected and used properly, lawfully, and transparently. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](61, " iKage (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy and ensuring that your personal information is collected and used properly, lawfully, and transparently. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](62, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](63, " We comply with the ");
@@ -113,7 +113,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](70, "div", 30)(71, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](72, "Important:");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](73, " By using eStokvel, you consent to the practices described in this Privacy Policy and agree to the collection and use of your personal information as outlined herein. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](73, " By using iKage, you consent to the practices described in this Privacy Policy and agree to the collection and use of your personal information as outlined herein. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](74, "section", 31)(75, "div", 26)(76, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](77, "2. Definitions");
@@ -146,7 +146,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](102, "Responsible Party");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](103, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](104, "The party who determines the purpose of and means for processing personal information (i.e., eStokvel).");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](104, "The party who determines the purpose of and means for processing personal information (i.e., iKage).");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](105, "div", 33)(106, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](107, "Operator");
@@ -614,7 +614,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](531, "div", 64)(532, "p")(533, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](534, "Email:");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](535, " privacy@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](535, " privacy@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](536, "p")(537, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](538, "Phone:");
@@ -624,7 +624,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](540, "p")(541, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](542, "Address:");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](543, " Information Officer, eStokvel, 123 Privacy Street, Johannesburg, 2000");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](543, " Information Officer, iKage, 123 Privacy Street, Johannesburg, 2000");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](544, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](545, "We will respond to your request within 21 business days as required by POPIA.");
@@ -705,7 +705,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](617, "General Inquiries");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](618, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](619, "info@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](619, "info@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](620, "div", 75)(621, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](622, "privacy_tip");
@@ -714,7 +714,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](625, "Privacy Matters");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](626, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](627, "privacy@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](627, "privacy@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](628, "div", 75)(629, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](630, "support_agent");
@@ -723,7 +723,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](633, "Customer Support");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](634, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](635, "support@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](635, "support@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](636, "div", 75)(637, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](638, "phone");
@@ -741,7 +741,7 @@ class PrivacyPolicyComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](650, "Acceptance of This Policy");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](651, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](652, "By using eStokvel, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](652, "By using iKage, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()()()()();
       }
     },

@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_about-us_about-us_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_about-us_about-us_component_ts"],{
 
 /***/ 2457:
 /*!******************************************************!*\
@@ -80,10 +80,10 @@ class AboutUsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](42, "groups");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](43, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](44, "What is eStokvel?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](44, "What is iKage?");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](45, "mat-card-content")(46, "p", 24);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](47, " The concept for an eStokvel arose from the need to have ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](47, " The concept for an iKage arose from the need to have ");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](48, "strong", 25);
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](49, "meaningful, mutually-beneficial");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
@@ -126,7 +126,7 @@ class AboutUsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](81, "div", 29)(82, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](83, "Our Story:");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](84, " Traditional stokvels didn't work for us - we couldn't always meet monthly. That's why we created eStokvel to bring stokvels into the 21st century with automated payments and digital management. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](84, " Traditional stokvels didn't work for us - we couldn't always meet monthly. That's why we created iKage to bring stokvels into the 21st century with automated payments and digital management. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](85, "mat-card", 21)(86, "div", 22)(87, "div", 23)(88, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](89, "business");
@@ -144,7 +144,7 @@ class AboutUsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](102, "Founded 2014");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](103, "p", 34);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](104, " eStokvel is a product of ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](104, " iKage is a product of ");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](105, "a", 35)(106, "strong", 25);
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](107, "Bluetank Pty (Ltd)");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
@@ -253,7 +253,7 @@ class AboutUsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](206, "Compliance Certified");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()()()()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](207, "div", 56)(208, "div", 57)(209, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](210, "Why Thousands Trust eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](210, "Why Thousands Trust iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](211, "div", 58)(212, "div", 59)(213, "div", 60)(214, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](215, "speed");

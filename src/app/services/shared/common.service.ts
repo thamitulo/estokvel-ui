@@ -134,7 +134,7 @@ export class CommonService {
         category: 'stokvel-basics'
       },
       {
-        question: 'What are the fees for using eStokvel?',
+        question: 'What are the fees for using iKage?',
         answer: 'Basic stokvel management is free. We charge a small 1% platform fee only on successful investment returns and 2% for premium features like automated payouts and advanced analytics.',
         category: 'pricing'
       },
@@ -162,7 +162,7 @@ export class CommonService {
       {
         name: 'Thami Tulo',
         position: 'Founder & CEO',
-        bio: 'Passionate about financial inclusion and technology. Founded eStokvel to revolutionize traditional savings methods in South Africa.',
+        bio: 'Passionate about financial inclusion and technology. Founded iKage to revolutionize traditional savings methods in South Africa.',
         avatar: '/assets/images/team/thami-tulo.jpg',
         department: 'Leadership'
       },
@@ -197,8 +197,8 @@ export class CommonService {
   // Contact Information
   getContactInfo() {
     return {
-      supportEmail: 'support@estokvel.co.za',
-      generalEmail: 'info@estokvel.co.za',
+      supportEmail: 'support@ikage.co.za',
+      generalEmail: 'info@ikage.co.za',
       phone: '+27 788 778 174',
       emergencyPhone: '+27 788 778 174',
       address: '11 Van Der Kloof Street, Amarosa, 1724, South Africa',
@@ -214,11 +214,11 @@ export class CommonService {
   // Social Media Links
   getSocialLinks() {
     return {
-      facebook: 'https://facebook.com/estokvel',
-      twitter: 'https://twitter.com/estokvel',
-      instagram: 'https://instagram.com/estokvel',
-      linkedin: 'https://linkedin.com/company/estokvel',
-      youtube: 'https://youtube.com/estokvel'
+      facebook: 'https://facebook.com/ikage',
+      twitter: 'https://twitter.com/ikage',
+      instagram: 'https://instagram.com/ikage',
+      linkedin: 'https://linkedin.com/company/ikage',
+      youtube: 'https://youtube.com/ikage'
     };
   }
 

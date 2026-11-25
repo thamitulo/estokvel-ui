@@ -49,7 +49,7 @@ export class PressComponent implements OnInit {
   shareArticle(): void {
     const articleUrl = 'https://www.itweb.co.za/article/estokvel-turns-stokvels-into-business-entities/KwbrpOqgjpAMDLZn';
     const articleTitle = 'eStokvel turns stokvels into business entities - ITWeb';
-    const shareText = `Check out this article about eStokvel transforming traditional stokvels into business entities:`;
+    const shareText = `Check out this article about iKage transforming traditional stokvels into business entities:`;
 
     if (navigator.share) {
       navigator.share({
@@ -106,9 +106,9 @@ export class PressComponent implements OnInit {
   }
 
   openContactForm(): void {
-    const email = 'press@estokvel.co.za';
-    const subject = 'Press Inquiry - eStokvel';
-    const body = `Dear eStokvel Press Team,\n\nI would like to inquire about:\n\n[Please describe your inquiry here]\n\nBest regards,\n[Your Name]\n[Your Media Outlet]`;
+    const email = 'press@ikage.co.za';
+    const subject = 'Press Inquiry - iKage';
+    const body = `Dear iKage Press Team,\n\nI would like to inquire about:\n\n[Please describe your inquiry here]\n\nBest regards,\n[Your Name]\n[Your Media Outlet]`;
 
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoLink, '_blank');

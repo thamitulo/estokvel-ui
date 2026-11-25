@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'za.co.bluetank.estokvelui',
-  appName: 'eStokvel',
+  appId: 'za.co.bluetank.ikageui',
+  appName: 'iKage',
   webDir: 'www',
   server: {
     androidScheme: 'https',

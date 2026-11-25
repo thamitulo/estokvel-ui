@@ -1,9 +1,9 @@
 name: Deploy UI to AWS
 
-# Builds the web app (`ng build --configuration production,aws`), uploads it to eStokvel's S3 bucket
-# and refreshes CloudFront (bluetank-infra: apps/estokvel). /api/* on the same address goes to the API.
+# Builds the web app (`ng build --configuration production,aws`), uploads it to iKage's S3 bucket
+# and refreshes CloudFront (bluetank-infra: apps/ikage). /api/* on the same address goes to the API.
 #
-# One-time setup: apply bluetank-infra, then set the `estokvel_github_variables["estokvel-ui"]` output
+# One-time setup: apply bluetank-infra, then set the `ikage_github_variables["ikage-ui"]` output
 # as variables of this repo's `prod` environment (Settings -> Environments -> prod), restricted to `main`:
 #   AWS_DEPLOY_ROLE_ARN, UI_BUCKET, CLOUDFRONT_DISTRIBUTION_ID
 # and add the CloudFront address to the Auth0 application's callback, logout and web-origin URLs.
@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: deploy-estokvel-ui
+  group: deploy-ikage-ui
   cancel-in-progress: false
 
 env:
