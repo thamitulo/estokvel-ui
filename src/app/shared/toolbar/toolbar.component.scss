@@ -70,6 +70,20 @@
   flex-shrink: 0;
 }
 
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  box-shadow: 0 4px 12px rgba(13, 71, 161, .25);
+}
+
 .logo-text {
   font-size: 24px;
   font-weight: 800;
