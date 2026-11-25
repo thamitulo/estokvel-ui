@@ -1,0 +1,66 @@
+name: Promote to prod
+
+# Deploys a commit that is already on staging to prod, using the same web build (nothing is rebuilt).
+# Run it from Actions -> Promote to prod -> Run workflow; leave `sha` empty for the latest commit on main.
+# Only commits whose "Deploy UI to AWS" run succeeded can be promoted.
+# The `prod` GitHub environment holds the `<app>_github_variables` output of bluetank-infra's default (prod) workspace.
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: Commit to promote (full SHA). Empty = latest commit on main.
+        required: false
+        default: ''
+
+permissions:
+  id-token: write # OIDC: assume the AWS deploy role without stored keys
+  contents: read
+  actions: read   # find the staging run and download its web build
+
+env:
+  AWS_REGION: af-south-1
+  TAG: ${{ inputs.sha || github.sha }}
+
+jobs:
+  prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    concurrency:
+      group: deploy-ikage-ui-prod
+      cancel-in-progress: false
+    steps:
+      - name: Check that this commit reached staging
+        id: staging
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow deploy.yml --commit "$TAG" --status success \
+            --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          test -n "$run" || { echo "::error::$TAG has no successful staging deploy (deploy.yml); deploy it to staging first."; exit 1; }
+          echo "run_id=$run" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: web
+          run-id: ${{ steps.staging.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: www
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload to S3
+        run: |
+          out=www
+          # index.html and the service-worker files must never be cached; everything else for a day.
+          aws s3 sync "$out" "s3://${{ vars.UI_BUCKET }}" --delete \
+            --exclude index.html --exclude 'ngsw*' --exclude '*.webmanifest' \
+            --cache-control 'public,max-age=86400'
+          aws s3 sync "$out" "s3://${{ vars.UI_BUCKET }}" \
+            --exclude '*' --include index.html --include 'ngsw*' --include '*.webmanifest' \
+            --cache-control 'no-cache'
+
+      - name: Refresh CloudFront
+        run: aws cloudfront create-invalidation --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" --paths '/*'
