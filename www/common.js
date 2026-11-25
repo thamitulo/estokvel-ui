@@ -1,5 +1,66 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["common"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["common"],{
+
+/***/ 601:
+/*!***************************************************************!*\
+  !*** ./src/app/services/subscription/subscription.service.ts ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SubscriptionService: () => (/* binding */ SubscriptionService)
+/* harmony export */ });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 5797);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 8764);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../environments/environment */ 6052);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 4205);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 3855);
+var _staticBlock;
+
+
+
+
+class SubscriptionService {
+  constructor(http) {
+    this.http = http;
+    this.api = `${_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.apiUrl}subscriptions`;
+    this._subscription$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject(null);
+    this.subscription$ = this._subscription$.asObservable();
+  }
+  /** Load my subscription (authenticated). */
+  load() {
+    return this.http.get(`${this.api}/me`).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.tap)(sub => this._subscription$.next(sub)));
+  }
+  /** Public tier catalogue — no auth required. */
+  getTierCatalogue() {
+    return this.http.get(`${this.api}/tiers`);
+  }
+  /** Change subscription tier. */
+  changeTier(tier) {
+    const body = {
+      tier
+    };
+    return this.http.post(`${this.api}/me/tier`, body).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.tap)(sub => this._subscription$.next(sub)));
+  }
+  /** Cancel paid subscription (revert to FREE). */
+  cancel() {
+    return this.http.delete(`${this.api}/me`).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.tap)(sub => this._subscription$.next(sub)));
+  }
+  get snapshot() {
+    return this._subscription$.value;
+  }
+  static #_ = _staticBlock = () => (this.ɵfac = function SubscriptionService_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || SubscriptionService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient));
+  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
+    token: SubscriptionService,
+    factory: SubscriptionService.ɵfac,
+    providedIn: 'root'
+  }));
+}
+_staticBlock();
+
+/***/ }),
 
 /***/ 2352:
 /*!**********************************************************!*\

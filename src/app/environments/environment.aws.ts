@@ -1,6 +1,6 @@
 // Web build served from AWS CloudFront (`ng build --configuration production,aws`): the UI and the API
 // share one origin (CloudFront sends /api/* to the shared Bluetank server, see bluetank-infra
-// apps-estokvel.tf), so the API path is relative and there's no CORS. Keep the Auth0 values in step
+// apps-ikage.tf), so the API path is relative and there's no CORS. Keep the Auth0 values in step
 // with environment.ts. Mobile (Capacitor) builds keep using the other environment files.
 export const environment = {
   production: true,

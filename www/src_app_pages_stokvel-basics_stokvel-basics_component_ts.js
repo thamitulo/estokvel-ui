@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_stokvel-basics_stokvel-basics_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_stokvel-basics_stokvel-basics_component_ts"],{
 
 /***/ 9573:
 /*!******************************************************************!*\
@@ -53,13 +53,13 @@ class StokvelBasicsComponent {
       a: 'A stokvel is a type of informal savings club or investment society where members agree to contribute a fixed amount of money to a common fund on a weekly, fortnightly or monthly basis.'
     }, {
       q: 'How many members do I need?',
-      a: 'eStokvel requires a minimum of 3 members to start a stokvel group. There is no hard maximum, but most groups range from 5 to 20 members.'
+      a: 'iKage requires a minimum of 3 members to start a stokvel group. There is no hard maximum, but most groups range from 5 to 20 members.'
     }, {
       q: 'What types of stokvels are available?',
-      a: 'eStokvel supports Burial Societies, Grocery Stokvels, Investment Clubs, Burial Societies, Social Stokvels and General Savings groups.'
+      a: 'iKage supports Burial Societies, Grocery Stokvels, Investment Clubs, Burial Societies, Social Stokvels and General Savings groups.'
     }, {
       q: 'Is my money safe?',
-      a: 'Yes. All transactions are processed through secure, encrypted payment channels and eStokvel is fully POPIA-compliant.'
+      a: 'Yes. All transactions are processed through secure, encrypted payment channels and iKage is fully POPIA-compliant.'
     }, {
       q: 'When do I get paid out?',
       a: 'Payouts follow the cycle agreed upon when the stokvel was created — monthly, bi-monthly or annually depending on the group structure.'
@@ -103,7 +103,7 @@ class StokvelBasicsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](24, "em");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](25, "ubuntu");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](26, ". eStokvel brings this powerful tradition into the digital age with transparency, security and convenience. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](26, ". iKage brings this powerful tradition into the digital age with transparency, security and convenience. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](27, "div", 10)(28, "div", 11)(29, "span", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](30, "R50B+");
@@ -181,7 +181,7 @@ class StokvelBasicsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](89, "A flexible structure where everyone saves towards a shared goal, paid out at cycle end.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](90, "section", 7)(91, "div", 8)(92, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](93, "How eStokvel Works");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](93, "How iKage Works");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](94, "div", 17)(95, "div", 18)(96, "div", 19);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](97, "1");
@@ -229,7 +229,7 @@ class StokvelBasicsComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](135, "Ready to get started?");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](136, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](137, "Join thousands of South Africans saving smarter with eStokvel.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](137, "Join thousands of South Africans saving smarter with iKage.");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](138, "div", 23)(139, "button", 5)(140, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](141, "add_circle");

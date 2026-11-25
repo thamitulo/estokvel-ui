@@ -20,11 +20,11 @@ export class GlossaryComponent {
     { term: 'Investment Club', def: 'A stokvel where pooled funds are collectively invested in shares, property or other assets.' },
     { term: 'Burial Society', def: 'A communal fund used to cover funeral and related expenses for members and their families.' },
     { term: 'POPIA', def: 'Protection of Personal Information Act — South African legislation governing how personal data must be handled.' },
-    { term: 'Digital Constitution', def: 'An eStokvel-generated electronic document outlining the rules, obligations and rights of all stokvel members.' },
-    { term: 'Organiser', def: 'The member who creates and administers the stokvel group on eStokvel.' },
+    { term: 'Digital Constitution', def: 'An iKage-generated electronic document outlining the rules, obligations and rights of all stokvel members.' },
+    { term: 'Organiser', def: 'The member who creates and administers the stokvel group on iKage.' },
     { term: 'Member', def: 'Any person who has joined and been accepted into a stokvel group.' },
     { term: 'Privacy (Public/Private)', def: 'Public stokvels are open for anyone to join. Private stokvels require an invitation from the organiser.' },
-    { term: 'eStokvel Wallet', def: 'The in-app digital wallet used to store, send and receive stokvel funds securely.' },
+    { term: 'iKage Wallet', def: 'The in-app digital wallet used to store, send and receive stokvel funds securely.' },
   ];
 
   alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');

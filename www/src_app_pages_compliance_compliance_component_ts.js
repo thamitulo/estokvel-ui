@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_compliance_compliance_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_compliance_compliance_component_ts"],{
 
 /***/ 8327:
 /*!**********************************************************!*\
@@ -45,7 +45,7 @@ class ComplianceComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](8, "Compliance Centre");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "eStokvel's commitment to operating ethically, transparently and in full compliance with South African law.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "iKage's commitment to operating ethically, transparently and in full compliance with South African law.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "div", 4)(12, "section", 5)(13, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](14, "Our Compliance Pillars");
@@ -80,7 +80,7 @@ class ComplianceComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](41, "Regulatory Compliance");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](42, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](43, "eStokvel operates under the Banks Act Exemption Notice, which legally recognises informal savings clubs in South Africa.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](43, "iKage operates under the Banks Act Exemption Notice, which legally recognises informal savings clubs in South Africa.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](44, "a", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](45, "Regulatory framework ");

@@ -183,7 +183,7 @@ export class ReferralService {
    * Generate WhatsApp share message
    */
   generateWhatsAppShareMessage(referralCode: string): string {
-    const message = `Join eStokvel - the modern way to manage your stokvels! Use my referral code ${referralCode} to get R25 bonus when you create your first stokvel. Sign up here: ${this.getShareableLink(referralCode)}`;
+    const message = `Join iKage - the modern way to manage your stokvels! Use my referral code ${referralCode} to get R25 bonus when you create your first stokvel. Sign up here: ${this.getShareableLink(referralCode)}`;
     return `https://wa.me/?text=${encodeURIComponent(message)}`;
   }
 
@@ -191,10 +191,10 @@ export class ReferralService {
    * Generate email share content
    */
   generateEmailShareContent(referralCode: string): { subject: string; body: string } {
-    const subject = 'Join eStokvel with my referral code!';
+    const subject = 'Join iKage with my referral code!';
     const body = `Hi there!
 
-I'm using eStokvel to manage my stokvels and thought you might be interested too!
+I'm using iKage to manage my stokvels and thought you might be interested too!
 
 Use my referral code ${referralCode} when you sign up and we'll both get rewards:
 - You get R25 bonus when you create your first stokvel
@@ -211,14 +211,14 @@ Let's grow our savings together!`;
    * Generate SMS share content
    */
   generateSmsShareContent(referralCode: string): string {
-    return `Join eStokvel! Use my code ${referralCode} for R25 bonus. Sign up: ${this.getShareableLink(referralCode)}`;
+    return `Join iKage! Use my code ${referralCode} for R25 bonus. Sign up: ${this.getShareableLink(referralCode)}`;
   }
 
   /**
    * Share via WhatsApp using Web API
    */
   shareViaWhatsApp(referralCode: string): void {
-    const message = `Join eStokvel - the modern way to manage your stokvels! Use my referral code ${referralCode} to get R25 bonus when you create your first stokvel. Sign up here: ${this.getShareableLink(referralCode)}`;
+    const message = `Join iKage - the modern way to manage your stokvels! Use my referral code ${referralCode} to get R25 bonus when you create your first stokvel. Sign up here: ${this.getShareableLink(referralCode)}`;
     const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   }
@@ -247,8 +247,8 @@ Let's grow our savings together!`;
   shareViaWebShare(referralCode: string): void {
     if (navigator.share) {
       navigator.share({
-        title: 'Join eStokvel',
-        text: `Use my referral code ${referralCode} to get R25 bonus when you join eStokvel!`,
+        title: 'Join iKage',
+        text: `Use my referral code ${referralCode} to get R25 bonus when you join iKage!`,
         url: this.getShareableLink(referralCode)
       }).catch(error => {
         console.error('Error sharing:', error);

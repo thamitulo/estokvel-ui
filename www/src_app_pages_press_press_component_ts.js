@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_press_press_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_press_press_component_ts"],{
 
 /***/ 3991:
 /*!************************************************!*\
@@ -88,7 +88,7 @@ class PressComponent {
   shareArticle() {
     const articleUrl = 'https://www.itweb.co.za/article/estokvel-turns-stokvels-into-business-entities/KwbrpOqgjpAMDLZn';
     const articleTitle = 'eStokvel turns stokvels into business entities - ITWeb';
-    const shareText = `Check out this article about eStokvel transforming traditional stokvels into business entities:`;
+    const shareText = `Check out this article about iKage transforming traditional stokvels into business entities:`;
     if (navigator.share) {
       navigator.share({
         title: articleTitle,
@@ -138,9 +138,9 @@ class PressComponent {
     }, 1000);
   }
   openContactForm() {
-    const email = 'press@estokvel.co.za';
-    const subject = 'Press Inquiry - eStokvel';
-    const body = `Dear eStokvel Press Team,\n\nI would like to inquire about:\n\n[Please describe your inquiry here]\n\nBest regards,\n[Your Name]\n[Your Media Outlet]`;
+    const email = 'press@ikage.co.za';
+    const subject = 'Press Inquiry - iKage';
+    const body = `Dear iKage Press Team,\n\nI would like to inquire about:\n\n[Please describe your inquiry here]\n\nBest regards,\n[Your Name]\n[Your Media Outlet]`;
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoLink, '_blank');
   }
@@ -172,13 +172,13 @@ class PressComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](4, "Press & Media");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](5, "p", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](6, "Stay updated with the latest news and coverage about eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](6, "Stay updated with the latest news and coverage about iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](7, "section", 5)(8, "div", 6)(9, "div", 7)(10, "div", 8)(11, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](12, "Latest Coverage");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](13, "p", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](14, "Read what the media is saying about eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](14, "Read what the media is saying about iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](15, "div", 10)(16, "mat-card", 11)(17, "div", 12)(18, "div", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelement"](19, "img", 14);
@@ -195,7 +195,7 @@ class PressComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](29, "eStokvel turns stokvels into business entities");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](30, "div", 20)(31, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](32, "eStokvel, a South African fintech startup, is revolutionizing traditional stokvels by transforming them into formal business entities through its digital platform.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](32, "iKage, a South African fintech startup, is revolutionizing traditional stokvels by transforming them into formal business entities through its digital platform.");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](33, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](34, "The platform enables stokvel groups to manage their finances transparently, access banking services, and operate with legal recognition, bridging the gap between informal savings groups and formal financial systems.");
@@ -236,7 +236,7 @@ class PressComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](61, "Media Assets");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](62, "p", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](63, "Download official eStokvel media resources");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](63, "Download official iKage media resources");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](64, "div", 26)(65, "mat-card", 27)(66, "mat-card-content")(67, "div", 28)(68, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](69, "photo_library");
@@ -245,7 +245,7 @@ class PressComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](71, "Brand Logos");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](72, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](73, "Official eStokvel logos in various formats");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](73, "Official iKage logos in various formats");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](74, "button", 29);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function PressComponent_Template_button_click_74_listener() {
@@ -317,7 +317,7 @@ class PressComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](130, "Email");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](131, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](132, "press@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](132, "press@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](133, "div", 36)(134, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](135, "phone");
@@ -350,7 +350,7 @@ class PressComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](157, PressComponent_mat_error_157_Template, 2, 0, "mat-error", 43)(158, PressComponent_mat_error_158_Template, 2, 0, "mat-error", 43);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](159, "mat-checkbox", 44);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](160, " I agree to receive press releases and updates from eStokvel ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](160, " I agree to receive press releases and updates from iKage ");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](161, "button", 45);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](162, PressComponent_span_162_Template, 2, 0, "span", 43)(163, PressComponent_mat_spinner_163_Template, 1, 0, "mat-spinner", 46);

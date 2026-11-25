@@ -33,7 +33,7 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
   referralCreditBalance: number = 0;
 
   // Referral code (for logged in users)
-  referralCode: string = 'ESTOKVEL50';
+  referralCode: string = 'IKAGE50';
   copyIcon: string = 'content_copy';
   copyTooltip: string = 'Copy referral code';
 
@@ -100,7 +100,7 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
           this.referredCount = stats.referredCount || 0;
           this.totalEarnings = stats.totalEarnings || 0;
           this.pendingReferrals = stats.pendingReferrals || 0;
-          this.referralCode = stats.referralCode || 'ESTOKVEL50';
+          this.referralCode = stats.referralCode || 'IKAGE50';
         } else {
           // Use default values if stats is null/undefined
           this.setDefaultStats();
@@ -165,7 +165,7 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
     this.referredCount = 0;
     this.totalEarnings = 0;
     this.pendingReferrals = 0;
-    this.referralCode = 'ESTOKVEL50';
+    this.referralCode = 'IKAGE50';
   }
 
   resetUserData(): void {
@@ -188,7 +188,7 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
   }
 
   getSafeReferralCode(): string {
-    return this.referralCode || 'ESTOKVEL50';
+    return this.referralCode || 'IKAGE50';
   }
 
   getSafeReferralHistory(): any[] {
@@ -225,7 +225,7 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
     }
 
     const code = this.getSafeReferralCode();
-    const referralLink = `https://estokvel.co.za/signup?ref=${code}`;
+    const referralLink = `https://ikage.co.za/signup?ref=${code}`;
 
     this.clipboard.copy(referralLink);
     this.snackBar.open('Referral link copied to clipboard!', 'Close', {
@@ -242,7 +242,7 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
     }
 
     const code = this.getSafeReferralCode();
-    const message = `Join eStokvel - the modern way to manage your stokvels! Use my referral code ${code} to get R25 bonus when you create your first stokvel. Sign up here: https://estokvel.co.za/signup?ref=${code}`;
+    const message = `Join iKage - the modern way to manage your stokvels! Use my referral code ${code} to get R25 bonus when you create your first stokvel. Sign up here: https://ikage.co.za/signup?ref=${code}`;
     const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   }
@@ -255,8 +255,8 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
     }
 
     const code = this.getSafeReferralCode();
-    const subject = 'Join eStokvel with my referral code!';
-    const body = `Hi there!\n\nI'm using eStokvel to manage my stokvels and thought you might be interested too!\n\nUse my referral code ${code} when you sign up and we'll both get rewards:\n- You get R25 bonus when you create your first stokvel\n- I get R50 when you join\n\nSign up here: https://estokvel.co.za/signup?ref=${code}\n\nLet's grow our savings together!`;
+    const subject = 'Join iKage with my referral code!';
+    const body = `Hi there!\n\nI'm using iKage to manage my stokvels and thought you might be interested too!\n\nUse my referral code ${code} when you sign up and we'll both get rewards:\n- You get R25 bonus when you create your first stokvel\n- I get R50 when you join\n\nSign up here: https://ikage.co.za/signup?ref=${code}\n\nLet's grow our savings together!`;
     const url = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(url, '_blank');
   }
@@ -269,7 +269,7 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
     }
 
     const code = this.getSafeReferralCode();
-    const message = `Join eStokvel! Use my code ${code} for R25 bonus. Sign up: https://estokvel.co.za/signup?ref=${code}`;
+    const message = `Join iKage! Use my code ${code} for R25 bonus. Sign up: https://ikage.co.za/signup?ref=${code}`;
     const url = `sms:?&body=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   }
@@ -284,9 +284,9 @@ export class ReferAndEarnComponent implements OnInit, OnDestroy {
     if (navigator.share) {
       const code = this.getSafeReferralCode();
       navigator.share({
-        title: 'Join eStokvel',
-        text: `Use my referral code ${code} to get R25 bonus when you join eStokvel!`,
-        url: `https://estokvel.co.za/signup?ref=${code}`
+        title: 'Join iKage',
+        text: `Use my referral code ${code} to get R25 bonus when you join iKage!`,
+        url: `https://ikage.co.za/signup?ref=${code}`
       }).catch(error => {
         console.error('Error sharing:', error);
         // Fallback to copying link

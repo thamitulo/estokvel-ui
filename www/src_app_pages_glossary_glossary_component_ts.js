@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_glossary_glossary_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_glossary_glossary_component_ts"],{
 
 /***/ 2133:
 /*!******************************************************!*\
@@ -117,10 +117,10 @@ class GlossaryComponent {
       def: 'Protection of Personal Information Act — South African legislation governing how personal data must be handled.'
     }, {
       term: 'Digital Constitution',
-      def: 'An eStokvel-generated electronic document outlining the rules, obligations and rights of all stokvel members.'
+      def: 'An iKage-generated electronic document outlining the rules, obligations and rights of all stokvel members.'
     }, {
       term: 'Organiser',
-      def: 'The member who creates and administers the stokvel group on eStokvel.'
+      def: 'The member who creates and administers the stokvel group on iKage.'
     }, {
       term: 'Member',
       def: 'Any person who has joined and been accepted into a stokvel group.'
@@ -128,7 +128,7 @@ class GlossaryComponent {
       term: 'Privacy (Public/Private)',
       def: 'Public stokvels are open for anyone to join. Private stokvels require an invitation from the organiser.'
     }, {
-      term: 'eStokvel Wallet',
+      term: 'iKage Wallet',
       def: 'The in-app digital wallet used to store, send and receive stokvel funds securely.'
     }];
     this.alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -158,7 +158,7 @@ class GlossaryComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](8, "Glossary");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Key terms and definitions to help you navigate the world of stokvels and eStokvel.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Key terms and definitions to help you navigate the world of stokvels and iKage.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "div", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](12, GlossaryComponent_ng_container_12_Template, 3, 4, "ng-container", 5);

@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_kyc_kyc_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_kyc_kyc_component_ts"],{
 
 /***/ 479:
 /*!********************************************!*\

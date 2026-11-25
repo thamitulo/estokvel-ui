@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_fsca_fsca_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_fsca_fsca_component_ts"],{
 
 /***/ 6999:
 /*!**********************************************!*\
@@ -45,7 +45,7 @@ class FscaComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](8, "FSCA Information");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Information about the Financial Sector Conduct Authority (FSCA) and eStokvel's relationship with South Africa's financial regulatory framework.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Information about the Financial Sector Conduct Authority (FSCA) and iKage's relationship with South Africa's financial regulatory framework.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "div", 4)(12, "section", 5)(13, "div", 6)(14, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](15, "info");
@@ -81,13 +81,13 @@ class FscaComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](42, "business");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](43, "h2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](44, "eStokvel & the FSCA");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](44, "iKage & the FSCA");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](45, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](46, "Stokvel schemes in South Africa operate under the Banks Act Exemption Notice of 1990, which recognises informal savings clubs as distinct from regulated banking activities. As such, eStokvel \u2014 as a platform facilitating stokvel operations \u2014 is not required to hold a Financial Services Provider (FSP) licence for the facilitation of stokvel contributions and payouts.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](46, "Stokvel schemes in South Africa operate under the Banks Act Exemption Notice of 1990, which recognises informal savings clubs as distinct from regulated banking activities. As such, iKage \u2014 as a platform facilitating stokvel operations \u2014 is not required to hold a Financial Services Provider (FSP) licence for the facilitation of stokvel contributions and payouts.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](47, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](48, "However, eStokvel voluntarily aligns its practices with FSCA conduct standards to ensure:");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](48, "However, iKage voluntarily aligns its practices with FSCA conduct standards to ensure:");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](49, "ul", 10)(50, "li")(51, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](52, "check_circle");
@@ -126,7 +126,7 @@ class FscaComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](80, "NASASA Membership");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](81, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](82, "eStokvel is a proud member of the National Stokvel Association of South Africa (NASASA) \u2014 the recognised industry body for stokvel organisations in South Africa. NASASA membership confirms that eStokvel meets the standards for responsible stokvel facilitation and is committed to the growth and protection of the stokvel industry.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](82, "iKage is a proud member of the National Stokvel Association of South Africa (NASASA) \u2014 the recognised industry body for stokvel organisations in South Africa. NASASA membership confirms that iKage meets the standards for responsible stokvel facilitation and is committed to the growth and protection of the stokvel industry.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](83, "div", 11)(84, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](85, "info");

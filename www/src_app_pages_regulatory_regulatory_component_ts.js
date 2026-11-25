@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_regulatory_regulatory_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_regulatory_regulatory_component_ts"],{
 
 /***/ 2497:
 /*!**********************************************************!*\
@@ -45,19 +45,19 @@ class RegulatoryComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](8, "Regulatory Framework");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Understanding the legal and regulatory environment that governs stokvels and eStokvel in South Africa.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Understanding the legal and regulatory environment that governs stokvels and iKage in South Africa.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "div", 4)(12, "section", 5)(13, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](14, "Regulatory Overview");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](15, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](16, "Stokvels in South Africa are recognised and governed under several pieces of legislation. eStokvel operates within this framework and is committed to full regulatory compliance to protect its members.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](16, "Stokvels in South Africa are recognised and governed under several pieces of legislation. iKage operates within this framework and is committed to full regulatory compliance to protect its members.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](17, "div", 6)(18, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](19, "info");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](20, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](21, "eStokvel is not a registered financial services provider. Stokvel groups are informal savings structures and do not fall under the National Credit Act (NCA) or the Financial Advisory and Intermediary Services (FAIS) Act.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](21, "iKage is not a registered financial services provider. Stokvel groups are informal savings structures and do not fall under the National Credit Act (NCA) or the Financial Advisory and Intermediary Services (FAIS) Act.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](22, "section", 7)(23, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](24, "Key Legislation");
@@ -78,7 +78,7 @@ class RegulatoryComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](37, "POPIA (2013)");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](38, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](39, "The Protection of Personal Information Act governs how eStokvel collects, stores and processes member data. We are fully POPIA-compliant. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](39, "The Protection of Personal Information Act governs how iKage collects, stores and processes member data. We are fully POPIA-compliant. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](40, "a", 10);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](41, "Learn more \u2192");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
@@ -89,7 +89,7 @@ class RegulatoryComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](46, "Consumer Protection Act");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](47, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](48, "The Consumer Protection Act (No. 68 of 2008) protects consumers in transactions and ensures fair, transparent business practices. eStokvel's terms are designed to comply fully.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](48, "The Consumer Protection Act (No. 68 of 2008) protects consumers in transactions and ensures fair, transparent business practices. iKage's terms are designed to comply fully.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](49, "div", 9)(50, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](51, "account_balance_wallet");
@@ -107,7 +107,7 @@ class RegulatoryComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](62, "check_circle");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](63, "span");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](64, "All stokvel groups on eStokvel operate within the Banks Act Exemption Notice framework.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](64, "All stokvel groups on iKage operate within the Banks Act Exemption Notice framework.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](65, "li")(66, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](67, "check_circle");
@@ -143,7 +143,7 @@ class RegulatoryComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](92, "Questions?");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](93, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](94, "If you have any questions about our regulatory compliance or need clarification on how eStokvel operates within the law, please reach out to our compliance team.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](94, "If you have any questions about our regulatory compliance or need clarification on how iKage operates within the law, please reach out to our compliance team.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](95, "div", 12)(96, "button", 13)(97, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](98, "verified");

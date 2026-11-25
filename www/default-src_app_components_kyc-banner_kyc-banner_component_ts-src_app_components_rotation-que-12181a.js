@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["default-src_app_components_kyc-banner_kyc-banner_component_ts-src_app_components_rotation-que-12181a"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["default-src_app_components_kyc-banner_kyc-banner_component_ts-src_app_components_rotation-que-12181a"],{
 
 /***/ 3161:
 /*!*********************************************!*\

@@ -1,4 +1,4 @@
-# eStokvel – Mobile App Setup Guide (Android + iOS)
+# iKage – Mobile App Setup Guide (Android + iOS)
 
 This document covers everything you need to get the hybrid mobile app running on Android and iOS using [Capacitor](https://capacitorjs.com/).
 
@@ -39,7 +39,7 @@ This document covers everything you need to get the hybrid mobile app running on
 When network/registry access is available, run:
 
 ```bash
-cd estokvel-ui
+cd ikage-ui
 npm install
 ```
 
@@ -111,7 +111,7 @@ http://localhost:4200,
 http://localhost,
 https://localhost,
 capacitor://localhost,
-za.co.bluetank.estokvelui://callback
+za.co.bluetank.ikageui://callback
 ```
 
 Also add to **Allowed Logout URLs**:

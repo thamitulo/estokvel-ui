@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["main"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["main"],{
 
 /***/ 92:
 /*!**********************************!*\
@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppComponent: () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2481);
 /* harmony import */ var _services_mobile_platform_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/mobile-platform.service */ 2688);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 3683);
@@ -59,11 +59,11 @@ class AppComponent {
   }
   constructor(platformService) {
     this.platformService = platformService;
-    this.title = 'estokvel-ui';
+    this.title = 'ikage-ui';
   }
   ngOnInit() {
     var _this = this;
-    return (0,C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Initialize native mobile plugins (StatusBar, SplashScreen, back-button, etc.)
       yield _this.platformService.initializeApp();
     })();
@@ -808,7 +808,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   MobilePlatformService: () => (/* binding */ MobilePlatformService)
 /* harmony export */ });
-/* harmony import */ var C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/core */ 4070);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 4205);
 
@@ -839,7 +839,7 @@ class MobilePlatformService {
   }
   initializeApp() {
     var _this = this;
-    return (0,C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (!_this.isNative) return;
       yield _this.initStatusBar();
       yield _this.initSplashScreen();
@@ -849,7 +849,7 @@ class MobilePlatformService {
   }
   initStatusBar() {
     var _this2 = this;
-    return (0,C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const {
           StatusBar,
@@ -874,7 +874,7 @@ class MobilePlatformService {
   }
   initSplashScreen() {
     var _this3 = this;
-    return (0,C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const {
           SplashScreen
@@ -890,7 +890,7 @@ class MobilePlatformService {
   }
   setupKeyboard() {
     var _this4 = this;
-    return (0,C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const {
           Keyboard
@@ -906,7 +906,7 @@ class MobilePlatformService {
   }
   setupBackButton() {
     var _this5 = this;
-    return (0,C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const {
           App
@@ -928,7 +928,7 @@ class MobilePlatformService {
   }
   triggerHaptic() {
     var _this6 = this;
-    return (0,C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (type = 'light') {
+    return (0,C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (type = 'light') {
       if (!_this6.isNative) return;
       try {
         const {
@@ -1110,8 +1110,8 @@ class FooterComponent {
     this.socialLinks = {};
     this.contactInfo = {};
     this.appLinks = {
-      playStore: 'https://play.google.com/store/apps/details?id=co.za.estokvel',
-      appStore: 'https://apps.apple.com/za/app/estokvel/id123456789'
+      playStore: 'https://play.google.com/store/apps/details?id=co.za.ikage',
+      appStore: 'https://apps.apple.com/za/app/ikage/id123456789'
     };
   }
   ngOnInit() {
@@ -1121,8 +1121,8 @@ class FooterComponent {
   // Contact Information
   getContactInfo() {
     return {
-      supportEmail: 'support@estokvel.co.za',
-      generalEmail: 'info@estokvel.co.za',
+      supportEmail: 'support@ikage.co.za',
+      generalEmail: 'info@ikage.co.za',
       phone: '+27 788 778 174',
       emergencyPhone: '+27 788 778 174',
       address: '11 Van Der Kloof Street, Amarosa, 1724, South Africa',
@@ -1136,11 +1136,11 @@ class FooterComponent {
   }
   getSocialLinks() {
     return {
-      facebook: 'https://facebook.com/estokvel',
-      twitter: 'https://twitter.com/estokvel',
-      instagram: 'https://instagram.com/estokvel',
-      linkedin: 'https://linkedin.com/company/estokvel',
-      youtube: 'https://youtube.com/estokvel'
+      facebook: 'https://facebook.com/ikage',
+      twitter: 'https://twitter.com/ikage',
+      instagram: 'https://instagram.com/ikage',
+      linkedin: 'https://linkedin.com/company/ikage',
+      youtube: 'https://youtube.com/ikage'
     };
   }
   static #_ = _staticBlock = () => (this.ɵfac = function FooterComponent_Factory(__ngFactoryType__) {
@@ -1318,7 +1318,7 @@ class FooterComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](8);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("href", ctx.appLinks.appStore, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\u00A9 ", ctx.year, " eStokvel. All rights reserved. eStokvel is an approved NASASA member. FSP No: 12345");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\u00A9 ", ctx.year, " iKage. All rights reserved. iKage is an approved NASASA member. FSP No: 12345");
       }
     },
     dependencies: [_angular_router__WEBPACK_IMPORTED_MODULE_1__.RouterLink, _angular_router__WEBPACK_IMPORTED_MODULE_1__.RouterLinkActive, _angular_material_icon__WEBPACK_IMPORTED_MODULE_2__.MatIcon],
@@ -1353,9 +1353,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ 4487);
 /* harmony import */ var _shared_faq_faq_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shared/faq/faq.component */ 4672);
 /* harmony import */ var _auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @auth0/auth0-angular */ 7989);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 4205);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2481);
+/* harmony import */ var _guards_admin_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./guards/admin.guard */ 9153);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 4205);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2481);
 var _staticBlock;
+
 
 
 
@@ -1369,70 +1371,74 @@ const routes = [{
   path: 'kyc',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_kyc_kyc_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/kyc/kyc.component */ 479)).then(m => m.KycComponent),
   canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
-  title: 'Identity Verification - eStokvel'
+  title: 'Identity Verification - iKage'
 }, {
   path: 'home',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_stokvel-join_join-stokvel-modal_ts"), __webpack_require__.e("src_app_pages_home_home_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/home/home.component */ 5047)).then(m => m.HomeComponent)
 }, {
   path: 'about-us',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_about-us_about-us_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/about-us/about-us.component */ 2457)).then(m => m.AboutUsComponent),
-  title: 'About Us - eStokvel'
+  title: 'About Us - iKage'
+}, {
+  path: 'pricing',
+  loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_pricing_pricing_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/pricing/pricing.component */ 5135)).then(m => m.PricingComponent),
+  title: 'Pricing - iKage'
 }, {
   path: 'contact-us',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_contact_contact_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/contact/contact.component */ 2951)).then(m => m.ContactComponent),
-  title: 'Contact Us - eStokvel'
+  title: 'Contact Us - iKage'
 }, {
   path: 'careers',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_careers_careers_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/careers/careers.component */ 4711)).then(m => m.CareersComponent),
-  title: 'CareersComponent - eStokvel'
+  title: 'CareersComponent - iKage'
 }, {
   path: 'press',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_press_press_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/press/press.component */ 3991)).then(m => m.PressComponent),
-  title: 'PressComponent - eStokvel'
+  title: 'PressComponent - iKage'
 }, {
   path: 'legal',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_legal_legal_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/legal/legal.component */ 3792)).then(m => m.LegalComponent),
-  title: 'LegalComponent - eStokvel'
+  title: 'LegalComponent - iKage'
 }, {
   path: 'privacy-policy',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_privacy-policy_privacy-policy_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/privacy-policy/privacy-policy.component */ 8855)).then(m => m.PrivacyPolicyComponent),
-  title: 'Privacy Policy - eStokvel'
+  title: 'Privacy Policy - iKage'
 }, {
   path: 'contact',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_contact_contact_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/contact/contact.component */ 2951)).then(m => m.ContactComponent),
-  title: 'Contact Us - eStokvel'
+  title: 'Contact Us - iKage'
 }, {
   path: 'security',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_security_security_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/security/security.component */ 6501)).then(m => m.SecurityComponent),
-  title: 'Security - eStokvel'
+  title: 'Security - iKage'
 }, {
   path: 'terms',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_terms_terms_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/terms/terms.component */ 9599)).then(m => m.TermsComponent),
-  title: 'Terms of Service - eStokvel'
+  title: 'Terms of Service - iKage'
 }, {
   path: 'stokvel-basics',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_stokvel-basics_stokvel-basics_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/stokvel-basics/stokvel-basics.component */ 9573)).then(m => m.StokvelBasicsComponent),
-  title: 'Stokvel Basics - eStokvel'
+  title: 'Stokvel Basics - iKage'
 }, {
   path: 'tutorials',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_tutorials_tutorials_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/tutorials/tutorials.component */ 911)).then(m => m.TutorialsComponent),
-  title: 'Tutorials - eStokvel'
+  title: 'Tutorials - iKage'
 }, {
   path: 'glossary',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_glossary_glossary_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/glossary/glossary.component */ 2133)).then(m => m.GlossaryComponent),
-  title: 'Glossary - eStokvel'
+  title: 'Glossary - iKage'
 }, {
   path: 'regulatory',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_regulatory_regulatory_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/regulatory/regulatory.component */ 2497)).then(m => m.RegulatoryComponent),
-  title: 'Regulatory - eStokvel'
+  title: 'Regulatory - iKage'
 }, {
   path: 'compliance',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_compliance_compliance_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/compliance/compliance.component */ 8327)).then(m => m.ComplianceComponent),
-  title: 'Compliance - eStokvel'
+  title: 'Compliance - iKage'
 }, {
   path: 'popia',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_popia_popia_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/popia/popia.component */ 6219)).then(m => m.PopiaComponent),
-  title: 'POPIA - eStokvel'
+  title: 'POPIA - iKage'
 }, {
   path: 'dashboard',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_components_dashboard_dashboard_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/dashboard/dashboard.component */ 4441)).then(m => m.DashboardComponent),
@@ -1444,58 +1450,85 @@ const routes = [{
 }, {
   path: 'stokvels',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_stokvel-join_join-stokvel-modal_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_components_stokvel-list_stokvel-list_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/stokvel-list/stokvel-list.component */ 9617)).then(m => m.StokvelListComponent),
-  title: 'Browse Stokvels - eStokvel'
+  title: 'Browse Stokvels - iKage'
 }, {
   path: 'stokvels/:id',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_stokvel-join_join-stokvel-modal_ts"), __webpack_require__.e("default-src_app_components_kyc-banner_kyc-banner_component_ts-src_app_components_rotation-que-12181a"), __webpack_require__.e("common"), __webpack_require__.e("src_app_components_stokvel-detail_stokvel-detail_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/stokvel-detail/stokvel-detail.component */ 8707)).then(m => m.StokvelDetailComponent),
   canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
-  title: 'Stokvel Details - eStokvel'
+  title: 'Stokvel Details - iKage'
 }, {
   path: 'stokvels/:id/manage',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_kyc-banner_kyc-banner_component_ts-src_app_components_rotation-que-12181a"), __webpack_require__.e("src_app_components_stokvel-manage_stokvel-manage_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/stokvel-manage/stokvel-manage.component */ 2235)).then(m => m.StokvelManageComponent),
   canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
-  title: 'Manage Stokvel - eStokvel'
+  title: 'Manage Stokvel - iKage'
 }, {
   path: 'wallet',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_components_wallet_wallet_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./components/wallet/wallet.component */ 5425)).then(m => m.WalletComponent),
   canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
-  title: 'My Wallet - eStokvel'
+  title: 'My Wallet - iKage'
 }, {
   path: 'profile',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_profile_profile_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/profile/profile.component */ 2683)).then(m => m.ProfileComponent),
   canActivate: [_auth0_auth0_angular__WEBPACK_IMPORTED_MODULE_2__.AuthGuard],
-  title: 'My Profile - eStokvel'
+  title: 'My Profile - iKage'
 }, {
   path: 'refer-earn',
   loadComponent: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_referals_refer-and-earn_component_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/referals/refer-and-earn.component */ 294)).then(m => m.ReferAndEarnComponent),
-  title: 'Refer & Earn - eStokvel'
+  title: 'Refer & Earn - iKage'
 }, {
   path: 'blog',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_blog_blog_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/blog/blog.component */ 4453)).then(m => m.BlogComponent),
-  title: 'Blog - eStokvel'
+  title: 'Blog - iKage'
 }, {
   path: 'faq',
   component: _shared_faq_faq_component__WEBPACK_IMPORTED_MODULE_1__.FaqComponent
 }, {
   path: 'help-center',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_help-center_help-center_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/help-center/help-center.component */ 103)).then(m => m.HelpCenterComponent),
-  title: 'Help Center - eStokvel'
+  title: 'Help Center - iKage'
 }, {
   path: 'resources',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_resources_resources_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/resources/resources.component */ 9815)).then(m => m.ResourcesComponent),
-  title: 'Resources - eStokvel'
+  title: 'Resources - iKage'
 }, {
   path: 'fsca',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_fsca_fsca_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/fsca/fsca.component */ 6999)).then(m => m.FscaComponent),
-  title: 'FSCA - eStokvel'
+  title: 'FSCA - iKage'
 }, {
   path: 'disclaimer',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_disclaimer_disclaimer_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/disclaimer/disclaimer.component */ 9751)).then(m => m.DisclaimerComponent),
-  title: 'Disclaimer - eStokvel'
+  title: 'Disclaimer - iKage'
 }, {
   path: 'notifications',
   loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_notifications_notifications_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/notifications/notifications.component */ 5603)).then(m => m.NotificationsPageComponent),
-  title: 'Notifications - eStokvel'
+  title: 'Notifications - iKage'
+},
+// ── Super-Admin Backoffice ────────────────────────────────────────────────
+{
+  path: 'admin/login',
+  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_admin_admin-login_admin-login_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/admin/admin-login/admin-login.component */ 3247)).then(m => m.AdminLoginComponent),
+  title: 'Admin Login - iKage'
+}, {
+  path: 'admin',
+  loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_admin_admin-layout_admin-layout_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/admin/admin-layout/admin-layout.component */ 4801)).then(m => m.AdminLayoutComponent),
+  canActivate: [_guards_admin_guard__WEBPACK_IMPORTED_MODULE_3__.AdminGuard],
+  children: [{
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  }, {
+    path: 'dashboard',
+    loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_admin_admin-dashboard_admin-dashboard_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/admin/admin-dashboard/admin-dashboard.component */ 4147)).then(m => m.AdminDashboardComponent),
+    title: 'Dashboard - Admin'
+  }, {
+    path: 'stokvels',
+    loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_admin_admin-stokvels_admin-stokvels_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/admin/admin-stokvels/admin-stokvels.component */ 2143)).then(m => m.AdminStokvelsComponent),
+    title: 'Stokvels - Admin'
+  }, {
+    path: 'users',
+    loadComponent: () => __webpack_require__.e(/*! import() */ "src_app_pages_admin_admin-users_admin-users_component_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/admin/admin-users/admin-users.component */ 7952)).then(m => m.AdminUsersComponent),
+    title: 'Users - Admin'
+  }]
 }, {
   path: '**',
   redirectTo: 'home'
@@ -1503,15 +1536,15 @@ const routes = [{
 class AppRoutingModule {
   static #_ = _staticBlock = () => (this.ɵfac = function AppRoutingModule_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || AppRoutingModule)();
-  }, this.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({
+  }, this.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineNgModule"]({
     type: AppRoutingModule
-  }), this.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjector"]({
+  }), this.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({
     imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__.RouterModule.forRoot(routes), _angular_router__WEBPACK_IMPORTED_MODULE_0__.RouterModule]
   }));
 }
 _staticBlock();
 (function () {
-  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵsetNgModuleScope"](AppRoutingModule, {
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵsetNgModuleScope"](AppRoutingModule, {
     imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__.RouterModule],
     exports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__.RouterModule]
   });
@@ -1531,6 +1564,125 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__.platformBrowser().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_1__.AppModule).catch(err => console.error(err));
+
+/***/ }),
+
+/***/ 4545:
+/*!*************************************************!*\
+  !*** ./src/app/services/admin/admin.service.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AdminService: () => (/* binding */ AdminService)
+/* harmony export */ });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ 3855);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 5797);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 8764);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ 6052);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 4205);
+var _staticBlock;
+
+
+
+
+
+const ADMIN_TOKEN_KEY = 'admin_jwt';
+const ADMIN_USER_KEY = 'admin_user';
+class AdminService {
+  constructor(http) {
+    this.http = http;
+    this.api = `${_environments_environment__WEBPACK_IMPORTED_MODULE_3__.environment.apiUrl}admin`;
+    this._loggedIn$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(this.hasToken());
+    this.loggedIn$ = this._loggedIn$.asObservable();
+  }
+  // ── Auth ──────────────────────────────────────────────────────────────────
+  login(req) {
+    return this.http.post(`${this.api}/auth/login`, req).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.tap)(res => {
+      localStorage.setItem(ADMIN_TOKEN_KEY, res.token);
+      localStorage.setItem(ADMIN_USER_KEY, JSON.stringify({
+        username: res.username,
+        displayName: res.displayName,
+        email: res.email
+      }));
+      this._loggedIn$.next(true);
+    }));
+  }
+  logout() {
+    localStorage.removeItem(ADMIN_TOKEN_KEY);
+    localStorage.removeItem(ADMIN_USER_KEY);
+    this._loggedIn$.next(false);
+  }
+  getToken() {
+    return localStorage.getItem(ADMIN_TOKEN_KEY);
+  }
+  hasToken() {
+    const t = this.getToken();
+    if (!t) return false;
+    try {
+      const payload = JSON.parse(atob(t.split('.')[1]));
+      return payload.exp * 1000 > Date.now();
+    } catch {
+      return false;
+    }
+  }
+  get currentUser() {
+    const raw = localStorage.getItem(ADMIN_USER_KEY);
+    return raw ? JSON.parse(raw) : null;
+  }
+  // ── Dashboard ─────────────────────────────────────────────────────────────
+  getStats() {
+    return this.http.get(`${this.api}/stats`, {
+      headers: this.authHeaders()
+    });
+  }
+  // ── Stokvels ──────────────────────────────────────────────────────────────
+  getStokvels(search = '', page = 0, size = 20) {
+    const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpParams().set('search', search).set('page', page).set('size', size);
+    return this.http.get(`${this.api}/stokvels`, {
+      params,
+      headers: this.authHeaders()
+    });
+  }
+  getStokvel(id) {
+    return this.http.get(`${this.api}/stokvels/${id}`, {
+      headers: this.authHeaders()
+    });
+  }
+  // ── Users ─────────────────────────────────────────────────────────────────
+  getUsers(search = '', page = 0, size = 20) {
+    const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpParams().set('search', search).set('page', page).set('size', size);
+    return this.http.get(`${this.api}/users`, {
+      params,
+      headers: this.authHeaders()
+    });
+  }
+  getUser(auth0Id) {
+    return this.http.get(`${this.api}/users/${encodeURIComponent(auth0Id)}`, {
+      headers: this.authHeaders()
+    });
+  }
+  mirrorUser(auth0Id) {
+    return this.http.get(`${this.api}/users/${encodeURIComponent(auth0Id)}/mirror`, {
+      headers: this.authHeaders()
+    });
+  }
+  // ────────────────────────────────────────────────────────────────────────────
+  authHeaders() {
+    return {
+      Authorization: `Bearer ${this.getToken()}`
+    };
+  }
+  static #_ = _staticBlock = () => (this.ɵfac = function AdminService_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || AdminService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient));
+  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({
+    token: AdminService,
+    factory: AdminService.ɵfac,
+    providedIn: 'root'
+  }));
+}
+_staticBlock();
 
 /***/ }),
 
@@ -1591,8 +1743,8 @@ function FaqComponent_mat_card_1_Template(rf, ctx) {
 class FaqComponent {
   constructor() {
     this.faqs = [{
-      question: 'What is estokvel?',
-      answer: `estokvel is an online community that allows people to create & join 
+      question: 'What is ikage?',
+      answer: `ikage is an online community that allows people to create & join 
                stokvels online. Contributions are collected monthly and distributed 
                according to the payment order.`,
       isOpen: false
@@ -2200,7 +2352,7 @@ class ToolbarComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ToolbarComponent_Template_span_click_15_listener() {
           return ctx.navigate("/");
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](16, " eStokvel ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](16, " iKage ");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "div", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](18, ToolbarComponent_button_18_Template, 2, 3, "button", 14);
@@ -2720,7 +2872,7 @@ class MobileHeaderComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtext"](5, "\u20BF");
         _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](6, "span", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtext"](7, "eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtext"](7, "iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](8, "div", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtemplate"](9, MobileHeaderComponent_ng_container_9_Template, 30, 7, "ng-container", 10);
@@ -2766,6 +2918,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 9153:
+/*!***************************************!*\
+  !*** ./src/app/guards/admin.guard.ts ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AdminGuard: () => (/* binding */ AdminGuard)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 4205);
+/* harmony import */ var _services_admin_admin_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/admin/admin.service */ 4545);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 5422);
+var _staticBlock;
+
+
+
+class AdminGuard {
+  constructor(admin, router) {
+    this.admin = admin;
+    this.router = router;
+  }
+  canActivate() {
+    if (this.admin.hasToken()) return true;
+    this.router.navigate(['/admin/login']);
+    return false;
+  }
+  static #_ = _staticBlock = () => (this.ɵfac = function AdminGuard_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || AdminGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_services_admin_admin_service__WEBPACK_IMPORTED_MODULE_1__.AdminService), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__.Router));
+  }, this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
+    token: AdminGuard,
+    factory: AdminGuard.ɵfac,
+    providedIn: 'root'
+  }));
+}
+_staticBlock();
+
+/***/ }),
+
 /***/ 9302:
 /*!***********************************************************!*\
   !*** ./src/app/shared/mobile-nav/mobile-nav.component.ts ***!
@@ -2776,7 +2967,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   MobileNavComponent: () => (/* binding */ MobileNavComponent)
 /* harmony export */ });
-/* harmony import */ var C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
+/* harmony import */ var C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9204);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ 4487);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 3683);
 /* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/icon */ 3840);
@@ -2941,7 +3132,7 @@ class MobileNavComponent {
   }
   navigate(tab, isAuthenticated) {
     var _this = this;
-    return (0,C_Projects_thami_estokvel_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,C_Projects_ikage_ui_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _this.platformService.triggerHaptic('light');
       if (tab.requiresAuth && !isAuthenticated) {
         _this.auth.loginWithRedirect({

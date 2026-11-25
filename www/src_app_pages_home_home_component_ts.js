@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_home_home_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_home_home_component_ts"],{
 
 /***/ 5047:
 /*!**********************************************!*\
@@ -497,7 +497,7 @@ class HomeComponent {
       bannerClass: 'banner-party'
     }];
     this.testimonials = [{
-      quote: 'eStokvel transformed how our family saves. Transparent, easy and no more chasing people for contributions!',
+      quote: 'iKage transformed how our family saves. Transparent, easy and no more chasing people for contributions!',
       name: 'Nomsa Dlamini',
       role: 'Family Fund Admin',
       initials: 'ND',
@@ -794,7 +794,7 @@ class HomeComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](95, " POPIA Compliant");
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](96, "section", 36)(97, "div", 37)(98, "div", 38);
-        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](99, "Why eStokvel?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](99, "Why iKage?");
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](100, "h2");
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](101, "Built for trust. Designed for growth.");
@@ -926,7 +926,7 @@ class HomeComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](212, " A stokvel is a savings or investment society where members regularly contribute agreed amounts and receive lump sum payouts in rotation. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](213, "p", 60);
-        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](214, " With eStokvel, choose between ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](214, " With iKage, choose between ");
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](215, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](216, "private (invite-only)");
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();

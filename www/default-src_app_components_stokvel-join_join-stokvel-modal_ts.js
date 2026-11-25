@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["default-src_app_components_stokvel-join_join-stokvel-modal_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["default-src_app_components_stokvel-join_join-stokvel-modal_ts"],{
 
 /***/ 3570:
 /*!***************************************************************!*\

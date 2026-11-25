@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_legal_legal_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_legal_legal_component_ts"],{
 
 /***/ 3792:
 /*!************************************************!*\
@@ -45,7 +45,7 @@ class LegalComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](8, "Legal Notices");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Important legal information about the use of eStokvel services. Last updated: April 2026.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Important legal information about the use of iKage services. Last updated: April 2026.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "div", 4)(12, "nav", 5)(13, "a", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](14, "Disclaimer");
@@ -71,10 +71,10 @@ class LegalComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](30, " Disclaimer");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](31, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](32, "The information provided on the eStokvel platform is for general informational purposes only. While we strive to keep the information accurate and up to date, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability or suitability of the information, products, services or related graphics for any purpose.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](32, "The information provided on the iKage platform is for general informational purposes only. While we strive to keep the information accurate and up to date, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability or suitability of the information, products, services or related graphics for any purpose.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](33, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](34, "eStokvel does not provide financial, legal or tax advice. Users are encouraged to consult qualified professionals before making any financial decisions.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](34, "iKage does not provide financial, legal or tax advice. Users are encouraged to consult qualified professionals before making any financial decisions.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](35, "section", 14)(36, "h2")(37, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](38, "copyright");
@@ -82,7 +82,7 @@ class LegalComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](39, " Intellectual Property");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](40, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](41, "All content on the eStokvel platform \u2014 including but not limited to text, graphics, logos, icons, images and software \u2014 is the property of Bluetank (Pty) Ltd and is protected by applicable South African and international copyright laws.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](41, "All content on the iKage platform \u2014 including but not limited to text, graphics, logos, icons, images and software \u2014 is the property of Bluetank (Pty) Ltd and is protected by applicable South African and international copyright laws.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](42, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](43, "You may not reproduce, distribute, modify, create derivative works from, publicly display, or exploit any content from this platform without the express written consent of Bluetank (Pty) Ltd.");
@@ -93,7 +93,7 @@ class LegalComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](48, " Limitation of Liability");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](49, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](50, "To the fullest extent permitted by law, Bluetank (Pty) Ltd shall not be liable for any indirect, incidental, special, consequential or punitive damages, including loss of profits, data, use or goodwill, arising out of or in connection with your use of the eStokvel platform.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](50, "To the fullest extent permitted by law, Bluetank (Pty) Ltd shall not be liable for any indirect, incidental, special, consequential or punitive damages, including loss of profits, data, use or goodwill, arising out of or in connection with your use of the iKage platform.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](51, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](52, "Our total liability to you for any claim arising from the use of the platform shall not exceed the total fees paid by you in the 12 months preceding the claim.");
@@ -104,7 +104,7 @@ class LegalComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](57, " Third-Party Links");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](58, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](59, "The eStokvel platform may contain links to third-party websites. These links are provided for your convenience only. We have no control over the content of those sites and accept no responsibility for them or for any loss or damage that may arise from your use of them.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](59, "The iKage platform may contain links to third-party websites. These links are provided for your convenience only. We have no control over the content of those sites and accept no responsibility for them or for any loss or damage that may arise from your use of them.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](60, "section", 17)(61, "h2")(62, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](63, "account_balance");
@@ -112,7 +112,7 @@ class LegalComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](64, " Governing Law");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](65, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](66, "These legal notices and any disputes arising from the use of eStokvel services are governed by and construed in accordance with the laws of the Republic of South Africa. Any disputes shall be subject to the exclusive jurisdiction of the courts of South Africa.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](66, "These legal notices and any disputes arising from the use of iKage services are governed by and construed in accordance with the laws of the Republic of South Africa. Any disputes shall be subject to the exclusive jurisdiction of the courts of South Africa.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](67, "section", 18)(68, "h2")(69, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](70, "mail");
@@ -125,12 +125,12 @@ class LegalComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](74, "ul")(75, "li")(76, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](77, "Company:");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](78, " Bluetank (Pty) Ltd, trading as eStokvel");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](78, " Bluetank (Pty) Ltd, trading as iKage");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](79, "li")(80, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](81, "Email:");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](82, " legal@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](82, " legal@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](83, "li")(84, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](85, "Address:");

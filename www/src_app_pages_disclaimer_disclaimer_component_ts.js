@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkestokvel_ui"] = self["webpackChunkestokvel_ui"] || []).push([["src_app_pages_disclaimer_disclaimer_component_ts"],{
+(self["webpackChunkikage_ui"] = self["webpackChunkikage_ui"] || []).push([["src_app_pages_disclaimer_disclaimer_component_ts"],{
 
 /***/ 9751:
 /*!**********************************************************!*\
@@ -45,13 +45,13 @@ class DisclaimerComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](8, "Disclaimer");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Please read this disclaimer carefully before using the eStokvel platform. Last updated: April 2026.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Please read this disclaimer carefully before using the iKage platform. Last updated: April 2026.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "div", 4)(12, "div", 5)(13, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](14, "warning");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](15, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](16, "By accessing or using the eStokvel platform, you acknowledge that you have read, understood and agree to this Disclaimer in its entirety. If you do not agree, please do not use the platform.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](16, "By accessing or using the iKage platform, you acknowledge that you have read, understood and agree to this Disclaimer in its entirety. If you do not agree, please do not use the platform.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](17, "section", 6)(18, "h2")(19, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](20, "info");
@@ -59,10 +59,10 @@ class DisclaimerComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](21, " General Disclaimer");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](22, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](23, "The information provided on the eStokvel platform \u2014 including all text, graphics, images, data, links, software and other materials \u2014 is provided solely for general informational and educational purposes. While we endeavour to ensure that all information is accurate and up to date, eStokvel (Bluetank (Pty) Ltd) makes no representations or warranties of any kind, express or implied, as to the accuracy, completeness, reliability or suitability of any information on the platform.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](23, "The information provided on the iKage platform \u2014 including all text, graphics, images, data, links, software and other materials \u2014 is provided solely for general informational and educational purposes. While we endeavour to ensure that all information is accurate and up to date, iKage (Bluetank (Pty) Ltd) makes no representations or warranties of any kind, express or implied, as to the accuracy, completeness, reliability or suitability of any information on the platform.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](24, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](25, "Any reliance you place on information obtained from or through the eStokvel platform is strictly at your own risk. eStokvel expressly disclaims all liability for any errors, omissions or inaccuracies in the content.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](25, "Any reliance you place on information obtained from or through the iKage platform is strictly at your own risk. iKage expressly disclaims all liability for any errors, omissions or inaccuracies in the content.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](26, "section", 6)(27, "h2")(28, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](29, "trending_up");
@@ -70,7 +70,7 @@ class DisclaimerComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](30, " No Financial Advice");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](31, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](32, "Nothing on the eStokvel platform constitutes, or should be construed as, financial, investment, tax or legal advice. eStokvel is a technology platform that facilitates stokvel group management and does not provide regulated financial services.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](32, "Nothing on the iKage platform constitutes, or should be construed as, financial, investment, tax or legal advice. iKage is a technology platform that facilitates stokvel group management and does not provide regulated financial services.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](33, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](34, "Users are strongly encouraged to consult a qualified and registered financial advisor, accountant or legal professional before making any financial decisions. Participation in any stokvel group carries inherent financial risk, including the risk of members defaulting on contributions.");
@@ -91,7 +91,7 @@ class DisclaimerComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](47, " Stokvel Group Risk");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](48, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](49, "eStokvel facilitates the management of stokvel groups but does not guarantee the performance, conduct or financial obligations of any individual stokvel group or its members. The platform is not liable for:");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](49, "iKage facilitates the management of stokvel groups but does not guarantee the performance, conduct or financial obligations of any individual stokvel group or its members. The platform is not liable for:");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](50, "ul", 9)(51, "li")(52, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](53, "remove");
@@ -129,7 +129,7 @@ class DisclaimerComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](80, " External Links");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](81, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](82, "The eStokvel platform may contain links to third-party websites and resources for informational purposes. eStokvel has no control over the content, privacy practices or policies of external sites and accepts no responsibility for them. The inclusion of any link does not imply endorsement by eStokvel of the linked site or resource.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](82, "The iKage platform may contain links to third-party websites and resources for informational purposes. iKage has no control over the content, privacy practices or policies of external sites and accepts no responsibility for them. The inclusion of any link does not imply endorsement by iKage of the linked site or resource.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](83, "section", 6)(84, "h2")(85, "mat-icon");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](86, "update");
@@ -137,7 +137,7 @@ class DisclaimerComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](87, " Changes to This Disclaimer");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](88, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](89, "eStokvel reserves the right to modify, update or replace this Disclaimer at any time without prior notice. Changes will be effective immediately upon publication on the platform. Continued use of the platform after any changes constitutes acceptance of the updated Disclaimer.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](89, "iKage reserves the right to modify, update or replace this Disclaimer at any time without prior notice. Changes will be effective immediately upon publication on the platform. Continued use of the platform after any changes constitutes acceptance of the updated Disclaimer.");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](90, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](91, "We recommend reviewing this Disclaimer periodically to stay informed of any updates.");
@@ -153,10 +153,10 @@ class DisclaimerComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](99, "div", 10)(100, "p")(101, "strong");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](102, "Bluetank (Pty) Ltd");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](103, " (trading as eStokvel)");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](103, " (trading as iKage)");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](104, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](105, "Email: legal@estokvel.co.za");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](105, "Email: legal@ikage.co.za");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](106, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](107, "Johannesburg, Gauteng, South Africa");

@@ -28,7 +28,7 @@ export class ContactComponent {
   isSubmitting: boolean = false;
 
   readonly whatsappNumber: string = '0788778174';
-  readonly supportEmail: string = 'support@estokvel.co.za';
+  readonly supportEmail: string = 'support@ikage.co.za';
   readonly supportPhone: string = '0788778174';
   readonly emergencyPhone: string = '0788778174';
 
@@ -53,7 +53,7 @@ export class ContactComponent {
   }
 
   openWhatsAppChat(): void {
-    const message = `Hello eStokvel support! I need assistance with:`;
+    const message = `Hello iKage support! I need assistance with:`;
     const url = `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 
@@ -100,8 +100,8 @@ export class ContactComponent {
 
   // Open email client
   openEmail(): void {
-    const subject = 'eStokvel Support Request';
-    const body = `Hello eStokvel team,\n\nI would like to get help with:\n\n`;
+    const subject = 'iKage Support Request';
+    const body = `Hello iKage team,\n\nI would like to get help with:\n\n`;
     const url = `mailto:${this.supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(url, '_blank');
   }

@@ -14,8 +14,8 @@ export class FooterComponent {
   socialLinks: any = {};
   contactInfo: any = {};
   appLinks = {
-    playStore: 'https://play.google.com/store/apps/details?id=co.za.estokvel',
-    appStore: 'https://apps.apple.com/za/app/estokvel/id123456789'
+    playStore: 'https://play.google.com/store/apps/details?id=co.za.ikage',
+    appStore: 'https://apps.apple.com/za/app/ikage/id123456789'
   };
 
   constructor() {}
@@ -28,8 +28,8 @@ export class FooterComponent {
     // Contact Information
     getContactInfo() {
       return {
-        supportEmail: 'support@estokvel.co.za',
-        generalEmail: 'info@estokvel.co.za',
+        supportEmail: 'support@ikage.co.za',
+        generalEmail: 'info@ikage.co.za',
         phone: '+27 788 778 174',
         emergencyPhone: '+27 788 778 174',
         address: '11 Van Der Kloof Street, Amarosa, 1724, South Africa',
@@ -44,11 +44,11 @@ export class FooterComponent {
 
   getSocialLinks() {
     return {
-      facebook: 'https://facebook.com/estokvel',
-      twitter: 'https://twitter.com/estokvel',
-      instagram: 'https://instagram.com/estokvel',
-      linkedin: 'https://linkedin.com/company/estokvel',
-      youtube: 'https://youtube.com/estokvel'
+      facebook: 'https://facebook.com/ikage',
+      twitter: 'https://twitter.com/ikage',
+      instagram: 'https://instagram.com/ikage',
+      linkedin: 'https://linkedin.com/company/ikage',
+      youtube: 'https://youtube.com/ikage'
     };
   }
 }

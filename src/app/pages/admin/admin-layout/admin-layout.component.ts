@@ -15,7 +15,7 @@ import { AdminService } from '../../../services/admin/admin.service';
       <aside class="admin-sidebar">
         <div class="sidebar-brand">
           <mat-icon class="brand-icon">shield</mat-icon>
-          <span>eStokvel<br><strong>Backoffice</strong></span>
+          <span>iKage<br><strong>Backoffice</strong></span>
         </div>
 
         <div class="admin-user-chip" *ngIf="user">
